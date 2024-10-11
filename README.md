@@ -21,7 +21,8 @@ Matplotlib
 
 # Estrutura do Projeto
 O projeto foi desenvolvido por Betsabé e Paulo. Aqui você vai encontrar inicialmente duas interfaces desenvolvidas por cada um deles, que buscam cumprir as mesmas funcionalidades, mas ao final teremos apenas uma interface.
-\nBet:
+
+Bet:
 - open_tif_alterado.py -> Arquivo principal que executa a interface gráfica.
    - ler_arquivo -> Abre um seletor de arquivos e extrai o caminho do arquivo para ser usado no código.
    - gera_elevações -> Gera o gráfico de elevação, indicando o valor da altitude em cada ponto.
@@ -31,7 +32,7 @@ O projeto foi desenvolvido por Betsabé e Paulo. Aqui você vai encontrar inicia
    
 - open_tif.ui -> Interface gráfica desenvolvida no QtDesigner.
 
-\nPaulo:
+Paulo:
 
 # Como Usar?
 
