@@ -1,26 +1,22 @@
 # Módulos
+from PyQt5 import QtCore, QtWidgets, uic
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 
-def importa_modulos():
-    from PyQt5 import QtCore, QtWidgets, uic
-    from PyQt5.QtCore import Qt
-    from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+import scipy as sp
+from scipy.ndimage import gaussian_filter
 
-    import scipy as sp
-    from scipy.ndimage import gaussian_filter
+import numpy as np
+from PIL import Image
+import rasterio
 
-    import numpy as np
-    from PIL import Image
-    import rasterio
-
-    import matplotlib.cm as cm
-    from matplotlib.figure import Figure
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-    from matplotlib.backends.backend_qt5agg  import FigureCanvasQTAgg as FigureCanvas
-    from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-    from sys import argv, exit, path
-
-importa_modulos()
+import matplotlib.cm as cm
+from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+from matplotlib.backends.backend_qt5agg  import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+from sys import argv, exit, path
 
 class UI(QMainWindow):
     def __init__(self):
