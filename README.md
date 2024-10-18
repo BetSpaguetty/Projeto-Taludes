@@ -27,7 +27,7 @@ Bet:
    - volta_tif -> Volta para o arquivo original (anterior ao corte).
    - gera_gradiente -> Gera o gráfico de gradiente, mostrando ao usuário a inclinação máxima em cada ponto.
    
-- open_tif.ui -> Interface gráfica desenvolvida no QtDesigner.
+- open_tif_2.ui -> Interface gráfica desenvolvida no QtDesigner.
 
 Paulo:
 
