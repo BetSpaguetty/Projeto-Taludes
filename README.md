@@ -1,8 +1,5 @@
 # Projeto-Taludes
-Esse projeto consiste em criar uma interface gráfica usando PyQt (Python + Qt) onde é possível abrir arquivos tiff e simular diversos acontecimentos que alteram significativamente a estabilidade dos taludes.
-
-# Resumo do projeto
-
+Este projeto propõe o desenvolvimento de uma interface gráfica utilizando PyQt (Python + Qt) que permite a abertura de arquivos TIFF e oferece múltiplas opções de visualização, ajustáveis conforme as necessidades do usuário. A ferramenta possibilita, além da visualização, a simulação de diversos eventos que podem impactar significativamente a segurança e estabilidade dos terrenos, especialmente em áreas de taludes. Taludes são estruturas críticas tanto em ambientes naturais quanto construídos, e sua análise é essencial para a mitigação de riscos, como deslizamentos e falhas estruturais, especialmente em regiões urbanizadas ou áreas de mineração.
 
 # Funcionalidades
 - Carregar e exibir arquivos TIFF geográficos.
@@ -13,11 +10,11 @@ Esse projeto consiste em criar uma interface gráfica usando PyQt (Python + Qt) 
 
 # Requisitos
 Para executar este projeto, os seguintes pacotes precisam estar instalados:
-Python 3.12.3 
-PyQt5
-Rasterio
-NumPy
-Matplotlib
+- Python 3.12.3 
+- PyQt5
+- Rasterio
+- NumPy
+- Matplotlib
 
 # Estrutura do Projeto
 O projeto foi desenvolvido por Betsabé e Paulo. Aqui você vai encontrar inicialmente duas interfaces desenvolvidas por cada um deles, que buscam cumprir as mesmas funcionalidades, mas ao final teremos apenas uma interface.
@@ -35,4 +32,4 @@ Bet:
 Paulo:
 
 # Como Usar?
-
+Abra o Arquivo principal (.py) e execute no seu interpretador de código, logo aparecerá a interface.
