@@ -9,7 +9,7 @@ from scipy.ndimage import gaussian_filter
 
 import numpy as np
 from PIL import Image
-import rasterio
+# import rasterio
 
 import matplotlib.cm as cm
 from matplotlib.figure import Figure
@@ -22,7 +22,7 @@ from sys import argv, exit, path
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        uic.loadUi("open_tif_2.ui",self)
+        uic.loadUi("C:\\Users\\betsabenogueira\\Documents\\Visualizador de tiff\\Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
         self.pushButton = self.findChild(QPushButton,"botao_abrir_arquivo")
         self.graphicsView = self.findChild(QGraphicsView,"frame_exibicao_elevacao")
         self.exibe_gradiente = self.findChild(QGraphicsView,"frame_exibicao_gradiente")
@@ -183,6 +183,7 @@ class UI(QMainWindow):
         # alterar dimensão x,y
         # formatar janela para os widgets aumentarem juntos.
         # tirar informação do relevo do primeiro grafico.
+
 
 
 
