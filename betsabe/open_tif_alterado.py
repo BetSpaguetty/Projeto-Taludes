@@ -9,7 +9,8 @@ from scipy.ndimage import gaussian_filter
 
 import numpy as np
 from PIL import Image
-# import rasterio
+
+import rasterio
 
 import matplotlib.cm as cm
 from matplotlib.figure import Figure
@@ -22,7 +23,7 @@ from sys import argv, exit, path
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        uic.loadUi("C:\\Users\\betsabenogueira\\Documents\\Visualizador de tiff\\Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
+        uic.loadUi("Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
         self.pushButton = self.findChild(QPushButton,"botao_abrir_arquivo")
         self.graphicsView = self.findChild(QGraphicsView,"frame_exibicao_elevacao")
         self.exibe_gradiente = self.findChild(QGraphicsView,"frame_exibicao_gradiente")
@@ -32,6 +33,7 @@ class UI(QMainWindow):
         self.intervalo_y_inicio = self.findChild(QLineEdit,"intervalo_y_inicio")
         self.intervalo_y_final = self.findChild(QLineEdit,"intervalo_y_final")
         self.label_shape = self.findChild(QLabel,"label_shape")
+        self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
 
         self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
 
@@ -70,10 +72,10 @@ class UI(QMainWindow):
         y, x = np.meshgrid(lin_y, lin_x)
         z = self.img_array
 
-        sigma_y = 100
-        sigma_x = 100
-        sigma = [sigma_y, sigma_x]
-        z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
+        # sigma_y = 100
+        # sigma_x = 100
+        # sigma = [sigma_y, sigma_x]
+        # z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
 
         # z_smoothed_min = np.amin(z_smoothed)
         # z_smoothed_max = np.amax(z_smoothed)
@@ -89,7 +91,7 @@ class UI(QMainWindow):
 
 
         m = cm.ScalarMappable(cmap=surf.cmap, norm=surf.norm)
-        m.set_array(z_smoothed)
+        # m.set_array(z_smoothed)
 
         # cbar =  self.fig.colorbar(m, ax=ax, shrink=0.5, aspect=20, ticks=[z_smoothed_min, 0, (z_range * 0.25 + z_smoothed_min), (z_range * 0.5 + z_smoothed_min), (z_range * 0.75 + z_smoothed_min), z_smoothed_max])
         # cbar.ax.set_yticklabels([f'{z_smoothed_min}', ' ',  f'{(z_range*0.25+z_smoothed_min)}', f'{(z_range*0.5+z_smoothed_min)}', f'{(z_range*0.75+z_smoothed_min)}', f'{z_smoothed_max}'])
@@ -120,13 +122,17 @@ class UI(QMainWindow):
 
         # Converter o array NumPy de volta para um objeto de imagem PIL
         recorte_img = Image.fromarray(recorte)
+        
+        if str(self.nome_corte.text())=="":
+            nome_do_corte = 'recorte_arquivo.tif'
+        else:
+            nome_do_corte =  str(self.nome_corte.text()) + ".tif"
 
         # Salvar o recorte como um novo arquivo TIFF
-        recorte_img.save('recorte_arquivo.tif')
+        recorte_img.save(nome_do_corte)
 
-        self.gera_elevacoes('recorte_arquivo.tif')
-        self.gera_gradiente('recorte_arquivo.tif')
-
+        self.gera_elevacoes(nome_do_corte)
+        self.gera_gradiente(nome_do_corte)
         print("Recorte realizado com sucesso!")
 
     def volta_tif(self):
@@ -184,6 +190,27 @@ class UI(QMainWindow):
         # formatar janela para os widgets aumentarem juntos.
         # tirar informação do relevo do primeiro grafico.
 
+    def mostra_lista(self):
+
+        return
+
+    def ler_regiao_selecionada(self,regiao):
+        arquivos_regiao = {"regiao1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_1.tif" ,
+                           "regiao2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_2.tif",
+                           "regiao3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_3.tif",
+                           "regiao4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_4.tif",
+                           "regiao5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_5.tif",
+                           "regiao6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_6.tif",
+                           "regiao7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_7.tif",
+                           "regiao8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_8.tif",
+                           "regiao9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_9.tif" ,
+                           "regiao10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_10.tif",
+                           "regiao11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_11.tif",
+                           "regiao12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_12.tif"}
+
+        self.caminho_do_arquivo = arquivos_regiao[regiao]
+        self.gera_elevacoes(self.caminho_do_arquivo)
+        self.gera_gradiente(self.caminho_do_arquivo)
 
 
 
