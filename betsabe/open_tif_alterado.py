@@ -96,6 +96,8 @@ class UI(QMainWindow):
         # cbar =  self.fig.colorbar(m, ax=ax, shrink=0.5, aspect=20, ticks=[z_smoothed_min, 0, (z_range * 0.25 + z_smoothed_min), (z_range * 0.5 + z_smoothed_min), (z_range * 0.75 + z_smoothed_min), z_smoothed_max])
         # cbar.ax.set_yticklabels([f'{z_smoothed_min}', ' ',  f'{(z_range*0.25+z_smoothed_min)}', f'{(z_range*0.5+z_smoothed_min)}', f'{(z_range*0.75+z_smoothed_min)}', f'{z_smoothed_max}'])
 
+        ax.axis('off')
+
         plt.xticks([])  # disabling xticks
         plt.yticks([])  # disabling yticks
 
@@ -195,18 +197,20 @@ class UI(QMainWindow):
         return
 
     def ler_regiao_selecionada(self,regiao):
-        arquivos_regiao = {"regiao1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_1.tif" ,
-                           "regiao2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_2.tif",
-                           "regiao3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_3.tif",
-                           "regiao4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_4.tif",
-                           "regiao5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_5.tif",
-                           "regiao6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_6.tif",
-                           "regiao7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_7.tif",
-                           "regiao8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_8.tif",
-                           "regiao9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_9.tif" ,
-                           "regiao10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_10.tif",
-                           "regiao11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_11.tif",
-                           "regiao12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\regiao_12.tif"}
+        
+
+        arquivos_regiao = {"regiao1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
+                           "regiao2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
+                           "regiao3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
+                           "regiao4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
+                           "regiao5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
+                           "regiao6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
+                           "regiao7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
+                           "regiao8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
+                           "regiao9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
+                           "regiao10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
+                           "regiao11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
+                           "regiao12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
 
         self.caminho_do_arquivo = arquivos_regiao[regiao]
         self.gera_elevacoes(self.caminho_do_arquivo)

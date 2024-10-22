@@ -37,6 +37,23 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="Layout_Principal">
+     <item row="1" column="1">
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
+     </item>
+     <item row="2" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Defina o nome do seu arquivo de corte:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nome_arquivo_corte"/>
+       </item>
+      </layout>
+     </item>
      <item row="1" column="0">
       <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
      </item>
@@ -64,9 +81,6 @@
         </widget>
        </item>
       </layout>
-     </item>
-     <item row="1" column="1">
-      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
      </item>
      <item row="2" column="0">
       <layout class="QGridLayout" name="gridLayout_2">
@@ -119,21 +133,17 @@
        </item>
       </layout>
      </item>
-     <item row="2" column="1">
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Defina o nome do seu arquivo de corte:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="nome_arquivo_corte"/>
-       </item>
-      </layout>
-     </item>
     </layout>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>0</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
