@@ -135,15 +135,75 @@
      </item>
     </layout>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="lista_regioes">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>0</y>
-      <width>256</width>
+      <x>340</x>
+      <y>20</y>
+      <width>91</width>
       <height>192</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>Região 1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 4</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 5</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 6</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 7</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 8</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 9</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 10</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 11</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Região 12</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -299,6 +359,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>lista_regioes</sender>
+   <signal>itemClicked(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ler_regiao_selecionada()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>430</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>573</x>
+     <y>70</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_mapa_rio</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>mostra_lista()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>104</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>abrir_arquivo()</slot>
@@ -307,5 +399,7 @@
   <slot>ler_arquivo()</slot>
   <slot>volta_tif()</slot>
   <slot>gera_gradiente()</slot>
+  <slot>mostra_lista()</slot>
+  <slot>ler_regiao_selecionada()</slot>
  </slots>
 </ui>

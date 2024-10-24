@@ -2,7 +2,7 @@
 
 from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtWidgets import QMessageBox, QListWidget, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 
 import scipy as sp
 from scipy.ndimage import gaussian_filter
@@ -34,8 +34,10 @@ class UI(QMainWindow):
         self.intervalo_y_final = self.findChild(QLineEdit,"intervalo_y_final")
         self.label_shape = self.findChild(QLabel,"label_shape")
         self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
+        self.lista_rio = self.findChild(QListWidget,"lista_regioes")
 
         self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
+        self.lista_rio.setVisible(False)  # Começa invisível
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -54,11 +56,25 @@ class UI(QMainWindow):
 
 
     def ler_arquivo(self):
-         # Abre uma janela de diálogo para selecionar um arquivo .tif
+        # try:
+        #     # Abre uma janela de diálogo para selecionar um arquivo .tif
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
+        #     if not  self.caminho_do_arquivo:
+        #         raise FileNotFoundError("Nenhum arquivo selecionado.")
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
         print(self.caminho_do_arquivo)
+        #     if self.caminho_do_arquivo.endswith('.tif'):
+        #         raise ValueError("Erro ao abrir o arquivo TIFF.")
+
+        # except FileNotFoundError as e:
+        #     self.mensagem_erro("Erro", str(e))
+
+        # except ValueError as e:
+        #     self.mensagem_erro("Erro de Validação", str(e))
+
+        # except Exception as e:
+        #     self.mensagem_erro("Erro Desconhecido", f"Ocorreu um erro inesperado: {str(e)}")
     
     def gera_elevacoes(self,arquivo):
         img = Image.open(arquivo)
@@ -72,9 +88,9 @@ class UI(QMainWindow):
         y, x = np.meshgrid(lin_y, lin_x)
         z = self.img_array
 
-        # sigma_y = 100
-        # sigma_x = 100
-        # sigma = [sigma_y, sigma_x]
+        sigma_y = 100
+        sigma_x = 100
+        sigma = [sigma_y, sigma_x]
         # z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
 
         # z_smoothed_min = np.amin(z_smoothed)
@@ -88,6 +104,7 @@ class UI(QMainWindow):
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
         surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        ax.axis('off')
 
 
         m = cm.ScalarMappable(cmap=surf.cmap, norm=surf.norm)
@@ -96,7 +113,8 @@ class UI(QMainWindow):
         # cbar =  self.fig.colorbar(m, ax=ax, shrink=0.5, aspect=20, ticks=[z_smoothed_min, 0, (z_range * 0.25 + z_smoothed_min), (z_range * 0.5 + z_smoothed_min), (z_range * 0.75 + z_smoothed_min), z_smoothed_max])
         # cbar.ax.set_yticklabels([f'{z_smoothed_min}', ' ',  f'{(z_range*0.25+z_smoothed_min)}', f'{(z_range*0.5+z_smoothed_min)}', f'{(z_range*0.75+z_smoothed_min)}', f'{z_smoothed_max}'])
 
-        ax.axis('off')
+        # Adicionando a colorbar ao gráfico
+        self.fig.colorbar(surf, ax=ax, shrink=0.5, aspect=13)
 
         plt.xticks([])  # disabling xticks
         plt.yticks([])  # disabling yticks
@@ -108,7 +126,7 @@ class UI(QMainWindow):
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.setFixedSize(280, 30)
 
-        # redimensiona o gráfico
+        # Redimensiona o gráfico
         size = self.graphicsView.size()
         self.canvas.resize(size)
 
@@ -193,30 +211,35 @@ class UI(QMainWindow):
         # tirar informação do relevo do primeiro grafico.
 
     def mostra_lista(self):
-
-        return
+        self.lista_rio.setVisible(not self.lista_rio.isVisible()) # alternar visibilidade
 
     def ler_regiao_selecionada(self,regiao):
-        
 
-        arquivos_regiao = {"regiao1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
-                           "regiao2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
-                           "regiao3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
-                           "regiao4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
-                           "regiao5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
-                           "regiao6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
-                           "regiao7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
-                           "regiao8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
-                           "regiao9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
-                           "regiao10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
-                           "regiao11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
-                           "regiao12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
+        arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
+                           "Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
+                           "Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
+                           "Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
+                           "Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
+                           "Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
+                           "Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
+                           "Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
+                           "Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
+                           "Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
+                           "Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
+                           "Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
 
-        self.caminho_do_arquivo = arquivos_regiao[regiao]
+        self.lista_rio.setVisible(False)
+        self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
 
-
+    # def mensagem_erro(self, title, message):
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Warning)
+        msg_box.setWindowTitle(title)
+        msg_box.setText(message)
+        msg_box.setStandardButtons(QMessageBox.Ok)
+        msg_box.exec_()
 
 app = QApplication(argv)
 UIWindow = UI()
