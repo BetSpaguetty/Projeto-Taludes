@@ -234,12 +234,12 @@ class UI(QMainWindow):
         self.gera_gradiente(self.caminho_do_arquivo)
 
     # def mensagem_erro(self, title, message):
-        msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Warning)
-        msg_box.setWindowTitle(title)
-        msg_box.setText(message)
-        msg_box.setStandardButtons(QMessageBox.Ok)
-        msg_box.exec_()
+        # msg_box = QMessageBox()
+        # msg_box.setIcon(QMessageBox.Warning)
+        # msg_box.setWindowTitle(title)
+        # msg_box.setText(message)
+        # msg_box.setStandardButtons(QMessageBox.Ok)
+        # msg_box.exec_()
 
 app = QApplication(argv)
 UIWindow = UI()
