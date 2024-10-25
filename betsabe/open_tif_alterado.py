@@ -19,7 +19,7 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.backends.backend_qt5agg  import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from sys import argv, exit, path
-
+# import
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
@@ -233,13 +233,13 @@ class UI(QMainWindow):
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
 
-    # def mensagem_erro(self, title, message):
-        # msg_box = QMessageBox()
-        # msg_box.setIcon(QMessageBox.Warning)
-        # msg_box.setWindowTitle(title)
-        # msg_box.setText(message)
-        # msg_box.setStandardButtons(QMessageBox.Ok)
-        # msg_box.exec_()
+    def mensagem_erro(self, title, message):
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Warning)
+        msg_box.setWindowTitle(title)
+        msg_box.setText(message)
+        msg_box.setStandardButtons(QMessageBox.Ok)
+        msg_box.exec_()
 
 app = QApplication(argv)
 UIWindow = UI()
