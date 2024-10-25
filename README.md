@@ -30,12 +30,12 @@ Bet:
 - open_tif_2.ui -> Interface gráfica desenvolvida no QtDesigner.
 
 Paulo:
-- open_tif_alterado.py -> Arquivo principal que executa a interface gráfica.
-   - def number_changed(self): muda números nos lineEdits quando há mudanças nos sliders
-   - def runAnalysis(self): cria e mostra os gráficos das variáveis
-   - def getfile(self): recebe arquivos novos e cria os gráficos da sua elevação e inclinação
-   - def figureAdjust(self): faz cortes em gráficos de arquivos já recebidos
-   - def clearCanvas(self): limpa todos os valores e gráficos
+- apptaludes.py -> Arquivo que executa a interface gráfica.
+   - umber_changed(self): muda números nos lineEdits quando o usuário mecher nos sliders
+   - runAnalysis(self): cria e mostra os gráficos das variáveis (h(m), hw(m), c'(kPa) e Phi(Graus)), que tem o mesmo tamanho do último gráfico criado
+   - getfile(self): recebe arquivos novos e cria os gráficos da sua elevação e inclinação
+   - figureAdjust(self): faz cortes em gráficos do último arquivo recebidos
+   - clearCanvas(self): limpa todos os valores e gráficos
   
 # Como Usar?
 Abra o Arquivo principal (.py) e execute no seu interpretador de código, logo aparecerá a interface.
