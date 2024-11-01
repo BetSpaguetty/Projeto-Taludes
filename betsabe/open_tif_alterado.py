@@ -36,6 +36,7 @@ class UI(QMainWindow):
         self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
         self.lista_rio = self.findChild(QListWidget,"lista_regioes")
         self.lista_mapinhas = self.findChild(QListWidget,"lista_mapinhas")
+        self.label_nome_arquivo = self.findChild(QLabel,"label_nomeArquivo")
 
         self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
         self.lista_rio.setVisible(False)  # Começa invisível
@@ -65,6 +66,7 @@ class UI(QMainWindow):
         #         raise FileNotFoundError("Nenhum arquivo selecionado.")
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
+  
         print(self.caminho_do_arquivo)
         #     if self.caminho_do_arquivo.endswith('.tif'):
         #         raise ValueError("Erro ao abrir o arquivo TIFF.")
@@ -77,7 +79,10 @@ class UI(QMainWindow):
 
         # except Exception as e:
         #     self.mensagem_erro("Erro Desconhecido", f"Ocorreu um erro inesperado: {str(e)}")
-    
+
+    def exibe_nome_arquivo(self,arquivo):
+        self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
+
     def gera_elevacoes(self,arquivo):
         img = Image.open(arquivo)
         self.img_array = np.array(img)
@@ -234,6 +239,7 @@ class UI(QMainWindow):
         self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
+        self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
     def mostra_mapinhas(self):
         self.lista_mapinhas.setVisible(not self.lista_mapinhas.isVisible())
@@ -253,6 +259,7 @@ class UI(QMainWindow):
         self.caminho_do_arquivo = mapinhas[mapinha.text()]
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
+        self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
     def mensagem_erro(self, title, message):
         msg_box = QMessageBox()
