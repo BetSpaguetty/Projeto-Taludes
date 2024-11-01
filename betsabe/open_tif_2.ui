@@ -37,51 +37,6 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="Layout_Principal">
-     <item row="1" column="1">
-      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
-     </item>
-     <item row="2" column="1">
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Defina o nome do seu arquivo de corte:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="nome_arquivo_corte"/>
-       </item>
-      </layout>
-     </item>
-     <item row="1" column="0">
-      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
-     </item>
-     <item row="0" column="0">
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="botao_abrir_arquivo">
-         <property name="text">
-          <string>Abrir</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="label_shape">
-         <property name="text">
-          <string>Shape: </string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="botao_mapa_rio">
-         <property name="text">
-          <string>Mapa Rio</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item row="2" column="0">
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="2" column="0">
@@ -133,15 +88,67 @@
        </item>
       </layout>
      </item>
+     <item row="2" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Defina o nome do seu arquivo de corte:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nome_arquivo_corte"/>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="botao_abrir_arquivo">
+         <property name="text">
+          <string>Abrir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_shape">
+         <property name="text">
+          <string>Shape: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="botao_mapa_rio">
+         <property name="text">
+          <string>Mapa Rio</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Mapinhas (R1)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="1">
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
+     </item>
     </layout>
    </widget>
    <widget class="QListWidget" name="lista_regioes">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>20</y>
-      <width>91</width>
-      <height>192</height>
+      <x>200</x>
+      <y>0</y>
+      <width>121</width>
+      <height>61</height>
      </rect>
     </property>
     <item>
@@ -202,6 +209,61 @@
     <item>
      <property name="text">
       <string>Região 12</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QListWidget" name="lista_mapinhas">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>0</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Mapinha 1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 4</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 5</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 6</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 7</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 8</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapinha 9</string>
      </property>
     </item>
    </widget>
@@ -366,8 +428,8 @@
    <slot>ler_regiao_selecionada()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>430</x>
-     <y>90</y>
+     <x>290</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
      <x>573</x>
@@ -391,6 +453,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>mostra_mapinhas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>393</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>502</x>
+     <y>77</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lista_mapinhas</sender>
+   <signal>itemClicked(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ler_mapinha_selecionado()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>419</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>481</x>
+     <y>45</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>abrir_arquivo()</slot>
@@ -401,5 +495,8 @@
   <slot>gera_gradiente()</slot>
   <slot>mostra_lista()</slot>
   <slot>ler_regiao_selecionada()</slot>
+  <slot>slot2()</slot>
+  <slot>mostra_mapinhas()</slot>
+  <slot>ler_mapinha_selecionado()</slot>
  </slots>
 </ui>

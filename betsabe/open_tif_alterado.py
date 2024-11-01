@@ -35,9 +35,11 @@ class UI(QMainWindow):
         self.label_shape = self.findChild(QLabel,"label_shape")
         self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
         self.lista_rio = self.findChild(QListWidget,"lista_regioes")
+        self.lista_mapinhas = self.findChild(QListWidget,"lista_mapinhas")
 
         self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
         self.lista_rio.setVisible(False)  # Começa invisível
+        self.lista_mapinhas.setVisible(False)
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -188,7 +190,7 @@ class UI(QMainWindow):
 
         self.fig_gradiente = plt.figure(figsize=(10, 5))  
 
-        plt.imshow(incl_max, cmap='viridis')
+        plt.imshow(incl_max, cmap='terrain')
         plt.colorbar(label='Inclinação Máxima')
 
         # Cria uma figura e um canvas para o gráfico
@@ -233,6 +235,25 @@ class UI(QMainWindow):
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
 
+    def mostra_mapinhas(self):
+        self.lista_mapinhas.setVisible(not self.lista_mapinhas.isVisible())
+
+    def ler_mapinha_selecionado(self,mapinha):
+        mapinhas = {"Mapinha 1":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif" ,
+                    "Mapinha 2":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.2.tif",
+                    "Mapinha 3":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.3.tif",
+                    "Mapinha 4":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.4.tif",
+                    "Mapinha 5":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.5.tif",
+                    "Mapinha 6":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.6.tif",
+                    "Mapinha 7":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.7.tif",
+                    "Mapinha 8":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.8.tif",
+                    "Mapinha 9":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.9.tif"}
+
+        self.lista_mapinhas.setVisible(False)
+        self.caminho_do_arquivo = mapinhas[mapinha.text()]
+        self.gera_elevacoes(self.caminho_do_arquivo)
+        self.gera_gradiente(self.caminho_do_arquivo)
+
     def mensagem_erro(self, title, message):
         msg_box = QMessageBox()
         msg_box.setIcon(QMessageBox.Warning)
@@ -240,6 +261,9 @@ class UI(QMainWindow):
         msg_box.setText(message)
         msg_box.setStandardButtons(QMessageBox.Ok)
         msg_box.exec_()
+
+
+    # WGS84 EPSG:4326
 
 app = QApplication(argv)
 UIWindow = UI()
