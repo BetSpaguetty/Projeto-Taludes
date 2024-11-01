@@ -31,11 +31,11 @@ Bet:
 
 Paulo:
 - apptaludes.py -> Arquivo que executa a interface gráfica.
-   - umber_changed(self): muda números nos lineEdits quando o usuário mecher nos sliders
-   - runAnalysis(self): cria e mostra os gráficos das variáveis (h(m), hw(m), c'(kPa) e Phi(Graus)), que tem o mesmo tamanho do último gráfico criado
-   - getfile(self): recebe arquivos novos e cria os gráficos da sua elevação e inclinação
-   - figureAdjust(self): faz cortes em gráficos do último arquivo recebidos
-   - clearCanvas(self): limpa todos os valores e gráficos
+   - umber_changed: muda números nos lineEdits quando o usuário mecher nos sliders
+   - runAnalysis: cria e mostra os gráficos das variáveis (h(m), hw(m), c'(kPa) e Phi(Graus)), que tem o mesmo tamanho do último gráfico criado
+   - getfile: recebe arquivos novos e cria os gráficos da sua elevação e inclinação
+   - figureAdjust: faz cortes em gráficos do último arquivo recebidos
+   - clearCanvas: limpa todos os valores e gráficos
   
 # Como Usar?
 Abra o Arquivo principal (.py) e execute no seu interpretador de código, logo aparecerá a interface.
