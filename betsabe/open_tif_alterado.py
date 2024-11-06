@@ -34,13 +34,15 @@ class UI(QMainWindow):
         self.intervalo_y_final = self.findChild(QLineEdit,"intervalo_y_final")
         self.label_shape = self.findChild(QLabel,"label_shape")
         self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
-        self.lista_rio = self.findChild(QListWidget,"lista_regioes")
-        self.lista_mapinhas = self.findChild(QListWidget,"lista_mapinhas")
+        # self.lista_rio = self.findChild(QListWidget,"lista_regioes")
+        # self.lista_mapinhas = self.findChild(QListWidget,"lista_mapinhas")
         self.label_nome_arquivo = self.findChild(QLabel,"label_nomeArquivo")
+        self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
 
-        self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
-        self.lista_rio.setVisible(False)  # Começa invisível
-        self.lista_mapinhas.setVisible(False)
+        # self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
+        self.label_mapa_rio.setVisible(False)  # Começa invisível
+        self.label_mapa_rio.setStyleSheet("background-color: lightgrey; color: black;")
+        # self.lista_mapinhas.setVisible(False)
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -59,26 +61,11 @@ class UI(QMainWindow):
 
 
     def ler_arquivo(self):
-        # try:
-        #     # Abre uma janela de diálogo para selecionar um arquivo .tif
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
-        #     if not  self.caminho_do_arquivo:
-        #         raise FileNotFoundError("Nenhum arquivo selecionado.")
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
   
         print(self.caminho_do_arquivo)
-        #     if self.caminho_do_arquivo.endswith('.tif'):
-        #         raise ValueError("Erro ao abrir o arquivo TIFF.")
-
-        # except FileNotFoundError as e:
-        #     self.mensagem_erro("Erro", str(e))
-
-        # except ValueError as e:
-        #     self.mensagem_erro("Erro de Validação", str(e))
-
-        # except Exception as e:
-        #     self.mensagem_erro("Erro Desconhecido", f"Ocorreu um erro inesperado: {str(e)}")
 
     def exibe_nome_arquivo(self,arquivo):
         self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
@@ -143,29 +130,6 @@ class UI(QMainWindow):
         self.label_shape.setText(f"Shape: {self.img_array.shape}") # exibe o as dimensões do tif
         print(f"função abrir arquivo com tamanho {self.img_array.shape} funcionou")
 
-    def corta_tif(self):
-        # Definir os índices para recortar
-        recorte = self.img_array[ int(self.intervalo_x_inicio.text()):int(self.intervalo_x_final.text()),int(self.intervalo_y_inicio.text()):int(self.intervalo_y_final.text())]
-
-        # Converter o array NumPy de volta para um objeto de imagem PIL
-        recorte_img = Image.fromarray(recorte)
-        
-        if str(self.nome_corte.text())=="":
-            nome_do_corte = 'recorte_arquivo.tif'
-        else:
-            nome_do_corte =  str(self.nome_corte.text()) + ".tif"
-
-        # Salvar o recorte como um novo arquivo TIFF
-        recorte_img.save(nome_do_corte)
-
-        self.gera_elevacoes(nome_do_corte)
-        self.gera_gradiente(nome_do_corte)
-        print("Recorte realizado com sucesso!")
-
-    def volta_tif(self):
-        self.gera_elevacoes(self.caminho_do_arquivo)
-        self.gera_gradiente(self.caminho_do_arquivo)
-
     def gera_gradiente(self,arquivo):
         # Abrir o arquivo TIFF e extrair a matriz de elevações
         tif_file = arquivo
@@ -213,64 +177,78 @@ class UI(QMainWindow):
         self.scene_gradiente.addWidget(self.toolbar_gradiente)
         print('função do gradiente funcionou')
 
-        # alterar dimensão x,y
-        # formatar janela para os widgets aumentarem juntos.
-        # tirar informação do relevo do primeiro grafico.
+    def corta_tif(self):
+        # Definir os índices para recortar
+        recorte = self.img_array[ int(self.intervalo_x_inicio.text()):int(self.intervalo_x_final.text()),int(self.intervalo_y_inicio.text()):int(self.intervalo_y_final.text())]
 
-    def mostra_lista(self):
-        self.lista_rio.setVisible(not self.lista_rio.isVisible()) # alternar visibilidade
+        # Converter o array NumPy de volta para um objeto de imagem PIL
+        recorte_img = Image.fromarray(recorte)
+        
+        if str(self.nome_corte.text())=="":
+            nome_do_corte = 'recorte_arquivo.tif'
+        else:
+            nome_do_corte =  str(self.nome_corte.text()) + ".tif"
 
-    def ler_regiao_selecionada(self,regiao):
+        # Salvar o recorte como um novo arquivo TIFF
+        recorte_img.save(nome_do_corte)
 
-        arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
-                           "Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
-                           "Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
-                           "Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
-                           "Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
-                           "Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
-                           "Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
-                           "Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
-                           "Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
-                           "Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
-                           "Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
-                           "Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
+        self.gera_elevacoes(nome_do_corte)
+        self.gera_gradiente(nome_do_corte)
+        print("Recorte realizado com sucesso!")
 
-        self.lista_rio.setVisible(False)
-        self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
+    def volta_tif(self):
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
-        self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
-    def mostra_mapinhas(self):
-        self.lista_mapinhas.setVisible(not self.lista_mapinhas.isVisible())
+    def mostra_mapa(self):
+        self.label_mapa_rio.setVisible(not self.label_mapa_rio.isVisible()) # alternar visibilidade
+        print('funçaõ mostra mapa funcionou')
+        print(f"Visibilidade atual: {self.label_mapa_rio.isVisible()}")
 
-    def ler_mapinha_selecionado(self,mapinha):
-        mapinhas = {"Mapinha 1":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif" ,
-                    "Mapinha 2":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.2.tif",
-                    "Mapinha 3":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.3.tif",
-                    "Mapinha 4":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.4.tif",
-                    "Mapinha 5":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.5.tif",
-                    "Mapinha 6":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.6.tif",
-                    "Mapinha 7":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.7.tif",
-                    "Mapinha 8":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.8.tif",
-                    "Mapinha 9":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.9.tif"}
+    # def ler_regiao_selecionada(self,regiao):
+    #     arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
+    #                        "Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
+    #                        "Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
+    #                        "Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
+    #                        "Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
+    #                        "Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
+    #                        "Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
+    #                        "Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
+    #                        "Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
+    #                        "Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
+    #                        "Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
+    #                        "Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
 
-        self.lista_mapinhas.setVisible(False)
-        self.caminho_do_arquivo = mapinhas[mapinha.text()]
-        self.gera_elevacoes(self.caminho_do_arquivo)
-        self.gera_gradiente(self.caminho_do_arquivo)
-        self.exibe_nome_arquivo(self.caminho_do_arquivo)
+    #     self.lista_rio.setVisible(False)
+    #     self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
+    #     self.gera_elevacoes(self.caminho_do_arquivo)
+    #     self.gera_gradiente(self.caminho_do_arquivo)
+    #     self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
-    def mensagem_erro(self, title, message):
-        msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Warning)
-        msg_box.setWindowTitle(title)
-        msg_box.setText(message)
-        msg_box.setStandardButtons(QMessageBox.Ok)
-        msg_box.exec_()
+    # def mostra_mapinhas(self):
+    #     self.lista_mapinhas.setVisible(not self.lista_mapinhas.isVisible())
+
+    # def ler_mapinha_selecionado(self,mapinha):
+    #     mapinhas = {"Mapinha 1":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif" ,
+    #                 "Mapinha 2":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.2.tif",
+    #                 "Mapinha 3":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.3.tif",
+    #                 "Mapinha 4":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.4.tif",
+    #                 "Mapinha 5":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.5.tif",
+    #                 "Mapinha 6":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.6.tif",
+    #                 "Mapinha 7":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.7.tif",
+    #                 "Mapinha 8":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.8.tif",
+    #                 "Mapinha 9":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.9.tif"}
+
+    #     self.lista_mapinhas.setVisible(False)
+    #     self.caminho_do_arquivo = mapinhas[mapinha.text()]
+    #     self.gera_elevacoes(self.caminho_do_arquivo)
+    #     self.gera_gradiente(self.caminho_do_arquivo)
+    #     self.exibe_nome_arquivo(self.caminho_do_arquivo)
+
 
 
     # WGS84 EPSG:4326
+    # Coordenadas do Rio: 22.9068° S, 43.1729° W
 
 app = QApplication(argv)
 UIWindow = UI()

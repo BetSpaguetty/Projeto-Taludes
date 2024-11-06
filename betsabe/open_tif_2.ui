@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1166</width>
-    <height>657</height>
+    <height>624</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,10 +30,10 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>70</y>
-      <width>941</width>
-      <height>421</height>
+      <x>50</x>
+      <y>30</y>
+      <width>1071</width>
+      <height>521</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="Layout_Principal">
@@ -102,6 +102,16 @@
        </item>
       </layout>
      </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_nomeArquivo">
+       <property name="text">
+        <string>Arquivo Selecionado :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
+     </item>
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
@@ -111,168 +121,45 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="botao_mapa_rio">
+         <property name="text">
+          <string>Cidade do Rio</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
         <widget class="QLabel" name="label_shape">
          <property name="text">
           <string>Shape: </string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="botao_mapa_rio">
-         <property name="text">
-          <string>Mapa Rio</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Mapinhas (R1)</string>
-         </property>
-        </widget>
-       </item>
       </layout>
-     </item>
-     <item row="1" column="1">
-      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
      </item>
      <item row="1" column="0">
       <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_nomeArquivo">
-       <property name="text">
-        <string>Arquivo Selecionado :</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
-   <widget class="QListWidget" name="lista_regioes">
+   <widget class="QLabel" name="label_mapa_rio">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>0</y>
-      <width>121</width>
-      <height>61</height>
+      <x>300</x>
+      <y>10</y>
+      <width>641</width>
+      <height>311</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>Região 1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 4</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 5</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 6</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 7</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 8</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 9</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 10</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 11</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 12</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QListWidget" name="lista_mapinhas">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>0</y>
-      <width>111</width>
-      <height>61</height>
-     </rect>
+    <property name="text">
+     <string/>
     </property>
-    <item>
-     <property name="text">
-      <string>Mapinha 1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 4</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 5</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 6</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 7</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 8</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapinha 9</string>
-     </property>
-    </item>
+    <property name="pixmap">
+     <pixmap resource="Imagens Interface/mapa_rio.qrc">:/teste 2/mapa-rio-de-janeiro.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -281,7 +168,7 @@
      <x>0</x>
      <y>0</y>
      <width>1166</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivos">
@@ -298,7 +185,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Imagens Interface/mapa_rio.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>botao_limpar</sender>
@@ -307,12 +196,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>509</y>
+     <x>581</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>478</y>
+     <x>500</x>
+     <y>538</y>
     </hint>
    </hints>
   </connection>
@@ -323,8 +212,8 @@
    <slot>ler_arquivo()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
-     <y>117</y>
+     <x>58</x>
+     <y>75</y>
     </hint>
     <hint type="destinationlabel">
      <x>56</x>
@@ -339,12 +228,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>509</y>
+     <x>581</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>274</x>
-     <y>507</y>
+     <x>342</x>
+     <y>567</y>
     </hint>
    </hints>
   </connection>
@@ -355,12 +244,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>509</y>
+     <x>581</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>507</y>
+     <x>500</x>
+     <y>567</y>
     </hint>
    </hints>
   </connection>
@@ -371,8 +260,8 @@
    <slot>corta_tif()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>480</y>
+     <x>581</x>
+     <y>540</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -387,12 +276,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>509</y>
+     <x>581</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>254</x>
-     <y>478</y>
+     <x>342</x>
+     <y>538</y>
     </hint>
    </hints>
   </connection>
@@ -403,8 +292,8 @@
    <slot>volta_tif()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>509</y>
+     <x>581</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
      <x>715</x>
@@ -419,28 +308,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>542</x>
-     <y>495</y>
+     <x>581</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>666</x>
-     <y>500</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lista_regioes</sender>
-   <signal>itemClicked(QListWidgetItem*)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ler_regiao_selecionada()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>290</x>
-     <y>82</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>573</x>
-     <y>70</y>
+     <x>1118</x>
+     <y>569</y>
     </hint>
    </hints>
   </connection>
@@ -448,47 +321,15 @@
    <sender>botao_mapa_rio</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>mostra_lista()</slot>
+   <slot>mostra_mapa()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>271</x>
-     <y>104</y>
+     <x>246</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
-     <x>224</x>
-     <y>51</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>mostra_mapinhas()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>393</x>
-     <y>108</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>502</x>
-     <y>77</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lista_mapinhas</sender>
-   <signal>itemClicked(QListWidgetItem*)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ler_mapinha_selecionado()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>419</x>
-     <y>41</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>481</x>
-     <y>45</y>
+     <x>265</x>
+     <y>22</y>
     </hint>
    </hints>
   </connection>
@@ -505,5 +346,6 @@
   <slot>slot2()</slot>
   <slot>mostra_mapinhas()</slot>
   <slot>ler_mapinha_selecionado()</slot>
+  <slot>mostra_mapa()</slot>
  </slots>
 </ui>
