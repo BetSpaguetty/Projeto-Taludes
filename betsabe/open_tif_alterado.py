@@ -3,6 +3,7 @@
 from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMessageBox, QListWidget, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtGui import QPixmap
 
 import scipy as sp
 from scipy.ndimage import gaussian_filter
@@ -39,10 +40,68 @@ class UI(QMainWindow):
         self.label_nome_arquivo = self.findChild(QLabel,"label_nomeArquivo")
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
 
+        # bairros RJ
+        self.botao_regiao1 = self.findChild(QPushButton,"botao_regiao1")
+        self.botao_regiao2 = self.findChild(QPushButton,"botao_regiao2")
+        self.botao_regiao3 = self.findChild(QPushButton,"botao_regiao3")
+        self.botao_regiao4 = self.findChild(QPushButton,"botao_regiao4")
+        self.botao_regiao5 = self.findChild(QPushButton,"botao_regiao5")
+        self.botao_regiao6 = self.findChild(QPushButton,"botao_regiao6")
+        self.botao_regiao7 = self.findChild(QPushButton,"botao_regiao7")
+        self.botao_regiao8 = self.findChild(QPushButton,"botao_regiao8")
+        self.botao_regiao9 = self.findChild(QPushButton,"botao_regiao9")
+        self.botao_regiao10 = self.findChild(QPushButton,"botao_regiao10")
+        self.botao_regiao11 = self.findChild(QPushButton,"botao_regiao11")
+        self.botao_regiao12 = self.findChild(QPushButton,"botao_regiao12")
+
+        pixmap = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-rio-de-janeiro.jpg")
+        self.label_mapa_rio.setPixmap(pixmap)
+
         # self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
-        self.label_mapa_rio.setVisible(False)  # Começa invisível
+
+        # torna os botões invisiveis e coloridos ao passar o mouse em cima
+        self.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+
+        
+        # Começa não visivel (não clicável)
+        self.label_mapa_rio.setVisible(False)
         self.label_mapa_rio.setStyleSheet("background-color: lightgrey; color: black;")
-        # self.lista_mapinhas.setVisible(False)
+        self.botao_regiao1.setVisible(False)
+        self.botao_regiao2.setVisible(False)
+        self.botao_regiao3.setVisible(False)
+        self.botao_regiao4.setVisible(False)
+        self.botao_regiao5.setVisible(False)
+        self.botao_regiao6.setVisible(False)
+        self.botao_regiao7.setVisible(False)
+        self.botao_regiao8.setVisible(False)
+        self.botao_regiao9.setVisible(False)
+        self.botao_regiao10.setVisible(False)
+        self.botao_regiao11.setVisible(False)
+        self.botao_regiao12.setVisible(False)
+
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -201,9 +260,56 @@ class UI(QMainWindow):
         self.gera_gradiente(self.caminho_do_arquivo)
 
     def mostra_mapa(self):
-        self.label_mapa_rio.setVisible(not self.label_mapa_rio.isVisible()) # alternar visibilidade
+        self.label_mapa_rio.setVisible(not self.label_mapa_rio.isVisible())
+        self.botao_regiao1.setVisible(not self.botao_regiao1.isVisible())
+        self.botao_regiao2.setVisible(not self.botao_regiao2.isVisible())
+        self.botao_regiao3.setVisible(not self.botao_regiao3.isVisible())
+        self.botao_regiao4.setVisible(not self.botao_regiao4.isVisible())
+        self.botao_regiao5.setVisible(not self.botao_regiao5.isVisible())
+        self.botao_regiao6.setVisible(not self.botao_regiao6.isVisible())
+        self.botao_regiao7.setVisible(not self.botao_regiao7.isVisible())
+        self.botao_regiao8.setVisible(not self.botao_regiao8.isVisible())
+        self.botao_regiao9.setVisible(not self.botao_regiao9.isVisible())
+        self.botao_regiao10.setVisible(not self.botao_regiao10.isVisible())
+        self.botao_regiao11.setVisible(not self.botao_regiao11.isVisible())
+        self.botao_regiao12.setVisible(not self.botao_regiao12.isVisible())
         print('funçaõ mostra mapa funcionou')
         print(f"Visibilidade atual: {self.label_mapa_rio.isVisible()}")
+
+    def botao_clicado_regiao(self):
+        botao_clicado = self.sender() # atribui o própio botão que foi clicado como uma variável
+        
+        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif" ,
+                        "botao_regiao2":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao3":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao4":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao5":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao6":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao7":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao8":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao9":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao10":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao11":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
+                        "botao_regiao12":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif"}
+
+        self.label_mapa_rio.setVisible(False)
+        self.botao_regiao1.setVisible(False)
+        self.botao_regiao2.setVisible(False)
+        self.botao_regiao3.setVisible(False)
+        self.botao_regiao4.setVisible(False)
+        self.botao_regiao5.setVisible(False)
+        self.botao_regiao6.setVisible(False)
+        self.botao_regiao7.setVisible(False)
+        self.botao_regiao8.setVisible(False)
+        self.botao_regiao9.setVisible(False)
+        self.botao_regiao10.setVisible(False)
+        self.botao_regiao11.setVisible(False)
+        self.botao_regiao12.setVisible(False)
+
+        self.caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
+        self.gera_elevacoes(self.caminho_do_arquivo)
+        self.gera_gradiente(self.caminho_do_arquivo)
+        self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
     # def ler_regiao_selecionada(self,regiao):
     #     arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
