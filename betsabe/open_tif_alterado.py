@@ -2,8 +2,9 @@
 
 from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMessageBox, QListWidget, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtWidgets import QWidget, QMessageBox, QListWidget, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 from PyQt5.QtGui import QPixmap
+from PyQt5.uic import loadUi
 
 import scipy as sp
 from scipy.ndimage import gaussian_filter
@@ -20,7 +21,8 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.backends.backend_qt5agg  import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from sys import argv, exit, path
-# import
+
+# Classes
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
@@ -35,8 +37,6 @@ class UI(QMainWindow):
         self.intervalo_y_final = self.findChild(QLineEdit,"intervalo_y_final")
         self.label_shape = self.findChild(QLabel,"label_shape")
         self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
-        # self.lista_rio = self.findChild(QListWidget,"lista_regioes")
-        # self.lista_mapinhas = self.findChild(QListWidget,"lista_mapinhas")
         self.label_nome_arquivo = self.findChild(QLabel,"label_nomeArquivo")
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
 
@@ -56,8 +56,6 @@ class UI(QMainWindow):
 
         pixmap = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-rio-de-janeiro.jpg")
         self.label_mapa_rio.setPixmap(pixmap)
-
-        # self.setLayout(self.findChild(QGridLayout,"Layout_Principal"))
 
         # torna os botões invisiveis e coloridos ao passar o mouse em cima
         self.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
@@ -88,7 +86,6 @@ class UI(QMainWindow):
         
         # Começa não visivel (não clicável)
         self.label_mapa_rio.setVisible(False)
-        self.label_mapa_rio.setStyleSheet("background-color: lightgrey; color: black;")
         self.botao_regiao1.setVisible(False)
         self.botao_regiao2.setVisible(False)
         self.botao_regiao3.setVisible(False)
@@ -101,7 +98,6 @@ class UI(QMainWindow):
         self.botao_regiao10.setVisible(False)
         self.botao_regiao11.setVisible(False)
         self.botao_regiao12.setVisible(False)
-
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -311,50 +307,9 @@ class UI(QMainWindow):
         self.gera_gradiente(self.caminho_do_arquivo)
         self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
-    # def ler_regiao_selecionada(self,regiao):
-    #     arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
-    #                        "Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
-    #                        "Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
-    #                        "Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
-    #                        "Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
-    #                        "Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
-    #                        "Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
-    #                        "Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
-    #                        "Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
-    #                        "Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
-    #                        "Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
-    #                        "Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
-
-    #     self.lista_rio.setVisible(False)
-    #     self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
-    #     self.gera_elevacoes(self.caminho_do_arquivo)
-    #     self.gera_gradiente(self.caminho_do_arquivo)
-    #     self.exibe_nome_arquivo(self.caminho_do_arquivo)
-
-    # def mostra_mapinhas(self):
-    #     self.lista_mapinhas.setVisible(not self.lista_mapinhas.isVisible())
-
-    # def ler_mapinha_selecionado(self,mapinha):
-    #     mapinhas = {"Mapinha 1":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif" ,
-    #                 "Mapinha 2":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.2.tif",
-    #                 "Mapinha 3":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.3.tif",
-    #                 "Mapinha 4":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.4.tif",
-    #                 "Mapinha 5":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.5.tif",
-    #                 "Mapinha 6":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.6.tif",
-    #                 "Mapinha 7":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.7.tif",
-    #                 "Mapinha 8":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.8.tif",
-    #                 "Mapinha 9":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.9.tif"}
-
-    #     self.lista_mapinhas.setVisible(False)
-    #     self.caminho_do_arquivo = mapinhas[mapinha.text()]
-    #     self.gera_elevacoes(self.caminho_do_arquivo)
-    #     self.gera_gradiente(self.caminho_do_arquivo)
-    #     self.exibe_nome_arquivo(self.caminho_do_arquivo)
-
-
-
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
+    # tarefa!!! fazer recortes do rj cidade mesmo
 
 app = QApplication(argv)
 UIWindow = UI()
