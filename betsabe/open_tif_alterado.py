@@ -1,5 +1,4 @@
 # Módulos
-
 from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QMessageBox, QListWidget, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
@@ -17,6 +16,7 @@ import rasterio
 import matplotlib.cm as cm
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.backends.backend_qt5agg  import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -39,6 +39,7 @@ class UI(QMainWindow):
         self.nome_corte = self.findChild(QLineEdit,"nome_arquivo_corte")
         self.label_nome_arquivo = self.findChild(QLabel,"label_nomeArquivo")
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
+        self.label_coordinates = self.findChild(QLabel,"label_coordinates")
 
         # bairros RJ
         self.botao_regiao1 = self.findChild(QPushButton,"botao_regiao1")
@@ -53,6 +54,9 @@ class UI(QMainWindow):
         self.botao_regiao10 = self.findChild(QPushButton,"botao_regiao10")
         self.botao_regiao11 = self.findChild(QPushButton,"botao_regiao11")
         self.botao_regiao12 = self.findChild(QPushButton,"botao_regiao12")
+        self.botao_regiao13 = self.findChild(QPushButton,"botao_regiao13")
+        self.botao_regiao14 = self.findChild(QPushButton,"botao_regiao14")
+        self.botao_regiao15 = self.findChild(QPushButton,"botao_regiao15")
 
         pixmap = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-rio-de-janeiro.jpg")
         self.label_mapa_rio.setPixmap(pixmap)
@@ -82,6 +86,12 @@ class UI(QMainWindow):
                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
         self.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
 
         
         # Começa não visivel (não clicável)
@@ -98,6 +108,9 @@ class UI(QMainWindow):
         self.botao_regiao10.setVisible(False)
         self.botao_regiao11.setVisible(False)
         self.botao_regiao12.setVisible(False)
+        self.botao_regiao13.setVisible(False)
+        self.botao_regiao14.setVisible(False)
+        self.botao_regiao15.setVisible(False)
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -119,6 +132,7 @@ class UI(QMainWindow):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
+        self.exibe_nome_arquivo(self.caminho_do_arquivo[-30:])
   
         print(self.caminho_do_arquivo)
 
@@ -152,7 +166,7 @@ class UI(QMainWindow):
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none', vmin=0, vmax=2000)
         ax.axis('off')
 
 
@@ -179,11 +193,33 @@ class UI(QMainWindow):
         size = self.graphicsView.size()
         self.canvas.resize(size)
 
+        # Conectar o evento de movimento do mouse
+        self.canvas.mpl_connect('motion_notify_event', self.on_mouse_move)
+
         # Adiciona o canvas do gráfico à cena
         self.scene.addWidget(self.canvas)
         self.scene.addWidget(self.toolbar)
         self.label_shape.setText(f"Shape: {self.img_array.shape}") # exibe o as dimensões do tif
         print(f"função abrir arquivo com tamanho {self.img_array.shape} funcionou")
+
+    def on_mouse_move(self, event):
+        if event.inaxes is not None:
+            ax = event.inaxes
+            # Checa se o eixo é o 3D correto
+            if isinstance(ax, Axes3D):
+                # Coleta as coordenadas do mouse no gráfico
+                xdata, ydata = event.xdata, event.ydata
+                if xdata is not None and ydata is not None:
+                    # Converter coordenadas do gráfico para índices da matriz
+                    x_idx = int(xdata * self.img_array.shape[1])
+                    y_idx = int(ydata * self.img_array.shape[0])
+
+                    if 0 <= x_idx < self.img_array.shape[1] and 0 <= y_idx < self.img_array.shape[0]:
+                        z_value = self.img_array[y_idx, x_idx]
+                        # print(f"Coordenadas: x={x_idx}, y={y_idx}, z={z_value})")
+
+                        # Exemplo: Atualizar texto de um QLabel
+                        self.label_coordinates.setText(f"Coordenadas:({x_idx},{y_idx},{z_value:.2f})")
 
     def gera_gradiente(self,arquivo):
         # Abrir o arquivo TIFF e extrair a matriz de elevações
@@ -269,24 +305,30 @@ class UI(QMainWindow):
         self.botao_regiao10.setVisible(not self.botao_regiao10.isVisible())
         self.botao_regiao11.setVisible(not self.botao_regiao11.isVisible())
         self.botao_regiao12.setVisible(not self.botao_regiao12.isVisible())
+        self.botao_regiao13.setVisible(not self.botao_regiao13.isVisible())
+        self.botao_regiao14.setVisible(not self.botao_regiao14.isVisible())
+        self.botao_regiao15.setVisible(not self.botao_regiao15.isVisible())
         print('funçaõ mostra mapa funcionou')
         print(f"Visibilidade atual: {self.label_mapa_rio.isVisible()}")
 
     def botao_clicado_regiao(self):
         botao_clicado = self.sender() # atribui o própio botão que foi clicado como uma variável
         
-        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif" ,
-                        "botao_regiao2":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao3":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao4":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao5":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao6":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao7":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao8":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao9":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao10":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao11":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif",
-                        "botao_regiao12":"Projeto-Taludes\\betsabe\\Cortes regiao 1\\mapinha_R1.1.tif"}
+        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.1.tif" ,
+                           "botao_regiao2":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.2.tif",
+                           "botao_regiao3":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.3.tif",
+                           "botao_regiao4":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.4.tif",
+                           "botao_regiao5":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.5.tif",
+                           "botao_regiao6":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.6.tif",
+                           "botao_regiao7":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.7.tif",
+                           "botao_regiao8":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.8.tif",
+                           "botao_regiao9":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.9.tif",
+                           "botao_regiao10":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.10.tif",
+                           "botao_regiao11":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.11.tif",
+                           "botao_regiao12":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.12.tif",
+                           "botao_regiao13":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.13.tif",
+                           "botao_regiao14":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.14.tif",
+                           "botao_regiao15":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.15.tif"}
 
         self.label_mapa_rio.setVisible(False)
         self.botao_regiao1.setVisible(False)
@@ -301,15 +343,21 @@ class UI(QMainWindow):
         self.botao_regiao10.setVisible(False)
         self.botao_regiao11.setVisible(False)
         self.botao_regiao12.setVisible(False)
+        self.botao_regiao13.setVisible(False)
+        self.botao_regiao14.setVisible(False)
+        self.botao_regiao15.setVisible(False)
 
         self.caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
         self.exibe_nome_arquivo(self.caminho_do_arquivo)
 
+
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
     # tarefa!!! fazer recortes do rj cidade mesmo
+    # fixar escala
+    # concertar coordenadas
 
 app = QApplication(argv)
 UIWindow = UI()
