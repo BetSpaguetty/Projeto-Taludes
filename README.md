@@ -31,8 +31,10 @@ Bet:
 
 Paulo:
 - apptaludes.py -> Arquivo que executa a interface gráfica.
-   - umber_changed: muda números nos lineEdits quando o usuário mecher nos sliders
-   - runAnalysis: cria e mostra os gráficos das variáveis (h(m), hw(m), c'(kPa) e Phi(Graus)), que tem o mesmo tamanho do último gráfico criado
+   - number_changed: muda números nos lineEdits quando o usuário mecher nos sliders
+   - analysisClick: conta o número de vezes que o botão Analysis foi clicado
+   - runAnalysis: cria e mostra o gráfico do fator de segurança quando o botão Analysis é clicado(Anteriormente: cria e mostra os gráficos das variáveis (h(m), hw(m), c'(kPa) e Phi(Graus)), que tem o mesmo tamanho do último gráfico criado)
+   - runAnalysis2: cria/altera o gráfico do fator de segurança quando os sliders são movidos
    - getfile: recebe arquivos novos e cria os gráficos da sua elevação e inclinação
    - figureAdjust: faz cortes em gráficos do último arquivo recebidos
    - clearCanvas: limpa todos os valores e gráficos
