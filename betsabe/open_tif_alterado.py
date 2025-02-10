@@ -115,32 +115,33 @@ class PopupWindow(QDialog):
 
     def botao_clicado_regiao(self):
         botao_clicado = self.sender() # atribui o própio botão que foi clicado à uma variável
-        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.1.tif" ,
-                           "botao_regiao2":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.2.tif",
-                           "botao_regiao3":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.3.tif",
-                           "botao_regiao4":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.4.tif",
-                           "botao_regiao5":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.5.tif",
-                           "botao_regiao6":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.6.tif",
-                           "botao_regiao7":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.7.tif",
-                           "botao_regiao8":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.8.tif",
-                           "botao_regiao9":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.9.tif",
-                           "botao_regiao10":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.10.tif",
-                           "botao_regiao11":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.11.tif",
-                           "botao_regiao12":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.12.tif",
-                           "botao_regiao13":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.13.tif",
-                           "botao_regiao14":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.14.tif",
-                           "botao_regiao15":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.15.tif",
-                           "botao_regiao16":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.11.tif",
-                           "botao_regiao17":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.12.tif",
-                           "botao_regiao18":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.13.tif",
-                           "botao_regiao19":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.14.tif",
-                           "botao_regiao20":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.15.tif"}
+        arquivos_regiao = {"pushButton":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao1":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao2":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao3":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao4":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao5":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao6":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao7":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao8":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao9":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao10":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao11":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao12":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao13":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao14":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao15":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao16":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao17":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao18":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao19":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao20":"Projeto-Taludes\\betsabe\\recorte_gavea.tif"}
 
         print(self.sender())
         print (botao_clicado.objectName(),"aquiiii")
         caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
         # Após realizar a tarefa, fechar o popup
-        # self.close()
+        self.close()
         return caminho_do_arquivo
              
 
