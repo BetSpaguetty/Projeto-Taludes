@@ -37,6 +37,27 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="Layout_Principal">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_nomeArquivo">
+       <property name="text">
+        <string>Arquivo Selecionado :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Defina o nome do seu arquivo de corte:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nome_arquivo_corte"/>
+       </item>
+      </layout>
+     </item>
      <item row="2" column="0">
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="2" column="0">
@@ -88,57 +109,43 @@
        </item>
       </layout>
      </item>
-     <item row="2" column="1">
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Defina o nome do seu arquivo de corte:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="nome_arquivo_corte"/>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_nomeArquivo">
-       <property name="text">
-        <string>Arquivo Selecionado :</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
-     </item>
-     <item row="1" column="1">
-      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
-     </item>
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
+       <item row="1" column="0">
         <widget class="QPushButton" name="botao_abrir_arquivo">
          <property name="text">
           <string>Abrir</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="2">
         <widget class="QPushButton" name="botao_mapa_rio">
          <property name="text">
           <string>Cidade do Rio</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
+       <item row="1" column="3">
         <widget class="QLabel" name="label_shape">
          <property name="text">
           <string>Shape: </string>
          </property>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Teste Pop Up</string>
+         </property>
+        </widget>
+       </item>
       </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
      </item>
     </layout>
    </widget>
@@ -149,7 +156,7 @@
      <x>0</x>
      <y>0</y>
      <width>1185</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivos">
@@ -166,9 +173,7 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../../../../.designer/backup/Imagens Interface/mapa_rio.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>botao_limpar</sender>
@@ -314,6 +319,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_popup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>244</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>273</x>
+     <y>37</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>abrir_arquivo()</slot>
@@ -330,5 +351,6 @@
   <slot>mostra_mapa()</slot>
   <slot>botao_clicado_regiao()</slot>
   <slot>abrir_janela_rio()</slot>
+  <slot>show_popup()</slot>
  </slots>
 </ui>
