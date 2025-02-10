@@ -40,7 +40,6 @@ class AppTaludes(QWidget):
 
         self.ui.tabs.tabCloseRequested.connect(self.ui.tabs.removeTab)
         self.ui.tabs_2.tabCloseRequested.connect(self.ui.tabs_2.removeTab)
-        self.ui.tabs_3.tabCloseRequested.connect(self.ui.tabs_3.removeTab)
 
         self.ui.horizontalSlider_C.valueChanged.connect(self.number_changed) #c
         self.ui.horizontalSlider_Phi.valueChanged.connect(self.number_changed) #phi
@@ -66,7 +65,6 @@ class AppTaludes(QWidget):
         self.ui.AnalysisBtn.setVisible(False)
         self.ui.tabs.setVisible(False)
         self.ui.tabs_2.setVisible(False)
-        self.ui.tabs_3.setVisible(False)
 
         self.n_tabs = 0
         self.inclina_tabs = 0
@@ -164,7 +162,7 @@ class AppTaludes(QWidget):
     def runAnalysis(self):
         self.fname = self.ui.imgname.text()
         imgx = Image.open(self.fname)
-        # img_arrayx = np.array(imgx)
+        img_arrayx = np.array(imgx)
 
         self.ui.tabs.setVisible(True)
         self.ui.tabs_2.setVisible(True)
@@ -174,10 +172,104 @@ class AppTaludes(QWidget):
         y1 = int(self.ui.y1lineEdit.text())
         y2 = int(self.ui.y2lineEdit.text())
 
+        # if self.number_of_adjusts == 0:
+        #     imgx = Image.fromarray(img_arrayx, 'RGB')
+        # else:
+        #     img_arrayx = img_arrayx[x1:x2, y1:y2]
+        #     imgx = Image.fromarray(img_arrayx, 'RGB')
+
         h_value = self.ui.horizontalSlider_H.value()/10;
         hw_value = self.ui.horizontalSlider_Hw.value();
         c_value = self.ui.horizontalSlider_C.value();
         phi_value = self.ui.horizontalSlider_Phi.value();
+
+        # h_array = h_value * np.ones((imgx.size[0]+1,imgx.size[1]+1))
+        # hw_array = h_value * hw_value/100 * np.ones((imgx.size[0]+1,imgx.size[1]+1))
+        # c_array = c_value * np.ones((imgx.size[0]+1,imgx.size[1]+1))
+        # phi_array = phi_value * np.ones((imgx.size[0]+1,imgx.size[1]+1))
+
+        # # Creating plots
+        # h_fig, h_ax = plt.subplots(1,1,figsize=(12,10))
+        # plt.imshow(h_array, cmap='terrain')
+        # h_im = h_ax.imshow(h_array, cmap='terrain')
+
+        # h_ax.set_yticks([0, 0.2*imgx.size[0], 0.4*imgx.size[0], 0.6*imgx.size[0], 0.8*imgx.size[0],imgx.size[0]], labels=[0, 5*imgx.size[0], 10*imgx.size[0], 15*imgx.size[0], 20*imgx.size[0], 25*imgx.size[0]])
+        # h_ax.set_xticks([0, 0.2*imgx.size[1], 0.4*imgx.size[1], 0.6*imgx.size[1], 0.8*imgx.size[1],imgx.size[1]], labels=[0, 5*imgx.size[1], 10*imgx.size[1], 15*imgx.size[1], 20*imgx.size[1], 25*imgx.size[1]])
+
+        # plt.colorbar(h_im, ax=h_ax)
+        # plt.axis([0, imgx.size[1], 0, imgx.size[0]])
+
+        ######################################################################
+
+        # hw_fig, hw_ax = plt.subplots(1,1,figsize=(12,10))
+        # plt.imshow(hw_array, cmap='terrain')
+        # hw_im = hw_ax.imshow(hw_array, cmap='terrain')
+
+        # hw_ax.set_yticks([0, 0.2*imgx.size[0], 0.4*imgx.size[0], 0.6*imgx.size[0], 0.8*imgx.size[0],imgx.size[0]], labels=[0, 5*imgx.size[0], 10*imgx.size[0], 15*imgx.size[0], 20*imgx.size[0], 25*imgx.size[0]])
+        # hw_ax.set_xticks([0, 0.2*imgx.size[1], 0.4*imgx.size[1], 0.6*imgx.size[1], 0.8*imgx.size[1],imgx.size[1]], labels=[0, 5*imgx.size[1], 10*imgx.size[1], 15*imgx.size[1], 20*imgx.size[1], 25*imgx.size[1]])
+
+        # plt.colorbar(hw_im, ax=hw_ax)
+        # plt.axis([0, imgx.size[1], 0, imgx.size[0]])
+
+        ######################################################################
+
+        # c_fig, c_ax = plt.subplots(1,1,figsize=(12,10))
+        # plt.imshow(c_array, cmap='terrain')
+        # c_im = c_ax.imshow(c_array, cmap='terrain')
+
+        # c_ax.set_yticks([0, 0.2*imgx.size[0], 0.4*imgx.size[0], 0.6*imgx.size[0], 0.8*imgx.size[0],imgx.size[0]], labels=[0, 5*imgx.size[0], 10*imgx.size[0], 15*imgx.size[0], 20*imgx.size[0], 25*imgx.size[0]])
+        # c_ax.set_xticks([0, 0.2*imgx.size[1], 0.4*imgx.size[1], 0.6*imgx.size[1], 0.8*imgx.size[1],imgx.size[1]], labels=[0, 5*imgx.size[1], 10*imgx.size[1], 15*imgx.size[1], 20*imgx.size[1], 25*imgx.size[1]])
+
+        # plt.colorbar(c_im, ax=c_ax)
+        # plt.axis([0, imgx.size[1], 0, imgx.size[0]])
+
+        ######################################################################
+
+        # phi_fig, phi_ax = plt.subplots(1,1,figsize=(12,10))
+        # plt.imshow(phi_array, cmap='terrain')
+        # phi_im = phi_ax.imshow(phi_array, cmap='terrain')
+
+        # phi_ax.set_yticks([0, 0.2*imgx.size[0], 0.4*imgx.size[0], 0.6*imgx.size[0], 0.8*imgx.size[0],imgx.size[0]], labels=[0, 5*imgx.size[0], 10*imgx.size[0], 15*imgx.size[0], 20*imgx.size[0], 25*imgx.size[0]])
+        # phi_ax.set_xticks([0, 0.2*imgx.size[1], 0.4*imgx.size[1], 0.6*imgx.size[1], 0.8*imgx.size[1],imgx.size[1]], labels=[0, 5*imgx.size[1], 10*imgx.size[1], 15*imgx.size[1], 20*imgx.size[1], 25*imgx.size[1]])
+
+        # plt.colorbar(phi_im, ax=phi_ax)
+        # plt.axis([0, imgx.size[1], 0, imgx.size[0]])
+
+        # # Creating tabs
+
+        # self.canvas_h = FigureCanvas(h_fig)
+        # self.canvas_hw = FigureCanvas(hw_fig)
+        # self.canvas_c = FigureCanvas(c_fig)
+        # self.canvas_phi = FigureCanvas(phi_fig)
+
+        # self.tabh = QWidget()
+        # self.tabh_layout = QHBoxLayout()
+        # self.tabh_layout.addWidget(self.canvas_h)
+        # self.tabh.setLayout(self.tabh_layout)
+
+        # self.tabc = QWidget()
+        # self.tabc_layout = QHBoxLayout()
+        # self.tabc_layout.addWidget(self.canvas_c)
+        # self.tabc.setLayout(self.tabc_layout)
+
+        # self.tabhw = QWidget()
+        # self.tabhw_layout = QHBoxLayout()
+        # self.tabhw_layout.addWidget(self.canvas_hw)
+        # self.tabhw.setLayout(self.tabhw_layout)
+
+        # self.tabphi = QWidget()
+        # self.tabphi_layout = QHBoxLayout()
+        # self.tabphi_layout.addWidget(self.canvas_phi)
+        # self.tabphi.setLayout(self.tabphi_layout)
+
+        # self.tab_1_name = "h(m) - " + str(self.inclina_tabs)
+        # self.ui.tabs.addTab(self.tabh, self.tab_1_name)
+        # self.tab_2_name = "c'(kPa) - " + str(self.inclina_tabs)
+        # self.ui.tabs.addTab(self.tabc, self.tab_2_name)
+        # self.tab_3_name = "hw(m) - " + str(self.inclina_tabs)
+        # self.ui.tabs.addTab(self.tabhw, self.tab_3_name)
+        # self.tab_4_name = "ϕ' (°) - " + str(self.inclina_tabs)
+        # self.ui.tabs.addTab(self.tabphi, self.tab_4_name)
 
         c = c_value
         h = h_value
@@ -211,7 +303,7 @@ class AppTaludes(QWidget):
 
             fig_fos, ax = plt.subplots(1,1,figsize=(12,10))
 
-            cmap = mpl.cm.get_cmap('rainbow_r')
+            cmap = mpl.cm.rainbow
 
             plt.imshow(self.fos_array, cmap)                               ################'RdBu'
             im_fos = ax.imshow(self.fos_array, cmap)                       ################'RdBu'
@@ -228,7 +320,7 @@ class AppTaludes(QWidget):
         else:
             fig_fos, ax = plt.subplots(1,1,figsize=(12,10))
 
-            cmap = mpl.cm.get_cmap('rainbow_r')
+            cmap = mpl.cm.rainbow
 
             plt.imshow(self.fos_array, cmap)                               ################'RdBu'
             im_fos = ax.imshow(self.fos_array, cmap)                       ################'RdBu'
@@ -318,7 +410,7 @@ class AppTaludes(QWidget):
 
             # self.fos_array = self.fos_array.transpose()
 
-            cmap = mpl.cm.get_cmap('rainbow_r')                                         #terrain
+            cmap = mpl.cm.rainbow
 
             plt.imshow(self.fos_array.transpose(), cmap)                               ################'RdBu'
             im_fos = ax.imshow(self.fos_array.transpose(), cmap)                       ################'RdBu'
@@ -347,7 +439,7 @@ class AppTaludes(QWidget):
                     if self.fos_array[j,i] < 1:
                         self.fos_array[j,i] = 1
 
-            cmap = mpl.cm.get_cmap('rainbow_r')                            #terrain           #rainbow
+            cmap = mpl.cm.rainbow
 
             plt.imshow(self.fos_array, cmap)                               ################'RdBu'
             im_fos = ax.imshow(self.fos_array, cmap)                       ################'RdBu'
@@ -389,6 +481,135 @@ class AppTaludes(QWidget):
 
         self.ui.tabs.setVisible(True)
         self.elev_incl(self.fname)
+
+        # img = Image.open(fname)
+        # self.ui.label.setText(str('X: ' + str(img.size[-2]) + '     Y: ' + str(img.size[1])))
+
+        # # Convert the image to a NumPy array
+        # img_array = np.array(img)
+
+        # # Get aspect ratio of tif file for late plot box-plot-ratio
+        # y_ratio,x_ratio = img.size
+
+        # # Create arrays and declare x,y,z variables
+        # lin_x = np.linspace(0,1,img_array.shape[0],endpoint=False)
+        # lin_y = np.linspace(0,1,img_array.shape[1],endpoint=False)
+        # y,x = np.meshgrid(lin_y,lin_x)
+        # z = img_array
+
+        # # Apply gaussian filter, with sigmas as variables. Higher sigma = more smoothing and more calculations. Downside: min and max values do change due to smoothing
+        # sigma_y = 100
+        # sigma_x = 100
+        # sigma = [sigma_y, sigma_x]
+        # z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
+
+        # # Creating figure
+        # fig = plt.figure(figsize=(12,10)) #12,10
+        # ax = plt.axes(projection='3d')
+        # ax.azim = -30
+        # ax.elev = 42
+        # ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
+        # surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+
+        # # Setting colors for colorbar range
+        # m = cm.ScalarMappable(cmap=surf.cmap, norm=surf.norm)
+        # m.set_array(z_smoothed)
+
+        # plt.xticks([])  # Disabling xticks by Setting xticks to an empty list
+        # plt.yticks([])  # Disabling yticks by setting yticks to an empty list
+        # fig.tight_layout()
+        # ax.grid(False)
+        # plt.axis('off')
+
+        # # Display the figure
+        # self.canvas = FigureCanvas(fig)
+        # plt.close('all')
+
+        # self.g_max = np.zeros((img.size[0],img.size[1]));
+        # L = 25;
+        # Ld = np.sqrt(2)*L
+
+        # # Getting the biggest angles of each location
+        # for i in range(1,img.size[1]-1): #Já testado o 199
+        #     for j in range(1,img.size[0]-1):
+        #         self.g_max[j,i] = max([abs(img_array[i+1,j]-img_array[i,j])/L,
+        #         abs(img_array[i-1,j]-img_array[i,j])/L,
+        #         abs(img_array[i,j+1]-img_array[i,j])/L ,
+        #         abs(img_array[i,j-1]-img_array[i,j])/L,
+        #         abs(img_array[i+1,j+1]-img_array[i,j])/Ld,
+        #         abs(img_array[i-1,j-1]-img_array[i,j])/Ld,
+        #         abs(img_array[i-1,j+1]-img_array[i,j])/Ld,
+        #         abs(img_array[i+1,j-1]-img_array[i,j])/Ld])
+
+        #         self.g_max[j,i] = np.arctan(self.g_max[j,i]) * 180/np.pi
+
+        # z_smoothed2 = sp.ndimage.gaussian_filter(self.g_max.transpose(), sigma)
+
+        # # Some min and max and range values coming from gaussian_filter calculations
+        # z_smoothed_min2 = np.amin(z_smoothed2)
+        # z_smoothed_max2 = np.amax(z_smoothed2)
+        # z_range2 = z_smoothed_max2 - z_smoothed_min2
+
+        # # Creating second figure
+        # fig2, ax = plt.subplots(1,1,figsize=(12,10))
+        # plt.imshow(self.g_max.transpose(), cmap='terrain')
+        # im = ax.imshow(self.g_max.transpose(), cmap='terrain')
+
+        # ax.set_xticks([0, 0.2*img.size[0], 0.4*img.size[0], 0.6*img.size[0], 0.8*img.size[0],img.size[0]], labels=[0, 5*img.size[0], 10*img.size[0], 15*img.size[0], 20*img.size[0], 25*img.size[0]])
+        # ax.set_yticks([0, 0.2*img.size[1], 0.4*img.size[1], 0.6*img.size[1], 0.8*img.size[1],img.size[1]], labels=[0, 5*img.size[0], 10*img.size[0], 15*img.size[0], 20*img.size[0], 25*img.size[0]])
+
+        # plt.colorbar(im, ax=ax)
+        # plt.axis([0, img.size[0]-1, 0, img.size[1]-1])
+        # ax.invert_yaxis()
+
+        # # plt.axis('off')
+
+        # # Display figures
+
+        # self.toolb1 = NavigationToolbar(self.canvas, self)
+        # self.ui.horizontalLayout_browse.addWidget(self.toolb1)
+        # self.ui.horizontalLayout_3.addWidget(self.canvas)
+
+        # self.canvas2 = FigureCanvas(fig2)
+        # self.toolb2 = NavigationToolbar(self.canvas2, self)
+
+
+        # self.tabInc = QWidget()
+        # self.tabInc_layout = QVBoxLayout()
+        # self.tabInc_layout.addWidget(self.canvas2)
+        # self.tabInc_layout.addWidget(self.toolb2)
+        # self.tabInc.setLayout(self.tabInc_layout)
+
+        # if self.ui.tabs.count()>0 and self.inclina_tabs == 0: # self.inclina_tabs == 1 and
+        #     self.ui.tabs.removeTab(0)
+
+        # self.inclina_tabs += 1
+        # self.tab_name = "Inclinação " + str(self.inclina_tabs)
+        # self.ui.tabs.addTab(self.tabInc, self.tab_name)
+
+        # plt.close('all')
+
+        # # Show the limits
+        # self.ui.x1label.setVisible(True)
+        # self.ui.x2label.setVisible(True)
+        # self.ui.y1label.setVisible(True)
+        # self.ui.y2label.setVisible(True)
+        # self.ui.label.setVisible(True)
+        # self.ui.limits.setVisible(True)
+
+        # self.ui.x1lineEdit.setVisible(True)
+        # self.ui.x2lineEdit.setVisible(True)
+        # self.ui.y1lineEdit.setVisible(True)
+        # self.ui.y2lineEdit.setVisible(True)
+        # self.ui.Adjust.setVisible(True)
+
+        # self.ui.AnalysisBtn.setVisible(True)
+
+        # self.ui.imgname.setText(fname)
+        # self.ui.imgsizex.setText(str(img.size[1]))
+        # self.ui.imgsizey.setText(str(img.size[-2]))
+
+        # self.ui.ClearBtn.clicked.connect(self.clearCanvas)
     #
 
     def elev_incl(self,arquivo):
@@ -454,12 +675,12 @@ class AppTaludes(QWidget):
 
                 self.g_max[j,i] = np.arctan(self.g_max[j,i]) * 180/np.pi
 
-        # z_smoothed2 = sp.ndimage.gaussian_filter(self.g_max.transpose(), sigma)
+        z_smoothed2 = sp.ndimage.gaussian_filter(self.g_max.transpose(), sigma)
 
         # Some min and max and range values coming from gaussian_filter calculations
-        # z_smoothed_min2 = np.amin(z_smoothed2)
-        # z_smoothed_max2 = np.amax(z_smoothed2)
-        # z_range2 = z_smoothed_max2 - z_smoothed_min2
+        z_smoothed_min2 = np.amin(z_smoothed2)
+        z_smoothed_max2 = np.amax(z_smoothed2)
+        z_range2 = z_smoothed_max2 - z_smoothed_min2
 
         # Creating second figure
         fig2, ax = plt.subplots(1,1,figsize=(12,10))
@@ -476,21 +697,11 @@ class AppTaludes(QWidget):
         # plt.axis('off')
 
         # Display figures
+
         self.ui.tabs.setVisible(True)
-        self.ui.tabs_3.setVisible(True)
-
         self.toolb1 = NavigationToolbar(self.canvas, self)
-        # self.ui.horizontalLayout_3.addWidget(self.canvas)     #Trocado com o debaixo
-        # self.ui.horizontalLayout_browse.addWidget(self.toolb1)
-
-        self.tabInc = QWidget()
-        self.tabInc_layout = QVBoxLayout()
-        self.tabInc_layout.addWidget(self.canvas)
-        self.tabInc_layout.addWidget(self.toolb1)
-        self.tabInc.setLayout(self.tabInc_layout)
-
-        self.tab_name = "Elevação " + str((self.inclina_tabs)+1)
-        self.ui.tabs_3.addTab(self.tabInc, self.tab_name)
+        self.ui.horizontalLayout_browse.addWidget(self.toolb1)
+        self.ui.horizontalLayout_3.addWidget(self.canvas)
 
         self.canvas2 = FigureCanvas(fig2)
         self.toolb2 = NavigationToolbar(self.canvas2, self)
@@ -501,16 +712,12 @@ class AppTaludes(QWidget):
         self.tabInc_layout.addWidget(self.toolb2)
         self.tabInc.setLayout(self.tabInc_layout)
 
-        if self.ui.tabs.count()>0 and self.inclina_tabs == 0:
+        if self.ui.tabs.count()>0 and self.inclina_tabs == 0: # self.inclina_tabs == 1 and
             self.ui.tabs.removeTab(0)
-        if self.ui.tabs_3.count()>0 and self.inclina_tabs == 0:
-            self.ui.tabs_3.removeTab(0)
 
-        print("Inclina_tabs = ",self.inclina_tabs)
         self.inclina_tabs += 1
-
-        self.tab_name2 = "Inclinação " + str(self.inclina_tabs)
-        self.ui.tabs.addTab(self.tabInc, self.tab_name2)
+        self.tab_name = "Inclinação " + str(self.inclina_tabs)
+        self.ui.tabs.addTab(self.tabInc, self.tab_name)
 
         plt.close('all')
 
@@ -540,8 +747,8 @@ class AppTaludes(QWidget):
     def figureAdjust(self):
         self.number_of_adjusts += 1
 
-        # self.canvas.deleteLater()
-        # self.toolb1.deleteLater()
+        self.canvas.deleteLater()
+        self.toolb1.deleteLater()
         plt.close('all')
 
         x1 = int(self.ui.x1lineEdit.text())
@@ -635,18 +842,8 @@ class AppTaludes(QWidget):
 
         # Display figures
         self.toolb1 = NavigationToolbar(self.canvas, self)
-        # self.ui.horizontalLayout_browse.addWidget(self.toolb1)
-        # self.ui.horizontalLayout_3.addWidget(self.canvas)
-        # self.ui.verticalLayout_4.addWidget(self.toolb1)
-        # self.ui.verticalLayout_4.addWidget(self.canvas)
-        self.tabInc = QWidget()
-        self.tabInc_layout = QVBoxLayout()
-        self.tabInc_layout.addWidget(self.canvas)
-        self.tabInc_layout.addWidget(self.toolb1)
-        self.tabInc.setLayout(self.tabInc_layout)
-
-        self.tab_name = "Elevação " + str((self.inclina_tabs)+1)
-        self.ui.tabs_3.addTab(self.tabInc, self.tab_name)
+        self.ui.horizontalLayout_browse.addWidget(self.toolb1)
+        self.ui.horizontalLayout_3.addWidget(self.canvas)
 
         self.canvas2 = FigureCanvas(fig2)
         self.toolb2 = NavigationToolbar(self.canvas2, self)
@@ -698,13 +895,10 @@ class AppTaludes(QWidget):
 
         self.ui.Adjust.setVisible(False)
         self.ui.AnalysisBtn.setVisible(False)
-
-        self.ui.tabs.setVisible(False)
         self.ui.tabs_2.setVisible(False)
-        self.ui.tabs_3.setVisible(False)
 
-        # for i in reversed(range(self.ui.horizontalLayout_3.count())):
-        #     self.ui.horizontalLayout_3.itemAt(i).widget().setParent(None)
+        for i in reversed(range(self.ui.horizontalLayout_3.count())):
+            self.ui.horizontalLayout_3.itemAt(i).widget().setParent(None)
 
         for i in reversed(range(self.ui.verticalLayout_2.count())):
             self.ui.verticalLayout_2.itemAt(i).widget().setParent(None)
@@ -712,11 +906,8 @@ class AppTaludes(QWidget):
         for i in reversed(range(self.ui.verticalLayout_3.count())):
             self.ui.verticalLayout_3.itemAt(i).widget().setParent(None)
 
-        # for i in reversed(range(self.ui.verticalLayout_6.count())):
-        #     self.ui.verticalLayout_6.itemAt(i).widget().setParent(None)
-
-        # for i in reversed(range(self.ui.horizontalLayout_browse.count())):
-        #     self.ui.horizontalLayout_browse.itemAt(i).widget().deleteLater()
+        for i in reversed(range(self.ui.horizontalLayout_browse.count())):
+            self.ui.horizontalLayout_browse.itemAt(i).widget().deleteLater()
 
         for i in reversed(range(self.ui.tabs.count())):
             self.ui.tabs.removeTab(i)
@@ -724,17 +915,9 @@ class AppTaludes(QWidget):
         for i in reversed(range(self.ui.tabs_2.count())):
             self.ui.tabs_2.removeTab(i)
 
-        for i in reversed(range(self.ui.tabs_3.count()-1)):
-            self.ui.tabs_3.removeTab(i)
-
         self.inclina_tabs = 0
         self.number_of_adjusts = 0
         self.n_tabs = 0
-
-        # self.tabInc = QWidget()
-        # self.tabInc_layout = QVBoxLayout()
-        # self.tabInc.setLayout(self.tabInc_layout)
-        # self.ui.tabs.addTab(self.tabInc)
     #
 
     def mostra_lista(self):
