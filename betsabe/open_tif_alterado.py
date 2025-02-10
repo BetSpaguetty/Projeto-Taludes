@@ -27,197 +27,122 @@ from sys import argv, exit, path
 
 class PopupWindow(QDialog):
     def __init__(self):
-# class Ui_Dialog(object):
-#     def setupUi(self, Dialog):
         super().__init__() #super(UI, self).__init__()
-        uic.loadUi("Projeto-Taludes\\betsabe\\popup.ui", self)  # Carregar o arquivo .ui
+        uic.loadUi("Projeto-Taludes\\betsabe\\popup.ui", self) # Carregar o arquivo .ui
         self.setWindowTitle("22S435W - Rio de Janeiro")
         self.setGeometry(100, 100, 400, 300)
-        # self.layout_botoes = self.findChild(QGridLayout,"gridLayout_mapa")
 
-        # Layout do popup
-        self.layout = QGridLayout()
-
-        # Exibir imagem
-        self.image_label = QLabel(self)
-        self.background_image = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-22S435W-23S42W.png")  # Altere para o caminho correto
-        self.image_label.setPixmap(self.background_image)
-        self.image_label.setScaledContents(True)  # Redimensionar imagem para caber no QLabel
-        self.layout.addWidget(self.image_label)
-
-        # self.gridLayoutWidget = QWidget(QDialog)
-        # self.gridLayoutWidget.setGeometry(QtCore.QRect(9, 9, 541, 321))
-        # self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        # layout = QtWidgets.QGridLayout(layout)
-        self.layout.setContentsMargins(0, 0, 0, 0)
-        self.layout.setObjectName("gridLayout_mapa")
-
-        self.botao_regiao1 = QPushButton()
-        self.layout.addWidget(self.botao_regiao1)
-        self.botao_regiao1.setText("")
-        self.botao_regiao1.setObjectName("botao_regiao1")
-        self.layout.addWidget(self.botao_regiao1, 0, 0, 1, 1)
-
-        self.botao_regiao1 = QPushButton()
-        self.layout.addWidget(self.botao_regiao1)
-        self.botao_regiao2.setText("")
-        self.botao_regiao2.setObjectName("botao_regiao2")
-        self.layout.addWidget(self.botao_regiao2, 0, 1, 1, 1)
+        # Imagem do mapa
+        self.fundo = QLabel(self)
+        self.fundo.setPixmap(QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-22S435W-23S42W.png"))  # Caminho da imagem
+        self.fundo.setScaledContents(True) # Ajusta a imagem ao tamanho do QLabel
         
-        # self.botao_regiao3 = QPushButton(self.layout)
-        # self.botao_regiao3.setText("")
-        # self.botao_regiao3.setObjectName("botao_regiao3")
-        # self.layout.addWidget(self.botao_regiao3, 0, 2, 1, 1)
-        # self.botao_regiao4 = QPushButton(self.layout)
-        # self.botao_regiao4.setText("")
-        # self.botao_regiao4.setObjectName("botao_regiao4")
-        # self.layout.addWidget(self.botao_regiao4, 0, 3, 1, 1)
-        # self.botao_regiao5 = QPushButton(self.layout)
-        # self.botao_regiao5.setText("")
-        # self.botao_regiao5.setObjectName("botao_regiao5")
-        # self.layout.addWidget(self.botao_regiao5, 0, 4, 1, 1)
-        # self.botao_regiao6 = QPushButton(self.layout)
-        # self.botao_regiao6.setText("")
-        # self.botao_regiao6.setObjectName("botao_regiao6")
-        # self.layout.addWidget(self.botao_regiao6, 1, 0, 1, 1)
-        # self.botao_regiao8 = QPushButton(self.layout)
-        # self.botao_regiao8.setText("")
-        # self.botao_regiao8.setObjectName("botao_regiao8")
-        # self.layout.addWidget(self.botao_regiao8, 1, 2, 1, 1)
-        # self.botao_regiao12 = QPushButton(self.layout)
-        # self.botao_regiao12.setText("")
-        # self.botao_regiao12.setObjectName("botao_regiao12")
-        # self.layout.addWidget(self.botao_regiao12, 2, 1, 1, 1)
-        # self.botao_regiao9 = QPushButton(self.layout)
-        # self.botao_regiao9.setText("")
-        # self.botao_regiao9.setObjectName("botao_regiao9")
-        # self.layout.addWidget(self.botao_regiao9, 1, 3, 1, 1)
-        # self.botao_regiao11 = QPushButton(self.layout)
-        # self.botao_regiao11.setText("")
-        # self.botao_regiao11.setObjectName("botao_regiao11")
-        # self.layout.addWidget(self.botao_regiao11, 2, 0, 1, 1)
-        # self.botao_regiao14 = QPushButton(self.layout)
-        # self.botao_regiao14.setText("")
-        # self.botao_regiao14.setObjectName("botao_regiao14")
-        # self.layout.addWidget(self.botao_regiao14, 2, 3, 1, 1)
-        # self.botao_regiao7 = QPushButton(self.layout)
-        # self.botao_regiao7.setText("")
-        # self.botao_regiao7.setObjectName("botao_regiao7")
-        # self.layout.addWidget(self.botao_regiao7, 1, 1, 1, 1)
-        # self.botao_regiao15 = QPushButton(self.layout)
-        # self.botao_regiao15.setText("")
-        # self.botao_regiao15.setObjectName("botao_regiao15")
-        # self.layout.addWidget(self.botao_regiao15, 2, 4, 1, 1)
-        # self.botao_regiao13 = QPushButton(self.layout)
-        # self.botao_regiao13.setText("")
-        # self.botao_regiao13.setObjectName("botao_regiao13")
-        # self.layout.addWidget(self.botao_regiao13, 2, 2, 1, 1)
-        # self.botao_regiao10 = QPushButton(self.layout)
-        # self.botao_regiao10.setText("")
-        # self.botao_regiao10.setObjectName("botao_regiao10")
-        # self.layout.addWidget(self.botao_regiao10, 1, 4, 1, 1)
+        # Layout dos botões
+        self.layout = self.findChild(QGridLayout,"gridLayout_botoes")
+        self.setLayout(self.layout) # fixando na janela
 
-        # # botões
-        # self.botao_regiao1 = self.findChild(QPushButton,"botao_regiao1")
-        # self.botao_regiao2 = self.findChild(QPushButton,"botao_regiao2")
-        # self.botao_regiao3 = self.findChild(QPushButton,"botao_regiao3")
-        # self.botao_regiao4 = self.findChild(QPushButton,"botao_regiao4")
-        # self.botao_regiao5 = self.findChild(QPushButton,"botao_regiao5")
-        # self.botao_regiao6 = self.findChild(QPushButton,"botao_regiao6")
-        # self.botao_regiao7 = self.findChild(QPushButton,"botao_regiao7")
-        # self.botao_regiao8 = self.findChild(QPushButton,"botao_regiao8")
-        # self.botao_regiao9 = self.findChild(QPushButton,"botao_regiao9")
-        # self.botao_regiao10 = self.findChild(QPushButton,"botao_regiao10")
-        # self.botao_regiao11 = self.findChild(QPushButton,"botao_regiao11")
-        # self.botao_regiao12 = self.findChild(QPushButton,"botao_regiao12")
-        # self.botao_regiao13 = self.findChild(QPushButton,"botao_regiao13")
-        # self.botao_regiao14 = self.findChild(QPushButton,"botao_regiao14")
-        # self.botao_regiao15 = self.findChild(QPushButton,"botao_regiao15")
+        # botões
+        self.botao_regiao1 = self.findChild(QPushButton,"botao_regiao1")
+        self.botao_regiao2 = self.findChild(QPushButton,"botao_regiao2")
+        self.botao_regiao3 = self.findChild(QPushButton,"botao_regiao3")
+        self.botao_regiao4 = self.findChild(QPushButton,"botao_regiao4")
+        self.botao_regiao5 = self.findChild(QPushButton,"botao_regiao5")
+        self.botao_regiao6 = self.findChild(QPushButton,"botao_regiao6")
+        self.botao_regiao7 = self.findChild(QPushButton,"botao_regiao7")
+        self.botao_regiao8 = self.findChild(QPushButton,"botao_regiao8")
+        self.botao_regiao9 = self.findChild(QPushButton,"botao_regiao9")
+        self.botao_regiao10 = self.findChild(QPushButton,"botao_regiao10")
+        self.botao_regiao11 = self.findChild(QPushButton,"botao_regiao11")
+        self.botao_regiao12 = self.findChild(QPushButton,"botao_regiao12")
+        self.botao_regiao13 = self.findChild(QPushButton,"botao_regiao13")
+        self.botao_regiao14 = self.findChild(QPushButton,"botao_regiao14")
+        self.botao_regiao15 = self.findChild(QPushButton,"botao_regiao15")
+        self.botao_regiao16 = self.findChild(QPushButton,"botao_regiao16")
+        self.botao_regiao17 = self.findChild(QPushButton,"botao_regiao17")
+        self.botao_regiao18 = self.findChild(QPushButton,"botao_regiao18")
+        self.botao_regiao19 = self.findChild(QPushButton,"botao_regiao19")
+        self.botao_regiao20 = self.findChild(QPushButton,"botao_regiao20")
 
-        # # torna os botões invisiveis e coloridos ao passar o mouse em cima
-        # self.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        # self.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                 QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        # torna os botões invisiveis e coloridos ao passar o mouse em cima
+        self.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao16.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao17.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao18.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao19.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+        self.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+    
+    def resizeEvent(self, event):
+        # Ajusta a QLabel para ocupar o mesmo tamanho do layout
+        if self.layout:
+            area_layout = self.layout.geometry()  # Obtém o tamanho do layout
+            self.fundo.setGeometry(area_layout)  # Define o tamanho da QLabel igual ao layout
+        
+        super().resizeEvent(event)  
 
+    def botao_clicado_regiao(self):
+        botao_clicado = self.sender() # atribui o própio botão que foi clicado à uma variável
+        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.1.tif" ,
+                           "botao_regiao2":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.2.tif",
+                           "botao_regiao3":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.3.tif",
+                           "botao_regiao4":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.4.tif",
+                           "botao_regiao5":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.5.tif",
+                           "botao_regiao6":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.6.tif",
+                           "botao_regiao7":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.7.tif",
+                           "botao_regiao8":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.8.tif",
+                           "botao_regiao9":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.9.tif",
+                           "botao_regiao10":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.10.tif",
+                           "botao_regiao11":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.11.tif",
+                           "botao_regiao12":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.12.tif",
+                           "botao_regiao13":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.13.tif",
+                           "botao_regiao14":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.14.tif",
+                           "botao_regiao15":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.15.tif",
+                           "botao_regiao16":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.11.tif",
+                           "botao_regiao17":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.12.tif",
+                           "botao_regiao18":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.13.tif",
+                           "botao_regiao19":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.14.tif",
+                           "botao_regiao20":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.15.tif"}
 
-        print(f"Visibilidade atual: {self.botao_regiao1.isVisible()}")
-        # Começa não visivel (não clicável)
-        # self.label_mapa_rio.setVisible(False)
-        # self.botao_regiao1.setVisible(False)
-        # self.botao_regiao2.setVisible(False)
-        # self.botao_regiao3.setVisible(False)
-        # self.botao_regiao4.setVisible(False)
-        # self.botao_regiao5.setVisible(False)
-        # self.botao_regiao6.setVisible(False)
-        # self.botao_regiao7.setVisible(False)
-        # self.botao_regiao8.setVisible(False)
-        # self.botao_regiao9.setVisible(False)
-        # self.botao_regiao10.setVisible(False)
-        # self.botao_regiao11.setVisible(False)
-        # self.botao_regiao12.setVisible(False)
-        # self.botao_regiao13.setVisible(False)
-        # self.botao_regiao14.setVisible(False)
-        # self.botao_regiao15.setVisible(False)
-
-        # Botão para fechar o popup
-        # self.close_button = QPushButton("Fechar", self)
-        # self.close_button.clicked.connect(self.accept)  # Fecha o popup quando clicado
-        # layout.addWidget(self.close_button)
-
-        self.setLayout(self.layout)
-        # self.setLayout(self.layout_botoes)
-
-    # def mostra_mapa(self):
-        # self.label_mapa_rio.setVisible(not self.label_mapa_rio.isVisible())
-        # self.botao_regiao1.setVisible(not self.botao_regiao1.isVisible())
-        # self.botao_regiao2.setVisible(not self.botao_regiao2.isVisible())
-        # self.botao_regiao3.setVisible(not self.botao_regiao3.isVisible())
-        # self.botao_regiao4.setVisible(not self.botao_regiao4.isVisible())
-        # self.botao_regiao5.setVisible(not self.botao_regiao5.isVisible())
-        # self.botao_regiao6.setVisible(not self.botao_regiao6.isVisible())
-        # self.botao_regiao7.setVisible(not self.botao_regiao7.isVisible())
-        # self.botao_regiao8.setVisible(not self.botao_regiao8.isVisible())
-        # self.botao_regiao9.setVisible(not self.botao_regiao9.isVisible())
-        # self.botao_regiao10.setVisible(not self.botao_regiao10.isVisible())
-        # self.botao_regiao11.setVisible(not self.botao_regiao11.isVisible())
-        # self.botao_regiao12.setVisible(not self.botao_regiao12.isVisible())
-        # self.botao_regiao13.setVisible(not self.botao_regiao13.isVisible())
-        # self.botao_regiao14.setVisible(not self.botao_regiao14.isVisible())
-        # self.botao_regiao15.setVisible(not self.botao_regiao15.isVisible())
-        # print('funçaõ mostra mapa funcionou')
-        # print(f"Visibilidade atual: {self.label_mapa_rio.isVisible()}")
-
-    # def paintEvent(self, event):
-    #     """Desenha a imagem de fundo"""
-    #     painter = QPainter(self)
-    #     painter.drawPixmap(self.rect(), self.background_image)
+        print(self.sender())
+        print (botao_clicado.objectName(),"aquiiii")
+        caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
+        # Após realizar a tarefa, fechar o popup
+        # self.close()
+        return caminho_do_arquivo
+             
 
 class UI(QMainWindow):
     def __init__(self):
@@ -240,9 +165,8 @@ class UI(QMainWindow):
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
         self.label_coordinates = self.findChild(QLabel,"label_coordinates")
 
-        
-        # pixmap = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-22S435W-23S42W.png")
-        # self.label_mapa_rio.setPixmap(pixmap)
+        # Classe PopupWindow
+        self.classe_popup = PopupWindow()
 
         # Cria uma cena para o QGraphicsView
         self.scene = QGraphicsScene()
@@ -263,9 +187,15 @@ class UI(QMainWindow):
         self.show()
 
     def show_popup(self):
-            popup = PopupWindow()
-            popup.exec()
+        popup = PopupWindow()
+        popup.exec()
 
+        self.caminho_do_arquivo = self.classe_popup.botao_clicado_regiao()
+
+        self.gera_elevacoes(self.caminho_do_arquivo)
+        self.gera_gradiente(self.caminho_do_arquivo)
+        self.exibe_nome_arquivo(self.caminho_do_arquivo)
+        
     def ler_arquivo(self):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
         self.gera_elevacoes(self.caminho_do_arquivo)
@@ -428,48 +358,6 @@ class UI(QMainWindow):
     def volta_tif(self):
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
-
-    def botao_clicado_regiao(self):
-        botao_clicado = self.sender() # atribui o própio botão que foi clicado como uma variável
-        
-        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.1.tif" ,
-                           "botao_regiao2":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.2.tif",
-                           "botao_regiao3":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.3.tif",
-                           "botao_regiao4":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.4.tif",
-                           "botao_regiao5":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.5.tif",
-                           "botao_regiao6":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.6.tif",
-                           "botao_regiao7":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.7.tif",
-                           "botao_regiao8":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.8.tif",
-                           "botao_regiao9":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.9.tif",
-                           "botao_regiao10":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.10.tif",
-                           "botao_regiao11":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.11.tif",
-                           "botao_regiao12":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.12.tif",
-                           "botao_regiao13":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.13.tif",
-                           "botao_regiao14":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.14.tif",
-                           "botao_regiao15":"Projeto-Taludes\\betsabe\\Cidade do Rio\\regiao_8.15.tif"}
-
-        self.label_mapa_rio.setVisible(False)
-        self.botao_regiao1.setVisible(False)
-        self.botao_regiao2.setVisible(False)
-        self.botao_regiao3.setVisible(False)
-        self.botao_regiao4.setVisible(False)
-        self.botao_regiao5.setVisible(False)
-        self.botao_regiao6.setVisible(False)
-        self.botao_regiao7.setVisible(False)
-        self.botao_regiao8.setVisible(False)
-        self.botao_regiao9.setVisible(False)
-        self.botao_regiao10.setVisible(False)
-        self.botao_regiao11.setVisible(False)
-        self.botao_regiao12.setVisible(False)
-        self.botao_regiao13.setVisible(False)
-        self.botao_regiao14.setVisible(False)
-        self.botao_regiao15.setVisible(False)
-
-        self.caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
-        self.gera_elevacoes(self.caminho_do_arquivo)
-        self.gera_gradiente(self.caminho_do_arquivo)
-        self.exibe_nome_arquivo(self.caminho_do_arquivo)
-
 
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W

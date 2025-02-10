@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1158</width>
-    <height>630</height>
+    <width>1162</width>
+    <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,7 +70,7 @@
        <item row="0" column="1">
         <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>Teste Pop Up</string>
+          <string>Rio de Janeiro</string>
          </property>
         </widget>
        </item>
@@ -146,7 +146,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1158</width>
+     <width>1162</width>
      <height>21</height>
     </rect>
    </property>
@@ -173,12 +173,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>615</y>
+     <x>572</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>501</x>
-     <y>584</y>
+     <x>491</x>
+     <y>543</y>
     </hint>
    </hints>
   </connection>
@@ -189,12 +189,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>615</y>
+     <x>572</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>332</x>
-     <y>614</y>
+     <x>317</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
@@ -205,12 +205,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>615</y>
+     <x>572</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1151</x>
-     <y>615</y>
+     <x>1141</x>
+     <y>574</y>
     </hint>
    </hints>
   </connection>
@@ -221,8 +221,8 @@
    <slot>show_popup()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>204</x>
-     <y>85</y>
+     <x>289</x>
+     <y>55</y>
     </hint>
     <hint type="destinationlabel">
      <x>213</x>
@@ -237,12 +237,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>615</y>
+     <x>572</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>332</x>
-     <y>584</y>
+     <x>317</x>
+     <y>543</y>
     </hint>
    </hints>
   </connection>
@@ -253,12 +253,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>615</y>
+     <x>572</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>501</x>
-     <y>614</y>
+     <x>491</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
@@ -269,8 +269,8 @@
    <slot>ler_arquivo()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>32</x>
-     <y>89</y>
+     <x>34</x>
+     <y>55</y>
     </hint>
     <hint type="destinationlabel">
      <x>56</x>
@@ -285,8 +285,8 @@
    <slot>volta_tif()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>615</y>
+     <x>572</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
      <x>715</x>
@@ -301,8 +301,8 @@
    <slot>corta_tif()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>585</y>
+     <x>572</x>
+     <y>545</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
