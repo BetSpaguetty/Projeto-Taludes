@@ -30,7 +30,7 @@ class PopupWindow(QDialog):
         super().__init__() #super(UI, self).__init__()
         uic.loadUi("Projeto-Taludes\\betsabe\\popup.ui", self) # Carregar o arquivo .ui
         self.setWindowTitle("22S435W - Rio de Janeiro")
-        self.setGeometry(100, 100, 400, 300)
+        self.setGeometry(200, 100, 572, 377)
 
         # Imagem do mapa
         self.fundo = QLabel(self)
@@ -115,35 +115,46 @@ class PopupWindow(QDialog):
 
     def botao_clicado_regiao(self):
         botao_clicado = self.sender() # atribui o própio botão que foi clicado à uma variável
-        arquivos_regiao = {"pushButton":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao1":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao2":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao3":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao4":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao5":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao6":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao7":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao8":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao9":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao10":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao11":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao12":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao13":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao14":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao15":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao16":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao17":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao18":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao19":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
-                           "botao_regiao20":"Projeto-Taludes\\betsabe\\recorte_gavea.tif"}
+        arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_1.tif",
+                           "pushButton1":"Projeto-Taludes\\betsabe\\recorte_gavea.tif",
+                           "botao_regiao2":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_2.tif",
+                           "botao_regiao3":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_3.tif",
+                           "botao_regiao4":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_4.tif",
+                           "botao_regiao5":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_5.tif",
+                           "botao_regiao6":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_6.tif",
+                           "botao_regiao7":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_7.tif",
+                           "botao_regiao8":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_8.tif",
+                           "botao_regiao9":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_9.tif",
+                           "botao_regiao10":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_10.tif",
+                           "botao_regiao11":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_11.tif",
+                           "botao_regiao12":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_12.tif",
+                           "botao_regiao13":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_13.tif",
+                           "botao_regiao14":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_14.tif",
+                           "botao_regiao15":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_15.tif",
+                           "botao_regiao16":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_16.tif",
+                           "botao_regiao17":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_17.tif",
+                           "botao_regiao18":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_18.tif",
+                           "botao_regiao19":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_19.tif",
+                           "botao_regiao20":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_20.tif"}
+        
+        if botao_clicado.objectName() in arquivos_regiao:
+            print (botao_clicado.objectName(),"aquiiii")
+            caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
+            self.close() # Após realizar a tarefa, fechar o popup
+            return caminho_do_arquivo
+        else:
+            self.show_error_popup("arquivo de 22S435W não selecionado")
+            return False
 
-        print(self.sender())
-        print (botao_clicado.objectName(),"aquiiii")
-        caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
-        # Após realizar a tarefa, fechar o popup
-        self.close()
-        return caminho_do_arquivo
-             
+    def show_error_popup(self, error_message):
+        # Cria a caixa de mensagem de erro
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)  # Define o ícone como erro
+        msg.setWindowTitle("Erro")  # Define o título da janela
+        msg.setText(error_message)  # Define o texto da mensagem
+        msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
+        msg.exec_()  # Exibe a mensagem
+
 
 class UI(QMainWindow):
     def __init__(self):
@@ -166,6 +177,8 @@ class UI(QMainWindow):
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
         self.label_coordinates = self.findChild(QLabel,"label_coordinates")
 
+        self.layout_principal = self.findChild(QGridLayout,"Layout_Principal")
+
         # Classe PopupWindow
         self.classe_popup = PopupWindow()
 
@@ -182,8 +195,8 @@ class UI(QMainWindow):
         self.exibe_gradiente.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.exibe_gradiente.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        layout = self.findChild(QGridLayout,"Layout_Principal")
-        self.setLayout(layout)
+        # layout = self.findChild(QGridLayout,"Layout_Principal")
+        self.setLayout(self.layout_principal)
 
         self.show()
 
@@ -193,9 +206,12 @@ class UI(QMainWindow):
 
         self.caminho_do_arquivo = self.classe_popup.botao_clicado_regiao()
 
-        self.gera_elevacoes(self.caminho_do_arquivo)
-        self.gera_gradiente(self.caminho_do_arquivo)
-        self.exibe_nome_arquivo(self.caminho_do_arquivo)
+        if self.caminho_do_arquivo == False:
+            popup.close()
+        else:
+            self.gera_elevacoes(self.caminho_do_arquivo)
+            self.gera_gradiente(self.caminho_do_arquivo)
+            self.exibe_nome_arquivo(self.caminho_do_arquivo)
         
     def ler_arquivo(self):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")

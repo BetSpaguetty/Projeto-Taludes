@@ -25,10 +25,24 @@
     </property>
     <layout class="QGridLayout" name="Layout_Principal">
      <item row="1" column="0">
-      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
+      <widget class="QGraphicsView" name="frame_exibicao_elevacao">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item row="2" column="1">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -70,7 +84,7 @@
        <item row="0" column="1">
         <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>Rio de Janeiro</string>
+          <string>RJ - 22S435W</string>
          </property>
         </widget>
        </item>
