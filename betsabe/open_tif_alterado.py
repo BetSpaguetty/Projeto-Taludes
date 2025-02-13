@@ -137,13 +137,13 @@ class PopupWindow(QDialog):
                            "botao_regiao19":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_19.tif",
                            "botao_regiao20":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_20.tif"}
         
-        if botao_clicado.objectName() in arquivos_regiao:
+        if botao_clicado.objectName():
             print (botao_clicado.objectName(),"aquiiii")
             caminho_do_arquivo = arquivos_regiao[botao_clicado.objectName()]
             self.close() # Após realizar a tarefa, fechar o popup
             return caminho_do_arquivo
         else:
-            self.show_error_popup("arquivo de 22S435W não selecionado")
+            self.show_error_popup("Região de 22S435W não selecionada.")
             return False
 
     def show_error_popup(self, error_message):
@@ -212,14 +212,25 @@ class UI(QMainWindow):
             self.gera_elevacoes(self.caminho_do_arquivo)
             self.gera_gradiente(self.caminho_do_arquivo)
             self.exibe_nome_arquivo(self.caminho_do_arquivo)
-        
+    
+    def show_error_popup(self, error_message):
+        # Cria a caixa de mensagem de erro
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)  # Define o ícone como erro
+        msg.setWindowTitle("Erro")  # Define o título da janela
+        msg.setText(error_message)  # Define o texto da mensagem
+        msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
+        msg.exec_()  # Exibe a mensagem
+    
     def ler_arquivo(self):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
-        self.gera_elevacoes(self.caminho_do_arquivo)
-        self.gera_gradiente(self.caminho_do_arquivo)
-        self.exibe_nome_arquivo(self.caminho_do_arquivo[-30:])
-  
-        print(self.caminho_do_arquivo)
+        if self.caminho_do_arquivo == "":
+            self.show_error_popup("Arquivo não selecionado.")
+            print(self.caminho_do_arquivo)
+        else:
+            self.gera_elevacoes(self.caminho_do_arquivo)
+            self.gera_gradiente(self.caminho_do_arquivo)
+            self.exibe_nome_arquivo(self.caminho_do_arquivo[-30:])
 
     def exibe_nome_arquivo(self,arquivo):
         self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
@@ -251,7 +262,7 @@ class UI(QMainWindow):
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none', vmin=0, vmax=2000)
         ax.axis('off')
 
 
