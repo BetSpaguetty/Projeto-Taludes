@@ -23,8 +23,47 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_botoes">
-    <item row="0" column="2">
-     <widget class="QPushButton" name="botao_regiao3">
+    <item row="0" column="4">
+     <widget class="QPushButton" name="botao_regiao5">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="botao_regiao19">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QPushButton" name="botao_regiao9">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="botao_regiao8">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -52,19 +91,6 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QPushButton" name="botao_regiao16">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="botao_regiao1">
       <property name="sizePolicy">
@@ -78,151 +104,8 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="botao_regiao2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QPushButton" name="botao_regiao4">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="botao_regiao11">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="4">
-     <widget class="QPushButton" name="botao_regiao5">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="botao_regiao7">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="botao_regiao8">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="botao_regiao12">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="botao_regiao13">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QPushButton" name="botao_regiao9">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QPushButton" name="botao_regiao10">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="3">
-     <widget class="QPushButton" name="botao_regiao14">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="4">
-     <widget class="QPushButton" name="botao_regiao15">
+    <item row="0" column="2">
+     <widget class="QPushButton" name="botao_regiao3">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -247,6 +130,45 @@
       </property>
      </widget>
     </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="botao_regiao4">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QPushButton" name="botao_regiao15">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="botao_regiao14">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="2">
      <widget class="QPushButton" name="botao_regiao18">
       <property name="sizePolicy">
@@ -260,8 +182,34 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="3">
-     <widget class="QPushButton" name="botao_regiao19">
+    <item row="0" column="1">
+     <widget class="QPushButton" name="botao_regiao2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="botao_regiao7">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="botao_regiao13">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -286,171 +234,63 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="botao_regiao16">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="botao_regiao11">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="botao_regiao12">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QPushButton" name="botao_regiao10">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>botao_regiao1</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>95</x>
-     <y>41</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>13</x>
-     <y>14</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao2</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>191</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>222</x>
-     <y>5</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao6</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>31</x>
-     <y>115</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>10</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao11</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>28</x>
-     <y>195</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>9</x>
-     <y>196</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao16</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>57</x>
-     <y>273</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>10</x>
-     <y>269</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao3</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>294</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>340</x>
-     <y>12</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao4</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>381</x>
-     <y>39</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>480</x>
-     <y>13</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao5</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>497</x>
-     <y>50</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>544</x>
-     <y>48</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao10</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>480</x>
-     <y>112</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>534</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_regiao15</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>botao_clicado_regiao()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>497</x>
-     <y>176</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>536</x>
-     <y>184</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>botao_regiao20</sender>
    <signal>clicked()</signal>
@@ -516,6 +356,166 @@
    </hints>
   </connection>
   <connection>
+   <sender>botao_regiao15</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>497</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>536</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao14</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>544</x>
+     <y>159</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao10</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>480</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>534</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao9</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>545</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao5</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>497</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>544</x>
+     <y>48</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao4</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>381</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>13</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao3</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>294</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>340</x>
+     <y>12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao2</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>191</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>222</x>
+     <y>5</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao13</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>276</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao8</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>283</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>214</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>botao_regiao12</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
@@ -548,66 +548,66 @@
    </hints>
   </connection>
   <connection>
-   <sender>botao_regiao8</sender>
+   <sender>botao_regiao16</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>283</x>
-     <y>126</y>
+     <x>57</x>
+     <y>273</y>
     </hint>
     <hint type="destinationlabel">
-     <x>214</x>
-     <y>313</y>
+     <x>10</x>
+     <y>269</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>botao_regiao13</sender>
+   <sender>botao_regiao11</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>276</x>
-     <y>201</y>
+     <x>28</x>
+     <y>195</y>
     </hint>
     <hint type="destinationlabel">
-     <x>238</x>
-     <y>322</y>
+     <x>9</x>
+     <y>196</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>botao_regiao9</sender>
+   <sender>botao_regiao6</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>380</x>
-     <y>140</y>
+     <x>31</x>
+     <y>115</y>
     </hint>
     <hint type="destinationlabel">
-     <x>545</x>
-     <y>84</y>
+     <x>10</x>
+     <y>119</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>botao_regiao14</sender>
+   <sender>botao_regiao1</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>380</x>
-     <y>172</y>
+     <x>95</x>
+     <y>41</y>
     </hint>
     <hint type="destinationlabel">
-     <x>544</x>
-     <y>159</y>
+     <x>13</x>
+     <y>14</y>
     </hint>
    </hints>
   </connection>
