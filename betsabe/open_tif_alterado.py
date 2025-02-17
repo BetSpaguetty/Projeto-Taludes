@@ -1,30 +1,21 @@
 # Módulos
-from PyQt5 import QtCore, QtWidgets, uic
+from PyQt5 import uic
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QWidget, QMessageBox, QListWidget, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
-from PyQt5.QtGui import QPixmap, QPainter
-from PyQt5.uic import loadUi
-
-import scipy as sp
-from scipy.ndimage import gaussian_filter
+from PyQt5.QtWidgets import QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtGui import QPixmap
 
 import numpy as np
 from PIL import Image
-
 import rasterio
-import os
 
 import matplotlib.cm as cm
-from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.backends.backend_qt5agg  import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from sys import argv, exit, path
 
 # Classes
-
 class PopupWindow(QDialog):
     def __init__(self):
         super().__init__() #super(UI, self).__init__()
@@ -160,7 +151,6 @@ class PopupWindow(QDialog):
         msg.setText(error_message)  # Define o texto da mensagem
         msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
         msg.exec_()  # Exibe a mensagem
-
 
 class UI(QMainWindow):
     def __init__(self):
@@ -394,9 +384,7 @@ class UI(QMainWindow):
 
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
-    # tarefa!!! fazer recortes do rj cidade mesmo
-    # fixar escala
-    # concertar coordenadas
+    # consertar coordenadas
 
 app = QApplication(argv)
 UIWindow = UI()
