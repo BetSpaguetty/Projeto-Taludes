@@ -84,7 +84,7 @@
        <item row="0" column="1">
         <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>RJ - 22S435W</string>
+          <string>Rio de Janeiro - RJ</string>
          </property>
         </widget>
        </item>
@@ -107,6 +107,9 @@
          <property name="text">
           <string>Limpar</string>
          </property>
+         <property name="shortcut">
+          <string>Ctrl+L</string>
+         </property>
         </widget>
        </item>
        <item row="1" column="2">
@@ -119,6 +122,9 @@
         <widget class="QPushButton" name="botao_recorte">
          <property name="text">
           <string>Recortar</string>
+         </property>
+         <property name="shortcut">
+          <string>Return</string>
          </property>
         </widget>
        </item>
@@ -190,7 +196,7 @@
   </action>
   <action name="actionRJ_22S435W">
    <property name="text">
-    <string>RJ - 22S435W</string>
+    <string>Rio de Janeiro - RJ</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -198,7 +204,7 @@
   </action>
   <action name="actionCortar">
    <property name="text">
-    <string>Cortar</string>
+    <string>Conversor de coordenadas</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>

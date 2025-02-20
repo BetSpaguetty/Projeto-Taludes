@@ -25,7 +25,7 @@ class PopupWindow(QDialog):
         
         # Imagem do mapa
         self.fundo = QLabel(self)
-        self.fundo.setPixmap(QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-22S435W-23S42W.png"))  # Caminho da imagem
+        self.fundo.setPixmap(QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\image.png"))  # Caminho da imagem
         self.fundo.setScaledContents(True) # Ajusta a imagem ao tamanho do QLabel
         
         # Layout dos botões
