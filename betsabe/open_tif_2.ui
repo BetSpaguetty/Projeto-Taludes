@@ -172,11 +172,11 @@
    </property>
    <widget class="QMenu" name="menuArquivos">
     <property name="title">
-     <string>Arquivos</string>
+     <string>Menu</string>
     </property>
     <addaction name="actionAbrir"/>
-    <addaction name="actionCortar"/>
     <addaction name="actionRJ_22S435W"/>
+    <addaction name="actionCortar"/>
    </widget>
    <addaction name="menuArquivos"/>
   </widget>

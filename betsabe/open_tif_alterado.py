@@ -98,26 +98,26 @@ class PopupWindow(QDialog):
         
         # Caminho dos arquivos pré definidos
         self.caminho_do_arquivo = None  # Guarda o caminho selecionado
-        self.arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_1.tif",
-                                "botao_regiao2":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_2.tif",
-                                "botao_regiao3":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_3.tif",
-                                "botao_regiao4":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_4.tif",
-                                "botao_regiao5":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_5.tif",
-                                "botao_regiao6":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_6.tif",
-                                "botao_regiao7":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_7.tif",
-                                "botao_regiao8":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_8.tif",
-                                "botao_regiao9":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_9.tif",
-                                "botao_regiao10":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_10.tif",
-                                "botao_regiao11":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_11.tif",
-                                "botao_regiao12":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_12.tif",
-                                "botao_regiao13":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_13.tif",
-                                "botao_regiao14":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_14.tif",
-                                "botao_regiao15":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_15.tif",
-                                "botao_regiao16":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_16.tif",
-                                "botao_regiao17":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_17.tif",
-                                "botao_regiao18":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_18.tif",
-                                "botao_regiao19":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_19.tif",
-                                "botao_regiao20":"Projeto-Taludes\\betsabe\\22S435W_recortes\\regiao_20.tif"}       
+        self.arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
+                                "botao_regiao2":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
+                                "botao_regiao3":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_3.tif",
+                                "botao_regiao4":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_4.tif",
+                                "botao_regiao5":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_5.tif",
+                                "botao_regiao6":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_6.tif",
+                                "botao_regiao7":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_7.tif",
+                                "botao_regiao8":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_8.tif",
+                                "botao_regiao9":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_9.tif",
+                                "botao_regiao10":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_10.tif",
+                                "botao_regiao11":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_11.tif",
+                                "botao_regiao12":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_12.tif",
+                                "botao_regiao13":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_13.tif",
+                                "botao_regiao14":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_14.tif",
+                                "botao_regiao15":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_15.tif",
+                                "botao_regiao16":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_16.tif",
+                                "botao_regiao17":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
+                                "botao_regiao18":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
+                                "botao_regiao19":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
+                                "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}       
 
     def resizeEvent(self, event):
         # Ajusta a QLabel para ocupar o mesmo tamanho do layout
@@ -231,12 +231,26 @@ class UI(QMainWindow):
         self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
 
     def gera_elevacoes(self,arquivo):
-        img = Image.open(arquivo)
-        self.img_array = np.array(img)
+        with rasterio.open(arquivo) as dataset:
+            print(f"Formato: {dataset.driver}")
+            print(f"Dimensões: {dataset.width} x {dataset.height}")
+            print(f"Número de bandas: {dataset.count}")
+
+            if dataset.count > 1:
+                # Ler apenas a primeira banda
+                banda1 = dataset.read(1)
+                self.img_array = banda1
+                y_ratio, x_ratio = self.img_array.shape
+            else:
+                img = Image.open(arquivo)
+                self.img_array = np.array(img)
+                y_ratio, x_ratio = img.size
+            
         # self.img_array = self.img_array[3500:3600,900:1000]
         # self.img_array = self.img_array[:,:] # corte na exibição do tif
 
-        y_ratio, x_ratio = img.size
+        
+
         lin_x = np.linspace(0, 1, self.img_array.shape[0], endpoint=False)
         lin_y = np.linspace(0, 1, self.img_array.shape[1], endpoint=False)
         y, x = np.meshgrid(lin_y, lin_x)
@@ -257,7 +271,7 @@ class UI(QMainWindow):
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none', vmin=0, vmax=2000)
+        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
         ax.axis('off')
 
 
@@ -317,6 +331,12 @@ class UI(QMainWindow):
         tif_file = arquivo
         with rasterio.open(tif_file) as src:
             matriz = src.read(1)  # banda de elevações
+        #     image = src.read()  # Lê todas as bandas
+        #     profile = src.profile  # Metadados do arquivo
+        # # Exibir informações do TIFF
+        # print("Número de bandas:", image.shape[0])
+        # print("Tipo de dado:", profile["dtype"])
+        # print("Resolução:", profile["transform"])
 
         L = 25  # quantidade de metros por pixel
         
