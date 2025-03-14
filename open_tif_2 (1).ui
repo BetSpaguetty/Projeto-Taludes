@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1180</width>
+    <height>653</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Visualizador de Arquivos  .TIF</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>1134</width>
+      <height>546</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="Layout_Principal">
+     <item row="1" column="1">
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
+     </item>
+     <item row="2" column="0">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="2" column="0">
+        <widget class="QLabel" name="labe_eixo_y">
+         <property name="text">
+          <string>Eixo Y:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="intervalo_x_inicio"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="botao_limpar">
+         <property name="text">
+          <string>Limpar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="intervalo_x_final"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="intervalo_y_final"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="botao_recorte">
+         <property name="text">
+          <string>Recortar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="intervalo_y_inicio"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_eixo_x">
+         <property name="text">
+          <string>Eixo X:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_corte">
+         <property name="text">
+          <string>Defina o intervalo de corte:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
+     </item>
+     <item row="2" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Defina o nome do seu arquivo de corte:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nome_arquivo_corte"/>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="botao_mapa_rio">
+         <property name="text">
+          <string>Cidade do Rio</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="botao_abrir_arquivo">
+         <property name="text">
+          <string>Abrir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_coordinates">
+         <property name="text">
+          <string>Coordenadas:(x,y,z)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_shape">
+         <property name="text">
+          <string>Shape: </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_nomeArquivo">
+         <property name="text">
+          <string>Arquivo Selecionado :</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_mapa_rio">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>10</y>
+      <width>601</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>:/teste 2/mapa-rio-de-janeiro.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao3">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>10</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao6">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>10</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao9">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>10</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao12">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>10</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao2">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>110</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao5">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>110</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao8">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>110</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao11">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>110</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao1">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>210</y>
+      <width>121</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao4">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>210</y>
+      <width>121</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao7">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>210</y>
+      <width>121</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao10">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>210</y>
+      <width>121</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao15">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>10</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao14">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>110</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_regiao13">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>210</y>
+      <width>121</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1180</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArquivos">
+    <property name="title">
+     <string>Arquivos</string>
+    </property>
+   </widget>
+   <addaction name="menuArquivos"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_x_final</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>501</x>
+     <y>553</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_abrir_arquivo</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ler_arquivo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>30</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>56</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_y_inicio</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>582</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_y_final</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>501</x>
+     <y>582</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_recorte</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>corta_tif()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>555</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>376</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_x_inicio</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>553</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>volta_tif()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>715</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>nome_arquivo_corte</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1151</x>
+     <y>584</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_mapa_rio</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>mostra_mapa()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>29</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>275</x>
+     <y>99</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>26</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao6</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>485</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>550</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao9</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>610</x>
+     <y>74</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>730</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao12</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>703</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>892</x>
+     <y>40</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>373</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1029</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>874</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao8</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>617</x>
+     <y>170</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1168</x>
+     <y>133</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao11</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>719</x>
+     <y>194</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1163</x>
+     <y>194</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao1</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>257</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1172</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1163</x>
+     <y>310</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao7</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>606</x>
+     <y>295</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1168</x>
+     <y>378</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao10</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>653</x>
+     <y>297</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1166</x>
+     <y>445</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao15</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>789</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1164</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao14</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>816</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1168</x>
+     <y>96</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao13</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>806</x>
+     <y>281</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1164</x>
+     <y>298</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>abrir_arquivo()</slot>
+  <slot>slot1()</slot>
+  <slot>corta_tif()</slot>
+  <slot>ler_arquivo()</slot>
+  <slot>volta_tif()</slot>
+  <slot>gera_gradiente()</slot>
+  <slot>mostra_lista()</slot>
+  <slot>ler_regiao_selecionada()</slot>
+  <slot>slot2()</slot>
+  <slot>mostra_mapinhas()</slot>
+  <slot>ler_mapinha_selecionado()</slot>
+  <slot>mostra_mapa()</slot>
+  <slot>botao_clicado_regiao()</slot>
+  <slot>abrir_janela_rio()</slot>
+ </slots>
+</ui>

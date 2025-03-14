@@ -23,7 +23,7 @@ from sys import argv, exit, path
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        uic.loadUi("Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
+        uic.loadUi("c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
         self.pushButton = self.findChild(QPushButton,"botao_abrir_arquivo")
         self.graphicsView = self.findChild(QGraphicsView,"frame_exibicao_elevacao")
         self.exibe_gradiente = self.findChild(QGraphicsView,"frame_exibicao_gradiente")
@@ -215,18 +215,31 @@ class UI(QMainWindow):
 
     def ler_regiao_selecionada(self,regiao):
 
-        arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
-                           "Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
-                           "Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
-                           "Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
-                           "Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
-                           "Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
-                           "Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
-                           "Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
-                           "Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
-                           "Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
-                           "Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
-                           "Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
+        arquivos_regiao = {"Região 1":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.1.tif" ,
+                           "Região 2":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.2.tif",
+                           "Região 3":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.3.tif",
+                           "Região 4":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.4.tif",
+                           "Região 5":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.5.tif",
+                           "Região 6":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.6.tif",
+                           "Região 7":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.7.tif",
+                           "Região 8":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.8.tif",
+                           "Região 9":"c:\\Users\\paulobaccar\\Documents\\Mapas Betsabé\\mapinha_R1.9.tif"}# ,
+                           #"Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
+                           #"Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
+                           #"Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
+        
+        #arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Mapas Betsabé\\mapinha_R1.1.tif" ,
+                           #"Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
+                           #"Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
+                           #"Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
+                           #"Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
+                           #"Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
+                           #"Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
+                           #"Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
+                           #"Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
+                           #"Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
+                           #"Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
+                           #"Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
 
         self.lista_rio.setVisible(False)
         self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
