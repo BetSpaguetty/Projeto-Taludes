@@ -31,7 +31,10 @@ Bet:
 
 Paulo:
 - apptaludes.py -> Arquivo que executa a interface gráfica.
+   - showProp: mostra ou esconde os parâmetros do solo quando se clica no botão "Properties"
+   - define_material: mostra o gráfico ternário
    - number_changed: muda números nos lineEdits quando o usuário mecher nos sliders
+   - number_changed2: permite mudar a porcentagem de areia, silte e argila que compoêm o solo e faz com que sua soma seja sempre 100%
    - analysisClick: conta o número de vezes que o botão Analysis foi clicado
    - runAnalysis: cria e mostra o gráfico do fator de segurança quando o botão Analysis é clicado(Anteriormente: cria e mostra os gráficos das variáveis (h(m), hw(m), c'(kPa) e Phi(Graus)), que tem o mesmo tamanho do último gráfico criado)
    - runAnalysis2: cria/altera o gráfico do fator de segurança quando os sliders são movidos
@@ -40,7 +43,9 @@ Paulo:
    - figureAdjust: faz cortes em gráficos do último arquivo recebidos
    - clearCanvas: limpa todos os valores e gráficos
    - mostra_lista: mostra o mapa e os botões para selecionar os arquivos criados pela Betsabé (Baseada na função de nome semelhante da Betsabé)
-   - botao_clicado_regiao: seleciona um dos arquivos criados pela Betsabé através do mapa mostrado por "mostra_lista" e chama "elev_incl" para esse arquivo (Baseada na função de mesmo nome da Betsabé)
+   - mostra_recortar: mostra ou esconde a etiqueta, o botão e a caixa de texto que criam novos arquivos quando se clica no botão "Save"
+   - mostra_solo: mostra ou esconde a composição do solo quando se clica no botão "Soil"
+   - botao_clicado_regiao: seleciona um dos arquivos criados pela Betsabé através do mapa mostrado por "mostra_lista" e chama "elev_incl" para esse arquivo (Baseada na função de mesmo nome da Betsabé
    - corta_tif: cria um novo arquivo TIF a partir de um recorte do arquivo sendo usado com base nas cordenadas em X1, X2, Y1 e Y2 (Baseada na função de mesmo nome da Betsabé)
   
 # Como Usar?
