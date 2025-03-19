@@ -61,16 +61,23 @@
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="3">
-        <widget class="QLabel" name="label_shape">
+        <widget class="QLabel" name="label_coordinates">
          <property name="text">
-          <string>Shape: </string>
+          <string>Coordenadas:(x,y,z)</string>
          </property>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="label_coordinates">
+        <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>Coordenadas:(x,y,z)</string>
+          <string>Rio de Janeiro - RJ</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_shape">
+         <property name="text">
+          <string>Shape: </string>
          </property>
         </widget>
        </item>
@@ -82,9 +89,9 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButton_2">
          <property name="text">
-          <string>Rio de Janeiro - RJ</string>
+          <string>Conversor</string>
          </property>
         </widget>
        </item>
@@ -389,6 +396,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_conversor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>182</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>abrir_arquivo()</slot>
@@ -407,5 +430,6 @@
   <slot>abrir_janela_rio()</slot>
   <slot>slot3()</slot>
   <slot>show_popup()</slot>
+  <slot>show_conversor()</slot>
  </slots>
 </ui>

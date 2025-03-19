@@ -1,7 +1,7 @@
 import rasterio
 # Abrir o arquivo TIFF
 
-# with rasterio.open("C:\\Users\\betsabenogueira\Documents\Visualizador de tiff\\Projeto-Taludes\\betsabe\\Corte_RJ.tif") as dataset:
+#
     # Obter os limites (bounding box)
     # bounds = dataset.bounds
     # print("Limites do raster:")
@@ -14,20 +14,19 @@ import rasterio
     
 
 def botao_converte(latitude, longitude):
-    with rasterio.open("C:\\Users\\betsabenogueira\\Documents\\Visualizador de tiff\\Projeto-Taludes\\betsabe\\Corte_RJ.tif") as dataset:
+    # with rasterio.open("C:\\Users\\betsabenogueira\\Downloads\\sentinel2_rio_25_2.tif") as dataset:
+    with rasterio.open("C:\\Users\\betsabenogueira\Documents\Visualizador de tiff\\Projeto-Taludes\\betsabe\\Corte_RJ.tif") as dataset:
         print(f"CRS do dataset: {dataset.crs!r}")
         if dataset.crs is None:
-            print("⚠️ O TIFF não tem CRS! Entrando no else...") # Se NÃO houver Sistema de referência espacial (CRS)
-            lat_inicial = -43.5
-            lon_inicial = -22.77
+            print("⚠️ O TIFF não tem CRS! Entrando no if...") # Se NÃO houver Sistema de referência espacial (CRS)
+            lat_inicial = -22.77
+            lon_inicial = -43.5
 
-            lat_final = -43.15
-            lon_final = -23
-
+            lat_final = -23
+            lon_final = -43.15
+            
             if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final: 
-                print("latitude")
-                if (longitude > lon_inicial and longitude < lon_final) or longitude == lon_inicial or longitude == lon_final:
-                    print("longitude")
+                if (longitude > lon_final and longitude < lon_inicial) or longitude == lon_inicial or longitude == lon_final:
                     resto = latitude - lat_inicial
                     print("resto lat:",resto) 
                     qt_celulay = resto/0.00028
@@ -37,7 +36,7 @@ def botao_converte(latitude, longitude):
                     qt_celulax = resto2/0.00028
 
                     print(dataset.shape)
-                    print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
+                    print(f"Célula: {abs(qt_celulay):.0f}, {abs(qt_celulax):.0f}")
         else:
             print("✅ O TIFF tem CRS:", dataset.crs)
             resolucao_x, resolucao_y = dataset.res[0], dataset.res[1] # Tamanho do pixel em graus (lon/lat)
@@ -48,10 +47,12 @@ def botao_converte(latitude, longitude):
 
             lat_final = bounds.top # Max Y (Latitude)
             lon_final = bounds.right # Max X (Longitude)
+
+            print(f"Coordenadas iniciais: {bounds.bottom},{bounds.left}/Coordenadas finais: {bounds.top},{bounds.right}")
             
             if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final: 
-                print("latitude")
-                if (longitude > lon_inicial and longitude < lon_final) or longitude == lon_inicial or longitude == lon_final:
+                print("latitude",latitude)
+                if (longitude > lon_final and longitude < lon_inicial) or longitude == lon_inicial or longitude == lon_final:
                     print("longitude")
                     resto = latitude - lat_inicial
                     print("resto lat:",resto) 
@@ -68,4 +69,5 @@ def botao_converte(latitude, longitude):
 
         
 
-botao_converte(-22.862348559662852,-43.18381233819364)
+# botao_converte(-22.499878342520628, -42.99988228377017)
+botao_converte(-23, -43.15)
