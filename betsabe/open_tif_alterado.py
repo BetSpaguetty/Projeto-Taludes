@@ -16,6 +16,34 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 from sys import argv, exit, path
 
 # Classes
+class Popup_LatLon(QDialog):
+    def __init__(self):
+        super().__init__() #super(UI, self).__init__()
+        uic.loadUi("Projeto-Taludes\\betsabe\\popup_LatLon.ui", self) # Carregar o arquivo .ui
+        self.setWindowTitle("Conversor de Células")
+
+        self.botao_converte = self.findChild(QPushButton,"botao_converte")
+        self.botao_converte = self.findChild(QPushButton,"botao_converte")
+
+    def botao_converte(self, latitude, longitude):
+        lat_inicial = -43.5
+        lon_inicial = -22.77
+
+        lat_final = -43.15
+        lon_final = -23
+
+        if latitude > lat_inicial and latitude < lat_final:
+            if longitude > lon_inicial and longitude < lon_final:
+                resto = latitude - lat_inicial 
+                qt_celulax = resto/0.00028
+
+                resto2 = longitude - lon_inicial 
+                qt_celulay = resto2/0.00028
+
+                lineEdit_celula = lineEdit_celula
+
+
+
 class PopupWindow(QDialog):
     def __init__(self):
         super().__init__() #super(UI, self).__init__()
@@ -152,6 +180,7 @@ class PopupWindow(QDialog):
         msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
         msg.exec_()  # Exibe a mensagem
 
+
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
@@ -195,6 +224,11 @@ class UI(QMainWindow):
         self.setLayout(self.layout_principal)
 
         self.show()
+
+    def show_conversor(self):
+        popup = Popup_LatLon()
+        resultado = popup.exec()  # Aguarda o usuário fechar o popup
+
 
     def show_popup(self):
         popup = PopupWindow()
@@ -404,8 +438,8 @@ class UI(QMainWindow):
 
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
-    # consertar coordenadas
 
 app = QApplication(argv)
 UIWindow = UI()
 exit(app.exec_())
+
