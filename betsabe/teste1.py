@@ -13,7 +13,7 @@ import rasterio
 
     
 
-def botao_converte(latitude, longitude):
+def botao_converte(lat, long):
     # with rasterio.open("C:\\Users\\betsabenogueira\\Downloads\\sentinel2_rio_25_2.tif") as dataset:
     with rasterio.open("C:\\Users\\betsabenogueira\Documents\Visualizador de tiff\\Projeto-Taludes\\betsabe\\Corte_RJ.tif") as dataset:
         print(f"CRS do dataset: {dataset.crs!r}")
@@ -24,6 +24,9 @@ def botao_converte(latitude, longitude):
 
             lat_final = -23
             lon_final = -43.15
+
+            latitude = int(lat)
+            longitude = int(long)
             
             if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final: 
                 if (longitude > lon_final and longitude < lon_inicial) or longitude == lon_inicial or longitude == lon_final:
