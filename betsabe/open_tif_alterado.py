@@ -29,7 +29,7 @@ class Popup_add_info(QDialog):
         self.lineEdit_long_max = self.findChild(QLineEdit,"add_long_max")
 
     def fornece_pixel(self):
-        # print("fornecendo pixel...")
+        print("fornecendo pixel...")
         return (float(self.latitude.text()),float(self.longitude.text()))
     
     def fornece_coordenadas(self):
@@ -46,7 +46,6 @@ class Popup_add_info(QDialog):
         self.accept()
 
         return 
-  
 
 class Popup_LatLon(QDialog):
     def __init__(self):
@@ -583,6 +582,7 @@ class UI(QMainWindow):
 
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
+    # bla bla bla
 
 app = QApplication(argv)
 UIWindow = UI()
