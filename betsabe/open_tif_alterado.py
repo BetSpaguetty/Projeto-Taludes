@@ -1,13 +1,16 @@
 # Módulos
 from PyQt5 import uic
 from PyQt5.QtCore import Qt, QEvent
-from PyQt5.QtWidgets import QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtWidgets import QVBoxLayout, QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 from PyQt5.QtGui import QPixmap
+
 
 import numpy as np
 from PIL import Image
 import rasterio
+from matplotlib.ticker import FuncFormatter
 
+import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -27,6 +30,20 @@ class Popup_add_info(QDialog):
         self.lineEdit_long_min = self.findChild(QLineEdit,"add_long_min")
         self.lineEdit_lat_max = self.findChild(QLineEdit,"add_lat_max")
         self.lineEdit_long_max = self.findChild(QLineEdit,"add_long_max")
+
+        self.lay_principal = self.findChild(QVBoxLayout,"lay_principal")
+        self.setLayout(self.lay_principal)
+
+        def resizeEvent(self, event):
+            # Ajusta a QLabel para ocupar o mesmo tamanho do layout
+            if self.layout:
+                # Mantém a proporção ao redimensionar
+                new_width = event.size().width()
+                new_height = int(new_width / self.aspect_ratio)
+                self.resize(new_width, new_height)
+                
+                super().resizeEvent(event) 
+        
 
     def fornece_pixel(self):
         print("fornecendo pixel...")
@@ -287,13 +304,20 @@ class PopupWindow(QDialog):
                                 "botao_regiao17":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
                                 "botao_regiao18":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
                                 "botao_regiao19":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
-                                "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}       
+                                "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
+        # Define um tamanho inicial
+        self.resize(600, 450)
+        self.aspect_ratio = 600 / 450  # Largura/Altura
 
     def resizeEvent(self, event):
         # Ajusta a QLabel para ocupar o mesmo tamanho do layout
         if self.layout:
             area_layout = self.layout.geometry()  # Obtém o tamanho do layout
             self.fundo.setGeometry(area_layout)  # Define o tamanho da QLabel igual ao layout
+            # Mantém a proporção ao redimensionar
+        new_width = event.size().width()
+        new_height = int(new_width / self.aspect_ratio)
+        self.resize(new_width, new_height)
         
         super().resizeEvent(event)  
 
@@ -423,41 +447,21 @@ class UI(QMainWindow):
                 img = Image.open(arquivo)
                 self.img_array = np.array(img)
                 y_ratio, x_ratio = img.size
-            
-        # self.img_array = self.img_array[3500:3600,900:1000]
-        # self.img_array = self.img_array[:,:] # corte na exibição do tif
 
-        
 
-        lin_x = np.linspace(0, 1, self.img_array.shape[0], endpoint=False)
-        lin_y = np.linspace(0, 1, self.img_array.shape[1], endpoint=False)
-        y, x = np.meshgrid(lin_y, lin_x)
+        lin_x = np.linspace(0, 1, self.img_array.shape[0])
+        lin_y = np.linspace(0, 1, self.img_array.shape[1])
+        y, x = np.meshgrid(lin_y,lin_x)
         z = self.img_array
 
-        sigma_y = 100
-        sigma_x = 100
-        sigma = [sigma_y, sigma_x]
-        # z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
-
-        # z_smoothed_min = np.amin(z_smoothed)
-        # z_smoothed_max = np.amax(z_smoothed)
-        # z_range = z_smoothed_max - z_smoothed_min
-
         # Creating figure
-        self.fig = plt.figure(figsize=(12,10))
+        self.fig = plt.figure()
         ax = plt.axes(projection='3d')
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
         surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
         ax.axis('off')
-
-
-        m = cm.ScalarMappable(cmap=surf.cmap, norm=surf.norm)
-        # m.set_array(z_smoothed)
-
-        # cbar =  self.fig.colorbar(m, ax=ax, shrink=0.5, aspect=20, ticks=[z_smoothed_min, 0, (z_range * 0.25 + z_smoothed_min), (z_range * 0.5 + z_smoothed_min), (z_range * 0.75 + z_smoothed_min), z_smoothed_max])
-        # cbar.ax.set_yticklabels([f'{z_smoothed_min}', ' ',  f'{(z_range*0.25+z_smoothed_min)}', f'{(z_range*0.5+z_smoothed_min)}', f'{(z_range*0.75+z_smoothed_min)}', f'{z_smoothed_max}'])
 
         # Adicionando a colorbar ao gráfico
         self.fig.colorbar(surf, ax=ax, shrink=0.5, aspect=13)
@@ -537,9 +541,16 @@ class UI(QMainWindow):
                 # inclinação máxima
                 incl_max[i, j] = np.max(alpha)
 
-        self.fig_gradiente = plt.figure(figsize=(10, 5))  
+        self.fig_gradiente = plt.figure(figsize=(10, 5)) 
 
+        
+        
         plt.imshow(incl_max, cmap='terrain')
+        # ticks_x = plt.get_xticks()
+        # ticks_y = plt.get_yticks()
+
+        # print("Ticks do eixo X:", ticks_x)
+        # print("Ticks do eixo Y:", ticks_y)
         plt.colorbar(label='Inclinação Máxima')
 
         # Cria uma figura e um canvas para o gráfico
@@ -551,6 +562,8 @@ class UI(QMainWindow):
         size_1 = self.exibe_gradiente.size()
         self.canvas_gradiente.resize(size_1)
         print(size_1)
+
+        
 
         # Adiciona o canvas do gráfico à cena
         self.scene_gradiente.addWidget(self.canvas_gradiente)
@@ -582,7 +595,6 @@ class UI(QMainWindow):
 
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
-    # bla bla bla
 
 app = QApplication(argv)
 UIWindow = UI()
