@@ -367,13 +367,6 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLabel" name="corteArquivo_label">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -1844,11 +1837,11 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>830</x>
-     <y>571</y>
+     <x>643</x>
+     <y>580</y>
     </hint>
    </hints>
   </connection>
@@ -1860,11 +1853,11 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>830</x>
-     <y>475</y>
+     <x>643</x>
+     <y>504</y>
     </hint>
    </hints>
   </connection>
@@ -1876,11 +1869,11 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>601</x>
-     <y>571</y>
+     <x>435</x>
+     <y>580</y>
     </hint>
    </hints>
   </connection>
@@ -1892,11 +1885,11 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>601</x>
-     <y>475</y>
+     <x>435</x>
+     <y>504</y>
     </hint>
    </hints>
   </connection>
@@ -1908,7 +1901,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>453</y>
+     <y>492</y>
     </hint>
     <hint type="destinationlabel">
      <x>839</x>
@@ -1924,7 +1917,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
      <x>116</x>
@@ -1939,8 +1932,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>mostra_lista()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>269</x>
-     <y>33</y>
+     <x>89</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>63</x>
@@ -1955,8 +1948,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>220</x>
-     <y>128</y>
+     <x>643</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>295</x>
@@ -1971,8 +1964,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>431</x>
-     <y>128</y>
+     <x>220</x>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
      <x>487</x>
@@ -1987,8 +1980,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>128</y>
+     <x>854</x>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
      <x>722</x>
@@ -2003,8 +1996,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>128</y>
+     <x>431</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
      <x>922</x>
@@ -2020,7 +2013,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1065</x>
-     <y>128</y>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
      <x>1156</x>
@@ -2035,8 +2028,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>431</x>
-     <y>302</y>
+     <x>854</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>418</x>
@@ -2051,8 +2044,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>302</y>
+     <x>431</x>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
      <x>708</x>
@@ -2067,8 +2060,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>302</y>
+     <x>1065</x>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
      <x>934</x>
@@ -2083,8 +2076,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>302</y>
+     <x>643</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
      <x>1155</x>
@@ -2099,8 +2092,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>215</y>
+     <x>262</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>4</x>
@@ -2115,8 +2108,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>215</y>
+     <x>854</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
      <x>1305</x>
@@ -2131,8 +2124,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>431</x>
-     <y>215</y>
+     <x>1065</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>335</x>
@@ -2148,7 +2141,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>643</x>
-     <y>215</y>
+     <y>186</y>
     </hint>
     <hint type="destinationlabel">
      <x>573</x>
@@ -2163,8 +2156,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>215</y>
+     <x>220</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
      <x>847</x>
@@ -2180,11 +2173,11 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1065</x>
-     <y>33</y>
+     <x>740</x>
+     <y>47</y>
     </hint>
    </hints>
   </connection>
@@ -2195,8 +2188,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>corta_tif()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>534</x>
-     <y>33</y>
+     <x>1065</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -2212,11 +2205,11 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
      <x>978</x>
-     <y>415</y>
+     <y>454</y>
     </hint>
    </hints>
   </connection>
@@ -2228,11 +2221,91 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>513</y>
+     <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1059</x>
-     <y>565</y>
+     <x>842</x>
+     <y>578</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao16</sender>
+   <signal>clicked()</signal>
+   <receiver>AppTaludes</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>303</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>190</x>
+     <y>323</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao17</sender>
+   <signal>clicked()</signal>
+   <receiver>AppTaludes</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>376</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao18</sender>
+   <signal>clicked()</signal>
+   <receiver>AppTaludes</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>545</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>580</x>
+     <y>321</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao19</sender>
+   <signal>clicked()</signal>
+   <receiver>AppTaludes</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>740</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>767</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_regiao20</sender>
+   <signal>clicked()</signal>
+   <receiver>AppTaludes</receiver>
+   <slot>botao_clicado_regiao()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>915</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>931</x>
+     <y>323</y>
     </hint>
    </hints>
   </connection>
