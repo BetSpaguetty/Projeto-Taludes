@@ -31,7 +31,7 @@ Bet:
 
 Paulo:
 - apptaludes.py -> Arquivo que executa a interface gráfica.
--AppTaludes: classe da janela principal
+- AppTaludes: classe da janela principal
   - showProp: mostra ou esconde os parâmetros do solo quando se clica no botão "Properties"
    - define_material: mostra o gráfico ternário
    - number_changed: muda números nos lineEdits quando o usuário mecher nos sliders
@@ -49,7 +49,7 @@ Paulo:
    - mostra_chuva: mostra ou esconde os parâmetros da chuva quando se clica no botão "Rain"
    - botao_clicado_regiao: seleciona um dos arquivos criados pela Betsabé através do mapa mostrado por "mostra_lista" e chama "elev_incl" para esse arquivo (Baseada na função de mesmo nome da Betsabé)
    - corta_tif: cria um novo arquivo TIF a partir de um recorte do arquivo sendo usado com base nas cordenadas em X1, X2, Y1 e Y2 (Baseada na função de mesmo nome da Betsabé)
--Form2: classe da janela com o mapa do Rio de Janeiro
+- Form2: classe da janela com o mapa do Rio de Janeiro
    - botao_clicado_regiao: seleciona um dos mapas mostrados ao clinar em cima da imagem mostrada e chama "elev_incl" (Da classe AppTaludes) para esse arquivo
   
 # Como Usar?
