@@ -1,6 +1,7 @@
 {
     "files": [
         "apptaludes.py",
-        "form.ui"
+        "form.ui",
+        "form2.ui"
     ]
 }

@@ -204,11 +204,6 @@ class Ui_AppTaludes(object):
 
         self.horizontalLayout_10.addWidget(self.mapaRio_Button)
 
-        self.label_2 = QLabel(AppTaludes)
-        self.label_2.setObjectName(u"label_2")
-
-        self.horizontalLayout_10.addWidget(self.label_2)
-
         self.corteArquivo_label = QLabel(AppTaludes)
         self.corteArquivo_label.setObjectName(u"corteArquivo_label")
         sizePolicy2 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Fixed)
@@ -946,6 +941,11 @@ class Ui_AppTaludes(object):
         self.recortar_Button.clicked.connect(AppTaludes.corta_tif)
         self.ClearBtn.clicked.connect(self.label.clear)
         self.ClearBtn.clicked.connect(self.thetalineEdit.clear)
+        self.botao_regiao16.clicked.connect(AppTaludes.botao_clicado_regiao)
+        self.botao_regiao17.clicked.connect(AppTaludes.botao_clicado_regiao)
+        self.botao_regiao18.clicked.connect(AppTaludes.botao_clicado_regiao)
+        self.botao_regiao19.clicked.connect(AppTaludes.botao_clicado_regiao)
+        self.botao_regiao20.clicked.connect(AppTaludes.botao_clicado_regiao)
 
         self.tabs_3.setCurrentIndex(0)
         self.tabs.setCurrentIndex(0)
@@ -979,7 +979,6 @@ class Ui_AppTaludes(object):
         self.botao_regiao20.setText("")
         self.label_mapa_rio.setText("")
         self.mapaRio_Button.setText(QCoreApplication.translate("AppTaludes", u"Mapa Rio", None))
-        self.label_2.setText(QCoreApplication.translate("AppTaludes", u"TextLabel", None))
         self.corteArquivo_label.setText(QCoreApplication.translate("AppTaludes", u"<html><head/><body><p align=\"center\">Defina o nome do arquivo de corte:</p></body></html>", None))
         self.recortar_Button.setText(QCoreApplication.translate("AppTaludes", u"Recortar", None))
         self.label_areia.setText(QCoreApplication.translate("AppTaludes", u" Areia (%) ", None))
