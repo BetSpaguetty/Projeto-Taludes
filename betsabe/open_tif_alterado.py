@@ -1,7 +1,7 @@
 # Módulos
 from PyQt5 import uic
 from PyQt5.QtCore import Qt, QEvent
-from PyQt5.QtWidgets import QVBoxLayout, QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 from PyQt5.QtGui import QPixmap
 
 
@@ -44,7 +44,6 @@ class Popup_add_info(QDialog):
                 
                 super().resizeEvent(event) 
         
-
     def fornece_pixel(self):
         print("fornecendo pixel...")
         return (float(self.latitude.text()),float(self.longitude.text()))
@@ -55,11 +54,6 @@ class Popup_add_info(QDialog):
     
     def salvar(self):
         print("salvando...")
-        popup_anterior = Popup_LatLon()
-        popup_anterior.label_lat_min.setText(f"Latitude Mínima: {self.lineEdit_lat_min}")
-        popup_anterior.label_lat_max.setText(f"Latitude Máxima: {self.lineEdit_lat_max}")
-        popup_anterior.label_long_min.setText(f"Longitude Mínima: {self.lineEdit_long_min}")
-        popup_anterior.label_long_max.setText(f"Longitude Máxima: {self.lineEdit_long_max}")
         self.accept()
 
         return 
@@ -85,6 +79,9 @@ class Popup_LatLon(QDialog):
         self.label_long_min = self.findChild(QLabel,"long_min")
         self.label_long_max = self.findChild(QLabel,"long_max")
         self.label_info = self.findChild(QLabel,"info")
+
+        self.lay_principal = self.findChild(QVBoxLayout,"lay_principal")
+        self.setLayout(self.lay_principal)
         
     def ler_arquivo_popup(self, arquivo):
         self.arquivo = arquivo
@@ -101,6 +98,9 @@ class Popup_LatLon(QDialog):
                 self.label_lat_max.setText("Latitude Máxima: None")
                 self.label_long_min.setText("Longitude Mínima: None")
                 self.label_long_max.setText("Longitude Máxima: None")
+                self.lineEdit_latitude.setEnabled(False)
+                self.lineEdit_longitude.setEnabled(False)
+                self.lineEdit_celula.setEnabled(False)
             else:
                 print("informações obtidas")
                 bounds = dataset.bounds
@@ -109,6 +109,13 @@ class Popup_LatLon(QDialog):
                 self.label_long_min.setText(f"Longitude Mínima: {bounds.left}")
                 self.label_long_max.setText(f"Longitude Máxima: {bounds.right}")
 
+    def salva_info(self,latmin,latmax,longmin,longmax):
+        # self.label_lat_min.setText(f"Latitude Mínima: {latmin}")
+        # self.label_lat_max.setText(f"Latitude Máxima: {latmax}")
+        # self.label_long_min.setText(f"Longitude Mínima: {longmin}")
+        # self.label_long_max.setText(f"Longitude Máxima: {longmax}")
+        return
+        
     def show_error_popup2(self, error_message):
         # Cria a caixa de mensagem de erro
         msg = QMessageBox()
@@ -120,8 +127,16 @@ class Popup_LatLon(QDialog):
 
     def show_add_info(self):
         self.popup_add_info = Popup_add_info()
+        self.lineEdit_latitude.setEnabled(True)
+        self.lineEdit_longitude.setEnabled(True)
+        self.lineEdit_celula.setEnabled(True)
         resultado = self.popup_add_info.exec()
-
+        latmin,longmin,latmax,longmax = self.popup_add_info.fornece_coordenadas()
+        self.label_lat_min.setText(f"Latitude Mínima: {latmin}")
+        self.label_lat_max.setText(f"Latitude Máxima: {latmax}")
+        self.label_long_min.setText(f"Longitude Mínima: {longmin}")
+        self.label_long_max.setText(f"Longitude Máxima: {longmax}")
+        
     def converteLatLon(self):
         print("chamou a função")
         if self.lineEdit_latitude =='' or self.lineEdit_longitude =='':
@@ -140,12 +155,7 @@ class Popup_LatLon(QDialog):
 
                     lat_final = self.popup_add_info.fornece_coordenadas()[2]
                     lon_final = self.popup_add_info.fornece_coordenadas()[3]
-
-                    self.label_lat_min.setText(f"Latitude Mínima: {lat_inicial}")
-                    self.label_lat_max.setText(f"Latitude Máxima: {lat_final}")
-                    self.label_long_min.setText(f"Longitude Mínima: {lon_inicial}")
-                    self.label_long_max.setText(f"Longitude Máxima: {lon_final}")
-
+                    print("captou as coordenadas.......................2")
                     # lat_inicial = -23
                     # lon_inicial = -43.15
 
@@ -154,10 +164,10 @@ class Popup_LatLon(QDialog):
 
                     latitude = float(lat)
                     longitude = float(long)
-                    
+                    print("captou as coordenadas.......................2")
                     if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final: 
                         print('latitude', latitude)
-                        if (longitude > lon_final and longitude < lon_inicial) or longitude == lon_inicial or longitude == lon_final:
+                        if (longitude > lon_inicial and longitude < lon_final) or longitude == lon_inicial or longitude == lon_final:
                             print('longitude', longitude)
                             resto = latitude - lat_inicial
                             print("resto lat:",resto) 
@@ -369,7 +379,14 @@ class UI(QMainWindow):
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
         self.label_coordinates = self.findChild(QLabel,"label_coordinates")
 
-        self.layout_principal = self.findChild(QGridLayout,"Layout_Principal")
+        self.layout = self.findChild(QGridLayout,"layout_P")
+        # self.setLayout(self.layout)
+
+        # Cria o widget central
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
+        # Aplica o layout ao widget central
+        central_widget.setLayout(self.layout)
 
         # Classe PopupWindow
         self.classe_popup = PopupWindow()
@@ -386,11 +403,15 @@ class UI(QMainWindow):
 
         self.exibe_gradiente.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.exibe_gradiente.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
-        # layout = self.findChild(QGridLayout,"Layout_Principal")
-        self.setLayout(self.layout_principal)
-
+        
+        self.resize(1200, 600)
         self.show()
+        # self.aspect_ratio = 600 / 450  # Largura/Altura
+
+    def resizeEvent(self, event):
+        new_width = event.size().width()
+        new_height = int(new_width / (1200/649))
+        self.resize(new_width, new_height)
 
     def show_conversor(self):
         popup = Popup_LatLon()
@@ -406,6 +427,7 @@ class UI(QMainWindow):
             self.gera_elevacoes(self.caminho_do_arquivo)
             self.gera_gradiente(self.caminho_do_arquivo)
             self.exibe_nome_arquivo(self.caminho_do_arquivo)
+            self.button_conversor.setEnabled(True)
         else:
             print("Nenhum arquivo selecionado.")
     
@@ -427,7 +449,7 @@ class UI(QMainWindow):
             self.button_conversor.setEnabled(True)
             self.gera_elevacoes(self.caminho_do_arquivo)
             self.gera_gradiente(self.caminho_do_arquivo)
-            self.exibe_nome_arquivo(self.caminho_do_arquivo[-40:])
+            self.exibe_nome_arquivo(self.caminho_do_arquivo[-50:])
 
     def exibe_nome_arquivo(self,arquivo):
         self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
@@ -460,7 +482,7 @@ class UI(QMainWindow):
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        surf = ax.plot_surface(x,y,z, rstride=4, cstride=4, cmap='terrain', edgecolor='none')
         ax.axis('off')
 
         # Adicionando a colorbar ao gráfico
@@ -490,23 +512,24 @@ class UI(QMainWindow):
         print(f"função abrir arquivo com tamanho {self.img_array.shape} funcionou")
 
     def on_mouse_move(self, event):
-        if event.inaxes is not None:
-            ax = event.inaxes
-            # Checa se o eixo é o 3D correto
-            if isinstance(ax, Axes3D):
-                # Coleta as coordenadas do mouse no gráfico
-                xdata, ydata = event.xdata, event.ydata
-                if xdata is not None and ydata is not None:
-                    # Converter coordenadas do gráfico para índices da matriz
-                    x_idx = int(xdata * self.img_array.shape[1])
-                    y_idx = int(ydata * self.img_array.shape[0])
+        # if event.inaxes is not None:
+        #     ax = event.inaxes
+        #     # Checa se o eixo é o 3D correto
+        #     if isinstance(ax, Axes3D):
+        #         # Coleta as coordenadas do mouse no gráfico
+        #         xdata, ydata = event.xdata, event.ydata
+        #         if xdata is not None and ydata is not None:
+        #             # Converter coordenadas do gráfico para índices da matriz
+        #             x_idx = int(xdata * self.img_array.shape[1])
+        #             y_idx = int(ydata * self.img_array.shape[0])
 
-                    if 0 <= x_idx < self.img_array.shape[1] and 0 <= y_idx < self.img_array.shape[0]:
-                        z_value = self.img_array[y_idx, x_idx]
-                        # print(f"Coordenadas: x={x_idx}, y={y_idx}, z={z_value})")
+        #             if 0 <= x_idx < self.img_array.shape[1] and 0 <= y_idx < self.img_array.shape[0]:
+        #                 z_value = self.img_array[y_idx, x_idx]
+        #                 # print(f"Coordenadas: x={x_idx}, y={y_idx}, z={z_value})")
 
-                        # Exemplo: Atualizar texto de um QLabel
-                        self.label_coordinates.setText(f"Coordenadas:({x_idx},{y_idx},{z_value:.2f})")
+        #                 # Exemplo: Atualizar texto de um QLabel
+        #                 self.label_coordinates.setText(f"Coordenadas:({x_idx},{y_idx},{z_value:.2f})")
+        return
 
     def gera_gradiente(self,arquivo):
         # Abrir o arquivo TIFF e extrair a matriz de elevações
@@ -541,17 +564,17 @@ class UI(QMainWindow):
                 # inclinação máxima
                 incl_max[i, j] = np.max(alpha)
 
-        self.fig_gradiente = plt.figure(figsize=(10, 5)) 
+        self.fig_gradiente = plt.figure(figsize=(10, 5))
 
-        
-        
-        plt.imshow(incl_max, cmap='terrain')
-        # ticks_x = plt.get_xticks()
-        # ticks_y = plt.get_yticks()
+        # Define os limites do eixo em metros (multiplicando pelo tamanho do pixel)
+        altura, largura = incl_max.shape
+        extent = [0, largura * L, altura * L, 0]  # [xmin, xmax, ymin, ymax]
 
-        # print("Ticks do eixo X:", ticks_x)
-        # print("Ticks do eixo Y:", ticks_y)
-        plt.colorbar(label='Inclinação Máxima')
+        plt.imshow(incl_max, cmap='terrain', extent=extent)
+        plt.xlabel("Distância (m)")
+        plt.ylabel("Distância (m)")
+        plt.colorbar(label='Inclinação Máxima (graus)')
+
 
         # Cria uma figura e um canvas para o gráfico
         self.canvas_gradiente = FigureCanvas(self.fig_gradiente)
@@ -562,8 +585,6 @@ class UI(QMainWindow):
         size_1 = self.exibe_gradiente.size()
         self.canvas_gradiente.resize(size_1)
         print(size_1)
-
-        
 
         # Adiciona o canvas do gráfico à cena
         self.scene_gradiente.addWidget(self.canvas_gradiente)
