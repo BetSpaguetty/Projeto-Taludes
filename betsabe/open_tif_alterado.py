@@ -363,7 +363,7 @@ class PopupWindow(QDialog):
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        uic.loadUi("Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
+        uic.loadUi("c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
         self.pushButton = self.findChild(QPushButton,"botao_abrir_arquivo")
         self.pushButton2 = self.findChild(QPushButton,"botao_recorte")
         self.button_conversor = self.findChild(QPushButton,"button_conversor")
@@ -596,26 +596,30 @@ class UI(QMainWindow):
         self.scene_gradiente.addWidget(self.toolbar_gradiente)
         print('função do gradiente funcionou')
 
-    def corta_tif(self):
-        # Definir os índices para recortar
-        recorte = self.img_array[ int(self.intervalo_x_inicio.text()):int(self.intervalo_x_final.text()),int(self.intervalo_y_inicio.text()):int(self.intervalo_y_final.text())]
+        # alterar dimensão x,y
+        # formatar janela para os widgets aumentarem juntos.
+        # tirar informação do relevo do primeiro grafico.
 
-        # Converter o array NumPy de volta para um objeto de imagem PIL
-        recorte_img = Image.fromarray(recorte)
-        
-        if str(self.nome_corte.text())=="":
-            nome_do_corte = 'recorte_arquivo.tif'
-        else:
-            nome_do_corte =  str(self.nome_corte.text()) + ".tif"
+    def mostra_lista(self):
+        self.lista_rio.setVisible(not self.lista_rio.isVisible()) # alternar visibilidade
 
-        # Salvar o recorte como um novo arquivo TIFF
-        recorte_img.save(nome_do_corte)
+    def ler_regiao_selecionada(self,regiao):
 
-        self.gera_elevacoes(nome_do_corte)
-        self.gera_gradiente(nome_do_corte)
-        print("Recorte realizado com sucesso!")
+        arquivos_regiao = {"Região 1":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_1.tif" ,
+                           "Região 2":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_2.tif",
+                           "Região 3":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_3.tif",
+                           "Região 4":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_4.tif",
+                           "Região 5":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_5.tif",
+                           "Região 6":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_6.tif",
+                           "Região 7":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_7.tif",
+                           "Região 8":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_8.tif",
+                           "Região 9":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_9.tif" ,
+                           "Região 10":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_10.tif",
+                           "Região 11":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_11.tif",
+                           "Região 12":"Projeto-Taludes\\betsabe\\Recortes do Rio\\rio_regiao_12.tif"}
 
-    def volta_tif(self):
+        self.lista_rio.setVisible(False)
+        self.caminho_do_arquivo = arquivos_regiao[regiao.text()]
         self.gera_elevacoes(self.caminho_do_arquivo)
         self.gera_gradiente(self.caminho_do_arquivo)
 
