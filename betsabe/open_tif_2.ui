@@ -6,42 +6,46 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1166</width>
-    <height>657</height>
+    <width>1162</width>
+    <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Visualizador de Arquivos  .TIF</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>720</y>
-      <width>231</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>70</y>
-      <width>941</width>
-      <height>421</height>
+      <x>10</x>
+      <y>10</y>
+      <width>1134</width>
+      <height>546</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="Layout_Principal">
+     <item row="1" column="0">
+      <widget class="QGraphicsView" name="frame_exibicao_elevacao">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
-      <widget class="QGraphicsView" name="frame_exibicao_gradiente"/>
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item row="2" column="1">
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="layout_nome_corte">
        <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
@@ -54,18 +58,8 @@
        </item>
       </layout>
      </item>
-     <item row="1" column="0">
-      <widget class="QGraphicsView" name="frame_exibicao_elevacao"/>
-     </item>
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="botao_abrir_arquivo">
-         <property name="text">
-          <string>Abrir</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="3">
         <widget class="QLabel" name="label_shape">
          <property name="text">
@@ -73,19 +67,33 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="botao_mapa_rio">
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_coordinates">
          <property name="text">
-          <string>Mapa Rio</string>
+          <string>Coordenadas:(x,y,z)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="botao_abrir_arquivo">
+         <property name="text">
+          <string>Abrir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Rio de Janeiro - RJ</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item row="2" column="0">
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="layout_intervalo_de_corte">
        <item row="2" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="labe_eixo_y">
          <property name="text">
           <string>Eixo Y:</string>
          </property>
@@ -98,6 +106,9 @@
         <widget class="QPushButton" name="botao_limpar">
          <property name="text">
           <string>Limpar</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+L</string>
          </property>
         </widget>
        </item>
@@ -112,13 +123,16 @@
          <property name="text">
           <string>Recortar</string>
          </property>
+         <property name="shortcut">
+          <string>Return</string>
+         </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="intervalo_y_inicio"/>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_eixo_x">
          <property name="text">
           <string>Eixo X:</string>
          </property>
@@ -133,77 +147,18 @@
        </item>
       </layout>
      </item>
+     <item row="0" column="1">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_nomeArquivo">
+         <property name="text">
+          <string>Arquivo Selecionado :</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
-   </widget>
-   <widget class="QListWidget" name="lista_regioes">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>20</y>
-      <width>91</width>
-      <height>192</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Região 1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 4</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 5</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 6</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 7</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 8</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 9</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 10</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 11</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Região 12</string>
-     </property>
-    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -211,14 +166,17 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1166</width>
-     <height>22</height>
+     <width>1162</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivos">
     <property name="title">
-     <string>Arquivos</string>
+     <string>Menu</string>
     </property>
+    <addaction name="actionAbrir"/>
+    <addaction name="actionRJ_22S435W"/>
+    <addaction name="actionCortar"/>
    </widget>
    <addaction name="menuArquivos"/>
   </widget>
@@ -226,6 +184,30 @@
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionAbrir">
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionRJ_22S435W">
+   <property name="text">
+    <string>Rio de Janeiro - RJ</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionCortar">
+   <property name="text">
+    <string>Conversor de coordenadas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
  </widget>
@@ -239,27 +221,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>572</x>
-     <y>509</y>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>478</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>botao_abrir_arquivo</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ler_arquivo()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>86</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>56</x>
-     <y>122</y>
+     <x>491</x>
+     <y>543</y>
     </hint>
    </hints>
   </connection>
@@ -271,43 +237,43 @@
    <hints>
     <hint type="sourcelabel">
      <x>572</x>
-     <y>509</y>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>274</x>
-     <y>507</y>
+     <x>317</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>botao_limpar</sender>
    <signal>clicked()</signal>
-   <receiver>intervalo_y_final</receiver>
+   <receiver>nome_arquivo_corte</receiver>
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>572</x>
-     <y>509</y>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>507</y>
+     <x>1141</x>
+     <y>574</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>botao_recorte</sender>
+   <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>corta_tif()</slot>
+   <slot>show_popup()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>572</x>
-     <y>480</y>
+     <x>289</x>
+     <y>55</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
-     <y>545</y>
+     <x>213</x>
+     <y>51</y>
     </hint>
    </hints>
   </connection>
@@ -319,11 +285,43 @@
    <hints>
     <hint type="sourcelabel">
      <x>572</x>
-     <y>509</y>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>254</x>
-     <y>478</y>
+     <x>317</x>
+     <y>543</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_y_final</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>572</x>
+     <y>574</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>491</x>
+     <y>572</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_abrir_arquivo</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ler_arquivo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>56</x>
+     <y>122</y>
     </hint>
    </hints>
   </connection>
@@ -335,7 +333,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>572</x>
-     <y>509</y>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
      <x>715</x>
@@ -344,50 +342,50 @@
    </hints>
   </connection>
   <connection>
-   <sender>botao_limpar</sender>
+   <sender>botao_recorte</sender>
    <signal>clicked()</signal>
-   <receiver>nome_arquivo_corte</receiver>
-   <slot>clear()</slot>
+   <receiver>MainWindow</receiver>
+   <slot>corta_tif()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>542</x>
-     <y>495</y>
+     <x>572</x>
+     <y>545</y>
     </hint>
     <hint type="destinationlabel">
-     <x>666</x>
-     <y>500</y>
+     <x>376</x>
+     <y>545</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>lista_regioes</sender>
-   <signal>itemClicked(QListWidgetItem*)</signal>
+   <sender>actionAbrir</sender>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>ler_regiao_selecionada()</slot>
+   <slot>ler_arquivo()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>430</x>
-     <y>90</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>573</x>
-     <y>70</y>
+     <x>580</x>
+     <y>300</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>botao_mapa_rio</sender>
-   <signal>clicked()</signal>
+   <sender>actionRJ_22S435W</sender>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>mostra_lista()</slot>
+   <slot>show_popup()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>271</x>
-     <y>104</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>224</x>
-     <y>51</y>
+     <x>580</x>
+     <y>300</y>
     </hint>
    </hints>
   </connection>
@@ -401,5 +399,13 @@
   <slot>gera_gradiente()</slot>
   <slot>mostra_lista()</slot>
   <slot>ler_regiao_selecionada()</slot>
+  <slot>slot2()</slot>
+  <slot>mostra_mapinhas()</slot>
+  <slot>ler_mapinha_selecionado()</slot>
+  <slot>mostra_mapa()</slot>
+  <slot>botao_clicado_regiao()</slot>
+  <slot>abrir_janela_rio()</slot>
+  <slot>slot3()</slot>
+  <slot>show_popup()</slot>
  </slots>
 </ui>
