@@ -23,8 +23,8 @@ class Popup_add_info(QDialog):
     def __init__(self):
         super().__init__() #super(UI, self).__init__()
         uic.loadUi("Projeto-Taludes\\betsabe\\add_info.ui", self) # Carregar o arquivo .ui
-        self.latitude = self.findChild(QLineEdit,"latitude")
-        self.longitude = self.findChild(QLineEdit,"longitude")
+        # self.latitude = self.findChild(QLineEdit,"latitude")
+        # self.longitude = self.findChild(QLineEdit,"longitude")
 
         self.lineEdit_lat_min = self.findChild(QLineEdit,"add_lat_min")
         self.lineEdit_long_min = self.findChild(QLineEdit,"add_long_min")
@@ -46,7 +46,11 @@ class Popup_add_info(QDialog):
         
     def fornece_pixel(self):
         print("fornecendo pixel...")
-        return (float(self.latitude.text()),float(self.longitude.text()))
+        qtd_x = (float(self.lineEdit_lat_max.text())-float(self.lineEdit_lat_min.text()))
+        print(qtd_x)
+        qtd_y = (float(self.lineEdit_long_max.text())-float(self.lineEdit_long_min.text()))
+        print(qtd_y)
+        return (qtd_x,qtd_y)
     
     def fornece_coordenadas(self):
         # print("fornecendo coordenadas...")
@@ -171,11 +175,11 @@ class Popup_LatLon(QDialog):
                             print('longitude', longitude)
                             resto = latitude - lat_inicial
                             print("resto lat:",resto) 
-                            qt_celulay = resto/self.popup_add_info.fornece_pixel()[0]
+                            qt_celulay = resto/(self.popup_add_info.fornece_pixel()[0]/dataset.shape[1])
 
                             resto2 = longitude - lon_inicial
                             print("resto long:",abs(resto2)) 
-                            qt_celulax = resto2/self.popup_add_info.fornece_pixel()[1]
+                            qt_celulax = resto2/(self.popup_add_info.fornece_pixel()[1]/dataset.shape[0])
 
                             print(dataset.shape)
                             print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
@@ -482,7 +486,8 @@ class UI(QMainWindow):
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-        surf = ax.plot_surface(x,y,z, rstride=4, cstride=4, cmap='terrain', edgecolor='none')
+        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        # surf = ax.plot_surface(x,y,z, rstride=1, cstride=1, cmap='terrain', edgecolor='none')
         ax.axis('off')
 
         # Adicionando a colorbar ao gráfico
