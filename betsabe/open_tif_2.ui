@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1162</width>
-    <height>601</height>
+    <width>1155</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,13 +17,25 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
       <width>1134</width>
       <height>546</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="Layout_Principal">
+    <layout class="QGridLayout" name="layout_P">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
      <item row="1" column="0">
       <widget class="QGraphicsView" name="frame_exibicao_elevacao">
        <property name="sizePolicy">
@@ -67,10 +79,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_coordinates">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="button_conversor">
          <property name="text">
-          <string>Coordenadas:(x,y,z)</string>
+          <string>Conversor</string>
          </property>
         </widget>
        </item>
@@ -81,7 +93,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="2">
         <widget class="QPushButton" name="pushButton">
          <property name="text">
           <string>Rio de Janeiro - RJ</string>
@@ -166,7 +178,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1162</width>
+     <width>1155</width>
      <height>21</height>
     </rect>
    </property>
@@ -268,7 +280,7 @@
    <slot>show_popup()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>289</x>
+     <x>430</x>
      <y>55</y>
     </hint>
     <hint type="destinationlabel">
@@ -389,6 +401,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>button_conversor</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_conversor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>182</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>abrir_arquivo()</slot>
@@ -407,5 +435,6 @@
   <slot>abrir_janela_rio()</slot>
   <slot>slot3()</slot>
   <slot>show_popup()</slot>
+  <slot>show_conversor()</slot>
  </slots>
 </ui>

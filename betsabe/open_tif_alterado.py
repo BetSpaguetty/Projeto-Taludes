@@ -1,13 +1,16 @@
 # Módulos
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtCore import Qt, QEvent
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 from PyQt5.QtGui import QPixmap
+
 
 import numpy as np
 from PIL import Image
 import rasterio
+from matplotlib.ticker import FuncFormatter
 
+import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -16,18 +19,212 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 from sys import argv, exit, path
 
 # Classes
+class Popup_add_info(QDialog):
+    def __init__(self):
+        super().__init__() #super(UI, self).__init__()
+        uic.loadUi("Projeto-Taludes\\betsabe\\add_info.ui", self) # Carregar o arquivo .ui
+        self.latitude = self.findChild(QLineEdit,"latitude")
+        self.longitude = self.findChild(QLineEdit,"longitude")
+
+        self.lineEdit_lat_min = self.findChild(QLineEdit,"add_lat_min")
+        self.lineEdit_long_min = self.findChild(QLineEdit,"add_long_min")
+        self.lineEdit_lat_max = self.findChild(QLineEdit,"add_lat_max")
+        self.lineEdit_long_max = self.findChild(QLineEdit,"add_long_max")
+
+        self.lay_principal = self.findChild(QVBoxLayout,"lay_principal")
+        self.setLayout(self.lay_principal)
+
+        def resizeEvent(self, event):
+            # Ajusta a QLabel para ocupar o mesmo tamanho do layout
+            if self.layout:
+                # Mantém a proporção ao redimensionar
+                new_width = event.size().width()
+                new_height = int(new_width / self.aspect_ratio)
+                self.resize(new_width, new_height)
+                
+                super().resizeEvent(event) 
+        
+    def fornece_pixel(self):
+        print("fornecendo pixel...")
+        return (float(self.latitude.text()),float(self.longitude.text()))
+    
+    def fornece_coordenadas(self):
+        # print("fornecendo coordenadas...")
+        return (float(self.lineEdit_lat_min.text()),float(self.lineEdit_long_min.text()),float(self.lineEdit_lat_max.text()),float(self.lineEdit_long_max.text()))
+    
+    def salvar(self):
+        print("salvando...")
+        self.accept()
+
+        return 
+
+class Popup_LatLon(QDialog):
+    def __init__(self):
+        super().__init__() #super(UI, self).__init__()
+        uic.loadUi("Projeto-Taludes\\betsabe\\popup_LatLon.ui", self) # Carregar o arquivo .ui
+        self.setWindowTitle("Conversor de Células")
+        self.botao_converte = self.findChild(QPushButton,"botao_converte")
+        self.botao_converte.setWhatsThis("Após inserir as coordenadas, aperte para saber em qual célula(x,y) elas se encontram.")
+        self.botao_add_info = self.findChild(QPushButton,"add_info")
+        self.botao_add_info.setWhatsThis("Insira as informações de latitude e longitude do seu arquivo aqui.")
+        # Ativar o botão "?" na barra de título
+        self.setWindowFlags(Qt.WindowCloseButtonHint | Qt.WindowContextHelpButtonHint)
+        self.botao_add_info = self.findChild(QPushButton,"add_info")
+        self.botao_add_info.setEnabled(False)
+        self.lineEdit_celula = self.findChild(QLineEdit,"lineEdit_celula")
+        self.lineEdit_latitude = self.findChild(QLineEdit,"lineEdit_latitude")
+        self.lineEdit_longitude = self.findChild(QLineEdit,"lineEdit_longitude")
+        self.label_lat_min = self.findChild(QLabel,"lat_min")
+        self.label_lat_max = self.findChild(QLabel,"lat_max")
+        self.label_long_min = self.findChild(QLabel,"long_min")
+        self.label_long_max = self.findChild(QLabel,"long_max")
+        self.label_info = self.findChild(QLabel,"info")
+
+        self.lay_principal = self.findChild(QVBoxLayout,"lay_principal")
+        self.setLayout(self.lay_principal)
+        
+    def ler_arquivo_popup(self, arquivo):
+        self.arquivo = arquivo
+        self.info_arquivo()
+
+    def info_arquivo(self):
+        print("função rodando...")
+        with rasterio.open(self.arquivo) as dataset:
+            if dataset.crs is None:
+                print(f"informações nulas")
+                self.botao_add_info.setEnabled(True)
+                self.label_info.setText("Informações: Seu arquivo não possui CRS")
+                self.label_lat_min.setText("Latitude Mínima: None")
+                self.label_lat_max.setText("Latitude Máxima: None")
+                self.label_long_min.setText("Longitude Mínima: None")
+                self.label_long_max.setText("Longitude Máxima: None")
+                self.lineEdit_latitude.setEnabled(False)
+                self.lineEdit_longitude.setEnabled(False)
+                self.lineEdit_celula.setEnabled(False)
+            else:
+                print("informações obtidas")
+                bounds = dataset.bounds
+                self.label_lat_min.setText(f"Latitude Mínima: {bounds.bottom}")
+                self.label_lat_max.setText(f"Latitude Máxima: {bounds.top}")
+                self.label_long_min.setText(f"Longitude Mínima: {bounds.left}")
+                self.label_long_max.setText(f"Longitude Máxima: {bounds.right}")
+
+    def salva_info(self,latmin,latmax,longmin,longmax):
+        # self.label_lat_min.setText(f"Latitude Mínima: {latmin}")
+        # self.label_lat_max.setText(f"Latitude Máxima: {latmax}")
+        # self.label_long_min.setText(f"Longitude Mínima: {longmin}")
+        # self.label_long_max.setText(f"Longitude Máxima: {longmax}")
+        return
+        
+    def show_error_popup2(self, error_message):
+        # Cria a caixa de mensagem de erro
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)  # Define o ícone como erro
+        msg.setWindowTitle("Erro")  # Define o título da janela
+        msg.setText(error_message)  # Define o texto da mensagem
+        msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
+        msg.exec_()  # Exibe a mensagem
+
+    def show_add_info(self):
+        self.popup_add_info = Popup_add_info()
+        self.lineEdit_latitude.setEnabled(True)
+        self.lineEdit_longitude.setEnabled(True)
+        self.lineEdit_celula.setEnabled(True)
+        resultado = self.popup_add_info.exec()
+        latmin,longmin,latmax,longmax = self.popup_add_info.fornece_coordenadas()
+        self.label_lat_min.setText(f"Latitude Mínima: {latmin}")
+        self.label_lat_max.setText(f"Latitude Máxima: {latmax}")
+        self.label_long_min.setText(f"Longitude Mínima: {longmin}")
+        self.label_long_max.setText(f"Longitude Máxima: {longmax}")
+        
+    def converteLatLon(self):
+        print("chamou a função")
+        if self.lineEdit_latitude =='' or self.lineEdit_longitude =='':
+            self.show_error_popup2("Um dos campos obrigatórios está vazio.")
+        else:
+            print("ARQUIVO: ",self.arquivo)
+            lat = self.lineEdit_latitude.text()
+            long = self.lineEdit_longitude.text()
+            with rasterio.open(self.arquivo) as dataset:
+                print(f"CRS do dataset: {dataset.crs!r}")
+                if dataset.crs is None:
+                    print("⚠️ O TIFF não tem CRS! Entrando no if...") # Se NÃO houver Sistema de referência espacial (CRS)
+                    
+                    lat_inicial = self.popup_add_info.fornece_coordenadas()[0]
+                    lon_inicial = self.popup_add_info.fornece_coordenadas()[1]
+
+                    lat_final = self.popup_add_info.fornece_coordenadas()[2]
+                    lon_final = self.popup_add_info.fornece_coordenadas()[3]
+                    print("captou as coordenadas.......................2")
+                    # lat_inicial = -23
+                    # lon_inicial = -43.15
+
+                    # lat_final = -22.77
+                    # lon_final = -43.5
+
+                    latitude = float(lat)
+                    longitude = float(long)
+                    print("captou as coordenadas.......................2")
+                    if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final: 
+                        print('latitude', latitude)
+                        if (longitude > lon_inicial and longitude < lon_final) or longitude == lon_inicial or longitude == lon_final:
+                            print('longitude', longitude)
+                            resto = latitude - lat_inicial
+                            print("resto lat:",resto) 
+                            qt_celulay = resto/self.popup_add_info.fornece_pixel()[0]
+
+                            resto2 = longitude - lon_inicial
+                            print("resto long:",abs(resto2)) 
+                            qt_celulax = resto2/self.popup_add_info.fornece_pixel()[1]
+
+                            print(dataset.shape)
+                            print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
+                            self.lineEdit_celula.setText(f"({abs(qt_celulax):.0f}, {abs(qt_celulay):.0f})")
+                else:
+                    print("✅ O TIFF tem CRS:", dataset.crs)
+                    resolucao_x, resolucao_y = dataset.res[0], dataset.res[1] # Tamanho do pixel em graus (lon/lat)
+                    bounds = dataset.bounds # Obter os limites (bounding box)
+
+                    lat_inicial = bounds.bottom # Min Y (Latitude)
+                    lon_inicial = bounds.left # Min X (Longitude)
+
+                    lat_final = bounds.top # Max Y (Latitude)
+                    lon_final = bounds.right # Max X (Longitude)
+
+                    latitude = float(lat)
+                    longitude = float(long)
+
+                    print(f"Coordenadas iniciais: {bounds.bottom},{bounds.left}/Coordenadas finais: {bounds.top},{bounds.right}")
+                    
+                    if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final: 
+                        print("latitude",latitude)
+                        if (longitude > lon_inicial and longitude < lon_final) or longitude == lon_inicial or longitude == lon_final:
+                            print("longitude")
+                            resto = latitude - lat_inicial
+                            print("resto lat:",resto) 
+                            qt_celulax = resto/resolucao_x
+
+                            resto2 = longitude - lon_inicial
+                            print("resto long:",abs(resto2)) 
+                            qt_celulay = resto2/resolucao_y
+
+                            banda1 = dataset.read(1)
+                            print(banda1.shape)
+                            print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
+                            self.lineEdit_celula.setText(f"({abs(qt_celulax):.0f}, {abs(qt_celulay):.0f})")
+        
 class PopupWindow(QDialog):
     def __init__(self):
         super().__init__() #super(UI, self).__init__()
         uic.loadUi("Projeto-Taludes\\betsabe\\popup.ui", self) # Carregar o arquivo .ui
         self.setWindowTitle("22S435W - Rio de Janeiro")
         self.setGeometry(200, 100, 572, 377)
-        
+    
         # Imagem do mapa
         self.fundo = QLabel(self)
         self.fundo.setPixmap(QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\image.png"))  # Caminho da imagem
         self.fundo.setScaledContents(True) # Ajusta a imagem ao tamanho do QLabel
-        
+    
         # Layout dos botões
         self.layout = self.findChild(QGridLayout,"gridLayout_botoes")
         self.setLayout(self.layout) # fixando na janela
@@ -95,8 +292,8 @@ class PopupWindow(QDialog):
                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
         self.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        
-        # Caminho dos arquivos pré definidos
+    
+         # Caminho dos arquivos pré definidos
         self.caminho_do_arquivo = None  # Guarda o caminho selecionado
         self.arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
                                 "botao_regiao2":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
@@ -117,13 +314,20 @@ class PopupWindow(QDialog):
                                 "botao_regiao17":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
                                 "botao_regiao18":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
                                 "botao_regiao19":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
-                                "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}       
+                                "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
+        # Define um tamanho inicial
+        self.resize(600, 450)
+        self.aspect_ratio = 600 / 450  # Largura/Altura
 
     def resizeEvent(self, event):
         # Ajusta a QLabel para ocupar o mesmo tamanho do layout
         if self.layout:
             area_layout = self.layout.geometry()  # Obtém o tamanho do layout
             self.fundo.setGeometry(area_layout)  # Define o tamanho da QLabel igual ao layout
+            # Mantém a proporção ao redimensionar
+        new_width = event.size().width()
+        new_height = int(new_width / self.aspect_ratio)
+        self.resize(new_width, new_height)
         
         super().resizeEvent(event)  
 
@@ -158,6 +362,8 @@ class UI(QMainWindow):
         uic.loadUi("c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\open_tif_2.ui",self)
         self.pushButton = self.findChild(QPushButton,"botao_abrir_arquivo")
         self.pushButton2 = self.findChild(QPushButton,"botao_recorte")
+        self.button_conversor = self.findChild(QPushButton,"button_conversor")
+        self.button_conversor.setEnabled(False)
 
         self.graphicsView = self.findChild(QGraphicsView,"frame_exibicao_elevacao")
         self.exibe_gradiente = self.findChild(QGraphicsView,"frame_exibicao_gradiente")
@@ -173,7 +379,14 @@ class UI(QMainWindow):
         self.label_mapa_rio = self.findChild(QLabel,"label_mapa_rio")
         self.label_coordinates = self.findChild(QLabel,"label_coordinates")
 
-        self.layout_principal = self.findChild(QGridLayout,"Layout_Principal")
+        self.layout = self.findChild(QGridLayout,"layout_P")
+        # self.setLayout(self.layout)
+
+        # Cria o widget central
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
+        # Aplica o layout ao widget central
+        central_widget.setLayout(self.layout)
 
         # Classe PopupWindow
         self.classe_popup = PopupWindow()
@@ -190,11 +403,20 @@ class UI(QMainWindow):
 
         self.exibe_gradiente.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.exibe_gradiente.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
-        # layout = self.findChild(QGridLayout,"Layout_Principal")
-        self.setLayout(self.layout_principal)
-
+        
+        self.resize(1200, 600)
         self.show()
+        # self.aspect_ratio = 600 / 450  # Largura/Altura
+
+    def resizeEvent(self, event):
+        new_width = event.size().width()
+        new_height = int(new_width / (1200/649))
+        self.resize(new_width, new_height)
+
+    def show_conversor(self):
+        popup = Popup_LatLon()
+        popup.ler_arquivo_popup(self.caminho_do_arquivo)
+        resultado = popup.exec()  # Aguarda o usuário fechar o popup
 
     def show_popup(self):
         popup = PopupWindow()
@@ -205,6 +427,7 @@ class UI(QMainWindow):
             self.gera_elevacoes(self.caminho_do_arquivo)
             self.gera_gradiente(self.caminho_do_arquivo)
             self.exibe_nome_arquivo(self.caminho_do_arquivo)
+            self.button_conversor.setEnabled(True)
         else:
             print("Nenhum arquivo selecionado.")
     
@@ -223,9 +446,10 @@ class UI(QMainWindow):
             self.show_error_popup("Arquivo não selecionado.")
             print(self.caminho_do_arquivo)
         else:
+            self.button_conversor.setEnabled(True)
             self.gera_elevacoes(self.caminho_do_arquivo)
             self.gera_gradiente(self.caminho_do_arquivo)
-            self.exibe_nome_arquivo(self.caminho_do_arquivo[-40:])
+            self.exibe_nome_arquivo(self.caminho_do_arquivo[-50:])
 
     def exibe_nome_arquivo(self,arquivo):
         self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
@@ -245,41 +469,21 @@ class UI(QMainWindow):
                 img = Image.open(arquivo)
                 self.img_array = np.array(img)
                 y_ratio, x_ratio = img.size
-            
-        # self.img_array = self.img_array[3500:3600,900:1000]
-        # self.img_array = self.img_array[:,:] # corte na exibição do tif
 
-        
 
-        lin_x = np.linspace(0, 1, self.img_array.shape[0], endpoint=False)
-        lin_y = np.linspace(0, 1, self.img_array.shape[1], endpoint=False)
-        y, x = np.meshgrid(lin_y, lin_x)
+        lin_x = np.linspace(0, 1, self.img_array.shape[0])
+        lin_y = np.linspace(0, 1, self.img_array.shape[1])
+        y, x = np.meshgrid(lin_y,lin_x)
         z = self.img_array
 
-        sigma_y = 100
-        sigma_x = 100
-        sigma = [sigma_y, sigma_x]
-        # z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
-
-        # z_smoothed_min = np.amin(z_smoothed)
-        # z_smoothed_max = np.amax(z_smoothed)
-        # z_range = z_smoothed_max - z_smoothed_min
-
         # Creating figure
-        self.fig = plt.figure(figsize=(12,10))
+        self.fig = plt.figure()
         ax = plt.axes(projection='3d')
         ax.azim = -30
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-        surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        surf = ax.plot_surface(x,y,z, rstride=4, cstride=4, cmap='terrain', edgecolor='none')
         ax.axis('off')
-
-
-        m = cm.ScalarMappable(cmap=surf.cmap, norm=surf.norm)
-        # m.set_array(z_smoothed)
-
-        # cbar =  self.fig.colorbar(m, ax=ax, shrink=0.5, aspect=20, ticks=[z_smoothed_min, 0, (z_range * 0.25 + z_smoothed_min), (z_range * 0.5 + z_smoothed_min), (z_range * 0.75 + z_smoothed_min), z_smoothed_max])
-        # cbar.ax.set_yticklabels([f'{z_smoothed_min}', ' ',  f'{(z_range*0.25+z_smoothed_min)}', f'{(z_range*0.5+z_smoothed_min)}', f'{(z_range*0.75+z_smoothed_min)}', f'{z_smoothed_max}'])
 
         # Adicionando a colorbar ao gráfico
         self.fig.colorbar(surf, ax=ax, shrink=0.5, aspect=13)
@@ -308,23 +512,24 @@ class UI(QMainWindow):
         print(f"função abrir arquivo com tamanho {self.img_array.shape} funcionou")
 
     def on_mouse_move(self, event):
-        if event.inaxes is not None:
-            ax = event.inaxes
-            # Checa se o eixo é o 3D correto
-            if isinstance(ax, Axes3D):
-                # Coleta as coordenadas do mouse no gráfico
-                xdata, ydata = event.xdata, event.ydata
-                if xdata is not None and ydata is not None:
-                    # Converter coordenadas do gráfico para índices da matriz
-                    x_idx = int(xdata * self.img_array.shape[1])
-                    y_idx = int(ydata * self.img_array.shape[0])
+        # if event.inaxes is not None:
+        #     ax = event.inaxes
+        #     # Checa se o eixo é o 3D correto
+        #     if isinstance(ax, Axes3D):
+        #         # Coleta as coordenadas do mouse no gráfico
+        #         xdata, ydata = event.xdata, event.ydata
+        #         if xdata is not None and ydata is not None:
+        #             # Converter coordenadas do gráfico para índices da matriz
+        #             x_idx = int(xdata * self.img_array.shape[1])
+        #             y_idx = int(ydata * self.img_array.shape[0])
 
-                    if 0 <= x_idx < self.img_array.shape[1] and 0 <= y_idx < self.img_array.shape[0]:
-                        z_value = self.img_array[y_idx, x_idx]
-                        # print(f"Coordenadas: x={x_idx}, y={y_idx}, z={z_value})")
+        #             if 0 <= x_idx < self.img_array.shape[1] and 0 <= y_idx < self.img_array.shape[0]:
+        #                 z_value = self.img_array[y_idx, x_idx]
+        #                 # print(f"Coordenadas: x={x_idx}, y={y_idx}, z={z_value})")
 
-                        # Exemplo: Atualizar texto de um QLabel
-                        self.label_coordinates.setText(f"Coordenadas:({x_idx},{y_idx},{z_value:.2f})")
+        #                 # Exemplo: Atualizar texto de um QLabel
+        #                 self.label_coordinates.setText(f"Coordenadas:({x_idx},{y_idx},{z_value:.2f})")
+        return
 
     def gera_gradiente(self,arquivo):
         # Abrir o arquivo TIFF e extrair a matriz de elevações
@@ -359,10 +564,17 @@ class UI(QMainWindow):
                 # inclinação máxima
                 incl_max[i, j] = np.max(alpha)
 
-        self.fig_gradiente = plt.figure(figsize=(10, 5))  
+        self.fig_gradiente = plt.figure(figsize=(10, 5))
 
-        plt.imshow(incl_max, cmap='terrain')
-        plt.colorbar(label='Inclinação Máxima')
+        # Define os limites do eixo em metros (multiplicando pelo tamanho do pixel)
+        altura, largura = incl_max.shape
+        extent = [0, largura * L, altura * L, 0]  # [xmin, xmax, ymin, ymax]
+
+        plt.imshow(incl_max, cmap='terrain', extent=extent)
+        plt.xlabel("Distância (m)")
+        plt.ylabel("Distância (m)")
+        plt.colorbar(label='Inclinação Máxima (graus)')
+
 
         # Cria uma figura e um canvas para o gráfico
         self.canvas_gradiente = FigureCanvas(self.fig_gradiente)
@@ -408,8 +620,8 @@ class UI(QMainWindow):
 
     # WGS84 EPSG:4326
     # Coordenadas do Rio: 22.9068° S, 43.1729° W
-    # consertar coordenadas
 
 app = QApplication(argv)
 UIWindow = UI()
 exit(app.exec_())
+
