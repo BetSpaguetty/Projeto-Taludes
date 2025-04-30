@@ -3,18 +3,12 @@ import sys
 
 # from PySide2 import QtWidgets
 
-from PySide2.QtWidgets import QApplication, QWidget, QFileDialog, QVBoxLayout, QHBoxLayout, QGridLayout, QListWidget, QPushButton, QSizePolicy, QToolBar, QToolButton, QMainWindow, QLabel, QDialog
+from PySide2.QtWidgets import QApplication, QWidget, QFileDialog, QVBoxLayout, QHBoxLayout, QGridLayout, QListWidget, QPushButton, QSizePolicy, QToolBar, QToolButton, QMainWindow, QLabel, QDialog, QLineEdit, QMessageBox
 from PySide2.QtGui import QPixmap
 from PyQt5 import uic
-
-# from PyQt5.QtCore import pyqtSignal, QObject
-
-# from PySide2 import QObject
-# from PyQt5.QtWidgets import QMainWindow
+from PySide2.QtCore import Qt, QEvent
 
 import scipy as sp
-# from scipy.ndimage import gaussian_filter
-
 import numpy as np
 from PIL import Image
 
@@ -23,13 +17,10 @@ import rasterio
 from random import randint
 
 import matplotlib.cm as cm
-# from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-# from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import mpltern
 from mpltern.datasets import get_triangular_grid
-
 from matplotlib.ticker import AutoMinorLocator, MultipleLocator
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
@@ -46,12 +37,23 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 # Needs to run
 # python -m pip install -U mpltern
 # to install mpltern
+
+#      pyside2-uic form.ui -o ui_form.py
+#      pyside2-uic form2.ui -o ui_form2.py
+#      pyside2-uic popup_LatLon.ui -o ui_popup_LatLon.py
+#      pyside2-uic add_info.ui -o ui_add_info.py
+
 from ui_form import Ui_AppTaludes
 from ui_form2 import Ui_Form2
+# from ui_form3 import Ui_Form
+from ui_popup_LatLon import Ui_Dialog
+from ui_add_info import Ui_Dialog as Ui_Dialog2
 
 class AppTaludes(QWidget):
     global wind2
     wind2 = 0
+    global wind3
+    wind3 = 0
     global selected_map
     selected_map = 0
 
@@ -105,6 +107,11 @@ class AppTaludes(QWidget):
         self.toolButton6 = QToolButton()
         self.toolButton6.setText("Rain")
         toolbar.addWidget(self.toolButton6)
+        toolbar.addSeparator()
+
+        self.toolButton7 = QToolButton()
+        self.toolButton7.setText("Convert")
+        toolbar.addWidget(self.toolButton7)
         toolbar.addSeparator()
 
         self.ui.horizontalSlider_C.valueChanged.connect(self.number_changed)             #c
@@ -198,8 +205,12 @@ class AppTaludes(QWidget):
         self.toolButton2.clicked.connect(self.mostra_solo)
         self.toolButton4.clicked.connect(self.mostra_lista)
 
+        self.toolButton7.clicked.connect(self.mostra_conversor)
+
         global wind2
         wind2 = 0
+        global wind3
+        wind3 = 0
         global selected_map
         selected_map = 0
 
@@ -1983,20 +1994,11 @@ class AppTaludes(QWidget):
         self.ui.tabs_2.setVisible(False)
         self.ui.tabs_3.setVisible(False)
 
-        # for i in reversed(range(self.ui.horizontalLayout_3.count())):
-        #     self.ui.horizontalLayout_3.itemAt(i).widget().setParent(None)
-
         for i in reversed(range(self.ui.verticalLayout_2.count())):
             self.ui.verticalLayout_2.itemAt(i).widget().setParent(None)
 
         for i in reversed(range(self.ui.verticalLayout_3.count())):
             self.ui.verticalLayout_3.itemAt(i).widget().setParent(None)
-
-        # for i in reversed(range(self.ui.verticalLayout_6.count())):
-        #     self.ui.verticalLayout_6.itemAt(i).widget().setParent(None)
-
-        # for i in reversed(range(self.ui.horizontalLayout_browse.count())):
-        #     self.ui.horizontalLayout_browse.itemAt(i).widget().deleteLater()
 
         for i in reversed(range(self.ui.tabs.count())):
             self.ui.tabs.removeTab(i)
@@ -2095,6 +2097,22 @@ class AppTaludes(QWidget):
         self.ui.plineEdit.setVisible(not self.ui.plineEdit.isVisible())
     #
 
+    def mostra_conversor(self):
+        global wind3
+        print(wind3)
+        global fname
+
+        if wind3 == 1:
+            self.window2.close()
+            wind3 = 0
+        elif wind3 == 0:
+            self.window2 = LatLon()
+            self.window2.show()
+
+            self.window2.ler_arquivo_popup(fname)
+            resultado = self.window2.exec()  # Aguarda o usuário fechar o popup
+    #
+
     def botao_clicado_regiao(self):
         botao_clicado = self.sender() # atribui o própio botão que foi clicado como uma variável
 
@@ -2178,6 +2196,7 @@ class Form2(QWidget):
         super().__init__(parent)
         self2.ui = Ui_Form2()
         self2.ui.setupUi(self2)
+        self2.setMaximumSize(970,710)
 
         # Bairros RJ
         self2.botao_regiao1 = self2.findChild(QPushButton,"botao_regiao1")
@@ -2298,147 +2317,230 @@ class Form2(QWidget):
     #
 #
 
-def elev_incl(arquivo):
-    img = Image.open(arquivo)
-    self.ui.label.setText(str('X: ' + str(img.size[-2]) + '     Y: ' + str(img.size[1])))
 
-    # Convert the image to a NumPy array
-    img_array = np.array(img)
-    self.img_array = img_array
+# class Form3(QWidget):
+#     def __init__(self3,parent=None):
+#         super().__init__(parent)
+#         self3.ui = Ui_Form()
+#         self3.ui.setupUi(self3)
 
-    # Get aspect ratio of tif file for late plot box-plot-ratio
-    y_ratio,x_ratio = img.size
 
-    # Create arrays and declare x,y,z variables
-    lin_x = np.linspace(0,1,img_array.shape[0],endpoint=False)
-    lin_y = np.linspace(0,1,img_array.shape[1],endpoint=False)
-    y,x = np.meshgrid(lin_y,lin_x)
-    z = img_array
+class LatLon(QDialog):
+    global wind3
+    def __init__(self4,parent=None):
+        super().__init__(parent)
+        self4.ui = Ui_Dialog()
+        self4.ui.setupUi(self4)
 
-    # Apply gaussian filter, with sigmas as variables. Higher sigma = more smoothing and more calculations. Downside: min and max values do change due to smoothing
-    sigma_y = 100
-    sigma_x = 100
-    sigma = [sigma_y, sigma_x]
-    z_smoothed = sp.ndimage.gaussian_filter(z, sigma)
+        self4.setWindowTitle("Conversor de Células")
+        self4.botao_converte = self4.findChild(QPushButton,"botao_converte")
+        self4.botao_converte.setWhatsThis("Após inserir as coordenadas, aperte para saber em qual célula(x,y) elas se encontram.")
+        self4.botao_add_info = self4.findChild(QPushButton,"add_info")
+        self4.botao_add_info.setWhatsThis("Insira as informações de latitude e longitude do seu arquivo aqui.")
 
-    # Creating figure
-    fig = plt.figure(figsize=(12,10)) #12,10
-    ax = plt.axes(projection='3d')
-    ax.azim = -30
-    ax.elev = 42
-    ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
-    surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
+        # Ativar o botão "?" na barra de título
+        self4.setWindowFlags(Qt.WindowCloseButtonHint | Qt.WindowContextHelpButtonHint)
+        self4.botao_add_info = self4.findChild(QPushButton,"add_info")
+        self4.botao_add_info.setEnabled(False)
+        self4.lineEdit_celula = self4.findChild(QLineEdit,"lineEdit_celula")
+        self4.lineEdit_latitude = self4.findChild(QLineEdit,"lineEdit_latitude")
+        self4.lineEdit_longitude = self4.findChild(QLineEdit,"lineEdit_longitude")
+        self4.label_lat_min = self4.findChild(QLabel,"lat_min")
+        self4.label_lat_max = self4.findChild(QLabel,"lat_max")
+        self4.label_long_min = self4.findChild(QLabel,"long_min")
+        self4.label_long_max = self4.findChild(QLabel,"long_max")
+        self4.label_info = self4.findChild(QLabel,"info")
 
-    # Setting colors for colorbar range
-    m = cm.ScalarMappable(cmap=surf.cmap, norm=surf.norm)
-    m.set_array(z_smoothed)
+        self4.lay_principal = self4.findChild(QVBoxLayout,"lay_principal")
+        self4.setLayout(self4.lay_principal)
 
-    plt.xticks([])  # Disabling xticks by Setting xticks to an empty list
-    plt.yticks([])  # Disabling yticks by setting yticks to an empty list
-    fig.tight_layout()
-    ax.grid(False)
-    plt.axis('off')
+        global wind3
+        wind3 +=1
+    #
 
-    # Display the figure
-    self.canvas = FigureCanvas(fig)
-    plt.close('all')
+    def ler_arquivo_popup(self4, arquivo):
+        self4.arquivo = arquivo
+        self4.info_arquivo()
+    #
 
-    self.g_max = np.zeros((img.size[0],img.size[1]));
-    L = 25;
-    Ld = np.sqrt(2)*L
+    def info_arquivo(self4):
+        print("função rodando...")
+        with rasterio.open(self4.arquivo) as dataset:
+            if dataset.crs is None:
+                print("informações nulas")
+                self4.botao_add_info.setEnabled(True)
+                self4.label_info.setText("Informações: Seu arquivo não possui CRS")
+                self4.label_lat_min.setText("Latitude Mínima: None")
+                self4.label_lat_max.setText("Latitude Máxima: None")
+                self4.label_long_min.setText("Longitude Mínima: None")
+                self4.label_long_max.setText("Longitude Máxima: None")
+                self4.lineEdit_latitude.setEnabled(False)
+                self4.lineEdit_longitude.setEnabled(False)
+                self4.lineEdit_celula.setEnabled(False)
+            else:
+                print("informações obtidas")
+                bounds = dataset.bounds
+                self4.label_lat_min.setText(f"Latitude Mínima: {bounds.bottom}")
+                self4.label_lat_max.setText(f"Latitude Máxima: {bounds.top}")
+                self4.label_long_min.setText(f"Longitude Mínima: {bounds.left}")
+                self4.label_long_max.setText(f"Longitude Máxima: {bounds.right}")
+    #
 
-    # Getting the biggest angles of each location
-    for i in range(1,img.size[1]-1): #Já testado o 199
-        for j in range(1,img.size[0]-1):
-            self.g_max[j,i] = max([abs(img_array[i+1,j]-img_array[i,j])/L,
-            abs(img_array[i-1,j]-img_array[i,j])/L,
-            abs(img_array[i,j+1]-img_array[i,j])/L ,
-            abs(img_array[i,j-1]-img_array[i,j])/L,
-            abs(img_array[i+1,j+1]-img_array[i,j])/Ld,
-            abs(img_array[i-1,j-1]-img_array[i,j])/Ld,
-            abs(img_array[i-1,j+1]-img_array[i,j])/Ld,
-            abs(img_array[i+1,j-1]-img_array[i,j])/Ld])
+    def show_error_popup2(self4, error_message):
+        # Cria a caixa de mensagem de erro
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)  # Define o ícone como erro
+        msg.setWindowTitle("Erro")  # Define o título da janela
+        msg.setText(error_message)  # Define o texto da mensagem
+        msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
+        msg.exec_()  # Exibe a mensagem
+    #
 
-            self.g_max[j,i] = np.arctan(self.g_max[j,i]) * 180/np.pi
+    def show_add_info(self4):
+        self4.popup_add_info = Popup_add_info()
+        self4.popup_add_info.show()
+        self4.lineEdit_latitude.setEnabled(True)
+        self4.lineEdit_longitude.setEnabled(True)
+        self4.lineEdit_celula.setEnabled(True)
+        # resultado = self4.popup_add_info.exec()
+        latmin,longmin,latmax,longmax = self4.popup_add_info.fornece_coordenadas()
+        self4.label_lat_min.setText(f"Latitude Mínima: {latmin}")
+        self4.label_lat_max.setText(f"Latitude Máxima: {latmax}")
+        self4.label_long_min.setText(f"Longitude Mínima: {longmin}")
+        self4.label_long_max.setText(f"Longitude Máxima: {longmax}")
 
-    # Creating second figure
-    fig2, ax = plt.subplots(1,1,figsize=(12,10))
-    plt.imshow(self.g_max.transpose(), cmap='terrain')
-    im = ax.imshow(self.g_max.transpose(), cmap='terrain')
+        global wind3
+        wind3 = 0
+        # self4.close()
+    #
 
-    ax.set_xticks([0, 0.2*img.size[0], 0.4*img.size[0], 0.6*img.size[0], 0.8*img.size[0],img.size[0]], labels=[0, 5*img.size[0], 10*img.size[0], 15*img.size[0], 20*img.size[0], 25*img.size[0]])
-    ax.set_yticks([0, 0.2*img.size[1], 0.4*img.size[1], 0.6*img.size[1], 0.8*img.size[1],img.size[1]], labels=[0, 5*img.size[0], 10*img.size[0], 15*img.size[0], 20*img.size[0], 25*img.size[0]])
+    def converteLatLon(self4):
+        print("chamou a função")
+        if self4.lineEdit_latitude =='' or self4.lineEdit_longitude =='':
+            self4.show_error_popup2("Um dos campos obrigatórios está vazio.")
+        else:
+            print("ARQUIVO: ",self4.arquivo)
+            lat = self4.lineEdit_latitude.text()
+            long = self4.lineEdit_longitude.text()
+            with rasterio.open(self4.arquivo) as dataset:
+                print(f"CRS do dataset: {dataset.crs!r}")
+                if dataset.crs is None:
+                    print(" O TIFF não tem CRS! Entrando no if...") # Se NÃO houver Sistema de referência espacial (CRS)
 
-    plt.colorbar(im, ax=ax)
-    plt.axis([0, img.size[0]-1, 0, img.size[1]-1])
-    ax.invert_yaxis()
+                    lat_inicial = Popup_add_info.fornece_coordenadas(self4)[0]
+                    lon_inicial = self4.popup_add_info.fornece_coordenadas()[1]
 
-    # plt.axis('off')
+                    lat_final = self4.popup_add_info.fornece_coordenadas()[2]
+                    lon_final = self4.popup_add_info.fornece_coordenadas()[3]
 
-    # Display figures
-    # self.ui.tabs.setVisible(True)
-    self.ui.tabs_3.setVisible(True)
+                    self4.label_lat_min.setText(f"Latitude Mínima: {lat_inicial}")
+                    self4.label_lat_max.setText(f"Latitude Máxima: {lat_final}")
+                    self4.label_long_min.setText(f"Longitude Mínima: {lon_inicial}")
+                    self4.label_long_max.setText(f"Longitude Máxima: {lon_final}")
 
-    self.toolb1 = NavigationToolbar(self.canvas,self.canvas) #(self.canvas, self)
-    # self.ui.horizontalLayout_3.addWidget(self.canvas)     #Trocado com o debaixo
-    # self.ui.horizontalLayout_browse.addWidget(self.toolb1)
+                    # lat_inicial = -23
+                    # lon_inicial = -43.15
 
-    self.tabInc = QWidget()
-    self.tabInc_layout = QVBoxLayout()
-    self.tabInc_layout.addWidget(self.canvas)
-    self.tabInc_layout.addWidget(self.toolb1)
-    self.tabInc.setLayout(self.tabInc_layout)
+                    # lat_final = -22.77
+                    # lon_final = -43.5
 
-    self.tab_name = "Elevação " + str((self.inclina_tabs)+1)
-    self.ui.tabs_3.addTab(self.tabInc, self.tab_name)
+                    latitude = float(lat)
+                    longitude = float(long)
 
-    self.canvas2 = FigureCanvas(fig2)
-    self.toolb2 = NavigationToolbar(self.canvas2, self)
+                    if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final:
+                        print('latitude', latitude)
+                        if (longitude > lon_final and longitude < lon_inicial) or longitude == lon_inicial or longitude == lon_final:
+                            print('longitude', longitude)
+                            resto = latitude - lat_inicial
+                            print("resto lat:",resto)
+                            qt_celulay = resto/self4.popup_add_info.fornece_pixel()[0]
 
-    self.tabInc = QWidget()
-    self.tabInc_layout = QVBoxLayout()
-    self.tabInc_layout.addWidget(self.canvas2)
-    self.tabInc_layout.addWidget(self.toolb2)
-    self.tabInc.setLayout(self.tabInc_layout)
+                            resto2 = longitude - lon_inicial
+                            print("resto long:",abs(resto2))
+                            qt_celulax = resto2/self4.popup_add_info.fornece_pixel()[1]
 
-    if self.ui.tabs.count()>0 and self.inclina_tabs == 0:
-        self.ui.tabs.removeTab(0)
-    if self.ui.tabs_3.count()>0 and self.inclina_tabs == 0:
-        self.ui.tabs_3.removeTab(0)
+                            print(dataset.shape)
+                            print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
+                            self4.lineEdit_celula.setText(f"({abs(qt_celulax):.0f}, {abs(qt_celulay):.0f})")
+                else:
+                    print("✅ O TIFF tem CRS:", dataset.crs)
+                    resolucao_x, resolucao_y = dataset.res[0], dataset.res[1] # Tamanho do pixel em graus (lon/lat)
+                    bounds = dataset.bounds # Obter os limites (bounding box)
 
-    print("Inclina_tabs = ",self.inclina_tabs)
-    self.inclina_tabs += 1
+                    lat_inicial = bounds.bottom # Min Y (Latitude)
+                    lon_inicial = bounds.left # Min X (Longitude)
 
-    self.tab_name2 = "Inclinação " + str(self.inclina_tabs)
-    self.ui.tabs.addTab(self.tabInc, self.tab_name2)
+                    lat_final = bounds.top # Max Y (Latitude)
+                    lon_final = bounds.right # Max X (Longitude)
 
-    plt.close('all')
+                    latitude = float(lat)
+                    longitude = float(long)
 
-    # Show the limits
-    self.ui.x1label.setVisible(True)
-    self.ui.x2label.setVisible(True)
-    self.ui.y1label.setVisible(True)
-    self.ui.y2label.setVisible(True)
-    self.ui.label.setVisible(True)
-    self.ui.limits.setVisible(True)
+                    print(f"Coordenadas iniciais: {bounds.bottom},{bounds.left}/Coordenadas finais: {bounds.top},{bounds.right}")
 
-    self.ui.x1lineEdit.setVisible(True)
-    self.ui.x2lineEdit.setVisible(True)
-    self.ui.y1lineEdit.setVisible(True)
-    self.ui.y2lineEdit.setVisible(True)
-    self.ui.Adjust.setVisible(True)
+                    if (latitude > lat_inicial and latitude < lat_final) or latitude == lat_inicial or latitude == lat_final:
+                        print("latitude",latitude)
+                        if (longitude > lon_inicial and longitude < lon_final) or longitude == lon_inicial or longitude == lon_final:
+                            print("longitude")
+                            resto = latitude - lat_inicial
+                            print("resto lat:",resto)
+                            qt_celulax = resto/resolucao_x
 
-    self.ui.AnalysisBtn.setVisible(True)
+                            resto2 = longitude - lon_inicial
+                            print("resto long:",abs(resto2))
+                            qt_celulay = resto2/resolucao_y
 
-    self.ui.imgname.setText(self.fname)
-    self.ui.imgsizex.setText(str(img.size[1]))
-    self.ui.imgsizey.setText(str(img.size[-2]))
-
-    self.ui.ClearBtn.clicked.connect(self.clearCanvas)
+                            banda1 = dataset.read(1)
+                            print(banda1.shape)
+                            print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
+                            self4.lineEdit_celula.setText(f"({abs(qt_celulax):.0f}, {abs(qt_celulay):.0f})")
+        global wind3
+        wind3 = 0
+        # self4.close()
 #
 
+class Popup_add_info(QWidget):
+    def __init__(self5,parent=None):
+        super().__init__(parent)
+        self5.ui = Ui_Dialog2()
+        self5.ui.setupUi(self5)
 
+        self5.latitude = self5.findChild(QLineEdit,"latitude")
+        self5.longitude = self5.findChild(QLineEdit,"longitude")
 
+        self5.lineEdit_lat_min = self5.findChild(QLineEdit,"add_lat_min")
+        self5.lineEdit_long_min = self5.findChild(QLineEdit,"add_long_min")
+        self5.lineEdit_lat_max = self5.findChild(QLineEdit,"add_lat_max")
+        self5.lineEdit_long_max = self5.findChild(QLineEdit,"add_long_max")
+
+        self5.lay_principal = self5.findChild(QVBoxLayout,"lay_principal")
+        self5.setLayout(self5.lay_principal)
+
+        def resizeEvent(self5, event):
+            # Ajusta a QLabel para ocupar o mesmo tamanho do layout
+            if self5.layout:
+                # Mantém a proporção ao redimensionar
+                new_width = event.size().width()
+                new_height = int(new_width / self5.aspect_ratio)
+                self5.resize(new_width, new_height)
+
+                super().resizeEvent(event)
+
+    def fornece_pixel(self5):
+        print("fornecendo pixel...")
+        return (float(self5.ui.latitude.text()),float(self5.ui.longitude.text()))
+
+    def fornece_coordenadas(self5):
+        # print("fornecendo coordenadas...")
+        return (float(self5.ui.lat_min.text()), float(self5.ui.long_min.text()), float(self5.ui.lat_max.text()), float(self5.ui.long_max.text()))
+
+    def salvar(self5):
+        print("salvando...")
+        self5.ui.accept()
+
+        return
+#
+#
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
