@@ -1,0 +1,5 @@
+import pyvista as pv
+from pyvistaqt import BackgroundPlotter
+plotter = BackgroundPlotter()
+plotter.add_mesh(pv.Sphere())
+plotter.app.exec_() #!!!

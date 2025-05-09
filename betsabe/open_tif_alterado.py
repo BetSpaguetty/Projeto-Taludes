@@ -487,7 +487,7 @@ class UI(QMainWindow):
         ax.elev = 42
         ax.set_box_aspect((x_ratio,y_ratio,((x_ratio+y_ratio)/8)))
         surf = ax.plot_surface(x,y,z, cmap='terrain', edgecolor='none')
-        surf = ax.plot_surface(x,y,z, rstride=1, cstride=1, cmap='terrain', edgecolor='none')
+        surf = ax.plot_surface(x,y,z,  cmap='terrain', edgecolor='none')
         ax.axis('off')
 
         # Adicionando a colorbar ao gráfico

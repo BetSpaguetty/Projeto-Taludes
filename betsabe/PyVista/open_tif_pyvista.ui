@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1174</width>
+    <height>816</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Visualizador de Arquivos  .TIF</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>1160</width>
+      <height>640</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="layout_P">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item row="3" column="1">
+      <layout class="QVBoxLayout" name="layout_nome_corte">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Defina o nome do seu arquivo de corte:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nome_arquivo_corte"/>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_nomeArquivo">
+         <property name="text">
+          <string>Arquivo Selecionado :</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_shape">
+         <property name="text">
+          <string>Shape: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="button_conversor">
+         <property name="text">
+          <string>Conversor</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="botao_abrir_arquivo">
+         <property name="text">
+          <string>Abrir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Rio de Janeiro - RJ</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0">
+      <layout class="QGridLayout" name="layout_intervalo_de_corte">
+       <item row="2" column="0">
+        <widget class="QLabel" name="labe_eixo_y">
+         <property name="text">
+          <string>Eixo Y:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="intervalo_x_inicio"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="botao_limpar">
+         <property name="text">
+          <string>Limpar</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+L</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="intervalo_x_final"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="intervalo_y_final"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="botao_recorte">
+         <property name="text">
+          <string>Recortar</string>
+         </property>
+         <property name="shortcut">
+          <string>Return</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="intervalo_y_inicio"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_eixo_x">
+         <property name="text">
+          <string>Eixo X:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_corte">
+         <property name="text">
+          <string>Defina o intervalo de corte:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="1">
+      <widget class="QGraphicsView" name="frame_exibicao_gradiente">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>567</width>
+         <height>500</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>567</width>
+         <height>500</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QStackedWidget" name="stacked_elevacao">
+       <property name="minimumSize">
+        <size>
+         <width>567</width>
+         <height>500</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>567</width>
+         <height>500</height>
+        </size>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="page"/>
+       <widget class="QWidget" name="page_2"/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>680</y>
+      <width>554</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="layout_elevacoes"/>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1174</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArquivos">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionAbrir"/>
+    <addaction name="actionRJ_22S435W"/>
+    <addaction name="actionCortar"/>
+   </widget>
+   <addaction name="menuArquivos"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionAbrir">
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionRJ_22S435W">
+   <property name="text">
+    <string>Rio de Janeiro - RJ</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionCortar">
+   <property name="text">
+    <string>Conversor de coordenadas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_x_final</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>618</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_y_inicio</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>647</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>nome_arquivo_corte</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1154</x>
+     <y>649</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_popup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>430</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>213</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_x_inicio</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>618</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>intervalo_y_final</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>647</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_abrir_arquivo</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ler_arquivo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>56</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_limpar</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>volta_tif()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>715</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>botao_recorte</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>corta_tif()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>620</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>376</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbrir</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ler_arquivo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>580</x>
+     <y>300</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRJ_22S435W</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_popup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>580</x>
+     <y>300</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_conversor</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_conversor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>64</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>abrir_arquivo()</slot>
+  <slot>slot1()</slot>
+  <slot>corta_tif()</slot>
+  <slot>ler_arquivo()</slot>
+  <slot>volta_tif()</slot>
+  <slot>gera_gradiente()</slot>
+  <slot>mostra_lista()</slot>
+  <slot>ler_regiao_selecionada()</slot>
+  <slot>slot2()</slot>
+  <slot>mostra_mapinhas()</slot>
+  <slot>ler_mapinha_selecionado()</slot>
+  <slot>mostra_mapa()</slot>
+  <slot>botao_clicado_regiao()</slot>
+  <slot>abrir_janela_rio()</slot>
+  <slot>slot3()</slot>
+  <slot>show_popup()</slot>
+  <slot>show_conversor()</slot>
+ </slots>
+</ui>
