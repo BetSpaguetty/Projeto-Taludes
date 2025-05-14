@@ -484,7 +484,7 @@ class UI(QMainWindow):
         x = np.arange(0, x_ratio)
         y = np.arange(0, y_ratio)
         x, y = np.meshgrid(x, y)
-        z = self.img_array/10
+        z = self.img_array
         self.plotter = QtInteractor(self.exibe_elevacao)
         
         grid = pv.StructuredGrid(x, y, z)
