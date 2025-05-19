@@ -1,7 +1,7 @@
 # Módulos
 from PyQt5 import uic
 from PyQt5.QtCore import Qt, QEvent
-from PyQt5.QtWidgets import QStackedWidget, QWidget, QVBoxLayout, QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
+from PyQt5.QtWidgets import QAction, QToolBar, QStackedWidget, QWidget, QVBoxLayout, QDialog, QMessageBox, QApplication, QMainWindow, QGraphicsScene, QFileDialog, QPushButton, QGraphicsView, QLineEdit, QLabel, QGridLayout
 from PyQt5.QtGui import QPixmap
 from pyvistaqt import QtInteractor
 
@@ -392,9 +392,27 @@ class UI(QMainWindow):
         # self.layout_elevacoes.addWidget(self.stacked_elevacao)
         # self.setLayout(self.layout)
 
+        # Cria a toolbar
+        toolbar = QToolBar("Toolbar de Visualização")
+        self.addToolBar(toolbar)
+
+        # Botões de visualização
+        action_top = QAction("Vista de Cima", self)
+        action_top.triggered.connect(self.view_top)
+        toolbar.addAction(action_top)
+
+        action_side = QAction("Vista Lateral", self)
+        action_side.triggered.connect(self.view_side)
+        toolbar.addAction(action_side)
+
+        action_front = QAction("Vista Frontal", self)
+        action_front.triggered.connect(self.view_front)
+        toolbar.addAction(action_front)
+
         # Cria o widget central
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
+        
         # Aplica o layout ao widget central
         central_widget.setLayout(self.layout)
 
@@ -474,33 +492,43 @@ class UI(QMainWindow):
                 # Ler apenas a primeira banda
                 banda1 = dataset.read(1)
                 self.img_array = banda1
-                y_ratio, x_ratio = self.img_array.shape
+                z_min = np.min(banda1)
+                z_max = np.max(banda1)
             else:
                 img = Image.open(arquivo)
                 self.img_array = np.array(img)
-                x_ratio, y_ratio = img.size
+                z_min = np.min(np.array(img))
+                z_max = np.max(np.array(img))
 
         # Gerar as coordenadas (sem georreferenciamento, vamos usar os índices de pixels)
-        x = np.arange(0, x_ratio)
-        y = np.arange(0, y_ratio)
+        ny, nx = self.img_array.shape  # cuidado: (rows, cols)
+        x = np.arange(nx)
+        y = np.arange(ny)
         x, y = np.meshgrid(x, y)
-        z = self.img_array
-        self.plotter = QtInteractor(self.exibe_elevacao)
+        z = self.img_array 
+        z_total = z_max - z_min
         
+        # Proporção para escala de z
+        incl_max, tam_y, tam_x = self.calcula_incl_max(arquivo)
+        prop_z = z_total/tam_x # a proporção de z por x e y da diferente, como saber quando usa-la?
+        print("!!!!!!!!!!!!!", prop_z) 
+
+
+        # Inverte os eixos visualmente, se necessário
+        x = np.flip(x, axis=1)  # inverte eixo X
+        y = np.flip(y, axis=0)  # inverte eixo Y
+        z = np.flip(z, axis=0)  # inverte eixo Y do Z
+
+        self.plotter = QtInteractor(self.exibe_elevacao)
+        self.plotter.set_scale(xscale=1, yscale=1, zscale=prop_z) # muda a escala de z sem alterar o gráfico.
+
         grid = pv.StructuredGrid(x, y, z)
         grid["elevation"] = z.ravel(order="F")
+        
         self.plotter.add_mesh(pv.Sphere())
         self.plotter.add_mesh(grid, scalars="elevation", cmap="terrain", show_scalar_bar=True, scalar_bar_args={'title': 'Elevação',
         'vertical': True, 'position_x': 0.85, 'position_y': 0.25})
 
-        # Define a câmera posicionada a uma distância razoável do centro
-        # centro = self.plotter.center
-        # self.plotter.camera_position = [
-        #     (centro[0] + 10, centro[1] + 10, centro[2] + 10),  # posição da câmera
-        #     centro,  # ponto que a câmera olha (centro do objeto)
-        #     (0, 0, 1)  # vetor para cima
-        # ]
-       
         # Adiciona o canvas do gráfico à cena
         self.stacked_elevacao.addWidget(self.plotter)
         self.stacked_elevacao.setCurrentWidget(self.plotter)
@@ -508,6 +536,32 @@ class UI(QMainWindow):
         # self.scene.addWidget(self.toolbar)
         self.label_shape.setText(f"Shape: {self.img_array.shape}") # exibe o as dimensões do tif
         print(f"função abrir arquivo com tamanho {self.img_array.shape} funcionou")
+
+    
+
+    def view_top(self):
+        self.plotter.camera_position = [
+        (1, 0, 1),  # posição da câmera
+        (0, 0, 1),  # ponto focal
+        (1, 1, 1)   # vetor
+        ]
+        self.plotter.reset_camera()
+
+    def view_side(self):
+        self.plotter.camera_position = [
+        (1, 1, 1),  # posição da câmera
+        (0, 0, 0),  # ponto focal
+        (0, 0, 1)   # vetor
+        ]
+        self.plotter.reset_camera()
+
+    def view_front(self):
+        self.plotter.camera_position = [
+        (0, 1, 0),  # posição da câmera
+        (0, 0, 0),  # ponto focal
+        (0, 0, 1)   # vetor
+        ]
+        self.plotter.reset_camera()
 
     def on_mouse_move(self, event):
         # if event.inaxes is not None:
@@ -529,19 +583,16 @@ class UI(QMainWindow):
         #                 self.label_coordinates.setText(f"Coordenadas:({x_idx},{y_idx},{z_value:.2f})")
         return
 
-    def gera_gradiente(self,arquivo):
-        # Abrir o arquivo TIFF e extrair a matriz de elevações
-        tif_file = arquivo
-        with rasterio.open(tif_file) as src:
-            matriz = src.read(1)  # banda de elevações
-        #     image = src.read()  # Lê todas as bandas
-        #     profile = src.profile  # Metadados do arquivo
-        # # Exibir informações do TIFF
-        # print("Número de bandas:", image.shape[0])
-        # print("Tipo de dado:", profile["dtype"])
-        # print("Resolução:", profile["transform"])
+    def calcula_incl_max(self, arquivo):
+        with rasterio.open(arquivo) as dataset:
+            print(f"Formato: {dataset.driver}")
+            print(f"Dimensões: {dataset.width} x {dataset.height}")
+            print(f"Número de bandas: {dataset.count}")
 
-        L = 25  # quantidade de metros por pixel
+            # Ler apenas a primeira banda
+            matriz = dataset.read(1)
+
+        L = 25  # quantidade de metros por pixel (ainda fixado, pensar em como tornar variável)
         
         incl_max = np.zeros(matriz.shape) # calcula o gradiente máximo
     
@@ -566,7 +617,50 @@ class UI(QMainWindow):
 
         # Define os limites do eixo em metros (multiplicando pelo tamanho do pixel)
         altura, largura = incl_max.shape
-        extent = [0, largura * L, altura * L, 0]  # [xmin, xmax, ymin, ymax]
+        return (incl_max, altura*L, largura*L)
+    
+
+    def gera_gradiente(self,arquivo):
+        # Abrir o arquivo TIFF e extrair a matriz de elevações
+        # tif_file = arquivo
+        
+        # with rasterio.open(tif_file) as src:
+        #     matriz = src.read(1)  # banda de elevações
+        # #     image = src.read()  # Lê todas as bandas
+        # #     profile = src.profile  # Metadados do arquivo
+        # # # Exibir informações do TIFF
+        # # print("Número de bandas:", image.shape[0])
+        # # print("Tipo de dado:", profile["dtype"])
+        # # print("Resolução:", profile["transform"])
+
+        # L = 25  # quantidade de metros por pixel
+        
+        # incl_max = np.zeros(matriz.shape) # calcula o gradiente máximo
+    
+        # for i in range(1, matriz.shape[0] - 1):
+        #     for j in range(1, matriz.shape[1] - 1):
+        #         # obtem as diferenças de elevação
+        #         alpha = [
+        #             np.degrees(np.arctan(abs((matriz[i, j+1] - matriz[i, j]) / L))),
+        #             np.degrees(np.arctan(abs((matriz[i, j-1] - matriz[i, j]) / L))),
+        #             np.degrees(np.arctan(abs((matriz[i-1, j] - matriz[i, j]) / L))),
+        #             np.degrees(np.arctan(abs((matriz[i+1, j] - matriz[i, j]) / L))),
+        #             np.degrees(np.arctan(abs((matriz[i-1, j+1] - matriz[i, j]) / (L * np.sqrt(2))))),
+        #             np.degrees(np.arctan(abs((matriz[i-1, j-1] - matriz[i, j]) / (L * np.sqrt(2))))),
+        #             np.degrees(np.arctan(abs((matriz[i+1, j+1] - matriz[i, j]) / (L * np.sqrt(2))))),
+        #             np.degrees(np.arctan(abs((matriz[i+1, j-1] - matriz[i, j]) / (L * np.sqrt(2)))))
+        #         ]
+                
+        #         # inclinação máxima
+        #         incl_max[i, j] = np.max(alpha)
+
+        # self.fig_gradiente = plt.figure(figsize=(10, 5))
+
+        # # Define os limites do eixo em metros (multiplicando pelo tamanho do pixel)
+        # altura, largura = incl_max.shape
+        incl_max, altura, largura = self.calcula_incl_max(arquivo)
+        # print("!!!!!!!!!!!!!!!",len(incl_max), altura, largura)
+        extent = [0, largura, altura, 0]  # [xmin, xmax, ymin, ymax]
 
         plt.imshow(incl_max, cmap='terrain', extent=extent)
         plt.xlabel("Distância (m)")
