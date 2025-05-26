@@ -401,7 +401,7 @@ class UI(QMainWindow):
         action_top.triggered.connect(self.view_top)
         toolbar.addAction(action_top)
 
-        action_side = QAction("Vista Lateral", self)
+        action_side = QAction("Vista Padrão", self)
         action_side.triggered.connect(self.view_side)
         toolbar.addAction(action_side)
 
@@ -537,13 +537,11 @@ class UI(QMainWindow):
         self.label_shape.setText(f"Shape: {self.img_array.shape}") # exibe o as dimensões do tif
         print(f"função abrir arquivo com tamanho {self.img_array.shape} funcionou")
 
-    
-
     def view_top(self):
         self.plotter.camera_position = [
-        (1, 0, 1),  # posição da câmera
-        (0, 0, 1),  # ponto focal
-        (1, 1, 1)   # vetor
+        (0, 0, 100),  # posição da câmera
+        (0, 0, 0),  # ponto focal
+        (0, -1, 0)   # vetor
         ]
         self.plotter.reset_camera()
 
@@ -619,7 +617,6 @@ class UI(QMainWindow):
         altura, largura = incl_max.shape
         return (incl_max, altura*L, largura*L)
     
-
     def gera_gradiente(self,arquivo):
         # Abrir o arquivo TIFF e extrair a matriz de elevações
         # tif_file = arquivo
