@@ -178,6 +178,7 @@ class Popup_LatLon(QDialog):
                             resto = latitude - lat_inicial
                             print("resto lat:",resto) 
                             qt_celulay = resto/(self.popup_add_info.fornece_pixel()[0]/dataset.shape[1])
+                            print("!!!!!!!!!!!betttttttt!!!!!!",self.popup_add_info.fornece_pixel()[0])
 
                             resto2 = longitude - lon_inicial
                             print("resto long:",abs(resto2)) 
@@ -389,23 +390,23 @@ class UI(QMainWindow):
         self.layout_exibicoes = self.findChild(QGridLayout,"gridLayout")
         self.stacked_elevacao = self.findChild(QStackedWidget,"stacked_elevacao")
         self.layout_elevacoes = self.findChild(QGridLayout,"layout_elevacoes")
-        # self.layout_elevacoes.addWidget(self.stacked_elevacao)
-        # self.setLayout(self.layout)
+        self.metros_por_pixel = self.findChild(QLineEdit,"metros_por_pixel")
+        self.metros_por_pixel.setText("25")
 
         # Cria a toolbar
         toolbar = QToolBar("Toolbar de Visualização")
         self.addToolBar(toolbar)
 
         # Botões de visualização
-        action_top = QAction("Vista de Cima", self)
+        action_top = QAction("Top view", self)
         action_top.triggered.connect(self.view_top)
         toolbar.addAction(action_top)
 
-        action_side = QAction("Vista Padrão", self)
+        action_side = QAction("3D view", self)
         action_side.triggered.connect(self.view_side)
         toolbar.addAction(action_side)
 
-        action_front = QAction("Vista Frontal", self)
+        action_front = QAction("Elevation", self)
         action_front.triggered.connect(self.view_front)
         toolbar.addAction(action_front)
 
@@ -418,24 +419,29 @@ class UI(QMainWindow):
 
         # Classe PopupWindow
         self.classe_popup = PopupWindow()
-
-        # Cria uma cena para o QGraphicsView
-        # self.scene_elevacao = QGraphicsScene()
-        # self.exibe_elevacao.setScene(self.scene_elevacao)
-
         self.scene_gradiente = QGraphicsScene()
         self.exibe_gradiente.setScene(self.scene_gradiente)
-
-        # self.exibe_elevacao.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        # self.exibe_elevacao.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
         self.exibe_gradiente.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.exibe_gradiente.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         
         self.resize(1200, 600)
         self.show()
-        # self.aspect_ratio = 600 / 450  # Largura/Altura
 
+    def retorna_metros(arquivo):
+        with rasterio.open(self.arquivo) as dataset:
+            if dataset.crs is None:
+                print(f"informações nulas")
+                metros = 25
+            else:
+                print("informações obtidas")
+                bounds = dataset.bounds
+                self.label_lat_min.setText(f"Latitude Mínima: {bounds.bottom}")
+                self.label_lat_max.setText(f"Latitude Máxima: {bounds.top}")
+                self.label_long_min.setText(f"Longitude Mínima: {bounds.left}")
+                self.label_long_max.setText(f"Longitude Máxima: {bounds.right}")
+        
+        return metros
+        
     def resizeEvent(self, event):
         new_width = event.size().width()
         new_height = int(new_width / (1200/649))
@@ -520,8 +526,9 @@ class UI(QMainWindow):
         z = np.flip(z, axis=0)  # inverte eixo Y do Z
 
         self.plotter = QtInteractor(self.exibe_elevacao)
-        self.plotter.set_scale(xscale=1, yscale=1, zscale=prop_z) # muda a escala de z sem alterar o gráfico.
-
+        # self.plotter = pv.Plotter(off_screen=False)
+        self.plotter.set_scale(xscale=1, yscale=1, zscale=(1/25)) # muda a escala de z sem alterar o gráfico.
+        # self.plotter.set_scale(xscale=1, yscale=1)
         grid = pv.StructuredGrid(x, y, z)
         grid["elevation"] = z.ravel(order="F")
         
