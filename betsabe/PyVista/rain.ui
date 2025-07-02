@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
+    <width>284</width>
     <height>203</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QLineEdit" name="line_edit_precipitation">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>120</x>
      <y>30</y>
      <width>113</width>
      <height>20</height>
@@ -29,7 +29,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>110</x>
      <y>130</y>
      <width>81</width>
      <height>20</height>
@@ -42,7 +42,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>20</x>
      <y>30</y>
      <width>101</width>
      <height>16</height>
@@ -55,20 +55,20 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>60</x>
      <y>130</y>
-     <width>31</width>
+     <width>51</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>hw</string>
+    <string>hw (m/h)</string>
    </property>
   </widget>
   <widget class="QSlider" name="slider_hours">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>20</x>
      <y>80</y>
      <width>160</width>
      <height>22</height>
@@ -87,7 +87,7 @@
   <widget class="QLabel" name="label_time">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>220</x>
      <y>80</y>
      <width>31</width>
      <height>16</height>
@@ -100,7 +100,7 @@
   <widget class="QLabel" name="label_time_2">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>200</x>
      <y>80</y>
      <width>16</width>
      <height>16</height>
@@ -136,15 +136,15 @@
    <sender>slider_hours</sender>
    <signal>valueChanged(int)</signal>
    <receiver>Dialog</receiver>
-   <slot>time_update()</slot>
+   <slot>rain_infiltration()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>83</y>
+     <x>84</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>50</x>
-     <y>63</y>
+     <x>53</x>
+     <y>69</y>
     </hint>
    </hints>
   </connection>
@@ -153,5 +153,6 @@
   <slot>time_update()</slot>
   <slot>slot1()</slot>
   <slot>slot2()</slot>
+  <slot>rain_infiltration()</slot>
  </slots>
 </ui>
