@@ -40,15 +40,15 @@ def rain_infiltration(t,p):
 
 x = np.linspace(0,30,1000)
 # theta = 0.25
-y = rain_infiltration(x,1) # p = 1
-y1 = rain_infiltration(x,5) # p = 5
-y2 = rain_infiltration(x,10) # p = 10
-y3 = rain_infiltration(x,15) # p = 15
-y4 = rain_infiltration(x,20) # p = 20
-y5 = rain_infiltration(x,25) # p = 25
+y = rain_infiltration(x,5) # p = 1
+y1 = rain_infiltration(x,10) # p = 5
+y2 = rain_infiltration(x,15) # p = 10
+y3 = rain_infiltration(x,20) # p = 15
+y4 = rain_infiltration(x,25) # p = 20
+y5 = rain_infiltration(x,30) # p = 25
 
 # Legenda nos eixos
-plt.xlabel("p (cm/h)")
+plt.xlabel("t (h)")
 plt.ylabel("hw (cm)")
 
 # plt.ylim(0, 100)

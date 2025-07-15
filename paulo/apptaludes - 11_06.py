@@ -76,7 +76,7 @@ class AppTaludes(QWidget):
     def __init__(self, parent=None):
         #super().__init__(parent)
         super(AppTaludes, self).__init__()
-        uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\form.ui", self)
+        uic.loadUi("Projeto-Taludes\\paulo\\form.ui", self)
         #self = AppTaludes()
         #self.setupUi(self)
 
@@ -2732,7 +2732,7 @@ class Form2(QWidget):
         #super().__init__(parent)
         super().__init__()
         #super(AppTaludes, self2).__init__()
-        uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\form2.ui", self2)
+        uic.loadUi("Projeto-Taludes\\paulo\\form2.ui", self2)
         #self2 = Ui_Form2()
         #self2.setupUi(self2)
         self2.setMaximumSize(970,710)
@@ -2801,7 +2801,7 @@ class Form2(QWidget):
         self2.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
 
-        pixmap = QPixmap("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\image.png")              #("c:\\Users\\paulobaccar\\Downloads\\mapa-rio-de-janeiro.jpg")
+        pixmap = QPixmap("Projeto-Taludes\\paulo\\image.png")              #("c:\\Users\\paulobaccar\\Downloads\\mapa-rio-de-janeiro.jpg")
         self2.label_mapa_rio.setPixmap(pixmap)
         self2.label_mapa_rio.setScaledContents(True)
         # self2.gridLayout.setScaledContents(True)
@@ -2880,7 +2880,7 @@ class LatLon(QDialog):
         #self4.ui.setupUi(self4)
         #super(UI, self).__init__()
         super().__init__()
-        uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\popup_LatLon.ui", self4)
+        uic.loadUi("Projeto-Taludes\\paulo\\popup_LatLon.ui", self4)
 
         print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 
@@ -3060,7 +3060,7 @@ class Popup_add_info(QWidget):
         #self5.ui = Ui_Dialog2()
         #self5.ui.setupUi(self5)
         super(UI, self).__init__()
-        uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\add_info.ui", self)
+        uic.loadUi("Projeto-Taludes\\paulo\\add_info.ui", self)
 
         self5.latitude = self5.findChild(QLineEdit,"latitude")
         self5.longitude = self5.findChild(QLineEdit,"longitude")

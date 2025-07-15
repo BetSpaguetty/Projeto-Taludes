@@ -18,12 +18,8 @@ class Popup_rain(QDialog):
         self.line_edit_precipitation = self.findChild(QLineEdit,"line_edit_precipitation")
         self.label_time = self.findChild(QLabel,"label_time")
         
-        self.grafico_txhw = self.findChild(QGraphicsView,"grafico_txhw")
-        self.scene_gradiente = QGraphicsScene()
-        # self.grafico_txhw.setScene(self.scene_gradiente)
-        
         self.show()
-
+        
     # def rain_infiltration(self,h,p,t,theta_i):
     def rain_infiltration(self):
 
@@ -88,33 +84,6 @@ class Popup_rain(QDialog):
         print("------------------------------------------------------------")
         return 
     
-    def cria_grafico(self):
-        plt.style.use('_mpl-gallery')
-
-        # make data
-        x = np.linspace(0, 10, 100)
-        y = 4 + 1 * np.sin(2 * x)
-        x2 = np.linspace(0, 10, 25)
-        y2 = 4 + 1 * np.sin(2 * x2)
-
-        # plot
-        fig, ax = plt.subplots()
-
-        ax.plot(x2, y2 + 2.5, 'x', markeredgewidth=2)
-        ax.plot(x, y, linewidth=2.0)
-        ax.plot(x2, y2 - 2.5, 'o-', linewidth=2)
-
-        ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-            ylim=(0, 8), yticks=np.arange(1, 8))
-
-        # plt.show()
-        self.fig_gradiente = plt.figure(figsize=(10, 5))
-        self.canvas_gradiente = FigureCanvas(self.fig_gradiente)
-        size_1 = self.grafico_txhw.size()
-        self.canvas_gradiente.resize(size_1)
-        print(size_1)
-        self.scene_gradiente.addWidget(self.canvas_gradiente)
-
 app = QApplication(argv)
 UIWindow =  Popup_rain()
 exit(app.exec_())
