@@ -3,6 +3,9 @@
 # pip install pyvista
 # pip install pyvistaqt
 # pip install PyQt5
+# pip install scipy
+# pip install mpltern
+# pip install rasterio
 
 import sys
 from sys import argv, exit, path
