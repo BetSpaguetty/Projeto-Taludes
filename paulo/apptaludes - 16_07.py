@@ -1,4 +1,9 @@
 # This Python file uses the following encoding: utf-8
+
+# pip install pyvista
+# pip install pyvistaqt
+# pip install PyQt5
+
 import sys
 from sys import argv, exit, path
 # from PySide2 import QtWidgets
