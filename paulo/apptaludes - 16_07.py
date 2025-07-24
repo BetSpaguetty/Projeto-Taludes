@@ -76,6 +76,8 @@ from pyvistaqt import QtInteractor, BackgroundPlotter
 #from ui_popup_LatLon import Ui_Dialog
 #from ui_add_info import Ui_Dialog as Ui_Dialog2
 
+#sssssssssssssssss
+
 class AppTaludes(QWidget):
     global wind2
     wind2 = 0
@@ -89,7 +91,9 @@ class AppTaludes(QWidget):
     def __init__(self, parent=None):
         #super().__init__(parent)
         super(AppTaludes, self).__init__()
-        uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\form.ui", self)
+        bub=32
+        uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
+        #uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\form.ui", self)
         #self = AppTaludes()
         #self.setupUi(self)
 
