@@ -70,7 +70,7 @@ from pyvistaqt import QtInteractor, BackgroundPlotter
 #      pyside2-uic popup_LatLon.ui -o ui_popup_LatLon.py
 #      pyside2-uic add_info.ui -o ui_add_info.py
 
-#from ui_form import Ui_AppTaludes
+from ui_form import Ui_AppTaludes
 #from ui_form2 import Ui_Form2
 # from ui_form3 import Ui_Form
 #from ui_popup_LatLon import Ui_Dialog
@@ -89,13 +89,13 @@ class AppTaludes(QWidget):
     selected_map = 0
 
     def __init__(self, parent=None):
-        #super().__init__(parent)
-        super(AppTaludes, self).__init__()
+        super().__init__(parent)
+        #super(AppTaludes, self).__init__()
         bub=32
-        uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
+        #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\paulo\\formX.ui", self)
         #uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\form.ui", self)
-        #self = AppTaludes()
-        #self.setupUi(self)
+        self = AppTaludes()
+        self.setupUi(self)
 
         global selfx
         selfx = self
