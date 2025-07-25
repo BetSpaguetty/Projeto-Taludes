@@ -23,7 +23,7 @@
    <string>AppTaludes</string>
   </property>
   <property name="layoutDirection">
-   <enum>Qt::LayoutDirection::LeftToRight</enum>
+   <enum>Qt::LeftToRight</enum>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="6" column="0" rowspan="3" colspan="2">
@@ -354,19 +354,6 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
       <number>15</number>
      </property>
      <item>
-      <widget class="QPushButton" name="mapaRio_Button">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Mapa Rio</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="topButton">
        <property name="text">
         <string>Top view</string>
@@ -388,6 +375,19 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="mapaRio_Button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Mapa Rio</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="corteArquivo_label">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -405,7 +405,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         <bool>true</bool>
        </property>
        <property name="layoutDirection">
-        <enum>LeftToRight</enum>
+        <enum>Qt::LeftToRight</enum>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -414,13 +414,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Defina o nome do arquivo de corte:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="textFormat">
-        <enum>Qt::TextFormat::AutoText</enum>
+        <enum>Qt::PlainText</enum>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -476,7 +473,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <item row="27" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">
      <property name="sizeConstraint">
-      <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+      <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <property name="leftMargin">
       <number>5</number>
@@ -493,7 +490,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="0">
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+        <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -504,7 +501,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
           <widget class="QLabel" name="label_areia">
@@ -526,16 +523,13 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string> Areia (%) </string>
            </property>
            <property name="scaledContents">
             <bool>false</bool>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -553,7 +547,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             </font>
            </property>
            <property name="focusPolicy">
-            <enum>Qt::FocusPolicy::StrongFocus</enum>
+            <enum>Qt::NoFocus</enum>
            </property>
            <property name="autoFillBackground">
             <bool>true</bool>
@@ -563,9 +557,6 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="frame">
             <bool>true</bool>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="placeholderText">
             <string>0</string>
@@ -580,7 +571,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
           <widget class="QLabel" name="label_argila">
@@ -602,13 +593,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>Argila (%)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -628,9 +616,6 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="text">
             <string>0</string>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
-           </property>
            <property name="placeholderText">
             <string>0</string>
            </property>
@@ -641,7 +626,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <property name="topMargin">
           <number>0</number>
@@ -666,13 +651,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>Silte (%)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>false</bool>
@@ -696,16 +678,13 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>100</string>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -734,16 +713,13 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           <bool>true</bool>
          </property>
          <property name="frameShape">
-          <enum>QFrame::Shape::Panel</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="text">
           <string>GRANULAR FINE</string>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -755,7 +731,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="3">
       <layout class="QGridLayout" name="c_phi_Layout">
        <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+        <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_C">
@@ -780,11 +756,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="value">
           <number>0</number>
          </property>
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
          <property name="tickInterval">
           <number>4</number>
@@ -794,7 +767,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
           <widget class="QLabel" name="oLbl">
@@ -807,6 +780,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="font">
             <font>
              <pointsize>11</pointsize>
+             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
@@ -817,13 +791,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>ϕ' (°)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -864,11 +835,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="pageStep">
           <number>1</number>
          </property>
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
          <property name="tickInterval">
           <number>6</number>
@@ -878,7 +846,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
           <widget class="QLabel" name="cLbl">
@@ -891,6 +859,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
+             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
@@ -904,16 +873,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Plain</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>c'(kPa)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -931,7 +894,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             </font>
            </property>
            <property name="focusPolicy">
-            <enum>Qt::FocusPolicy::StrongFocus</enum>
+            <enum>Qt::NoFocus</enum>
            </property>
            <property name="clearButtonEnabled">
             <bool>false</bool>
@@ -948,7 +911,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         <number>0</number>
        </property>
        <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+        <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -967,7 +930,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="5">
       <layout class="QVBoxLayout" name="btnLayout">
        <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+        <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item>
         <widget class="QPushButton" name="browse">
@@ -1040,13 +1003,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>p (mm/h)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1060,7 +1020,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="2">
       <layout class="QGridLayout" name="h_hw_Layout">
        <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+        <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_H">
@@ -1094,11 +1054,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="value">
           <number>10</number>
          </property>
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
          <property name="tickInterval">
           <number>10</number>
@@ -1108,7 +1065,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
           <widget class="QLabel" name="hLbl">
@@ -1121,6 +1078,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
+             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
@@ -1131,13 +1089,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>h(m)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1164,7 +1119,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="sizeConstraint">
-          <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
           <widget class="QLabel" name="hwLbl">
@@ -1177,6 +1132,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="font">
             <font>
              <pointsize>11</pointsize>
+             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
@@ -1184,13 +1140,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt; (m)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1228,11 +1181,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>0</number>
          </property>
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
          <property name="tickInterval">
           <number>20</number>
@@ -1268,13 +1218,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>t (h)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1305,13 +1252,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <bool>true</bool>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Shape::Panel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>θ (-)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1343,11 +1287,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>188</number>
          </property>
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
          <property name="tickInterval">
           <number>20</number>
@@ -1356,11 +1297,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        </item>
        <item row="2" column="0">
         <widget class="QSlider" name="horizontalSlider_t">
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
         </widget>
        </item>
@@ -1386,13 +1324,13 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
 background-color: rgb(190, 190, 190);</string>
        </property>
        <property name="tabShape">
-        <enum>QTabWidget::TabShape::Triangular</enum>
+        <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
        <property name="elideMode">
-        <enum>Qt::TextElideMode::ElideNone</enum>
+        <enum>Qt::ElideLeft</enum>
        </property>
        <property name="usesScrollButtons">
         <bool>true</bool>
@@ -1424,7 +1362,7 @@ background-color: rgb(190, 190, 190);</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="sizeConstraint">
-           <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
          </layout>
         </widget>
@@ -1447,13 +1385,13 @@ background-color: rgb(190, 190, 190);</string>
 background-color: rgb(190, 190, 190);</string>
        </property>
        <property name="tabShape">
-        <enum>QTabWidget::TabShape::Triangular</enum>
+        <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
        <property name="elideMode">
-        <enum>Qt::TextElideMode::ElideNone</enum>
+        <enum>Qt::ElideLeft</enum>
        </property>
        <property name="usesScrollButtons">
         <bool>true</bool>
@@ -1498,7 +1436,7 @@ background-color: rgb(190, 190, 190);</string>
 background-color: rgb(190, 190, 190);</string>
        </property>
        <property name="tabShape">
-        <enum>QTabWidget::TabShape::Triangular</enum>
+        <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
         <number>0</number>
@@ -1564,7 +1502,7 @@ background-color: rgb(190, 190, 190);</string>
    <item row="25" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout_2">
      <property name="sizeConstraint">
-      <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+      <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item row="0" column="2">
       <widget class="QLabel" name="imgsizex">
@@ -1675,6 +1613,7 @@ background-color: rgb(190, 190, 190);</string>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
+         <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
@@ -1682,7 +1621,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1723,6 +1662,7 @@ background-color: rgb(190, 190, 190);</string>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
+         <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
@@ -1730,7 +1670,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Y&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1761,6 +1701,7 @@ background-color: rgb(190, 190, 190);</string>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
+         <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
@@ -1768,7 +1709,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="lineWidth">
         <number>1</number>
@@ -1791,6 +1732,7 @@ background-color: rgb(190, 190, 190);</string>
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>50</weight>
            <bold>false</bold>
           </font>
          </property>
@@ -1798,16 +1740,13 @@ background-color: rgb(190, 190, 190);</string>
           <bool>true</bool>
          </property>
          <property name="frameShape">
-          <enum>QFrame::Shape::Panel</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="text">
           <string>Tamanho de X e Y</string>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -1817,16 +1756,13 @@ background-color: rgb(190, 190, 190);</string>
        <item>
         <widget class="QLabel" name="label">
          <property name="layoutDirection">
-          <enum>LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
          </property>
          <property name="text">
           <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -1843,17 +1779,18 @@ background-color: rgb(190, 190, 190);</string>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
+         <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
        <property name="layoutDirection">
-        <enum>LeftToRight</enum>
+        <enum>Qt::LeftToRight</enum>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Y&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
