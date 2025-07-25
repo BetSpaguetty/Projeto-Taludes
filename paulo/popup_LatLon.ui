@@ -46,20 +46,20 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="4">
+     <item row="3" column="0">
+      <widget class="QLabel" name="info">
+       <property name="text">
+        <string>Informações:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
       <widget class="QPushButton" name="botao_converte">
        <property name="text">
         <string>Converter (Ctrl + E)</string>
        </property>
        <property name="shortcut">
         <string>Ctrl+E</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="info">
-       <property name="text">
-        <string>Informações:</string>
        </property>
       </widget>
      </item>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
-    <height>537</height>
+    <width>606</width>
+    <height>312</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,19 +90,6 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Latitude (N-S):</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLabel" name="label_2">
        <property name="maximumSize">
         <size>
@@ -112,6 +99,19 @@
        </property>
        <property name="text">
         <string>Longitude (E-W):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Latitude (N-S):</string>
        </property>
       </widget>
      </item>

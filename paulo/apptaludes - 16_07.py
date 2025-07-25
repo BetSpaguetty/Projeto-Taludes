@@ -93,9 +93,9 @@ class AppTaludes(QWidget):
         #super(AppTaludes, self).__init__()
         bub=32
         #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\paulo\\formX.ui", self)
-        #uic.loadUi("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\form.ui", self)
-        self = AppTaludes()
-        self.setupUi(self)
+        uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
+        #self = AppTaludes()
+        #self.setupUi(self)
 
         global selfx
         selfx = self

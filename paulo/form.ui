@@ -23,7 +23,7 @@
    <string>AppTaludes</string>
   </property>
   <property name="layoutDirection">
-   <enum>layoutDirection>LeftToRight</layoutDirection></enum>
+   <enum>Qt::LayoutDirection::LeftToRight</enum>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="6" column="0" rowspan="3" colspan="2">
