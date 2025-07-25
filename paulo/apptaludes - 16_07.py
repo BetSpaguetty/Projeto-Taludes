@@ -92,8 +92,8 @@ class AppTaludes(QWidget):
         super().__init__(parent)
         #super(AppTaludes, self).__init__()
         bub=32
-        #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\paulo\\formX.ui", self)
-        uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
+        uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\paulo\\formX.ui", self)
+        #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
         #self = AppTaludes()
         #self.setupUi(self)
 
