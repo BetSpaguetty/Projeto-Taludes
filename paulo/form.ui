@@ -963,7 +963,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             <enum>Qt::NoFocus</enum>
            </property>
            <property name="autoFillBackground">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
            <property name="text">
             <string>0</string>
@@ -1393,6 +1393,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>300</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
