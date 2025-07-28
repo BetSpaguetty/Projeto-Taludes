@@ -3070,6 +3070,8 @@ class Form2(QWidget):
         global selfx
         AppTaludes.elev_incl(selfx,fname)
 
+        print("Funcionou")
+
         self2.close()
     #
 
