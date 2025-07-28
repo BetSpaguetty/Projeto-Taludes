@@ -888,7 +888,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="0">
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
+        <enum>QLayout::SetMinimumSize</enum>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -904,7 +904,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="label_areia">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -929,6 +929,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="scaledContents">
             <bool>false</bool>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
@@ -938,6 +941,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>160</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -974,7 +983,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="label_argila">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -996,6 +1005,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="text">
             <string>Argila (%)</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
@@ -1005,6 +1017,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>105</width>
+             <height>160</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -1035,7 +1053,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="label_silte">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -1056,6 +1074,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="text">
             <string>Silte (%)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>false</bool>
@@ -1097,7 +1118,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item>
         <widget class="QLabel" name="label_material">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -1121,6 +1142,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -1334,6 +1358,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        </property>
        <item>
         <widget class="QTabWidget" name="tabs_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="autoFillBackground">
           <bool>true</bool>
          </property>
