@@ -960,7 +960,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             </font>
            </property>
            <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
+            <enum>Qt::StrongFocus</enum>
            </property>
            <property name="autoFillBackground">
             <bool>false</bool>
