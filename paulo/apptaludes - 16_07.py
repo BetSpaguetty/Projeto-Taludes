@@ -199,7 +199,7 @@ class AppTaludes(QWidget):
         self.tabs.setVisible(False)
         self.tabs_2.setVisible(False)
         self.tabs_3.setVisible(False)
-        self.tabs_2.setVisible(False)
+        self.tabs_4.setVisible(False)
 
         self.lineEdit_areia.setVisible(False)
         self.lineEdit_argila.setVisible(False)
@@ -636,12 +636,12 @@ class AppTaludes(QWidget):
         self.tabMat.setLayout(self.tabMat_layout)
 
         self.tab_name = "Solo"
-        self.tabs_2.addTab(self.tabMat, self.tab_name)
+        self.tabs_4.addTab(self.tabMat, self.tab_name)
 
-        if self.tabs_2.count() >= 2:
-            self.tabs_2.removeTab(0)
+        if self.tabs_4.count() >= 2:
+            self.tabs_4.removeTab(0)
 
-        self.tabs_2.setVisible(True)
+        self.tabs_4.setVisible(True)
         
         #self.verticalLayout_6.addWidget(self.canvasT)
 
@@ -2782,7 +2782,7 @@ class AppTaludes(QWidget):
         self.label_silte.setVisible(not self.label_silte.isVisible())
         self.label_silte2.setVisible(not self.label_silte2.isVisible())
         self.label_material.setVisible(not self.label_material.isVisible())
-        self.tabs_2.setVisible(not self.tabs_2.isVisible())
+        self.tabs_4.setVisible(not self.tabs_4.isVisible())
         if self.tri > 0:
             self.canvasT.setVisible(not self.canvasT.isVisible())
     #
