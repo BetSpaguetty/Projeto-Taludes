@@ -70,7 +70,7 @@ from pyvistaqt import QtInteractor, BackgroundPlotter
 #      pyside2-uic popup_LatLon.ui -o ui_popup_LatLon.py
 #      pyside2-uic add_info.ui -o ui_add_info.py
 
-from ui_form import Ui_AppTaludes
+#from ui_form import Ui_AppTaludes
 #from ui_form2 import Ui_Form2
 # from ui_form3 import Ui_Form
 #from ui_popup_LatLon import Ui_Dialog
@@ -2263,7 +2263,11 @@ class AppTaludes(QWidget):
 
     def elev_incl(self,arquivo):
         global fname
+        
+
         img = Image.open(arquivo)
+        print("999999999999999")
+        print(arquivo)
         self.label.setText(str('X: ' + str(img.size[-2]) + '     Y: ' + str(img.size[1])))
 
         # Convert the image to a NumPy array
@@ -2381,8 +2385,8 @@ class AppTaludes(QWidget):
         print("!!!!!!!!!!!!!", prop_z)
 
         # Inverte os eixos visualmente, se necessário
-        xR = np.flip(xR, axis=1)  # inverte eixo X
-        yR = np.flip(yR, axis=0)  # inverte eixo Y
+        xR = np.flip(xR, axis=1)   # inverte eixo X
+        yR = np.flip(yR, axis=0)   # inverte eixo Y
         #zR = np.flip(zR, axis=0)  # inverte eixo Y do Z
 
         from qtpy import QtWidgets
@@ -3025,6 +3029,8 @@ class Form2(QWidget):
         self2.label_mapa_rio.setScaledContents(True)
         # self2.gridLayout.setScaledContents(True)
 
+        print("FFFF")
+
         global wind2
         wind2 +=1
     #
@@ -3033,26 +3039,29 @@ class Form2(QWidget):
         botao_clicado = self2.sender() # atribui o própio botão que foi clicado como uma variável
         self2.label_mapa_rio.lower()
 
-        arquivos_regiao =  {"botao_regiao1":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
-                            "botao_regiao2":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
-                            "botao_regiao3":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_3.tif",
-                            "botao_regiao4":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_4.tif",
-                            "botao_regiao5":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_5.tif",
-                            "botao_regiao6":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_6.tif",
-                            "botao_regiao7":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_7.tif",
-                            "botao_regiao8":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_8.tif",
-                            "botao_regiao9":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_9.tif",
-                            "botao_regiao10":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_10.tif",
-                            "botao_regiao11":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_11.tif",
-                            "botao_regiao12":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_12.tif",
-                            "botao_regiao13":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_13.tif",
-                            "botao_regiao14":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_14.tif",
-                            "botao_regiao15":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_15.tif",
-                            "botao_regiao16":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_16.tif",
-                            "botao_regiao17":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
-                            "botao_regiao18":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
-                            "botao_regiao19":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
-                            "botao_regiao20":"c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
+        arquivos_regiao =  {"botao_regiao1":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
+                            "botao_regiao2":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
+                            "botao_regiao3":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_3.tif",
+                            "botao_regiao4":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_4.tif",
+                            "botao_regiao5":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_5.tif",
+                            "botao_regiao6":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_6.tif",
+                            "botao_regiao7":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_7.tif",
+                            "botao_regiao8":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_8.tif",
+                            "botao_regiao9":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_9.tif",
+                            "botao_regiao10":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_10.tif",
+                            "botao_regiao11":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_11.tif",
+                            "botao_regiao12":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_12.tif",
+                            "botao_regiao13":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_13.tif",
+                            "botao_regiao14":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_14.tif",
+                            "botao_regiao15":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_15.tif",
+                            "botao_regiao16":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_16.tif",
+                            "botao_regiao17":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
+                            "botao_regiao18":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
+                            "botao_regiao19":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
+                            "botao_regiao20":"C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
+
+        # c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif
+        # "C:\Users\paulobaccar\Documents\Projeto Taludes (Cópia VS Code)\Projeto-Taludes\betsabe\rj_recortes\RJ_1.tif"
 
         global fname
         global selected_map
@@ -3068,7 +3077,9 @@ class Form2(QWidget):
         # self2.connect(AppTaludes.elev_incl)
 
         global selfx
-        AppTaludes.elev_incl(selfx,fname)
+        print(fname)
+        print("Funcionou 3")
+        AppTaludes.elev_incl(selfx,fname) #self2,fname)
 
         print("Funcionou")
 
