@@ -674,6 +674,8 @@ class AppTaludes(QWidget):
 
     def define_chuva(self):
         # variáveis fornecidas pelo usuario
+
+        print("Chuva 1")
         p = int(self.plineEdit.text()) # mm
         p = p/1000 # mm/h -> m/h
         #print("precipitação (m/h)=",p) 
@@ -736,6 +738,8 @@ class AppTaludes(QWidget):
     #
 
     def number_changed(self):
+
+        print("Numero 1")
         valueC = str(self.horizontalSlider_C.value()/10)
         self.ClineEdit.setText(valueC)
 
