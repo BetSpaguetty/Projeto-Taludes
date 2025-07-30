@@ -682,6 +682,8 @@ class AppTaludes(QWidget):
         t = int(self.horizontalSlider_t.value()) # h
         #print("horas=",t) 
 
+        print("Chuva 2")
+
         # variáveis obtidas da função runAnalysis (necessario defini-las como variaveis globais)
         self.theta_i = self.horizontalSlider_Theta.value();   # 0.3
         self.h = self.horizontalSlider_H.value()/10;    # 3 # m
@@ -689,6 +691,7 @@ class AppTaludes(QWidget):
         theta_i = self.theta_i
         h = self.h
 
+        print("Chuva 3")
         # variáveis obtidas da função define_material (que cria um objeto)
         # self.material_theta_r = 0.025
         # self.material_theta_500 = 0.046
