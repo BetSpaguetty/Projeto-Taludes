@@ -676,6 +676,9 @@ class AppTaludes(QWidget):
         # variáveis fornecidas pelo usuario
 
         print("Chuva 1")
+        print(self.plineEdit.text())
+        print(self.horizontalSlider_t.value())
+
         p = int(self.plineEdit.text()) # mm
         p = p/1000 # mm/h -> m/h
         #print("precipitação (m/h)=",p) 
