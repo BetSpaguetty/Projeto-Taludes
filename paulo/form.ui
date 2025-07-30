@@ -508,7 +508,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="maximumSize">
             <size>
              <width>120</width>
-             <height>40</height>
+             <height>60</height>
             </size>
            </property>
            <property name="font">
@@ -532,7 +532,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="maximumSize">
             <size>
              <width>120</width>
-             <height>40</height>
+             <height>60</height>
             </size>
            </property>
           </widget>
@@ -588,7 +588,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="maximumSize">
           <size>
            <width>240</width>
-           <height>40</height>
+           <height>60</height>
           </size>
          </property>
          <property name="text">
@@ -607,7 +607,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="maximumSize">
           <size>
            <width>240</width>
-           <height>40</height>
+           <height>60</height>
           </size>
          </property>
          <property name="text">
@@ -1858,6 +1858,12 @@ background-color: rgb(190, 190, 190);</string>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
@@ -1879,6 +1885,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -1905,6 +1917,12 @@ background-color: rgb(190, 190, 190);</string>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
@@ -1930,6 +1948,12 @@ background-color: rgb(190, 190, 190);</string>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
@@ -1951,6 +1975,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -1981,6 +2011,12 @@ background-color: rgb(190, 190, 190);</string>
      </item>
      <item row="0" column="13">
       <widget class="QPushButton" name="Adjust">
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>60</height>
+        </size>
+       </property>
        <property name="text">
         <string>Adjust image</string>
        </property>
@@ -2006,6 +2042,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -2052,6 +2094,12 @@ background-color: rgb(190, 190, 190);</string>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -2086,6 +2134,12 @@ background-color: rgb(190, 190, 190);</string>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="limits">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -2115,6 +2169,12 @@ background-color: rgb(190, 190, 190);</string>
        </item>
        <item>
         <widget class="QLabel" name="label">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
@@ -2138,6 +2198,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
        <property name="font">
         <font>
