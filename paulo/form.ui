@@ -493,6 +493,37 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="pLbl">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="text">
+            <string>p (mm/h)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="plineEdit"/>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QPushButton" name="browse">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -544,37 +575,6 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </property>
         </widget>
        </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QLabel" name="pLbl">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="text">
-            <string>p (mm/h)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="plineEdit"/>
-         </item>
-        </layout>
-       </item>
       </layout>
      </item>
      <item row="1" column="5">
@@ -614,8 +614,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>188</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>20</number>
@@ -695,8 +698,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
         </widget>
        </item>
@@ -708,7 +714,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item row="2" column="0">
-        <widget class="QSlider" name="horiz">
+        <widget class="QSlider" name="horizontalSlider_H">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -742,8 +748,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="value">
           <number>10</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>10</number>
@@ -852,7 +861,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </item>
         </layout>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QSlider" name="horizontalSlider_Hw">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -875,8 +884,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>0</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>20</number>
@@ -884,7 +896,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QSlider" name="horizontalSlider_H">
+        <widget class="QSlider" name="horizontalS">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -911,6 +923,19 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </property>
          <property name="tickInterval">
           <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QSlider" name="horizontalSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksBelow</enum>
+         </property>
+         <property name="tickInterval">
+          <number>20</number>
          </property>
         </widget>
        </item>
@@ -1242,8 +1267,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="value">
           <number>0</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>4</number>
@@ -1327,8 +1355,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="pageStep">
           <number>1</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>6</number>
