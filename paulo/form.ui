@@ -473,7 +473,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <item row="27" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">
      <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
+      <enum>QLayout::SetMinimumSize</enum>
      </property>
      <property name="leftMargin">
       <number>5</number>
