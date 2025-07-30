@@ -168,6 +168,14 @@ class AppTaludes(QWidget):
         self.lineEdit_argila.textChanged.connect(self.number_changed_2)      #Argila
 
         self.material_type = 'GRANULAR FINE'
+        self.material_theta_r = 0.010;
+        self.material_theta_500 = 0.188;
+        self.material_theta_s = 0.412;
+        self.material_vg_alpha = 0.82;
+        self.material_vg_n = 1.2179;
+        self.material_vg_m = 0.1789;
+        self.material_vg_k = 0.04;
+        
         self.lineEdit_areia.textChanged.connect(self.define_material)       #Areia
         self.lineEdit_argila.textChanged.connect(self.define_material)      #Argila
 
