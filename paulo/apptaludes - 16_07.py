@@ -735,9 +735,6 @@ class AppTaludes(QWidget):
         theta_e = (theta_i-theta_r)/(theta_s-theta_r)
         psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
         a = abs(psi) * (theta_s - theta_i)
-
-        print("Chuva 3.7",p)
-        print(((p-k)))
         
         tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
         print(tp)
@@ -746,6 +743,11 @@ class AppTaludes(QWidget):
         print("Chuva 3.8")
 
         hw0 = k*(t-tp) + hwp
+
+        print(hw0)
+        print(a)
+        print((hw0 + a)/(hwp + a))
+        print(((hw0 + a)/hw0))
         hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
 
         print("Chuva 4")
