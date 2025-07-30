@@ -728,6 +728,8 @@ class AppTaludes(QWidget):
         hwp = p*tp # m
         hw0 = k*(t-tp) + hwp
         hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
+
+        print("Chuva 4")
         
         # possibilidades
         if isnan(hw): # se hw não tiver valor
@@ -737,6 +739,8 @@ class AppTaludes(QWidget):
         elif hw>h: # se hw for maior que o h
             hw = h
 
+        print("Chuva 5")
+        
         self.hwlineEdit.setText(f'{hw:.7f}')
         #print("hw (m) =", hw)
         #print("------------------------------------------------------------")
