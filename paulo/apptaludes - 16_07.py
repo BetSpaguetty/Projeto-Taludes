@@ -695,6 +695,7 @@ class AppTaludes(QWidget):
         h = self.h
 
         print("Chuva 3")
+        print(self.material_theta_r)
         # variáveis obtidas da função define_material (que cria um objeto)
         # self.material_theta_r = 0.025
         # self.material_theta_500 = 0.046
