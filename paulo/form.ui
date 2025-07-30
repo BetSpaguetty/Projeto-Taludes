@@ -1631,7 +1631,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <property name="maximumSize">
         <size>
          <width>900</width>
-         <height>900</height>
+         <height>500</height>
         </size>
        </property>
        <property name="tabletTracking">
@@ -1698,7 +1698,7 @@ background-color: rgb(190, 190, 190);</string>
        <property name="maximumSize">
         <size>
          <width>900</width>
-         <height>900</height>
+         <height>500</height>
         </size>
        </property>
        <property name="tabletTracking">
@@ -1761,7 +1761,7 @@ background-color: rgb(190, 190, 190);</string>
        <property name="maximumSize">
         <size>
          <width>900</width>
-         <height>900</height>
+         <height>500</height>
         </size>
        </property>
        <property name="tabletTracking">
@@ -1845,6 +1845,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="text">
         <string>TextLabel</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item row="0" column="5">
@@ -1908,6 +1911,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="text">
         <string>20</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
        <property name="placeholderText">
         <string/>
        </property>
@@ -1965,6 +1971,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -1984,6 +1993,9 @@ background-color: rgb(190, 190, 190);</string>
        </property>
        <property name="text">
         <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -2014,6 +2026,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -2023,6 +2038,9 @@ background-color: rgb(190, 190, 190);</string>
       <widget class="QLabel" name="imgsizey">
        <property name="text">
         <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -2055,6 +2073,9 @@ background-color: rgb(190, 190, 190);</string>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
        <property name="margin">
         <number>5</number>
@@ -2140,6 +2161,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -2149,6 +2173,9 @@ background-color: rgb(190, 190, 190);</string>
       <widget class="QLabel" name="label_shape">
        <property name="text">
         <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
