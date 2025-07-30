@@ -502,6 +502,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -519,7 +525,14 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="plineEdit"/>
+          <widget class="QLineEdit" name="plineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -530,6 +543,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
          </property>
          <property name="text">
           <string>Browse</string>
@@ -544,6 +563,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="text">
           <string>Propriedades</string>
          </property>
@@ -557,6 +582,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="text">
           <string>Run Analysis</string>
          </property>
@@ -569,6 +600,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
          </property>
          <property name="text">
           <string>Clear</string>
@@ -592,6 +629,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -635,6 +678,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -652,7 +701,14 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="tlineEdit"/>
+          <widget class="QLineEdit" name="tlineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -665,6 +721,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -686,7 +748,14 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="thetalineEdit"/>
+          <widget class="QLineEdit" name="thetalineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -697,6 +766,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -723,6 +798,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
@@ -772,6 +853,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>11</pointsize>
@@ -798,6 +885,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -819,6 +912,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -849,6 +948,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -868,6 +973,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -1208,6 +1319,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="autoFillBackground">
           <bool>true</bool>
          </property>
@@ -1247,6 +1364,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>11</pointsize>
@@ -1276,6 +1399,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -1295,6 +1424,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -1335,6 +1470,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -1366,6 +1507,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
