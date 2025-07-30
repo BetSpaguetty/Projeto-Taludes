@@ -507,7 +507,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>40</height>
             </size>
            </property>
@@ -531,7 +531,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           <widget class="QLineEdit" name="plineEdit">
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>40</height>
             </size>
            </property>
@@ -689,7 +689,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -719,7 +719,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -739,7 +739,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -772,7 +772,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -879,7 +879,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -911,7 +911,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -939,7 +939,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -974,7 +974,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -1393,7 +1393,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -1428,7 +1428,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -1499,7 +1499,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
@@ -1537,7 +1537,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>50</height>
             </size>
            </property>
