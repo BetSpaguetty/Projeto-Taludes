@@ -713,7 +713,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
-       <item row="2" column="0">
+       <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_H">
          <property name="enabled">
           <bool>true</bool>
@@ -759,7 +759,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
@@ -861,7 +861,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </item>
         </layout>
        </item>
-       <item row="5" column="0">
+       <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_Hw">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -884,50 +884,6 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>0</number>
          </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="tickPosition">
-          <enum>QSlider::TicksBelow</enum>
-         </property>
-         <property name="tickInterval">
-          <number>20</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QSlider" name="horizontalS">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="autoFillBackground">
-          <bool>true</bool>
-         </property>
-         <property name="minimum">
-          <number>10</number>
-         </property>
-         <property name="maximum">
-          <number>50</number>
-         </property>
-         <property name="pageStep">
-          <number>0</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="tickPosition">
-          <enum>QSlider::TicksBelow</enum>
-         </property>
-         <property name="tickInterval">
-          <number>10</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QSlider" name="horizontalSlider">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
