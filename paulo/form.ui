@@ -489,6 +489,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      </property>
      <item row="1" column="6">
       <layout class="QVBoxLayout" name="btnLayout">
+       <property name="spacing">
+        <number>1</number>
+       </property>
        <property name="sizeConstraint">
         <enum>QLayout::SetMinimumSize</enum>
        </property>
@@ -624,6 +627,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        </property>
        <property name="rightMargin">
         <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>1</number>
        </property>
        <item row="5" column="0">
         <widget class="QSlider" name="horizontalSlider_Theta">
@@ -790,6 +796,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
       <layout class="QGridLayout" name="h_hw_Layout">
        <property name="sizeConstraint">
         <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <property name="spacing">
+        <number>1</number>
        </property>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_H">
@@ -1313,6 +1322,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
       <layout class="QGridLayout" name="c_phi_Layout">
        <property name="sizeConstraint">
         <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <property name="spacing">
+        <number>1</number>
        </property>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_C">
