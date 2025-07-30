@@ -707,8 +707,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
-       <item row="1" column="0">
-        <widget class="QSlider" name="horizontalSlider_H">
+       <item row="2" column="0">
+        <widget class="QSlider" name="horiz">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -749,6 +749,54 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           <number>10</number>
          </property>
         </widget>
+       </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="hwLbl">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt; (m)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="hwlineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -804,55 +852,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </item>
         </layout>
        </item>
-       <item row="2" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetDefaultConstraint</enum>
-         </property>
-         <item>
-          <widget class="QLabel" name="hwLbl">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>11</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt; (m)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="hwlineEdit">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QSlider" name="horizontalSlider_Hw">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -880,6 +880,37 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </property>
          <property name="tickInterval">
           <number>20</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QSlider" name="horizontalSlider_H">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="minimum">
+          <number>10</number>
+         </property>
+         <property name="maximum">
+          <number>50</number>
+         </property>
+         <property name="pageStep">
+          <number>0</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksBelow</enum>
+         </property>
+         <property name="tickInterval">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -1953,8 +1984,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>643</x>
-     <y>580</y>
+     <x>669</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
@@ -1969,8 +2000,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>643</x>
-     <y>504</y>
+     <x>669</x>
+     <y>498</y>
     </hint>
    </hints>
   </connection>
@@ -1985,8 +2016,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>580</y>
+     <x>453</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
@@ -2001,8 +2032,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>504</y>
+     <x>453</x>
+     <y>498</y>
     </hint>
    </hints>
   </connection>
@@ -2033,8 +2064,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>168</x>
-     <y>468</y>
+     <x>162</x>
+     <y>459</y>
     </hint>
    </hints>
   </connection>
@@ -2045,8 +2076,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>mostra_lista()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>47</y>
+     <x>84</x>
+     <y>46</y>
     </hint>
     <hint type="destinationlabel">
      <x>63</x>
@@ -2061,8 +2092,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>120</y>
+     <x>641</x>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>295</x>
@@ -2078,7 +2109,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>220</x>
-     <y>186</y>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>487</x>
@@ -2093,8 +2124,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>186</y>
+     <x>851</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>722</x>
@@ -2110,7 +2141,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>431</x>
-     <y>251</y>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>922</x>
@@ -2125,11 +2156,11 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>251</y>
+     <x>1062</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1156</x>
+     <x>1075</x>
      <y>101</y>
     </hint>
    </hints>
@@ -2141,8 +2172,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>120</y>
+     <x>851</x>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>418</x>
@@ -2158,7 +2189,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>431</x>
-     <y>186</y>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>708</x>
@@ -2173,8 +2204,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>186</y>
+     <x>1062</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>934</x>
@@ -2189,11 +2220,11 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>251</y>
+     <x>641</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1155</x>
+     <x>1075</x>
      <y>374</y>
     </hint>
    </hints>
@@ -2206,7 +2237,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>262</x>
-     <y>120</y>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>4</x>
@@ -2221,11 +2252,11 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>251</y>
+     <x>851</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1305</x>
+     <x>1075</x>
      <y>273</y>
     </hint>
    </hints>
@@ -2237,8 +2268,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>120</y>
+     <x>1062</x>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>335</x>
@@ -2253,8 +2284,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>186</y>
+     <x>641</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>573</x>
@@ -2270,7 +2301,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>220</x>
-     <y>251</y>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>847</x>
@@ -2289,8 +2320,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>740</x>
-     <y>47</y>
+     <x>819</x>
+     <y>44</y>
     </hint>
    </hints>
   </connection>
@@ -2302,7 +2333,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1065</x>
-     <y>47</y>
+     <y>46</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -2337,8 +2368,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>842</x>
-     <y>578</y>
+     <x>844</x>
+     <y>567</y>
     </hint>
    </hints>
   </connection>
