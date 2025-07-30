@@ -634,7 +634,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="5" column="0">
         <widget class="QSlider" name="horizontalSlider_Theta">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -682,7 +682,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="tLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -711,6 +711,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </item>
          <item>
           <widget class="QLineEdit" name="tlineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="maximumSize">
             <size>
              <width>16777215</width>
@@ -726,7 +732,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="thetaLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -758,6 +764,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          </item>
          <item>
           <widget class="QLineEdit" name="thetalineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="maximumSize">
             <size>
              <width>16777215</width>
@@ -771,7 +783,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_t">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -806,7 +818,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           <bool>true</bool>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -860,7 +872,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="hwLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -892,7 +904,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="hwlineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -920,7 +932,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="hLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -955,7 +967,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="hlineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -981,7 +993,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_Hw">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -1329,7 +1341,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_C">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -1374,7 +1386,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="oLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -1409,7 +1421,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="philineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -1435,7 +1447,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_Phi">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -1480,7 +1492,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="cLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -1518,7 +1530,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="ClineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
