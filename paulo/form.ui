@@ -473,7 +473,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <item row="27" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">
      <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
+      <enum>QLayout::SetMinimumSize</enum>
      </property>
      <property name="leftMargin">
       <number>5</number>
@@ -489,61 +489,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      </property>
      <item row="1" column="6">
       <layout class="QVBoxLayout" name="btnLayout">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
+       <property name="spacing">
+        <number>1</number>
        </property>
-       <item>
-        <widget class="QPushButton" name="browse">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Browse</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="prop_Button">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Propriedades</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="AnalysisBtn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Run Analysis</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="ClearBtn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Clear</string>
-         </property>
-        </widget>
-       </item>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
@@ -553,6 +504,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>60</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -571,27 +528,125 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="plineEdit"/>
+          <widget class="QLineEdit" name="plineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>60</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="browse">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Browse</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="prop_Button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Propriedades</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="AnalysisBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Run Analysis</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ClearBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Clear</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
      <item row="1" column="5">
       <layout class="QGridLayout" name="rain_Layout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
        <property name="leftMargin">
-        <number>10</number>
+        <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>10</number>
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>1</number>
        </property>
        <item row="5" column="0">
         <widget class="QSlider" name="horizontalSlider_Theta">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -614,8 +669,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>188</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>20</number>
@@ -627,10 +685,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="tLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -649,7 +713,23 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="tlineEdit"/>
+          <widget class="QLineEdit" name="tlineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -658,10 +738,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="thetaLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -683,20 +769,45 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="thetalineEdit"/>
+          <widget class="QLineEdit" name="thetalineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>188</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
        <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_t">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
         </widget>
        </item>
@@ -705,7 +816,10 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="3">
       <layout class="QGridLayout" name="h_hw_Layout">
        <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <property name="spacing">
+        <number>1</number>
        </property>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_H">
@@ -713,10 +827,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
           <bool>true</bool>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
@@ -742,13 +862,79 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="value">
           <number>10</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>10</number>
          </property>
         </widget>
+       </item>
+       <item row="2" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="hwLbl">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt; (m)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="hwlineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -758,10 +944,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="hLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -787,10 +979,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="hlineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -798,55 +996,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             </font>
            </property>
            <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetDefaultConstraint</enum>
-         </property>
-         <item>
-          <widget class="QLabel" name="hwLbl">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>11</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt; (m)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="hwlineEdit">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
+            <string>10</string>
            </property>
           </widget>
          </item>
@@ -855,10 +1005,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_Hw">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -875,8 +1031,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="sliderPosition">
           <number>0</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>20</number>
@@ -1186,15 +1345,24 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
      <item row="1" column="4">
       <layout class="QGridLayout" name="c_phi_Layout">
        <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <property name="spacing">
+        <number>1</number>
        </property>
        <item row="1" column="0">
         <widget class="QSlider" name="horizontalSlider_C">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -1211,8 +1379,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="value">
           <number>0</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>4</number>
@@ -1227,10 +1398,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="oLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -1256,10 +1433,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="philineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -1269,6 +1452,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="autoFillBackground">
             <bool>false</bool>
            </property>
+           <property name="text">
+            <string>15</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -1276,10 +1462,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
        <item row="3" column="0">
         <widget class="QSlider" name="horizontalSlider_Phi">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>50</height>
+          </size>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -1296,8 +1488,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <property name="pageStep">
           <number>1</number>
          </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::NoTicks</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>6</number>
@@ -1312,10 +1507,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLabel" name="cLbl">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -1344,10 +1545,16 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
          <item>
           <widget class="QLineEdit" name="ClineEdit">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>50</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -1356,6 +1563,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="focusPolicy">
             <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="text">
+            <string>0</string>
            </property>
            <property name="clearButtonEnabled">
             <bool>false</bool>
@@ -1372,7 +1582,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
         <number>0</number>
        </property>
        <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
+        <enum>QLayout::SetMinimumSize</enum>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -1436,6 +1646,12 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="3">
       <widget class="QTabWidget" name="tabs_2">
+       <property name="maximumSize">
+        <size>
+         <width>900</width>
+         <height>500</height>
+        </size>
+       </property>
        <property name="tabletTracking">
         <bool>true</bool>
        </property>
@@ -1497,6 +1713,12 @@ background-color: rgb(190, 190, 190);</string>
      </item>
      <item row="0" column="2">
       <widget class="QTabWidget" name="tabs">
+       <property name="maximumSize">
+        <size>
+         <width>900</width>
+         <height>500</height>
+        </size>
+       </property>
        <property name="tabletTracking">
         <bool>true</bool>
        </property>
@@ -1554,6 +1776,12 @@ background-color: rgb(190, 190, 190);</string>
      </item>
      <item row="0" column="1">
       <widget class="QTabWidget" name="tabs_3">
+       <property name="maximumSize">
+        <size>
+         <width>900</width>
+         <height>500</height>
+        </size>
+       </property>
        <property name="tabletTracking">
         <bool>true</bool>
        </property>
@@ -1635,6 +1863,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="text">
         <string>TextLabel</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item row="0" column="5">
@@ -1644,6 +1875,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -1666,6 +1903,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -1692,11 +1935,20 @@ background-color: rgb(190, 190, 190);</string>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
        <property name="text">
         <string>20</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
        <property name="placeholderText">
         <string/>
@@ -1713,6 +1965,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -1736,6 +1994,12 @@ background-color: rgb(190, 190, 190);</string>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -1755,6 +2019,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -1762,6 +2029,12 @@ background-color: rgb(190, 190, 190);</string>
      </item>
      <item row="0" column="13">
       <widget class="QPushButton" name="Adjust">
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>60</height>
+        </size>
+       </property>
        <property name="text">
         <string>Adjust image</string>
        </property>
@@ -1775,6 +2048,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="text">
         <string>TextLabel</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item row="0" column="8">
@@ -1784,6 +2060,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -1804,6 +2086,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -1814,6 +2099,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="text">
         <string>TextLabel</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item row="0" column="4">
@@ -1823,6 +2111,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -1846,6 +2140,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -1855,6 +2152,12 @@ background-color: rgb(190, 190, 190);</string>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="limits">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -1874,6 +2177,9 @@ background-color: rgb(190, 190, 190);</string>
          <property name="scaledContents">
           <bool>true</bool>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
          <property name="wordWrap">
           <bool>true</bool>
          </property>
@@ -1881,6 +2187,12 @@ background-color: rgb(190, 190, 190);</string>
        </item>
        <item>
         <widget class="QLabel" name="label">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
@@ -1889,6 +2201,9 @@ background-color: rgb(190, 190, 190);</string>
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -1901,6 +2216,12 @@ background-color: rgb(190, 190, 190);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -1924,6 +2245,9 @@ background-color: rgb(190, 190, 190);</string>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="margin">
         <number>5</number>
        </property>
@@ -1933,6 +2257,9 @@ background-color: rgb(190, 190, 190);</string>
       <widget class="QLabel" name="label_shape">
        <property name="text">
         <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -1953,8 +2280,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>643</x>
-     <y>580</y>
+     <x>669</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
@@ -1969,8 +2296,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>643</x>
-     <y>504</y>
+     <x>669</x>
+     <y>498</y>
     </hint>
    </hints>
   </connection>
@@ -1985,8 +2312,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>580</y>
+     <x>453</x>
+     <y>572</y>
     </hint>
    </hints>
   </connection>
@@ -2001,8 +2328,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>504</y>
+     <x>453</x>
+     <y>498</y>
     </hint>
    </hints>
   </connection>
@@ -2033,8 +2360,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>168</x>
-     <y>468</y>
+     <x>162</x>
+     <y>459</y>
     </hint>
    </hints>
   </connection>
@@ -2045,8 +2372,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>mostra_lista()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>47</y>
+     <x>84</x>
+     <y>46</y>
     </hint>
     <hint type="destinationlabel">
      <x>63</x>
@@ -2061,8 +2388,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>120</y>
+     <x>641</x>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>295</x>
@@ -2078,7 +2405,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>220</x>
-     <y>186</y>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>487</x>
@@ -2093,8 +2420,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>186</y>
+     <x>851</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>722</x>
@@ -2110,7 +2437,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>431</x>
-     <y>251</y>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>922</x>
@@ -2125,11 +2452,11 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>251</y>
+     <x>1062</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1156</x>
+     <x>1075</x>
      <y>101</y>
     </hint>
    </hints>
@@ -2141,8 +2468,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>120</y>
+     <x>851</x>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>418</x>
@@ -2158,7 +2485,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>431</x>
-     <y>186</y>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>708</x>
@@ -2173,8 +2500,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>186</y>
+     <x>1062</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>934</x>
@@ -2189,11 +2516,11 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>251</y>
+     <x>641</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1155</x>
+     <x>1075</x>
      <y>374</y>
     </hint>
    </hints>
@@ -2206,7 +2533,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>262</x>
-     <y>120</y>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>4</x>
@@ -2221,11 +2548,11 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>854</x>
-     <y>251</y>
+     <x>851</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1305</x>
+     <x>1075</x>
      <y>273</y>
     </hint>
    </hints>
@@ -2237,8 +2564,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1065</x>
-     <y>120</y>
+     <x>1062</x>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>335</x>
@@ -2253,8 +2580,8 @@ background-color: rgb(190, 190, 190);</string>
    <slot>botao_clicado_regiao()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>186</y>
+     <x>641</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>573</x>
@@ -2270,7 +2597,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>220</x>
-     <y>251</y>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>847</x>
@@ -2289,8 +2616,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>740</x>
-     <y>47</y>
+     <x>819</x>
+     <y>44</y>
     </hint>
    </hints>
   </connection>
@@ -2302,7 +2629,7 @@ background-color: rgb(190, 190, 190);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1065</x>
-     <y>47</y>
+     <y>46</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -2337,8 +2664,8 @@ background-color: rgb(190, 190, 190);</string>
      <y>582</y>
     </hint>
     <hint type="destinationlabel">
-     <x>842</x>
-     <y>578</y>
+     <x>844</x>
+     <y>567</y>
     </hint>
    </hints>
   </connection>
