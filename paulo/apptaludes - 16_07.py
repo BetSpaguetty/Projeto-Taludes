@@ -785,6 +785,9 @@ class AppTaludes(QWidget):
         valueTheta = str(self.horizontalSlider_Theta.value()/1000)
         self.thetalineEdit.setText(valueTheta)
 
+        valuet = str(self.horizontalSlider_t.value())
+        self.tlineEdit.setText(valuet)
+
         print("number_changed")
 
         self.runAnalysis()
