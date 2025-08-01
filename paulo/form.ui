@@ -1697,8 +1697,8 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
       <widget class="QTabWidget" name="tabs_2">
        <property name="maximumSize">
         <size>
-         <width>900</width>
-         <height>500</height>
+         <width>925</width>
+         <height>600</height>
         </size>
        </property>
        <property name="tabletTracking">
@@ -1827,8 +1827,8 @@ background-color: rgb(190, 190, 190);</string>
       <widget class="QTabWidget" name="tabs_3">
        <property name="maximumSize">
         <size>
-         <width>900</width>
-         <height>500</height>
+         <width>925</width>
+         <height>600</height>
         </size>
        </property>
        <property name="tabletTracking">
@@ -2089,7 +2089,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
        <property name="margin">
         <number>5</number>
@@ -2161,7 +2161,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
        <property name="margin">
         <number>5</number>
@@ -2215,7 +2215,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
        <property name="margin">
         <number>5</number>
@@ -2320,7 +2320,7 @@ background-color: rgb(190, 190, 190);</string>
         <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
        <property name="margin">
         <number>5</number>

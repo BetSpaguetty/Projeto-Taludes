@@ -91,7 +91,6 @@ class AppTaludes(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         #super(AppTaludes, self).__init__()
-        bub=32
         uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\paulo\\form.ui", self)
         #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
         #self = AppTaludes()
@@ -386,7 +385,7 @@ class AppTaludes(QWidget):
         pixmap = QPixmap("c:\\Users\\paulobaccar\\Downloads\\mapa-rio-de-janeiro.jpg")
         self.label_mapa_rio.setPixmap(pixmap)
 
-        self.setMinimumSize(1600,550)
+        self.setMinimumSize(1600,850)
 
         self.tri = 0
         self.material_definido = 0
