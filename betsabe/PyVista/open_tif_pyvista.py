@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QAction, QToolBar, QStackedWidget, QWidget, QVBoxLay
 from PyQt5.QtGui import QPixmap
 from pyvistaqt import QtInteractor
 
-
 import math
 import numpy as np
 import pyvista as pv
@@ -429,8 +428,8 @@ class UI(QMainWindow):
         self.resize(1200, 600)
         self.show()
 
-    def retorna_metros(arquivo):
-        with rasterio.open(self.arquivo) as dataset:
+    def retorna_metros(self):
+        with rasterio.open(self.caminho_do_arquivo) as dataset:
             if dataset.crs is None:
                 print(f"informações nulas")
                 metros = 25
@@ -479,6 +478,7 @@ class UI(QMainWindow):
     def ler_arquivo(self):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
         self.L_pixel = self.meters_per_pixel(self.caminho_do_arquivo)[1]
+        
 
         if self.caminho_do_arquivo == "":
             self.show_error_popup("Arquivo não selecionado.")
