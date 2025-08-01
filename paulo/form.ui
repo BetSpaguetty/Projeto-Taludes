@@ -1931,6 +1931,11 @@ background-color: rgb(190, 190, 190);</string>
          <height>50</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
@@ -1958,6 +1963,11 @@ background-color: rgb(190, 190, 190);</string>
          <width>200</width>
          <height>50</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -1990,6 +2000,11 @@ background-color: rgb(190, 190, 190);</string>
          <height>50</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
@@ -2020,6 +2035,11 @@ background-color: rgb(190, 190, 190);</string>
          <width>200</width>
          <height>50</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
