@@ -835,10 +835,12 @@ class AppTaludes(QWidget):
         y2 = int(self.y2lineEdit.text())
 
         h_value = self.horizontalSlider_H.value()/10;
-        hw_value = self.horizontalSlider_Hw.value();
+        #hw_value = self.horizontalSlider_Hw.value();
         c_value = self.horizontalSlider_C.value()/10;
         phi_value = self.horizontalSlider_Phi.value();
         theta_value = self.horizontalSlider_Theta.value();
+
+        hw_value = int(self.hwlineEdit.text());
 
         c = c_value
         h = h_value
