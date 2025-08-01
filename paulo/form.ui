@@ -535,6 +535,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <height>60</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>100</string>
            </property>
@@ -726,6 +731,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <height>50</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -781,6 +791,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
              <width>120</width>
              <height>50</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>188</string>
@@ -1565,7 +1580,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
             </font>
            </property>
            <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
+            <enum>Qt::StrongFocus</enum>
            </property>
            <property name="text">
             <string>0</string>
