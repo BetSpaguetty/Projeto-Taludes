@@ -525,6 +525,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="text">
             <string>p (mm/h)</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
@@ -599,6 +602,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <height>60</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Run Analysis</string>
          </property>
@@ -617,6 +625,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <width>240</width>
            <height>60</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>Clear</string>
@@ -715,6 +728,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="text">
             <string>t (h)</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
@@ -775,6 +791,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="text">
             <string>θ (-)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -926,6 +945,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt; (m)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
@@ -991,6 +1013,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="text">
             <string>h(m)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1446,6 +1471,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            <property name="text">
             <string>ϕ' (°)</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
@@ -1557,6 +1585,9 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
            </property>
            <property name="text">
             <string>c'(kPa)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -2052,6 +2083,11 @@ background-color: rgb(190, 190, 190);</string>
          <width>120</width>
          <height>60</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Adjust image</string>
