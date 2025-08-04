@@ -765,7 +765,7 @@ class AppTaludes(QWidget):
         valueH = str(self.horizontalSlider_H.value()/10)
         self.hlineEdit.setText(valueH)
 
-        if self.hwlineEdit.isVisible() == True:
+        if self.horizontalSlider_Hw.isVisible() == True:
             valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
             print("RRRRR")
             print(valueHw)
