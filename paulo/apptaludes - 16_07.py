@@ -682,17 +682,12 @@ class AppTaludes(QWidget):
     def define_chuva(self):
         # variáveis fornecidas pelo usuario
 
-        print("Chuva 1")
-        print(self.plineEdit.text())
-        print(self.horizontalSlider_t.value())
-
         p = int(self.plineEdit.text()) # mm
         p = p/1000 # mm/h -> m/h
         #print("precipitação (m/h)=",p) 
         t = int(self.horizontalSlider_t.value()) # h
         #print("horas=",t) 
 
-        print("Chuva 2")
 
         # variáveis obtidas da função runAnalysis (necessario defini-las como variaveis globais)
         self.theta_i = self.horizontalSlider_Theta.value();   # 0.3
@@ -701,8 +696,6 @@ class AppTaludes(QWidget):
         theta_i = self.theta_i
         h = self.h
 
-        print("Chuva 3")
-        print(self.material_theta_r)
         # variáveis obtidas da função define_material (que cria um objeto)
         # self.material_theta_r = 0.025
         # self.material_theta_500 = 0.046
@@ -727,8 +720,6 @@ class AppTaludes(QWidget):
         m = self.material_vg_m                # 0.1445
         k_day = self.material_vg_k            # 0.12 # m/dia
 
-        print("Chuva 3.5")
-
         # cálculos com essas variáveis
         k = k_day/24 # m/h
         theta_e = (theta_i-theta_r)/(theta_s-theta_r)
@@ -739,17 +730,13 @@ class AppTaludes(QWidget):
         print(tp)
         hwp = p*tp # m
 
-        print("Chuva 3.8")
-
         hw0 = k*(t-tp) + hwp
 
-        print(hw0)
-        print(a)
-        print((hw0 + a)/(hwp + a))
-        print(((hw0 + a)/hw0))
+        #print(hw0)
+        #print(a)
+        #print((hw0 + a)/(hwp + a))
+        #print(((hw0 + a)/hw0))
         hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
-
-        print("Chuva 4")
         
         # possibilidades
         if isnan(hw): # se hw não tiver valor
@@ -758,10 +745,9 @@ class AppTaludes(QWidget):
             hw = 0
         elif hw>h: # se hw for maior que o h
             hw = h
-
-        print("Chuva 5")
         
-        self.hwlineEdit.setText(f'{hw:.7f}')
+        valueHw = str(hw)
+        self.hwlineEdit.setText(valueHw)
         #print("hw (m) =", hw)
         #print("------------------------------------------------------------")
         return
@@ -840,7 +826,12 @@ class AppTaludes(QWidget):
         phi_value = self.horizontalSlider_Phi.value();
         theta_value = self.horizontalSlider_Theta.value();
 
-        hw_value = int(self.hwlineEdit.text());
+        print("Q")
+        
+        print(self.hwlineEdit.text())
+        print(float(self.hwlineEdit.text()))
+
+        hw_value = float(self.hwlineEdit.text());
 
         c = c_value
         h = h_value
