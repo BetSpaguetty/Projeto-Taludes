@@ -765,10 +765,11 @@ class AppTaludes(QWidget):
         valueH = str(self.horizontalSlider_H.value()/10)
         self.hlineEdit.setText(valueH)
 
-        valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
-        print("RRRRR")
-        print(valueHw)
-        self.hwlineEdit.setText(valueHw)
+        if self.hwlineEdit.isVisible() == True:
+            valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
+            print("RRRRR")
+            print(valueHw)
+            self.hwlineEdit.setText(valueHw)
 
         valueTheta = str(self.horizontalSlider_Theta.value()/1000)
         self.thetalineEdit.setText(valueTheta)
