@@ -91,7 +91,6 @@ class AppTaludes(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         #super(AppTaludes, self).__init__()
-        bub=32
         uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\paulo\\form.ui", self)
         #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
         #self = AppTaludes()
@@ -386,7 +385,7 @@ class AppTaludes(QWidget):
         pixmap = QPixmap("c:\\Users\\paulobaccar\\Downloads\\mapa-rio-de-janeiro.jpg")
         self.label_mapa_rio.setPixmap(pixmap)
 
-        self.setMinimumSize(1600,550)
+        self.setMinimumSize(1600,850)
 
         self.tri = 0
         self.material_definido = 0
@@ -683,17 +682,12 @@ class AppTaludes(QWidget):
     def define_chuva(self):
         # variáveis fornecidas pelo usuario
 
-        print("Chuva 1")
-        print(self.plineEdit.text())
-        print(self.horizontalSlider_t.value())
-
         p = int(self.plineEdit.text()) # mm
         p = p/1000 # mm/h -> m/h
         #print("precipitação (m/h)=",p) 
         t = int(self.horizontalSlider_t.value()) # h
         #print("horas=",t) 
 
-        print("Chuva 2")
 
         # variáveis obtidas da função runAnalysis (necessario defini-las como variaveis globais)
         self.theta_i = self.horizontalSlider_Theta.value();   # 0.3
@@ -702,8 +696,6 @@ class AppTaludes(QWidget):
         theta_i = self.theta_i
         h = self.h
 
-        print("Chuva 3")
-        print(self.material_theta_r)
         # variáveis obtidas da função define_material (que cria um objeto)
         # self.material_theta_r = 0.025
         # self.material_theta_500 = 0.046
@@ -728,8 +720,6 @@ class AppTaludes(QWidget):
         m = self.material_vg_m                # 0.1445
         k_day = self.material_vg_k            # 0.12 # m/dia
 
-        print("Chuva 3.5")
-
         # cálculos com essas variáveis
         k = k_day/24 # m/h
         theta_e = (theta_i-theta_r)/(theta_s-theta_r)
@@ -740,17 +730,13 @@ class AppTaludes(QWidget):
         print(tp)
         hwp = p*tp # m
 
-        print("Chuva 3.8")
-
         hw0 = k*(t-tp) + hwp
 
-        print(hw0)
-        print(a)
-        print((hw0 + a)/(hwp + a))
-        print(((hw0 + a)/hw0))
+        #print(hw0)
+        #print(a)
+        #print((hw0 + a)/(hwp + a))
+        #print(((hw0 + a)/hw0))
         hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
-
-        print("Chuva 4")
         
         # possibilidades
         if isnan(hw): # se hw não tiver valor
@@ -759,10 +745,9 @@ class AppTaludes(QWidget):
             hw = 0
         elif hw>h: # se hw for maior que o h
             hw = h
-
-        print("Chuva 5")
         
-        self.hwlineEdit.setText(f'{hw:.7f}')
+        valueHw = str(hw)
+        self.hwlineEdit.setText(valueHw)
         #print("hw (m) =", hw)
         #print("------------------------------------------------------------")
         return
@@ -780,11 +765,17 @@ class AppTaludes(QWidget):
         valueH = str(self.horizontalSlider_H.value()/10)
         self.hlineEdit.setText(valueH)
 
-        valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
-        self.hwlineEdit.setText(valueHw)
+        if self.horizontalSlider_Hw.isVisible() == True:
+            valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
+            print("RRRRR")
+            print(valueHw)
+            self.hwlineEdit.setText(valueHw)
 
         valueTheta = str(self.horizontalSlider_Theta.value()/1000)
         self.thetalineEdit.setText(valueTheta)
+
+        valuet = str(self.horizontalSlider_t.value())
+        self.tlineEdit.setText(valuet)
 
         print("number_changed")
 
@@ -833,10 +824,17 @@ class AppTaludes(QWidget):
         y2 = int(self.y2lineEdit.text())
 
         h_value = self.horizontalSlider_H.value()/10;
-        hw_value = self.horizontalSlider_Hw.value();
+        #hw_value = self.horizontalSlider_Hw.value();
         c_value = self.horizontalSlider_C.value()/10;
         phi_value = self.horizontalSlider_Phi.value();
         theta_value = self.horizontalSlider_Theta.value();
+
+        print("Q")
+        
+        print(self.hwlineEdit.text())
+        print(float(self.hwlineEdit.text()))
+
+        hw_value = float(self.hwlineEdit.text());
 
         c = c_value
         h = h_value
