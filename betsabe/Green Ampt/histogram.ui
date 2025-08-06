@@ -244,12 +244,12 @@ background-color: rgb(255, 255, 255);</string>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>192</x>
-     <y>68</y>
+     <x>202</x>
+     <y>288</y>
     </hint>
     <hint type="destinationlabel">
-     <x>255</x>
-     <y>69</y>
+     <x>265</x>
+     <y>289</y>
     </hint>
    </hints>
   </connection>
@@ -260,12 +260,12 @@ background-color: rgb(255, 255, 255);</string>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>228</x>
-     <y>106</y>
+     <x>238</x>
+     <y>326</y>
     </hint>
     <hint type="destinationlabel">
-     <x>256</x>
-     <y>110</y>
+     <x>266</x>
+     <y>330</y>
     </hint>
    </hints>
   </connection>
@@ -276,8 +276,8 @@ background-color: rgb(255, 255, 255);</string>
    <slot>rain_infiltration()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
-     <y>67</y>
+     <x>134</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>
@@ -292,8 +292,8 @@ background-color: rgb(255, 255, 255);</string>
    <slot>rain_infiltration()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>98</x>
-     <y>111</y>
+     <x>108</x>
+     <y>331</y>
     </hint>
     <hint type="destinationlabel">
      <x>94</x>
@@ -301,9 +301,27 @@ background-color: rgb(255, 255, 255);</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>slider_period</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Dialog</receiver>
+   <slot>change_period()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>223</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>334</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>read_file()</slot>
   <slot>rain_infiltration()</slot>
+  <slot>change_period()</slot>
+  <slot>change_precipitation()</slot>
  </slots>
 </ui>

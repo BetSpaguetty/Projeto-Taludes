@@ -44,31 +44,33 @@ class Popup_histogram(QDialog):
             self.show_error_popup("Arquivo não selecionado.")
             print(self.file)
         else:
-            self.create_graph()
             self.info_graph()
+            self.create_graph()
             self.slider_period.setEnabled(True)
-            self.slider_precipitation.setEnabled(True)
+            # self.slider_precipitation.setEnabled(True)
             self.label_file_name.setText(f" File: {self.file}")
             print(self.file)
         return
     
     def info_graph(self):
         df = pd.read_excel(self.file) # Ler o arquivo Excel
-        precipitation = df['precipitacao (mm)']
-        period = df['tempo (h)']
+        self.precipitation = df['precipitacao (mm)']
+        self.period = df['tempo (h)']
 
-        self.slider_precipitation.setRange(min(precipitation),max(precipitation))
-        self.slider_period.setRange(min(period), max(period))
+        self.slider_precipitation.setRange(min(self.precipitation),max(self.precipitation))
+        self.slider_period.setRange(min(self.period), max(self.period))
+        return
+    
+    def change_period(self):
+        dicionary_period_precipitation = dict(zip(self.period, self.precipitation))
+        value = dicionary_period_precipitation[self.slider_period.value()]
+        self.slider_precipitation.setValue(int(value))
         return
     
     def create_graph(self):
-        df = pd.read_excel(self.file) # Ler o arquivo Excel
-        precipitation = df['precipitacao (mm)']
-        period = df['tempo (h)']
-
         histogram = self.figura.add_subplot(111)
         self.figura.subplots_adjust(left=0.2, bottom=0.2)
-        histogram.bar(period, precipitation, color='blue', edgecolor='black')
+        histogram.bar(self.period, self.precipitation, color='blue', edgecolor='black')
         histogram.set_ylabel('precipitation (mm)', fontsize=9)
         histogram.set_xlabel('time (h)', fontsize=9)
         histogram.tick_params(labelsize=9)
