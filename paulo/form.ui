@@ -1283,6 +1283,9 @@
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item row="1" column="9">
       <widget class="QLineEdit" name="x1lineEdit">
        <property name="sizePolicy">
@@ -2369,7 +2372,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>669</x>
@@ -2385,7 +2388,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>669</x>
@@ -2401,7 +2404,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>453</x>
@@ -2417,7 +2420,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>453</x>
@@ -2433,7 +2436,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>492</y>
+     <y>542</y>
     </hint>
     <hint type="destinationlabel">
      <x>839</x>
@@ -2449,7 +2452,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>162</x>
@@ -2705,7 +2708,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>819</x>
@@ -2737,11 +2740,11 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
-     <x>978</x>
-     <y>454</y>
+     <x>955</x>
+     <y>481</y>
     </hint>
    </hints>
   </connection>
@@ -2753,7 +2756,7 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
    <hints>
     <hint type="sourcelabel">
      <x>1060</x>
-     <y>582</y>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>844</x>
@@ -2838,6 +2841,38 @@ QPushButton:pressed {background-color: rgba(100, 150, 200, 0.5);}</string>
     <hint type="destinationlabel">
      <x>931</x>
      <y>323</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ClearBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>tlineEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>901</x>
+     <y>598</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>832</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ClearBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>plineEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>952</x>
+     <y>601</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1002</x>
+     <y>508</y>
     </hint>
    </hints>
   </connection>

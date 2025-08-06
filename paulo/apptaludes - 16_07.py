@@ -12,7 +12,10 @@ from sys import argv, exit, path
 # from PySide2 import QtWidgets
 
 import os
-os.environ["PYOPENGL_PLATFORM"] = "osmesa"
+os.environ["PYOPENGL_PLATFORM"] = "osmesa" #"osmesa"
+
+os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
+
 import pyvistaqt
 #print(pyvistaqt.__file__)
 
