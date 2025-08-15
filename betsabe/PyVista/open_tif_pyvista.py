@@ -220,7 +220,7 @@ class Popup_LatLon(QDialog):
                             print(f"Célula: {abs(qt_celulax):.0f}, {abs(qt_celulay):.0f}")
                             self.lineEdit_celula.setText(f"({abs(qt_celulax):.0f}, {abs(qt_celulay):.0f})")
         
-class PopupWindow(QDialog):
+class Popup_Mapa_RJ(QDialog):
     def __init__(self):
         super().__init__() #super(UI, self).__init__()
         uic.loadUi("Projeto-Taludes\\betsabe\\PyVista\\popup.ui", self) # Carregar o arquivo .ui
@@ -418,8 +418,8 @@ class UI(QMainWindow):
         # Aplica o layout ao widget central
         central_widget.setLayout(self.layout)
 
-        # Classe PopupWindow
-        self.classe_popup = PopupWindow()
+        # Classe Popup_Mapa_RJ
+        self.classe_popup = Popup_Mapa_RJ()
         self.scene_gradiente = QGraphicsScene()
         self.exibe_gradiente.setScene(self.scene_gradiente)
         self.exibe_gradiente.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -454,7 +454,7 @@ class UI(QMainWindow):
         resultado = popup.exec()  # Aguarda o usuário fechar o popup
 
     def show_popup(self):
-        popup = PopupWindow()
+        popup = Popup_Mapa_RJ()
         resultado = popup.exec()  # Aguarda o usuário fechar o popup
 
         if resultado == QDialog.Accepted and popup.caminho_do_arquivo:
@@ -477,7 +477,7 @@ class UI(QMainWindow):
     
     def ler_arquivo(self):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
-        self.L_pixel = self.meters_per_pixel(self.caminho_do_arquivo)[1]
+        # self.L_pixel = self.meters_per_pixel(self.caminho_do_arquivo)[1]
         
 
         if self.caminho_do_arquivo == "":
@@ -488,8 +488,8 @@ class UI(QMainWindow):
             self.gera_elevacoes(self.caminho_do_arquivo)
             self.gera_gradiente(self.caminho_do_arquivo)
             self.exibe_nome_arquivo(self.caminho_do_arquivo[-60:])
-            self.L_pixel = self.meters_per_pixel(self.caminho_do_arquivo)[1]
-            self.metros_por_pixel.setText(str(self.L_pixel))
+            # self.L_pixel = self.meters_per_pixel(self.caminho_do_arquivo)[1]
+            # self.metros_por_pixel.setText(str(self.L_pixel))
 
     def exibe_nome_arquivo(self,arquivo):
         self.label_nome_arquivo.setText(f"Arquivo Selecionado : {arquivo}")
@@ -533,8 +533,8 @@ class UI(QMainWindow):
 
         self.plotter = QtInteractor(self.exibe_elevacao)
         # self.plotter = pv.Plotter(off_screen=False)
-        # self.plotter.set_scale(xscale=1, yscale=1, zscale=(1/25)) # muda a escala de z sem alterar o gráfico.
-        self.plotter.set_scale(xscale=1, yscale=1, zscale=(1/self.L_pixel))
+        self.plotter.set_scale(xscale=1, yscale=1, zscale=(1/25)) # muda a escala de z sem alterar o gráfico.
+        # self.plotter.set_scale(xscale=1, yscale=1, zscale=(1/self.L_pixel))
         # self.plotter.set_scale(xscale=1, yscale=1)
         grid = pv.StructuredGrid(x, y, z)
         grid["elevation"] = z.ravel(order="F")
@@ -600,26 +600,27 @@ class UI(QMainWindow):
         return c/360
 
     def meters_per_pixel(self, file_path):
-        with rasterio.open(file_path) as dataset:
-            if dataset.crs is None:
-                print(f"informações nulas")
-                # largura = dataset.width      # número de colunas (pixels no eixo X)
-                # altura = dataset.height      # número de linhas (pixels no eixo Y)
+        # with rasterio.open(file_path) as dataset:
+        #     if dataset.crs is None:
+        #         print(f"informações nulas")
+        #         # largura = dataset.width      # número de colunas (pixels no eixo X)
+        #         # altura = dataset.height      # número de linhas (pixels no eixo Y)
 
-                # res_x_m = (1.5/largura) * (111320 * math.cos(math.radians(largura)))
-                # res_y_m = (1/altura) * 111320 
-                return(25,25)
-            else:
-                print("informações obtidas")
-                transform = dataset.transform
-                pixel_width = transform.a      # tamanho do pixel no eixo X
-                pixel_height = -transform.e    # tamanho do pixel no eixo Y (negativo, por convenção)
+        #         # res_x_m = (1.5/largura) * (111320 * math.cos(math.radians(largura)))
+        #         # res_y_m = (1/altura) * 111320 
+        #         return(25,25)
+        #     else:
+        #         print("informações obtidas")
+        #         transform = dataset.transform
+        #         pixel_width = transform.a      # tamanho do pixel no eixo X
+        #         pixel_height = -transform.e    # tamanho do pixel no eixo Y (negativo, por convenção)
 
-                res_x_m = pixel_width * self.calcula_distancia_lat() * math.cos(math.radians(pixel_width)) # (lon) -> meia luas
-                res_y_m = pixel_height * self.calcula_distancia_lat()                                      # (lat) -> paralelos
-                print(pixel_width,pixel_height)
+        #         res_x_m = pixel_width * self.calcula_distancia_lat() * math.cos(math.radians(pixel_width)) # (lon) -> meia luas
+        #         res_y_m = pixel_height * self.calcula_distancia_lat()                                      # (lat) -> paralelos
+        #         print(pixel_width,pixel_height)
 
-                return (round(res_x_m),round(res_y_m))
+        #         return (round(res_x_m),round(res_y_m))
+            return
         
     def calcula_incl_max(self, arquivo):
         with rasterio.open(arquivo) as dataset:
@@ -629,9 +630,9 @@ class UI(QMainWindow):
 
             matriz = dataset.read(1) # Ler apenas a primeira banda
 
-        # L = 25  # quantidade de metros por pixel
+        L = 25  # quantidade de metros por pixel
         
-        L = self.L_pixel
+        # L = self.L_pixel
         print(L)
         
         incl_max = np.zeros(matriz.shape) # calcula o gradiente máximo

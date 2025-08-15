@@ -16,8 +16,9 @@ class Popup_histogram(QDialog):
         super().__init__()
         uic.loadUi("histogram.ui", self)
 
+        self.line_edit_pre = self.findChild(QLineEdit,"line_edit_pre")
         self.line_edit_hw = self.findChild(QLineEdit,"line_edit_hw")
-        self.slider_precipitation = self.findChild(QSlider,"slider_precipitation")
+        # self.slider_precipitation = self.findChild(QSlider,"slider_precipitation")
         self.slider_period = self.findChild(QSlider,"slider_period")
         self.label_file_name = self.findChild(QLabel,"label_file_name")
         self.layout_histogram = self.findChild(QGridLayout,"layout_histogram")
@@ -54,17 +55,17 @@ class Popup_histogram(QDialog):
     
     def info_graph(self):
         df = pd.read_excel(self.file) # Ler o arquivo Excel
-        self.precipitation = df['precipitacao (mm)']
-        self.period = df['tempo (h)']
+        self.precipitation = df.iloc[:,2]
+        self.period = df.iloc[:,0]
 
-        self.slider_precipitation.setRange(min(self.precipitation),max(self.precipitation))
+        # self.slider_precipitation.setRange(min(self.precipitation),max(self.precipitation))
         self.slider_period.setRange(min(self.period), max(self.period))
         return
     
     def change_period(self):
         dicionary_period_precipitation = dict(zip(self.period, self.precipitation))
         value = dicionary_period_precipitation[self.slider_period.value()]
-        self.slider_precipitation.setValue(int(value))
+        self.line_edit_pre.setText(str(value))
         return
     
     def create_graph(self):
@@ -81,9 +82,9 @@ class Popup_histogram(QDialog):
         return
     
     def rain_infiltration(self):
-        p = int(self.slider_precipitation.value()) # h
+        p = float(self.line_edit_pre.text()) # h
         p = p/1000 # mm/h -> m/h
-        t = int(self.slider_period.value()) # h
+        t = float(self.slider_period.value()) # h
 
         # variáveis obtidas da função runAnalysis
         theta_i = 0.3
