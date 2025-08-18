@@ -95,17 +95,11 @@ class AppTaludes(QWidget):
         super().__init__(parent)
         #super(AppTaludes, self).__init__()
         uic.loadUi("Projeto-Taludes\\paulo\\form.ui", self)
-        #uic.loadUi("C:\\Users\\paulobaccar\\Documents\\Projeto Taludes (Cópia VS Code)\\Projeto-Taludes\\form.ui", self)
         #self = AppTaludes()
         #self.setupUi(self)
 
         global selfx
         selfx = self
-
-        # uic.loadUi("untitled.ui",self)
-
-        # self.window1 = Form2()
-        # self.window1.hide()
 
         self.tabs.tabCloseRequested.connect(self.tabs.removeTab)
         self.tabs_2.tabCloseRequested.connect(self.tabs_2.removeTab)
@@ -170,13 +164,13 @@ class AppTaludes(QWidget):
         self.lineEdit_argila.textChanged.connect(self.number_changed_2)      #Argila
 
         self.material_type = 'GRANULAR FINE'
-        self.material_theta_r = 0.010;
-        self.material_theta_500 = 0.188;
-        self.material_theta_s = 0.412;
-        self.material_vg_alpha = 0.82;
-        self.material_vg_n = 1.2179;
-        self.material_vg_m = 0.1789;
-        self.material_vg_k = 0.04;
+        self.material_theta_r = 0.010
+        self.material_theta_500 = 0.188
+        self.material_theta_s = 0.412
+        self.material_vg_alpha = 0.82
+        self.material_vg_n = 1.2179
+        self.material_vg_m = 0.1789
+        self.material_vg_k = 0.04
         
         self.lineEdit_areia.textChanged.connect(self.define_material)       #Areia
         self.lineEdit_argila.textChanged.connect(self.define_material)      #Argila
@@ -209,7 +203,7 @@ class AppTaludes(QWidget):
         self.tabs.setVisible(False)
         self.tabs_2.setVisible(False)
         self.tabs_3.setVisible(False)
-        self.tabs_4.setVisible(False)
+        # self.tabs_4.setVisible(False)
 
         self.lineEdit_areia.setVisible(False)
         self.lineEdit_argila.setVisible(False)
@@ -297,96 +291,6 @@ class AppTaludes(QWidget):
         # self.toolButton4.clicked.connect(self.window1.show())
         self.toolButton5.clicked.connect(self.mostra_recortar)
         self.toolButton6.clicked.connect(self.mostra_chuva)
-
-        # Bairros RJ
-        # self.botao_regiao1 = self.findChild(QPushButton,"botao_regiao1")
-        # self.botao_regiao2 = self.findChild(QPushButton,"botao_regiao2")
-        # self.botao_regiao3 = self.findChild(QPushButton,"botao_regiao3")
-        # self.botao_regiao4 = self.findChild(QPushButton,"botao_regiao4")
-        # self.botao_regiao5 = self.findChild(QPushButton,"botao_regiao5")
-        # self.botao_regiao6 = self.findChild(QPushButton,"botao_regiao6")
-        # self.botao_regiao7 = self.findChild(QPushButton,"botao_regiao7")
-        # self.botao_regiao8 = self.findChild(QPushButton,"botao_regiao8")
-        # self.botao_regiao9 = self.findChild(QPushButton,"botao_regiao9")
-        # self.botao_regiao10 = self.findChild(QPushButton,"botao_regiao10")
-        # self.botao_regiao11 = self.findChild(QPushButton,"botao_regiao11")
-        # self.botao_regiao12 = self.findChild(QPushButton,"botao_regiao12")
-        # self.botao_regiao13 = self.findChild(QPushButton,"botao_regiao13")
-        # self.botao_regiao14 = self.findChild(QPushButton,"botao_regiao14")
-        # self.botao_regiao15 = self.findChild(QPushButton,"botao_regiao15")
-        # self.botao_regiao16 = self.findChild(QPushButton,"botao_regiao16")
-        # self.botao_regiao17 = self.findChild(QPushButton,"botao_regiao17")
-        # self.botao_regiao18 = self.findChild(QPushButton,"botao_regiao18")
-        # self.botao_regiao19 = self.findChild(QPushButton,"botao_regiao19")
-        # self.botao_regiao20 = self.findChild(QPushButton,"botao_regiao20")
-
-        # Tornando os botões invisiveis e coloridos ao passar o mouse em cima
-        #self.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao16.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao17.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao18.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao19.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        #self.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-        #                                QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-
-        # Botões começam invisíveis
-        self.label_mapa_rio.setVisible(False)
-        self.botao_regiao1.setVisible(False)
-        self.botao_regiao2.setVisible(False)
-        self.botao_regiao3.setVisible(False)
-        self.botao_regiao4.setVisible(False)
-        self.botao_regiao5.setVisible(False)
-        self.botao_regiao6.setVisible(False)
-        self.botao_regiao7.setVisible(False)
-        self.botao_regiao8.setVisible(False)
-        self.botao_regiao9.setVisible(False)
-        self.botao_regiao10.setVisible(False)
-        self.botao_regiao11.setVisible(False)
-        self.botao_regiao12.setVisible(False)
-        self.botao_regiao13.setVisible(False)
-        self.botao_regiao14.setVisible(False)
-        self.botao_regiao15.setVisible(False)
-        self.botao_regiao16.setVisible(False)
-        self.botao_regiao17.setVisible(False)
-        self.botao_regiao18.setVisible(False)
-        self.botao_regiao19.setVisible(False)
-        self.botao_regiao20.setVisible(False)
-
-        pixmap = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-22S435W-23S42W.png")
-        self.label_mapa_rio.setPixmap(pixmap)
 
         self.setMinimumSize(1600,850)
 
@@ -477,68 +381,68 @@ class AppTaludes(QWidget):
         if (clay + silt + sand) != 100:
             self.material_type = 'A soma não da 100%'
         elif clay <= 18 and sand >= 65:
-            self.material_type = 'COARSE';
-            self.material_theta_r = 0.025;
-            self.material_theta_500 = 0.046;
-            self.material_theta_s = 0.366;
-            self.material_vg_alpha = 4.30; #%[m^-1]
-            self.material_vg_n = 1.5206;
-            self.material_vg_m = 0.3424;
-            self.material_vg_k = 0.70;     #%{m/dia}
+            self.material_type = 'COARSE'
+            self.material_theta_r = 0.025
+            self.material_theta_500 = 0.046
+            self.material_theta_s = 0.366
+            self.material_vg_alpha = 4.30 #%[m^-1]
+            self.material_vg_n = 1.5206
+            self.material_vg_m = 0.3424
+            self.material_vg_k = 0.70     #%{m/dia}
         elif clay<=18 and sand >= 15 and sand <= 65:
-            self.material_type = 'GRANULAR MEDIUM';
-            self.material_theta_r = 0.010;
-            self.material_theta_500 = 0.179;
-            self.material_theta_s = 0.392;
-            self.material_vg_alpha = 2.49;
-            self.material_vg_n = 1.1689;
-            self.material_vg_m = 0.1445;
-            self.material_vg_k = 0.12;
+            self.material_type = 'GRANULAR MEDIUM'
+            self.material_theta_r = 0.010
+            self.material_theta_500 = 0.179
+            self.material_theta_s = 0.392
+            self.material_vg_alpha = 2.49
+            self.material_vg_n = 1.1689
+            self.material_vg_m = 0.1445
+            self.material_vg_k = 0.12
         elif clay<=18 and sand <=15:
-            self.material_type = 'GRANULAR FINE';
-            self.material_theta_r = 0.010;
-            self.material_theta_500 = 0.188;
-            self.material_theta_s = 0.412;
-            self.material_vg_alpha = 0.82;
-            self.material_vg_n = 1.2179;
-            self.material_vg_m = 0.1789;
-            self.material_vg_k = 0.04;
+            self.material_type = 'GRANULAR FINE'
+            self.material_theta_r = 0.010
+            self.material_theta_500 = 0.188
+            self.material_theta_s = 0.412
+            self.material_vg_alpha = 0.82
+            self.material_vg_n = 1.2179
+            self.material_vg_m = 0.1789
+            self.material_vg_k = 0.04
         elif clay>=18 and clay <= 35 and sand >= 15: #or clay<=18 and sand >= 15 and sand <= 65:
-            self.material_type = 'MEDIUM';
-            self.material_theta_r = 0.010;
-            self.material_theta_500 = 0.179;
-            self.material_theta_s = 0.392;
-            self.material_vg_alpha = 2.49;
-            self.material_vg_n = 1.1689;
-            self.material_vg_m = 0.1445;
-            self.material_vg_k = 0.12;
+            self.material_type = 'MEDIUM'
+            self.material_theta_r = 0.010
+            self.material_theta_500 = 0.179
+            self.material_theta_s = 0.392
+            self.material_vg_alpha = 2.49
+            self.material_vg_n = 1.1689
+            self.material_vg_m = 0.1445
+            self.material_vg_k = 0.12
         elif clay>=18 and clay<=35  and sand <= 15:
-            self.material_type = 'MEDIUM FINE';
-            self.material_theta_r = 0.010;
-            self.material_theta_500 = 0.188;
-            self.material_theta_s = 0.412;
-            self.material_vg_alpha = 0.82;
-            self.material_vg_n = 1.2179;
-            self.material_vg_m = 0.1789;
-            self.material_vg_k = 0.04;
+            self.material_type = 'MEDIUM FINE'
+            self.material_theta_r = 0.010
+            self.material_theta_500 = 0.188
+            self.material_theta_s = 0.412
+            self.material_vg_alpha = 0.82
+            self.material_vg_n = 1.2179
+            self.material_vg_m = 0.1789
+            self.material_vg_k = 0.04
         elif clay>=35 and clay <= 60:
-            self.material_type = 'FINE';
-            self.material_theta_r = 0.010;
-            self.material_theta_500 = 0.327;
-            self.material_theta_s = 0.481;
-            self.material_vg_alpha = 1.98;
-            self.material_vg_n = 1.0861;
-            self.material_vg_m = 0.0793;
-            self.material_vg_k = 0.09;
+            self.material_type = 'FINE'
+            self.material_theta_r = 0.010
+            self.material_theta_500 = 0.327
+            self.material_theta_s = 0.481
+            self.material_vg_alpha = 1.98
+            self.material_vg_n = 1.0861
+            self.material_vg_m = 0.0793
+            self.material_vg_k = 0.09
         elif clay > 60:
-            self.material_type = 'VERY FINE';
-            self.material_theta_r = 0.010;        # Linha 65
-            self.material_theta_500 = 0.392;
-            self.material_theta_s = 0.538;
-            self.material_vg_alpha = 1.68;
-            self.material_vg_n = 1.0730;
-            self.material_vg_m = 0.068;
-            self.material_vg_k = 0.08;
+            self.material_type = 'VERY FINE'
+            self.material_theta_r = 0.010
+            self.material_theta_500 = 0.392
+            self.material_theta_s = 0.538
+            self.material_vg_alpha = 1.68
+            self.material_vg_n = 1.0730
+            self.material_vg_m = 0.068
+            self.material_vg_k = 0.08
         #
 
         if clay <= 18:
@@ -2789,7 +2693,7 @@ class AppTaludes(QWidget):
             self.window1.close()
             wind2 = 0
         elif wind2 == 0:
-            self.window1 = Form2()
+            self.window1 = Popup_Mapa_RJ()
             self.window1.show()
 
         # if self.window1.isclosed()==True and wind2 == 0:
@@ -2983,144 +2887,97 @@ class AppTaludes(QWidget):
         self.plotter.reset_camera()
     #
 #
+class Popup_Mapa_RJ(QDialog):
+    def __init__(self):
+        super().__init__() #super(UI, self).__init__()
+        uic.loadUi("Projeto-Taludes\\betsabe\\PyVista\\popup.ui", self) # Carregar o arquivo .ui
+        self.setWindowTitle("22S435W - Rio de Janeiro")
+        self.setGeometry(200, 100, 572, 377)
+    
+        # Imagem do mapa
+        self.fundo = QLabel(self)
+        self.fundo.setPixmap(QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\image.png"))  # Caminho da imagem
+        self.fundo.setScaledContents(True) # Ajusta a imagem ao tamanho do QLabel
+    
+        # Layout dos botões
+        self.layout = self.findChild(QGridLayout,"gridLayout_botoes")
+        self.setLayout(self.layout) # fixando na janela
 
-class Form2(QWidget):
-    # sig = pyqtSignal()
+        # botões
+        self.botao_regiao1 = self.findChild(QPushButton,"botao_regiao1")
+        self.botao_regiao2 = self.findChild(QPushButton,"botao_regiao2")
+        self.botao_regiao3 = self.findChild(QPushButton,"botao_regiao3")
+        self.botao_regiao4 = self.findChild(QPushButton,"botao_regiao4")
+        self.botao_regiao5 = self.findChild(QPushButton,"botao_regiao5")
+        self.botao_regiao6 = self.findChild(QPushButton,"botao_regiao6")
+        self.botao_regiao7 = self.findChild(QPushButton,"botao_regiao7")
+        self.botao_regiao8 = self.findChild(QPushButton,"botao_regiao8")
+        self.botao_regiao9 = self.findChild(QPushButton,"botao_regiao9")
+        self.botao_regiao10 = self.findChild(QPushButton,"botao_regiao10")
+        self.botao_regiao11 = self.findChild(QPushButton,"botao_regiao11")
+        self.botao_regiao12 = self.findChild(QPushButton,"botao_regiao12")
+        self.botao_regiao13 = self.findChild(QPushButton,"botao_regiao13")
+        self.botao_regiao14 = self.findChild(QPushButton,"botao_regiao14")
+        self.botao_regiao15 = self.findChild(QPushButton,"botao_regiao15")
+        self.botao_regiao16 = self.findChild(QPushButton,"botao_regiao16")
+        self.botao_regiao17 = self.findChild(QPushButton,"botao_regiao17")
+        self.botao_regiao18 = self.findChild(QPushButton,"botao_regiao18")
+        self.botao_regiao19 = self.findChild(QPushButton,"botao_regiao19")
+        self.botao_regiao20 = self.findChild(QPushButton,"botao_regiao20")
+    
+         # Caminho dos arquivos pré definidos
+        self.caminho_do_arquivo = None  # Guarda o caminho selecionado
+        self.arquivos_regiao = {"botao_regiao1":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
+                                "botao_regiao2":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
+                                "botao_regiao3":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_3.tif",
+                                "botao_regiao4":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_4.tif",
+                                "botao_regiao5":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_5.tif",
+                                "botao_regiao6":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_6.tif",
+                                "botao_regiao7":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_7.tif",
+                                "botao_regiao8":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_8.tif",
+                                "botao_regiao9":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_9.tif",
+                                "botao_regiao10":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_10.tif",
+                                "botao_regiao11":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_11.tif",
+                                "botao_regiao12":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_12.tif",
+                                "botao_regiao13":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_13.tif",
+                                "botao_regiao14":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_14.tif",
+                                "botao_regiao15":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_15.tif",
+                                "botao_regiao16":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_16.tif",
+                                "botao_regiao17":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
+                                "botao_regiao18":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
+                                "botao_regiao19":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
+                                "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
+        # Define um tamanho inicial
+        self.resize(600, 450)
+        self.aspect_ratio = 600 / 450  # Largura/Altura
 
-    def __init__(self2,parent=None):
-        #super().__init__(parent)
-        super().__init__()
-        #super(AppTaludes, self2).__init__()
-        uic.loadUi("Projeto-Taludes\\paulo\\form2.ui", self2)
-        #self2 = Ui_Form2()
-        #self2.setupUi(self2)
-        self2.setMaximumSize(970,710)
+    def resizeEvent(self, event):
+        # Ajusta a QLabel para ocupar o mesmo tamanho do layout
+        if self.layout:
+            area_layout = self.layout.geometry()  # Obtém o tamanho do layout
+            self.fundo.setGeometry(area_layout)  # Define o tamanho da QLabel igual ao layout
+            # Mantém a proporção ao redimensionar
+        new_width = event.size().width()
+        new_height = int(new_width / self.aspect_ratio)
+        self.resize(new_width, new_height)
+        
+        super().resizeEvent(event)  
 
-        # Bairros RJ
-        self2.botao_regiao1 = self2.findChild(QPushButton,"botao_regiao1")
-        self2.botao_regiao2 = self2.findChild(QPushButton,"botao_regiao2")
-        self2.botao_regiao3 = self2.findChild(QPushButton,"botao_regiao3")
-        self2.botao_regiao4 = self2.findChild(QPushButton,"botao_regiao4")
-        self2.botao_regiao5 = self2.findChild(QPushButton,"botao_regiao5")
-        self2.botao_regiao6 = self2.findChild(QPushButton,"botao_regiao6")
-        self2.botao_regiao7 = self2.findChild(QPushButton,"botao_regiao7")
-        self2.botao_regiao8 = self2.findChild(QPushButton,"botao_regiao8")
-        self2.botao_regiao9 = self2.findChild(QPushButton,"botao_regiao9")
-        self2.botao_regiao10 = self2.findChild(QPushButton,"botao_regiao10")
-        self2.botao_regiao11 = self2.findChild(QPushButton,"botao_regiao11")
-        self2.botao_regiao12 = self2.findChild(QPushButton,"botao_regiao12")
-        self2.botao_regiao13 = self2.findChild(QPushButton,"botao_regiao13")
-        self2.botao_regiao14 = self2.findChild(QPushButton,"botao_regiao14")
-        self2.botao_regiao15 = self2.findChild(QPushButton,"botao_regiao15")
-        self2.botao_regiao16 = self2.findChild(QPushButton,"botao_regiao16")
-        self2.botao_regiao17 = self2.findChild(QPushButton,"botao_regiao17")
-        self2.botao_regiao18 = self2.findChild(QPushButton,"botao_regiao18")
-        self2.botao_regiao19 = self2.findChild(QPushButton,"botao_regiao19")
-        self2.botao_regiao20 = self2.findChild(QPushButton,"botao_regiao20")
+    def botao_clicado_regiao(self):
+        botao_clicado = self.sender() # atribui o própio botão que foi clicado à uma variável
+        
+        if botao_clicado:
+            texto = botao_clicado.objectName()
+            print(f"Texto do botão: {texto}")
 
-        # Tornando os botões invisiveis e coloridos ao passar o mouse em cima
-        self2.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao16.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao17.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao18.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao19.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self2.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-
-        pixmap = QPixmap("c:\\Users\\paulobaccar\\Documents\\AppTaludes\\image.png")              #("c:\\Users\\paulobaccar\\Downloads\\mapa-rio-de-janeiro.jpg")
-        self2.label_mapa_rio.setPixmap(pixmap)
-        self2.label_mapa_rio.setScaledContents(True)
-        # self2.gridLayout.setScaledContents(True)
-
-        print("FFFF")
-
-        global wind2
-        wind2 +=1
-    #
-
-    def botao_clicado_regiao(self2):
-        botao_clicado = self2.sender() # atribui o própio botão que foi clicado como uma variável
-        self2.label_mapa_rio.lower()
-
-        arquivos_regiao =  {"botao_regiao1":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
-                            "botao_regiao2":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
-                            "botao_regiao3":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_3.tif",
-                            "botao_regiao4":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_4.tif",
-                            "botao_regiao5":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_5.tif",
-                            "botao_regiao6":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_6.tif",
-                            "botao_regiao7":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_7.tif",
-                            "botao_regiao8":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_8.tif",
-                            "botao_regiao9":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_9.tif",
-                            "botao_regiao10":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_10.tif",
-                            "botao_regiao11":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_11.tif",
-                            "botao_regiao12":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_12.tif",
-                            "botao_regiao13":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_13.tif",
-                            "botao_regiao14":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_14.tif",
-                            "botao_regiao15":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_15.tif",
-                            "botao_regiao16":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_16.tif",
-                            "botao_regiao17":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
-                            "botao_regiao18":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
-                            "botao_regiao19":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
-                            "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
-
-        # c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif
-        # "C:\Users\paulobaccar\Documents\Projeto Taludes (Cópia VS Code)\Projeto-Taludes\betsabe\rj_recortes\RJ_1.tif"
-
-        global fname
-        global selected_map
-        fname = arquivos_regiao[botao_clicado.objectName()]
-        selected_map = 1
-        # elev_incl(fname)
-        # self2.setVisible(False)
-
-        global wind2
-        wind2 = 0
-
-        # self2.sig.emit()
-        # self2.connect(AppTaludes.elev_incl)
-
-        global selfx
-        print(fname)
-        print("Funcionou 3")
-        AppTaludes.elev_incl(selfx,fname) #self2,fname)
-
-        print("Funcionou")
-
-        self2.close()
-    #
+            if str(botao_clicado.objectName()) in self.arquivos_regiao:
+                print("entrou no if")
+                self.caminho_do_arquivo = self.arquivos_regiao[texto]
+                print(self.caminho_do_arquivo)
+                self.accept()  # Fecha o popup corretamente
+            else:
+                print("entrou no else")
+                self.show_error_popup("Região de 22S435W não foi selecionada ou não existe.")
 
     def show_error_popup(self, error_message):
         # Cria a caixa de mensagem de erro
@@ -3130,7 +2987,154 @@ class Form2(QWidget):
         msg.setText(error_message)  # Define o texto da mensagem
         msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
         msg.exec_()  # Exibe a mensagem
+
+# class Form2(QWidget):
+#     # sig = pyqtSignal()
+
+#     def __init__(self2,parent=None):
+#         #super().__init__(parent)
+#         super().__init__()
+#         #super(AppTaludes, self2).__init__()
+#         uic.loadUi("Projeto-Taludes\\paulo\\form2.ui", self2)
+#         #self2 = Ui_Form2()
+#         #self2.setupUi(self2)
+#         self2.setMaximumSize(970,710)
+
+#         # Bairros RJ
+#         self2.botao_regiao1 = self2.findChild(QPushButton,"botao_regiao1")
+#         self2.botao_regiao2 = self2.findChild(QPushButton,"botao_regiao2")
+#         self2.botao_regiao3 = self2.findChild(QPushButton,"botao_regiao3")
+#         self2.botao_regiao4 = self2.findChild(QPushButton,"botao_regiao4")
+#         self2.botao_regiao5 = self2.findChild(QPushButton,"botao_regiao5")
+#         self2.botao_regiao6 = self2.findChild(QPushButton,"botao_regiao6")
+#         self2.botao_regiao7 = self2.findChild(QPushButton,"botao_regiao7")
+#         self2.botao_regiao8 = self2.findChild(QPushButton,"botao_regiao8")
+#         self2.botao_regiao9 = self2.findChild(QPushButton,"botao_regiao9")
+#         self2.botao_regiao10 = self2.findChild(QPushButton,"botao_regiao10")
+#         self2.botao_regiao11 = self2.findChild(QPushButton,"botao_regiao11")
+#         self2.botao_regiao12 = self2.findChild(QPushButton,"botao_regiao12")
+#         self2.botao_regiao13 = self2.findChild(QPushButton,"botao_regiao13")
+#         self2.botao_regiao14 = self2.findChild(QPushButton,"botao_regiao14")
+#         self2.botao_regiao15 = self2.findChild(QPushButton,"botao_regiao15")
+#         self2.botao_regiao16 = self2.findChild(QPushButton,"botao_regiao16")
+#         self2.botao_regiao17 = self2.findChild(QPushButton,"botao_regiao17")
+#         self2.botao_regiao18 = self2.findChild(QPushButton,"botao_regiao18")
+#         self2.botao_regiao19 = self2.findChild(QPushButton,"botao_regiao19")
+#         self2.botao_regiao20 = self2.findChild(QPushButton,"botao_regiao20")
+
+#         # Tornando os botões invisiveis e coloridos ao passar o mouse em cima
+#         self2.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao16.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao17.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao18.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao19.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+#         self2.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
+#                                         QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
+
+#         pixmap = QPixmap("Projeto-Taludes\\betsabe\\Imagens Interface\\mapa-22S435W-23S42W.png")              #("c:\\Users\\paulobaccar\\Downloads\\mapa-rio-de-janeiro.jpg")
+#         self2.label_mapa_rio.setPixmap(pixmap)
+#         self2.label_mapa_rio.setScaledContents(True)
+#         # self2.gridLayout.setScaledContents(True)
+
+#         print("FFFF")
+
+#         global wind2
+#         wind2 +=1
     #
+
+    # def botao_clicado_regiao(self2):
+    #     botao_clicado = self2.sender() # atribui o própio botão que foi clicado como uma variável
+    #     self2.label_mapa_rio.lower()
+
+    #     arquivos_regiao =  {"botao_regiao1":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif",
+    #                         "botao_regiao2":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_2.tif",
+    #                         "botao_regiao3":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_3.tif",
+    #                         "botao_regiao4":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_4.tif",
+    #                         "botao_regiao5":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_5.tif",
+    #                         "botao_regiao6":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_6.tif",
+    #                         "botao_regiao7":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_7.tif",
+    #                         "botao_regiao8":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_8.tif",
+    #                         "botao_regiao9":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_9.tif",
+    #                         "botao_regiao10":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_10.tif",
+    #                         "botao_regiao11":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_11.tif",
+    #                         "botao_regiao12":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_12.tif",
+    #                         "botao_regiao13":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_13.tif",
+    #                         "botao_regiao14":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_14.tif",
+    #                         "botao_regiao15":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_15.tif",
+    #                         "botao_regiao16":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_16.tif",
+    #                         "botao_regiao17":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_17.tif",
+    #                         "botao_regiao18":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_18.tif",
+    #                         "botao_regiao19":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_19.tif",
+    #                         "botao_regiao20":"Projeto-Taludes\\betsabe\\rj_recortes\\RJ_20.tif"}
+
+    #     # c:\\Users\\paulobaccar\\Projeto-Taludes\\betsabe\\rj_recortes\\RJ_1.tif
+    #     # "C:\Users\paulobaccar\Documents\Projeto Taludes (Cópia VS Code)\Projeto-Taludes\betsabe\rj_recortes\RJ_1.tif"
+
+    #     global fname
+    #     global selected_map
+    #     fname = arquivos_regiao[botao_clicado.objectName()]
+    #     selected_map = 1
+    #     # elev_incl(fname)
+    #     # self2.setVisible(False)
+
+    #     global wind2
+    #     wind2 = 0
+
+    #     # self2.sig.emit()
+    #     # self2.connect(AppTaludes.elev_incl)
+
+    #     global selfx
+    #     print(fname)
+    #     print("Funcionou 3")
+    #     AppTaludes.elev_incl(selfx,fname) #self2,fname)
+
+    #     print("Funcionou")
+
+    #     self2.close()
+    # #
+
+    # def show_error_popup(self, error_message):
+    #     # Cria a caixa de mensagem de erro
+    #     msg = QMessageBox()
+    #     msg.setIcon(QMessageBox.Critical)  # Define o ícone como erro
+    #     msg.setWindowTitle("Erro")  # Define o título da janela
+    #     msg.setText(error_message)  # Define o texto da mensagem
+    #     msg.setStandardButtons(QMessageBox.Ok)  # Adiciona o botão OK
+    #     msg.exec_()  # Exibe a mensagem
+    # #
 #
 
 # class Form3(QWidget):

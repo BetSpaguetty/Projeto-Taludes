@@ -257,48 +257,6 @@ class Popup_Mapa_RJ(QDialog):
         self.botao_regiao18 = self.findChild(QPushButton,"botao_regiao18")
         self.botao_regiao19 = self.findChild(QPushButton,"botao_regiao19")
         self.botao_regiao20 = self.findChild(QPushButton,"botao_regiao20")
-
-        # torna os botões invisiveis e coloridos ao passar o mouse em cima
-        self.botao_regiao1.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao2.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao3.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao4.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao5.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao6.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao7.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao8.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao9.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao10.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao11.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao12.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao13.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao14.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao15.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao16.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao17.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao18.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao19.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
-        self.botao_regiao20.setStyleSheet("""background-color: rgba(255, 255, 255, 0);border: none;}
-                                        QPushButton:hover {background-color: rgba(100, 150, 200, 0.5);}""")
     
          # Caminho dos arquivos pré definidos
         self.caminho_do_arquivo = None  # Guarda o caminho selecionado
@@ -478,7 +436,6 @@ class UI(QMainWindow):
     def ler_arquivo(self):
         self.caminho_do_arquivo, filtro = QFileDialog.getOpenFileName(None, "Selecione um arquivo TIF", "", "Arquivos TIF (*.tif);;Todos os arquivos (*)")
         # self.L_pixel = self.meters_per_pixel(self.caminho_do_arquivo)[1]
-        
 
         if self.caminho_do_arquivo == "":
             self.show_error_popup("Arquivo não selecionado.")
