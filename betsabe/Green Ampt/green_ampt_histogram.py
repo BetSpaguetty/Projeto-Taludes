@@ -18,7 +18,6 @@ class Popup_histogram(QDialog):
 
         self.line_edit_pre = self.findChild(QLineEdit,"line_edit_pre")
         self.line_edit_hw = self.findChild(QLineEdit,"line_edit_hw")
-        # self.slider_precipitation = self.findChild(QSlider,"slider_precipitation")
         self.slider_period = self.findChild(QSlider,"slider_period")
         self.label_file_name = self.findChild(QLabel,"label_file_name")
         self.layout_histogram = self.findChild(QGridLayout,"layout_histogram")
@@ -55,10 +54,9 @@ class Popup_histogram(QDialog):
     
     def info_graph(self):
         df = pd.read_excel(self.file) # Ler o arquivo Excel
-        self.precipitation = df.iloc[:,2]
-        self.period = df.iloc[:,0]
+        self.precipitation = df.iloc[:,1] # Pega todas as linhas ":" da coluna 1
+        self.period = df.iloc[:,0] # Pega todas as linhas ":" da coluna 0
 
-        # self.slider_precipitation.setRange(min(self.precipitation),max(self.precipitation))
         self.slider_period.setRange(min(self.period), max(self.period))
         return
     
@@ -68,6 +66,8 @@ class Popup_histogram(QDialog):
         self.line_edit_pre.setText(str(value))
         return
     
+# Quando o hw for menor que 0, o hw sera o último positivo
+
     def create_graph(self):
         histogram = self.figura.add_subplot(111)
         self.figura.subplots_adjust(left=0.2, bottom=0.2)
