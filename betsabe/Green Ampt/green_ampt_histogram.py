@@ -44,8 +44,11 @@ class Popup_histogram(QDialog):
             self.show_error_popup("Arquivo não selecionado.")
             print(self.file)
         else:
+            self.figura.clear()       # limpa os eixos
+            self.canvas.draw()
             self.info_graph()
             self.create_graph()
+            self.line_edit_pre.setEnabled(False)
             self.slider_period.setEnabled(True)
             # self.slider_precipitation.setEnabled(True)
             self.label_file_name.setText(f" File: {self.file}")
@@ -60,14 +63,27 @@ class Popup_histogram(QDialog):
         self.slider_period.setRange(min(self.period), max(self.period))
         return
     
+    # Ao mudar o valor da precipitação, muda automaticamente o período
     def change_period(self):
-        dicionary_period_precipitation = dict(zip(self.period, self.precipitation))
-        value = dicionary_period_precipitation[self.slider_period.value()]
-        self.line_edit_pre.setText(str(value))
+        if self.line_edit_pre.isEnabled() == False:
+            dicionary_period_precipitation = dict(zip(self.period, self.precipitation))
+            value = dicionary_period_precipitation[self.slider_period.value()]
+            self.line_edit_pre.setText(str(value))
+        else:
+            self.slider_period.setRange(0,48)
         return
     
-# Quando o hw for menor que 0, o hw sera o último positivo
+    # Permite que o usuário insira ao invés de utilizar informações do gráfico
+    def insert_mode(self):
+        self.line_edit_pre.setEnabled(True)
+        if self.figura:
+            self.label_file_name.setText(f" File: ")
+            self.figura.clear()       # limpa os eixos
+            self.canvas.draw()    # redesenha o canvas vazio
 
+        return
+
+    # Cria o gráfico (histograma)
     def create_graph(self):
         histogram = self.figura.add_subplot(111)
         self.figura.subplots_adjust(left=0.2, bottom=0.2)
@@ -81,6 +97,7 @@ class Popup_histogram(QDialog):
         self.canvas.draw()
         return
     
+    # Faz o cálculo do hw 
     def rain_infiltration(self):
         p = float(self.line_edit_pre.text()) # h
         p = p/1000 # mm/h -> m/h
@@ -98,30 +115,39 @@ class Popup_histogram(QDialog):
         k_day = 0.12 # m/dia
 
         # Cálculos
-        if p == 0:
-            self.line_edit_hw.setText(f'{0:.7f}')
-        else:
-            try:
-                # cálculos com essas variáveis
-                k = k_day/24 # m/h
-                theta_e = (theta_i-theta_r)/(theta_s-theta_r)
-                psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
-                a = abs(psi) * (theta_s - theta_i)
-                tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
-                hwp = p*tp # m
-                hw0 = k*(t-tp) + hwp
-                hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
+        # if p == 0:
+        #     self.line_edit_hw.setText(f'{0:.7f}')
+        # else:
+        try:
+            # cálculos com essas variáveis
+            k = k_day/24 # m/h
+            theta_e = (theta_i-theta_r)/(theta_s-theta_r)
+            psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
+            a = abs(psi) * (theta_s - theta_i)
+            tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
+            hwp = p*tp # m
+            hw0 = k*(t-tp) + hwp
+            hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
 
-                # Possibilidades
-                if isnan(hw): # se hw não tiver valor
-                    hw = 0
-                elif hw<0: # se hw for negativo
-                    hw = 0
-                elif hw>h: # se hw for maior que o h
-                    hw = h
-                self.line_edit_hw.setText(f'{hw:.7f}')
-            except (ZeroDivisionError, ValueError) as e:
-                self.line_edit_hw.setText(f'{0:.7f}')
+            # Possibilidades
+            if isnan(hw): # se hw não tiver valor
+                hw = 0
+            elif hw<0: # se hw for negativo
+                hw = 0
+            elif hw>h: # se hw for maior que o h
+                hw = h
+            self.line_edit_hw.setText(f'{hw:.7f}')
+
+        except (ZeroDivisionError, ValueError) as e:
+            self.line_edit_hw.setText(f'{0:.7f}erro')
+            # erro
+
+            # Quando o hw for menor que 0, o hw sera o último positivo
+        return
+    
+    # Cria uma lista de hws daquele arquivo específico, com a intenção de identificar o último hw positivo.
+    def lista_hw(self):
+        
         return
 
 app = QApplication(argv)
