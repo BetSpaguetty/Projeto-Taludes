@@ -55,190 +55,190 @@ Essa função recebe os intervalos que o usuário inserir, intervalo de início 
 # 2.Triângulo de Texturas
 """ 
 """
-def define_material(self):
-        clay = self.valueArgila
-        sand = self.valueAreia
-        silt = self.valueSilte
+# def define_material(self):
+#         clay = self.valueArgila
+#         sand = self.valueAreia
+#         silt = self.valueSilte
 
-        if (clay + silt + sand) != 100: 
-            self.material_type = 'A soma não da 100%'
-        elif clay <= 18 and sand >= 65:
-            self.material_type = 'COARSE'
-            self.material_theta_r = 0.025
-            self.material_theta_500 = 0.046
-            self.material_theta_s = 0.366
-            self.material_vg_alpha = 4.30 #%[m^-1]
-            self.material_vg_n = 1.5206
-            self.material_vg_m = 0.3424
-            self.material_vg_k = 0.70     #%{m/dia}
-        elif clay<=18 and sand >= 15 and sand <= 65:
-            self.material_type = 'GRANULAR MEDIUM'
-            self.material_theta_r = 0.010
-            self.material_theta_500 = 0.179
-            self.material_theta_s = 0.392
-            self.material_vg_alpha = 2.49
-            self.material_vg_n = 1.1689
-            self.material_vg_m = 0.1445
-            self.material_vg_k = 0.12
-        elif clay<=18 and sand <=15:
-            self.material_type = 'GRANULAR FINE'
-            self.material_theta_r = 0.010
-            self.material_theta_500 = 0.188
-            self.material_theta_s = 0.412
-            self.material_vg_alpha = 0.82
-            self.material_vg_n = 1.2179
-            self.material_vg_m = 0.1789
-            self.material_vg_k = 0.04
-        elif clay>=18 and clay <= 35 and sand >= 15: #or clay<=18 and sand >= 15 and sand <= 65:
-            self.material_type = 'MEDIUM'
-            self.material_theta_r = 0.010
-            self.material_theta_500 = 0.179
-            self.material_theta_s = 0.392
-            self.material_vg_alpha = 2.49
-            self.material_vg_n = 1.1689
-            self.material_vg_m = 0.1445
-            self.material_vg_k = 0.12
-        elif clay>=18 and clay<=35  and sand <= 15:
-            self.material_type = 'MEDIUM FINE'
-            self.material_theta_r = 0.010
-            self.material_theta_500 = 0.188
-            self.material_theta_s = 0.412
-            self.material_vg_alpha = 0.82
-            self.material_vg_n = 1.2179
-            self.material_vg_m = 0.1789
-            self.material_vg_k = 0.04
-        elif clay>=35 and clay <= 60:
-            self.material_type = 'FINE'
-            self.material_theta_r = 0.010
-            self.material_theta_500 = 0.327
-            self.material_theta_s = 0.481
-            self.material_vg_alpha = 1.98
-            self.material_vg_n = 1.0861
-            self.material_vg_m = 0.0793
-            self.material_vg_k = 0.09
-        elif clay > 60:
-            self.material_type = 'VERY FINE'
-            self.material_theta_r = 0.010
-            self.material_theta_500 = 0.392
-            self.material_theta_s = 0.538
-            self.material_vg_alpha = 1.68
-            self.material_vg_n = 1.0730
-            self.material_vg_m = 0.068
-            self.material_vg_k = 0.08
-        #
+#         if (clay + silt + sand) != 100: 
+#             self.material_type = 'A soma não da 100%'
+#         elif clay <= 18 and sand >= 65:
+#             self.material_type = 'COARSE'
+#             self.material_theta_r = 0.025
+#             self.material_theta_500 = 0.046
+#             self.material_theta_s = 0.366
+#             self.material_vg_alpha = 4.30 #%[m^-1]
+#             self.material_vg_n = 1.5206
+#             self.material_vg_m = 0.3424
+#             self.material_vg_k = 0.70     #%{m/dia}
+#         elif clay<=18 and sand >= 15 and sand <= 65:
+#             self.material_type = 'GRANULAR MEDIUM'
+#             self.material_theta_r = 0.010
+#             self.material_theta_500 = 0.179
+#             self.material_theta_s = 0.392
+#             self.material_vg_alpha = 2.49
+#             self.material_vg_n = 1.1689
+#             self.material_vg_m = 0.1445
+#             self.material_vg_k = 0.12
+#         elif clay<=18 and sand <=15:
+#             self.material_type = 'GRANULAR FINE'
+#             self.material_theta_r = 0.010
+#             self.material_theta_500 = 0.188
+#             self.material_theta_s = 0.412
+#             self.material_vg_alpha = 0.82
+#             self.material_vg_n = 1.2179
+#             self.material_vg_m = 0.1789
+#             self.material_vg_k = 0.04
+#         elif clay>=18 and clay <= 35 and sand >= 15: #or clay<=18 and sand >= 15 and sand <= 65:
+#             self.material_type = 'MEDIUM'
+#             self.material_theta_r = 0.010
+#             self.material_theta_500 = 0.179
+#             self.material_theta_s = 0.392
+#             self.material_vg_alpha = 2.49
+#             self.material_vg_n = 1.1689
+#             self.material_vg_m = 0.1445
+#             self.material_vg_k = 0.12
+#         elif clay>=18 and clay<=35  and sand <= 15:
+#             self.material_type = 'MEDIUM FINE'
+#             self.material_theta_r = 0.010
+#             self.material_theta_500 = 0.188
+#             self.material_theta_s = 0.412
+#             self.material_vg_alpha = 0.82
+#             self.material_vg_n = 1.2179
+#             self.material_vg_m = 0.1789
+#             self.material_vg_k = 0.04
+#         elif clay>=35 and clay <= 60:
+#             self.material_type = 'FINE'
+#             self.material_theta_r = 0.010
+#             self.material_theta_500 = 0.327
+#             self.material_theta_s = 0.481
+#             self.material_vg_alpha = 1.98
+#             self.material_vg_n = 1.0861
+#             self.material_vg_m = 0.0793
+#             self.material_vg_k = 0.09
+#         elif clay > 60:
+#             self.material_type = 'VERY FINE'
+#             self.material_theta_r = 0.010
+#             self.material_theta_500 = 0.392
+#             self.material_theta_s = 0.538
+#             self.material_vg_alpha = 1.68
+#             self.material_vg_n = 1.0730
+#             self.material_vg_m = 0.068
+#             self.material_vg_k = 0.08
+#         #
 
-        if clay <= 18:
-            self.horizontalSlider_C.setMaximum(0)
-            self.horizontalSlider_C.setMinimum(0)
-            print("Solo 0")
-        else:
-            self.horizontalSlider_C.setMaximum(20)
-            self.horizontalSlider_C.setMinimum(0)
+#         if clay <= 18:
+#             self.horizontalSlider_C.setMaximum(0)
+#             self.horizontalSlider_C.setMinimum(0)
+#             print("Solo 0")
+#         else:
+#             self.horizontalSlider_C.setMaximum(20)
+#             self.horizontalSlider_C.setMinimum(0)
 
-        self.horizontalSlider_Theta.setMaximum(int(self.material_theta_s * 1000))
-        self.horizontalSlider_Theta.setMinimum(int(self.material_theta_500 * 1000))
-        self.horizontalSlider_Theta.setSliderPosition(int(self.material_theta_500 * 1000))
-        self.horizontalSlider_Theta.setSingleStep(int((self.material_theta_s - self.material_theta_500) * 100))
-        self.horizontalSlider_Theta.setPageStep(int((self.material_theta_s - self.material_theta_500) * 100))
-        self.horizontalSlider_Theta.setTickInterval(int((self.material_theta_s - self.material_theta_500)/100))
+#         self.horizontalSlider_Theta.setMaximum(int(self.material_theta_s * 1000))
+#         self.horizontalSlider_Theta.setMinimum(int(self.material_theta_500 * 1000))
+#         self.horizontalSlider_Theta.setSliderPosition(int(self.material_theta_500 * 1000))
+#         self.horizontalSlider_Theta.setSingleStep(int((self.material_theta_s - self.material_theta_500) * 100))
+#         self.horizontalSlider_Theta.setPageStep(int((self.material_theta_s - self.material_theta_500) * 100))
+#         self.horizontalSlider_Theta.setTickInterval(int((self.material_theta_s - self.material_theta_500)/100))
 
-        self.label_material.setText(str(self.material_type))
+#         self.label_material.setText(str(self.material_type))
 
-        fig = plt.figure()
-        ax = plt.subplot(111,projection="ternary")
-        ax.taxis.set_major_locator(MultipleLocator(0.2))
-        ax.laxis.set_major_locator(MultipleLocator(0.2))
-        ax.raxis.set_major_locator(MultipleLocator(0.2))
+#         fig = plt.figure()
+#         ax = plt.subplot(111,projection="ternary")
+#         ax.taxis.set_major_locator(MultipleLocator(0.2))
+#         ax.laxis.set_major_locator(MultipleLocator(0.2))
+#         ax.raxis.set_major_locator(MultipleLocator(0.2))
 
-        ax.tick_params(labelrotation="axis")
-        ax.grid(which='major') #which="both")
+#         ax.tick_params(labelrotation="axis")
+#         ax.grid(which='major') #which="both")
 
-        t = [0.6, 0.6, 0.35, 0.35]
-        l = [0.4, 0, 0, 0.65]
-        r = [0, 0.4, 0.65, 0]
-        ax.fill(t, l, r, color="b") #Trapézio azul
+#         t = [0.6, 0.6, 0.35, 0.35]
+#         l = [0.4, 0, 0, 0.65]
+#         r = [0, 0.4, 0.65, 0]
+#         ax.fill(t, l, r, color="b") #Trapézio azul
 
-        t = [1, 0.6, 0.6]
-        l = [0, 0.4, 0]
-        r = [0, 0 , 0.4]
-        ax.fill(t, l, r, color="m") #Triângulo roxo
+#         t = [1, 0.6, 0.6]
+#         l = [0, 0.4, 0]
+#         r = [0, 0 , 0.4]
+#         ax.fill(t, l, r, color="m") #Triângulo roxo
 
-        t = [0.35, 0.35, 0.18, 0.18]
-        l = [0.65, 0.15, 0.15, 0.82]
-        r = [0, 0.5, 0.67, 0]
-        ax.fill(t, l, r, color="y") #Trapézio amarelo
+#         t = [0.35, 0.35, 0.18, 0.18]
+#         l = [0.65, 0.15, 0.15, 0.82]
+#         r = [0, 0.5, 0.67, 0]
+#         ax.fill(t, l, r, color="y") #Trapézio amarelo
 
-        t = [0.35, 0.35, 0.18, 0.18]
-        l = [0.15, 0, 0, 0.15]
-        r = [0.5, 0.65, 0.82, 0.67]
-        ax.fill(t, l, r, color="lime") #Paralelogramo verde claro
+#         t = [0.35, 0.35, 0.18, 0.18]
+#         l = [0.15, 0, 0, 0.15]
+#         r = [0.5, 0.65, 0.82, 0.67]
+#         ax.fill(t, l, r, color="lime") #Paralelogramo verde claro
 
-        t = [0.18, 0.18, 0, 0]
-        l = [0.15, 0, 0, 0.15]
-        r = [0.67, 0.82, 1, 0.85]
-        ax.fill(t, l, r, color="g") #Paralelogramo verde escuro
+#         t = [0.18, 0.18, 0, 0]
+#         l = [0.15, 0, 0, 0.15]
+#         r = [0.67, 0.82, 1, 0.85]
+#         ax.fill(t, l, r, color="g") #Paralelogramo verde escuro
 
-        t = [0.18, 0.18, 0, 0]
-        l = [0.65, 0.15, 0.15, 0.65]
-        r = [0.17, 0.67, 0.82, 0.35]
-        ax.fill(t, l, r, color="orange") #Paralelogramo laranja
+#         t = [0.18, 0.18, 0, 0]
+#         l = [0.65, 0.15, 0.15, 0.65]
+#         r = [0.17, 0.67, 0.82, 0.35]
+#         ax.fill(t, l, r, color="orange") #Paralelogramo laranja
 
-        t = [0.18, 0.18, 0, 0]
-        l = [0.82, 0.65, 0.65, 1]
-        r = [0, 0.17, 0.35, 0]
-        ax.fill(t, l, r, color="r") #Trapézio vermelho
+#         t = [0.18, 0.18, 0, 0]
+#         l = [0.82, 0.65, 0.65, 1]
+#         r = [0, 0.17, 0.35, 0]
+#         ax.fill(t, l, r, color="r") #Trapézio vermelho
 
-        ax.scatter((clay/100),(sand/100),(silt/100), color="black")
+#         ax.scatter((clay/100),(sand/100),(silt/100), color="black")
 
-        ticks = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
-        labels = ["Sl", "0.2", "0.4", "0.6", "0.8", "1"]
-        ax.taxis.set_ticks(ticks, labels=labels)
-        labels = ["Cl", "0.2", "0.4", "0.6", "0.8", "1"]
-        ax.laxis.set_ticks(ticks, labels=labels)
-        labels = ["Sd", "0.2", "0.4", "0.6", "0.8", "1"]
-        ax.raxis.set_ticks(ticks, labels=labels)
+#         ticks = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+#         labels = ["Sl", "0.2", "0.4", "0.6", "0.8", "1"]
+#         ax.taxis.set_ticks(ticks, labels=labels)
+#         labels = ["Cl", "0.2", "0.4", "0.6", "0.8", "1"]
+#         ax.laxis.set_ticks(ticks, labels=labels)
+#         labels = ["Sd", "0.2", "0.4", "0.6", "0.8", "1"]
+#         ax.raxis.set_ticks(ticks, labels=labels)
 
-        self.tri+=1
+#         self.tri+=1
 
-        fig.tight_layout
-        self.canvasT = FigureCanvas(fig)
-        self.canvasT.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+#         fig.tight_layout
+#         self.canvasT = FigureCanvas(fig)
+#         self.canvasT.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.canvasT.setMaximumSize(315,300)           #(390,345)
+#         self.canvasT.setMaximumSize(315,300)           #(390,345)
         
-        self.tabMat = QWidget()
-        self.tabMat_layout = QVBoxLayout()
-        self.tabMat_layout.addWidget(self.canvasT)
-        self.tabMat.setLayout(self.tabMat_layout)
+#         self.tabMat = QWidget()
+#         self.tabMat_layout = QVBoxLayout()
+#         self.tabMat_layout.addWidget(self.canvasT)
+#         self.tabMat.setLayout(self.tabMat_layout)
 
-        self.tab_name = "Solo"
-        self.tabs_4.addTab(self.tabMat, self.tab_name)
+#         self.tab_name = "Solo"
+#         self.tabs_4.addTab(self.tabMat, self.tab_name)
 
-        if self.tabs_4.count() >= 2:
-            self.tabs_4.removeTab(0)
+#         if self.tabs_4.count() >= 2:
+#             self.tabs_4.removeTab(0)
 
-        self.tabs_4.setVisible(True)
+#         self.tabs_4.setVisible(True)
 
 
-        valueC = str(self.horizontalSlider_C.value())
-        self.ClineEdit.setText(valueC)
+#         valueC = str(self.horizontalSlider_C.value())
+#         self.ClineEdit.setText(valueC)
 
-        valuePhi = str(self.horizontalSlider_Phi.value())
-        self.philineEdit.setText(valuePhi)
+#         valuePhi = str(self.horizontalSlider_Phi.value())
+#         self.philineEdit.setText(valuePhi)
 
-        valueH = str(self.horizontalSlider_H.value()/10)
-        self.hlineEdit.setText(valueH)
+#         valueH = str(self.horizontalSlider_H.value()/10)
+#         self.hlineEdit.setText(valueH)
 
-        valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
-        self.hwlineEdit.setText(valueHw)
+#         valueHw = str(self.horizontalSlider_Hw.value() * self.horizontalSlider_H.value()/1000)
+#         self.hwlineEdit.setText(valueHw)
 
-        valueTheta = str(self.horizontalSlider_Theta.value()/1000)
-        self.thetalineEdit.setText(valueTheta)
+#         valueTheta = str(self.horizontalSlider_Theta.value()/1000)
+#         self.thetalineEdit.setText(valueTheta)
 
-        self.stacked_elevacao.resize
+#         self.stacked_elevacao.resize
 
-        print("Muda solo")
-        self.material_definido+=1
+#         print("Muda solo")
+#         self.material_definido+=1
     #
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------
