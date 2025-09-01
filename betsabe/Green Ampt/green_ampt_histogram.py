@@ -27,6 +27,8 @@ class Popup_histogram(QDialog):
         self.canvas = FigureCanvas(self.figura)
         self.layout_histogram.addWidget(self.canvas)
 
+        self.hw_anterior = 0
+
         self.show()
 
     def show_error_popup(self, error_message):
@@ -76,7 +78,9 @@ class Popup_histogram(QDialog):
     # Permite que o usuário insira ao invés de utilizar informações do gráfico
     def insert_mode(self):
         self.line_edit_pre.setEnabled(True)
+        self.slider_period.setEnabled(True)
         if self.figura:
+            self.line_edit_hw.setText(f'{0:.7f}')
             self.label_file_name.setText(f" File: ")
             self.figura.clear()       # limpa os eixos
             self.canvas.draw()    # redesenha o canvas vazio
@@ -99,6 +103,7 @@ class Popup_histogram(QDialog):
     
     # Faz o cálculo do hw 
     def rain_infiltration(self):
+        # self.hw_anterior = 0 # guarda valor do hw
         p = float(self.line_edit_pre.text()) # h
         p = p/1000 # mm/h -> m/h
         t = float(self.slider_period.value()) # h
@@ -115,40 +120,48 @@ class Popup_histogram(QDialog):
         k_day = 0.12 # m/dia
 
         # Cálculos
-        # if p == 0:
-        #     self.line_edit_hw.setText(f'{0:.7f}')
-        # else:
         try:
-            # cálculos com essas variáveis
-            k = k_day/24 # m/h
-            theta_e = (theta_i-theta_r)/(theta_s-theta_r)
-            psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
-            a = abs(psi) * (theta_s - theta_i)
-            tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
-            hwp = p*tp # m
-            hw0 = k*(t-tp) + hwp
-            hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
+            if p > 0: # 🌧️ caso com chuva → cálculo original
+                # cálculos com essas variáveis
+                k = k_day/24 # m/h
+                theta_e = (theta_i-theta_r)/(theta_s-theta_r)
+                psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
+                a = abs(psi) * (theta_s - theta_i)
+                tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
+                hwp = p*tp # m
+                hw0 = k*(t-tp) + hwp
+                hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
+                print("VALORR",hw)
+                if hw>0:
+                    self.hw_anterior = hw
+                    print(self.hw_anterior,"IFFFFFFFFFFFFF")
+                
+            else:  # 🌤️ caso sem chuva → secagem gradual
+                # dt = 1               # intervalo de tempo (h)
+                # k_drenagem = 0.0005  # taxa de drenagem em m/h (~0.5 mm/h)
+                # hw_min = 0.02        # umidade mínima (m)
+                hw = self.hw_anterior
+                print(self.hw_anterior,"ELSEEEEEE")
+                # hw = max(hw_min, self.hw_anterior - k_drenagem*dt)
 
             # Possibilidades
-            if isnan(hw): # se hw não tiver valor
+            if isnan(hw) or self.slider_period.value() == 0: # se hw não tiver valor ou se o periodo for 0
                 hw = 0
             elif hw<0: # se hw for negativo
-                hw = 0
+                hw = self.hw_anterior
             elif hw>h: # se hw for maior que o h
                 hw = h
+
+            # # guarda valor pra próxima rodada
+            # self.hw_anterior = hw
             self.line_edit_hw.setText(f'{hw:.7f}')
 
         except (ZeroDivisionError, ValueError) as e:
-            self.line_edit_hw.setText(f'{0:.7f}erro')
-            # erro
+            # self.line_edit_hw.setText(f'{0:.7f}erro')
+            self.line_edit_hw.setText(f'{self.hw_anterior:.7f}')
 
-            # Quando o hw for menor que 0, o hw sera o último positivo
         return
-    
-    # Cria uma lista de hws daquele arquivo específico, com a intenção de identificar o último hw positivo.
-    def lista_hw(self):
-        
-        return
+    # Ideia para hw não zerar: Quando o hw for menor que 0, o hw sera o último positivo
 
 app = QApplication(argv)
 UIWindow = Popup_histogram()
