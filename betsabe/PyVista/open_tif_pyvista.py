@@ -289,11 +289,11 @@ class Popup_Mapa_RJ(QDialog):
         if self.layout:
             area_layout = self.layout.geometry()  # Obtém o tamanho do layout
             self.fundo.setGeometry(area_layout)  # Define o tamanho da QLabel igual ao layout
-            # Mantém a proporção ao redimensionar
+
+        # Mantém a proporção ao redimensionar
         new_width = event.size().width()
         new_height = int(new_width / self.aspect_ratio)
         self.resize(new_width, new_height)
-        
         super().resizeEvent(event)  
 
     def botao_clicado_regiao(self):
@@ -495,9 +495,10 @@ class UI(QMainWindow):
         # self.plotter.set_scale(xscale=1, yscale=1)
         grid = pv.StructuredGrid(x, y, z)
         grid["elevation"] = z.ravel(order="F")
+        grid.translate([25, 0, 0], inplace=True)  # move 100 no eixo X, 50 no Y
         
         self.plotter.add_mesh(pv.Sphere())
-        self.plotter.add_mesh(grid, scalars="elevation", cmap="terrain", show_scalar_bar=True, scalar_bar_args={'title': 'Elevação',
+        self.plotter.add_mesh(grid, scalars="elevation", cmap="terrain", show_scalar_bar=True, scalar_bar_args={'title': '',
         'vertical': True, 'position_x': 0.85, 'position_y': 0.25})
 
         # Adiciona o canvas do gráfico à cena

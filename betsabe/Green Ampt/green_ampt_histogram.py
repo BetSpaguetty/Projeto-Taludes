@@ -61,15 +61,15 @@ class Popup_histogram(QDialog):
         df = pd.read_excel(self.file) # Ler o arquivo Excel
         self.precipitation = df.iloc[:,1] # Pega todas as linhas ":" da coluna 1
         self.period = df.iloc[:,0] # Pega todas as linhas ":" da coluna 0
-
+        self.dict_rain = dict(zip(self.period, self.precipitation))
         self.slider_period.setRange(min(self.period), max(self.period))
         return
     
     # Ao mudar o valor da precipitação, muda automaticamente o período
     def change_period(self):
         if self.line_edit_pre.isEnabled() == False:
-            dicionary_period_precipitation = dict(zip(self.period, self.precipitation))
-            value = dicionary_period_precipitation[self.slider_period.value()]
+            # dicionary_period_precipitation = dict(zip(self.period, self.precipitation))
+            value = self.dict_rain[self.slider_period.value()]
             self.line_edit_pre.setText(str(value))
         else:
             self.slider_period.setRange(0,48)
@@ -100,16 +100,53 @@ class Popup_histogram(QDialog):
 
         self.canvas.draw()
         return
-    
-    # Faz o cálculo do hw 
+     
     def rain_infiltration(self):
         # self.hw_anterior = 0 # guarda valor do hw
-        p = float(self.line_edit_pre.text()) # h
-        p = p/1000 # mm/h -> m/h
-        t = float(self.slider_period.value()) # h
+        # p = float(self.line_edit_pre.text()) # h
+        # p = p/1000 # mm/h -> m/h
+        # # t = float(self.slider_period.value()) # h
+        # t = 1 # h
 
+        # # variáveis obtidas da função runAnalysis
+        # theta_i = 0.3
+        # h = 3
+        # # médium
+        # theta_r = 0.01
+        # theta_s = 0.392
+        # alpha = 2.49 # m^(-1)
+        # n = 1.1689
+        # m = 0.1445
+        # k_day = 0.12 # m/dia
+
+        # # Cálculos
+        # try:
+        #     k = k_day/24 # m/h
+        #     theta_e = (theta_i-theta_r)/(theta_s-theta_r)
+        #     psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
+        #     a = abs(psi) * (theta_s - theta_i)
+        #     tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
+        #     hwp = p*tp # m
+        #     hw0 = k*(t-tp) + hwp
+        #     hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
+
+        #     # Possibilidades
+        #     if isnan(hw) or self.slider_period.value() == 0: # se hw não tiver valor ou se o periodo for 0
+        #         hw = 0
+        #     elif hw<0: # se hw for negativo
+        #         hw = self.hw_anterior
+        #     elif hw>h: # se hw for maior que o h
+        #         hw = h
+        #     # self.line_edit_hw.setText(f'{hw:.7f}')
+        # except (ZeroDivisionError, ValueError) as e:
+        #     # self.line_edit_hw.setText(f'{0:.7f}erro')
+        #     # hw = 0
+        return
+    
+    # Faz o cálculo do hw 
+    def calculo_hw(self,p,t,theta_i):
         # variáveis obtidas da função runAnalysis
-        theta_i = 0.3
+        # theta_i = 0.3
         h = 3
         # médium
         theta_r = 0.01
@@ -119,49 +156,69 @@ class Popup_histogram(QDialog):
         m = 0.1445
         k_day = 0.12 # m/dia
 
-        # Cálculos
         try:
-            if p > 0: # 🌧️ caso com chuva → cálculo original
-                # cálculos com essas variáveis
-                k = k_day/24 # m/h
-                theta_e = (theta_i-theta_r)/(theta_s-theta_r)
-                psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
-                a = abs(psi) * (theta_s - theta_i)
-                tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
-                hwp = p*tp # m
-                hw0 = k*(t-tp) + hwp
-                hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
-                print("VALORR",hw)
-                if hw>0:
-                    self.hw_anterior = hw
-                    print(self.hw_anterior,"IFFFFFFFFFFFFF")
-                
-            else:  # 🌤️ caso sem chuva → secagem gradual
-                # dt = 1               # intervalo de tempo (h)
-                # k_drenagem = 0.0005  # taxa de drenagem em m/h (~0.5 mm/h)
-                # hw_min = 0.02        # umidade mínima (m)
-                hw = self.hw_anterior
-                print(self.hw_anterior,"ELSEEEEEE")
-                # hw = max(hw_min, self.hw_anterior - k_drenagem*dt)
+            k = k_day/24 # m/h
+            theta_e = (theta_i-theta_r)/(theta_s-theta_r)
+            psi = ((1 - (theta_e**(1/m)))/((alpha**n)*(theta_e**(1/m))))**(1/n)
+            a = abs(psi) * (theta_s - theta_i)
+            tp = k*abs(psi)*(theta_s-theta_i)/(p*(p-k))
+            hwp = p*tp # m
+            hw0 = k*(t-tp) + hwp
+            hw = hw0 + a*log((hw0 + a)/(hwp + a))*((hw0 + a)/hw0)
 
             # Possibilidades
-            if isnan(hw) or self.slider_period.value() == 0: # se hw não tiver valor ou se o periodo for 0
+            if isnan(hw): # se hw não tiver valor ou se o periodo for 0
                 hw = 0
             elif hw<0: # se hw for negativo
-                hw = self.hw_anterior
+                hw = 0
             elif hw>h: # se hw for maior que o h
                 hw = h
-
-            # # guarda valor pra próxima rodada
-            # self.hw_anterior = hw
-            self.line_edit_hw.setText(f'{hw:.7f}')
-
         except (ZeroDivisionError, ValueError) as e:
-            # self.line_edit_hw.setText(f'{0:.7f}erro')
-            self.line_edit_hw.setText(f'{self.hw_anterior:.7f}')
+            hw = 0
+        return hw
+    
+    def cria_lista_hw(self):
+        lista_hw = []
+        for tempo in self.dict_rain:
+            hw = self.calculo_hw(self.dict_rain[tempo],1,0.3)
+            # print(hw)
+            lista_hw.append(hw)
+        return lista_hw
+    
+    def hw_total(self):
+        i = 0
+        hw_total = 0
+        lista = self.cria_lista_hw()
+        j = self.slider_period.value()
+        h_limite = 3
 
+        while i < j:
+            hw_total += lista[i]
+            i+=1
+
+        # Possibilidades
+            if isnan(hw_total): # se hw não tiver valor ou se o periodo for 0
+                hw_total = 0
+            elif hw_total<0: # se hw for negativo
+                hw_total = 0
+            elif hw_total>h_limite: # se hw for maior que o h
+                hw_total = h_limite
+
+        return hw_total
+    
+    def verifica_insert(self):
+        if self.line_edit_pre.isEnabled():
+            hw = self.calculo_hw(float(self.line_edit_pre.text()),self.slider_period.value(),0.3)
+        else:
+            hw = self.hw_total()
+
+        self.line_edit_hw.setText(f'{hw:.7f}')
         return
-    # Ideia para hw não zerar: Quando o hw for menor que 0, o hw sera o último positivo
+    
+
+            
+
+
 
 app = QApplication(argv)
 UIWindow = Popup_histogram()
