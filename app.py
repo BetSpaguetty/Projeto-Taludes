@@ -24,7 +24,7 @@ class TaludesApp :
 
 
     def _initialization(self) :
-        self.addAmbient('DATA/mapa1.tif')
+        self.addAmbient("Projeto-Taludes\\arquivos_tif\\recorte_gavea.tif")
 
 
     def openTecgraf(self) :
