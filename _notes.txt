@@ -1,0 +1,16 @@
+DESCRIÇÕES
+L - ESCALA
+LD
+
+
+h = altura da capa de solo
+hw = profundidade da frente de saturação (parte mais molhada)
+alpha = inclinação do talude
+phi = angulo de atrito
+c = coesão
+thetai = teor de umidade inicial
+
+p = preciptação 
+t = tempo
+
+ 
