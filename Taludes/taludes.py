@@ -3,7 +3,7 @@ from Taludes.presets import *
 import numpy as np
 from PIL import Image
 import pyvista as pv
-from app_config import *
+from config import *
 
 def defineMaterial(clay, sand, silt) :
     

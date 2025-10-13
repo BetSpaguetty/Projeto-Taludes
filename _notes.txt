@@ -23,4 +23,17 @@ t = tempo
 
 
 
- 
+     def getColorSpectre3D(self, matrix:np.ndarray) :
+
+        norm = mcolors.Normalize(vmin=np.min(matrix), vmax=np.max(matrix))
+
+        self.colorMap = ["red", "orange", "yellow", "green", "blue"]
+        self.colorMap.reverse()
+        if isinstance(self.colorMap, list):
+            cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", self.colorMap)
+        else:
+            cmap = cm.get_cmap(self.colorMap)
+
+        colors = cmap(norm(matrix.flatten()))  
+        colors[:, -1] = self.colorOpacity  
+        return colors

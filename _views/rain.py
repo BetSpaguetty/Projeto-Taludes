@@ -9,7 +9,6 @@ class RainView(DDWidget) :
 
     def __init__(self):
         super().__init__()
-        self.setFixedHeight(300)
         
         self._view()
         self.setStyleSheet(QSS)
@@ -38,11 +37,13 @@ class RainView(DDWidget) :
 
         # Preciptação ======= >>
         self.labelPreciptacao = QLabel('Preciptação')
-        self.lineEditPreciptacao = QLineEdit()
-        self.lineEditPreciptacao.setText('100')
-        self.lineEditPreciptacao.setObjectName('PLineEdit')
+        self.spinBoxPreciptacao = QSpinBox()
+        self.spinBoxPreciptacao.setMinimum(0)
+        self.spinBoxPreciptacao.setMaximum(500)
+        self.spinBoxPreciptacao.setValue(100)
+        self.spinBoxPreciptacao.setObjectName('PLineEdit')
         self.mainBoxLayout.addWidget(self.labelPreciptacao, 1, 0, 1, 2, alignment=Qt.AlignBottom)
-        self.mainBoxLayout.addWidget(self.lineEditPreciptacao, 2, 0, 1, 2, alignment=Qt.AlignLeft)
+        self.mainBoxLayout.addWidget(self.spinBoxPreciptacao, 2, 0, 1, 2, alignment=Qt.AlignLeft)
 
         # Tempo ============= >>
         self.labelTempo = QLabel("Tempo (h)")
@@ -54,10 +55,10 @@ class RainView(DDWidget) :
 
         self.layoutSliderTempo = QHBoxLayout()
         self.labelMinTempo = QLabel('0')
-        self.labelMaxTempo = QLabel('24')
+        self.labelMaxTempo = QLabel('48')
         self.sliderTempo = QSlider(Qt.Horizontal)
         self.sliderTempo.setMinimum(0)
-        self.sliderTempo.setMaximum(24)
+        self.sliderTempo.setMaximum(48)
         self.sliderTempo.setTickInterval(1)
         self.sliderTempo.setValue(0)
         self.sliderTempo.valueChanged.connect(self.atualizarTempo)
@@ -75,7 +76,7 @@ class RainView(DDWidget) :
         self.lineEditTempo.setText(f'{t}')
 
     def getPreciptacao(self) :
-        return float(self.lineEditPreciptacao.text())
+        return self.spinBoxPreciptacao.value()
 
     def getTempo(self) :
         return self.sliderTempo.value()

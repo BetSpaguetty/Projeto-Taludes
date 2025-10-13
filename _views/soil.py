@@ -191,6 +191,7 @@ QSS = """
 #soil {
     border: 1px solid #606060;
     border-radius: 5px;
+    background-color: black;
 
 }
 

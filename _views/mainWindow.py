@@ -4,7 +4,7 @@ from PyQt5.QtGui     import *
 from DDCores.window import CoresWindow
 from _views.workspace import Workspace
 import webbrowser
-from app_config import *
+from config import *
 
  
 class TaludesWindow(CoresWindow) :

@@ -388,13 +388,13 @@ QScrollArea {
 }
 
 QScrollBar:vertical {
-    background: #202020;
-    width: 0px;
+    background: transparent;
+    width: 10px;
     margin: 0px;
 }
 
 QScrollBar::handle:vertical {
-    background: #303030;
+    background: #505050;
     min-height: 20px;
     border-radius: 5px;
 }

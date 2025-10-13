@@ -37,7 +37,7 @@ class MapView(DDWidget) :
         self.matrixElevation : np.ndarray = None
         self.vX : np.ndarray = None
         self.vY : np.ndarray = None
-        self.colorType : str = 'viridis'
+        self.colorMap : str = 'viridis'
         self.colorOpacity : int = 1.0
         self.layers = []
         self.viewer : str = None
@@ -59,19 +59,25 @@ class MapView(DDWidget) :
         self.topBarrLayout.setContentsMargins(0,3,0,3)
         self.topBarrLayout.setAlignment(Qt.AlignLeft)
         self.topBarr.setLayout(self.topBarrLayout)
-        self.mainBoxLayout.addWidget(self.topBarr)
-
-
         self.buttonsBarrLeftLayout  = QHBoxLayout()
         self.buttonsBarrLeftLayout.setSpacing(5)
         self.buttonsBarrRightLayout = QHBoxLayout()
         self.buttonsBarrRightLayout.setSpacing(5)
         self.buttonsBarrRightLayout.addStretch()
+        self.mainBoxLayout.addWidget(self.topBarr)
 
+        # CONFIG BAR
+        self.configBarr = QWidget()
+        self.configBarr.setObjectName('configBar')
+        self.configBarr.setFixedHeight(30)
+        self.configBarrLayout = QHBoxLayout()
+        self.configBarrLayout.setSpacing(5)
+        self.configBarrLayout.setContentsMargins(0, 2, 0, 2)
+        self.configBarrLayout.setAlignment(Qt.AlignLeft)
+        self.configBarr.setLayout(self.configBarrLayout)
         self.topBarrLayout.addLayout(self.buttonsBarrLeftLayout)
         self.topBarrLayout.addLayout(self.buttonsBarrRightLayout)
-
-
+        self.mainBoxLayout.addWidget(self.configBarr)
 
         self.setStyleSheet(QSS)
 
@@ -138,6 +144,10 @@ class MapView(DDWidget) :
         return button
 
 
+    def addItemConfig(self, item) :
+        self.configBarrLayout.addWidget(item, alignment=Qt.AlignLeft)
+
+
     # ------------------------------------------- >>>
 
     def saveInformations(self,  matrixFilter:np.ndarray, matrixElevation:np.ndarray, vX:np.ndarray, vY:np.ndarray) :
@@ -169,20 +179,30 @@ class MapView(DDWidget) :
         self.mapViewer3D.addItem(p3d)
 
 
+    def getColorSpectre3D(self, matrix:np.ndarray) :
+
+        norm = mcolors.Normalize(vmin=np.min(matrix), vmax=np.max(matrix))
+
+        if isinstance(self.colorMap, list):
+            cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", self.colorMap)
+        else:
+            cmap = cm.get_cmap(self.colorMap)
+
+        colors = cmap(norm(matrix.flatten()))  
+        colors[:, -1] = self.colorOpacity  
+        return colors
+
+
     def getColorSpectre2D(self, matrix:np.ndarray) :
         norm = mcolors.Normalize(vmin=np.min(matrix), vmax=np.max(matrix))
-        cmap = cm.get_cmap(self.colorType)
+
+        cmap = cm.get_cmap(self.colorMap)
+
         colors = cmap(norm(matrix))  
         colors[..., -1] = self.colorOpacity
         return colors
 
 
-    def getColorSpectre3D(self, matrix:np.ndarray) :
-        norm = mcolors.Normalize(vmin=np.min(matrix), vmax=np.max(matrix))
-        cmap = cm.get_cmap(self.colorType)
-        colors = cmap(norm(matrix.flatten()))  
-        colors[:, -1] = self.colorOpacity  
-        return colors
 
     
     def cleanGraph(self) :
@@ -205,7 +225,13 @@ class MapView(DDWidget) :
         self.renderFunction = self.renderMap3D
         if self.matrixFilter is not None : self.renderMap(self.matrixFilter, self.matrixElevation, self.vX, self.vY)
 
+    def setColorMap(self, colorMap) :
+        self.colorMap = colorMap
+        if self.matrixFilter is not None : self.renderMap(self.matrixFilter, self.matrixElevation, self.vX, self.vY)
 
+    def setOpacity(self, opacity) :
+        self.colorOpacity = opacity
+        if self.matrixFilter is not None : self.renderMap(self.matrixFilter, self.matrixElevation, self.vX, self.vY)
 
 
 # =================================================================================================================================================== |||
@@ -222,6 +248,7 @@ QSS = """
 
 #mapBar {
 
+border-bottom: 1px solid #505050;
 
 
 }

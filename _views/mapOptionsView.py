@@ -3,9 +3,8 @@ from _models.mapa import Mapa
 from _views.ambienteView import AmbienteView
 from _views.toolsbar import *
 import os
-from app_config import *
+from config import *
 from Taludes.presets import *
-from app_types import *
 from _views.soil import  *
 from _views.rain import  *
 from _views.mapOptionsView import  *

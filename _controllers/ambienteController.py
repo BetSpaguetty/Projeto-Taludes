@@ -3,9 +3,8 @@ from _models.mapa import Mapa
 from _views.ambienteView import AmbienteView
 from _views.toolsbar import *
 import os
-from app_config import *
+from config import *
 from Taludes.presets import *
-from app_types import *
 from _views.soil import  *
 from _views.rain import  *
 from _views.mapOptionsView import  *
@@ -37,6 +36,8 @@ class AmbienteController :
         self.buttonMode3D.click()
         self.buttonFilterElevation.click()
         self.renderElevation()
+        self.dropboxColorMaps.setCurrentIndex(-1)
+        self.dropboxColorMaps.setCurrentIndex(0)
 
     # --------------------------------------------------------------------------------------------- >>>
     
@@ -122,12 +123,6 @@ class AmbienteController :
         self.soilView.setSoilLabel(self.solo.value)
 
 
-    def configFilterButton(self, dictButton:DictButton) :
-        button = self.view.mapaView.addButtonMode(dictButton.TITLE, checkable=True) 
-        button.clicked.connect(lambda : dictButton.FUNCTION())
-        dictButton.BUTTON = button
-
-
 
 
 
@@ -158,11 +153,44 @@ class AmbienteController :
     def associateHeader(self) :
         pass
 
+
+    def functionChangeColorMap(self, id) :
+        if id == -1 : return
+        colorMap = self.dropboxColorMaps.itemText(id)
+        if colorMap in self.mapColorMaps :
+            self.view.mapaView.setColorMap(self.mapColorMaps[colorMap])
+        else :     
+            self.view.mapaView.setColorMap(colorMap)
+
+    def functionChangeOpacity(self, opacity) :
+        self.view.mapaView.setOpacity(opacity/100)
+
     # MAP --------------------------------------- >>>
 
     def _associateGraphConfigs(self) :
         self.buttonConfiguration = self.view.mapaView.addButtonConfig(icon='public/configIcon.png')
         self.buttonConfiguration.clicked.connect(lambda : self.functionButtonConfiguration())
+
+        self.mapColorMaps = {}
+        self.dropboxColorMaps = QComboBox()
+        for e in COLORMAPS :
+            if isinstance(e, tuple) :
+                self.dropboxColorMaps.addItem(e[0])
+                self.mapColorMaps[e[0]] = e[1]
+            else : 
+                self.dropboxColorMaps.addItem(e)
+        self.dropboxColorMaps.currentIndexChanged.connect(self.functionChangeColorMap)
+        self.view.mapaView.addItemConfig(self.dropboxColorMaps)
+
+
+        self.sliderOpacity = QSlider(Qt.Horizontal)
+        self.sliderOpacity.setMinimum(1)
+        self.sliderOpacity.setMaximum(100)
+        self.sliderOpacity.setValue(100)
+        self.sliderOpacity.valueChanged.connect(self.functionChangeOpacity)
+        self.view.mapaView.addItemConfig(self.sliderOpacity)
+
+
 
 
     def associateGraphFilters(self) :
@@ -205,6 +233,7 @@ class AmbienteController :
         self.rainView = RainView()
         boxRainView.addSubWidget(self.rainView)
         self.rainView.sliderTempo.valueChanged.connect(lambda : self.functionSliderTempo())
+        self.rainView.spinBoxPreciptacao.valueChanged.connect(lambda : self.functionSliderTempo())
 
 
 
