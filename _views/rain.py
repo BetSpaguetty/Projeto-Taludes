@@ -10,49 +10,101 @@ class RainView(DDWidget) :
     def __init__(self):
         super().__init__()
         self.setFixedHeight(300)
-        self.mainBox.setObjectName('rain')
-        self.mainBoxLayout = QVBoxLayout()
-        self.mainBox.setLayout(self.mainBoxLayout)
-        self._elements()
+        
+        self._view()
         self.setStyleSheet(QSS)
 
 
+    def _view(self) :
+        self.mainBoxLayout = QGridLayout()
+        self.mainBox.setLayout(self.mainBoxLayout)
+        self.mainBox.setObjectName('rain')
 
-    def _elements(self) :
-        self.title = QLabel('Rain')
-        self.title.setObjectName('labelMaterial')
-        self.mainBoxLayout.addWidget(self.title, alignment=Qt.AlignCenter)
-        self.editP = self.addEditor('P(cm/h) preciptação: ')
-        self.editT = self.addEditor('t(h) tempo: ')
-        self.editH = self.addEditor('hw(m) profundidade:  ')
+        # HW ================ >>
+        self.labelHW = QLabel('HW')
+        self.labelHW.setObjectName('HWLabel')
+        self.lineEditHW = QLineEdit()
+        self.lineEditHW.setReadOnly(True)
+        self.lineEditHW.setAlignment(Qt.AlignCenter)
+        self.lineEditHW.setObjectName('HWLineEdit')
+        self.lineEditHW.setFixedWidth(80)
+        self.layoutHW = QHBoxLayout()
+        self.layoutHW.addStretch()
+        self.layoutHW.addWidget(self.labelHW)
+        self.layoutHW.addWidget(self.lineEditHW)
+        self.layoutHW.addStretch()
+        self.mainBoxLayout.addLayout(self.layoutHW, 0, 0, 1, 2 , alignment=Qt.AlignCenter)
 
 
+        # Preciptação ======= >>
+        self.labelPreciptacao = QLabel('Preciptação')
+        self.lineEditPreciptacao = QLineEdit()
+        self.lineEditPreciptacao.setText('100')
+        self.lineEditPreciptacao.setObjectName('PLineEdit')
+        self.mainBoxLayout.addWidget(self.labelPreciptacao, 1, 0, 1, 2, alignment=Qt.AlignBottom)
+        self.mainBoxLayout.addWidget(self.lineEditPreciptacao, 2, 0, 1, 2, alignment=Qt.AlignLeft)
+
+        # Tempo ============= >>
+        self.labelTempo = QLabel("Tempo (h)")
+        self.lineEditTempo = QLineEdit()
+        self.lineEditTempo.setText('0')
+        self.lineEditTempo.setReadOnly(True)
+        self.lineEditTempo.setObjectName('TempoLineEdit')
+        self.lineEditTempo.setFixedWidth(80)
+
+        self.layoutSliderTempo = QHBoxLayout()
+        self.labelMinTempo = QLabel('0')
+        self.labelMaxTempo = QLabel('24')
+        self.sliderTempo = QSlider(Qt.Horizontal)
+        self.sliderTempo.setMinimum(0)
+        self.sliderTempo.setMaximum(24)
+        self.sliderTempo.setTickInterval(1)
+        self.sliderTempo.setValue(0)
+        self.sliderTempo.valueChanged.connect(self.atualizarTempo)
+        self.layoutSliderTempo.addWidget(self.labelMinTempo, )
+        self.layoutSliderTempo.addWidget(self.sliderTempo,  )
+        self.layoutSliderTempo.addWidget(self.labelMaxTempo,  )
+
+
+        self.mainBoxLayout.addWidget(self.labelTempo, 3, 0, 1, 2, alignment=Qt.AlignBottom)
+        self.mainBoxLayout.addWidget(self.lineEditTempo, 4, 0, 1, 1,  alignment=Qt.AlignTop)
+        self.mainBoxLayout.addLayout(self.layoutSliderTempo, 4, 1, 1, 1,  alignment=Qt.AlignTop)
         
 
-    def addEditor(self, title, readOnly=False) -> QLineEdit :
-        box = QWidget()
-        layout = QHBoxLayout()
-        box.setLayout(layout)
-        label = QLabel(title)
-        label.setObjectName('labelMaterial')
-        lineEdit = QLineEdit()
-        lineEdit.setObjectName('lineEditMaterial')
-        lineEdit.setReadOnly(readOnly)
-        layout.addWidget(label)
-        layout.addStretch()
-        layout.addWidget(lineEdit)
-        self.mainBoxLayout.addWidget(box)
-        return lineEdit
- 
+    def atualizarTempo(self, t) :
+        self.lineEditTempo.setText(f'{t}')
 
+    def getPreciptacao(self) :
+        return float(self.lineEditPreciptacao.text())
 
-
-
-
+    def getTempo(self) :
+        return self.sliderTempo.value()
 
 
 QSS = """
 
+
+QLabel {
+    color: white;
+    font-size: 14px;
+
+}
+QLineEdit {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 4px;
+    text-align: center;
+
+}
+
+#TempoLineEdit {
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #d1d1d1;
+    padding: 4px;
+    text-align: center;
+
+}
 
 #rain {
     border: 1px solid #606060;
@@ -68,7 +120,24 @@ QSS = """
 
 
 
+#HWLabel {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+#HWLineEdit {
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #055796;
+    background-color: #d1d1d1;
+
+    padding: 6px;
+
+}
 
 
 
 """
+

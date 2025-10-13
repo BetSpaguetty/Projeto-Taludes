@@ -23,7 +23,7 @@ class Mapa :
 
     # Usa a matriz e escala setados
     def _createXYScaleVector(self) : 
-        Z = self.getMainMatrix()
+        Z = self.getElevationMatrix()
         self.vX = self.scale * np.arange(-(Z.shape[1]//2), (Z.shape[1]//2) )
         self.vY = self.scale * np.arange(-(Z.shape[0]//2), (Z.shape[0]//2) )
 
@@ -62,7 +62,7 @@ class Mapa :
     def getAllMatrices(self) -> list[np.ndarray]:
         return self.matrices
 
-    def getMainMatrix(self) -> np.ndarray: 
+    def getElevationMatrix(self) -> np.ndarray: 
         return self.matrices[0]
 
     def getMatrix(self, id:int) -> np.ndarray :

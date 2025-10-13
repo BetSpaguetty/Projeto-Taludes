@@ -16,7 +16,7 @@ class CoresWindow(QMainWindow):
     def _base(self) : 
         self.setWindowTitle("CORES")
         self.setMinimumSize(500, 500)
-        self.resize(1200, 600)
+        self.resize(1200, 800)
         self.widgetCentral = QWidget()
         self.setCentralWidget(self.widgetCentral)
         self.layoutCentral = QVBoxLayout()

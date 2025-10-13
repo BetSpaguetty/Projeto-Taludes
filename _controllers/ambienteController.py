@@ -8,6 +8,8 @@ from Taludes.presets import *
 from app_types import *
 from _views.soil import  *
 from _views.rain import  *
+from _views.mapOptionsView import  *
+from Taludes.rain import *
 
 class AmbienteController :
 
@@ -31,62 +33,59 @@ class AmbienteController :
     def _initialization(self) :
         self.defineSoil()
         self.view.header.labelTitle.setText(os.path.basename(self.filepath))
-        self.view.header.labelDimensions.setText(f'{self.mapa.getMainMatrix().shape}')
-        self.button3D.click()
-        self.buttonElevation.click()
-
+        self.view.header.labelDimensions.setText(f'{self.mapa.getElevationMatrix().shape}')
+        self.buttonMode3D.click()
+        self.buttonFilterElevation.click()
+        self.renderElevation()
 
     # --------------------------------------------------------------------------------------------- >>>
     
     # GRAPH MODES ------------------------------- >>>
-    def set2DGraphMode(self) :
-        self.setGraphMode(GraphModes.D2)
-        self.view.map.setViewer2D()
+
+    def setGraphMode2D(self) :
+        self.view.mapaView.setViewer2D()
 
 
-    def set3DGraphMode(self) :
-        self.setGraphMode(GraphModes.D3)
-        self.view.map.setViewer3D()
-
-
-    def setGraphMode(self, mode:GraphModes) :
-        for graphMode, button in self.mapGraphModes.items() :
-            if graphMode != mode : button.setChecked(False)
-            else : button.setChecked(True)
+    def setGraphMode3D(self) :
+        self.view.mapaView.setViewer3D()
 
 
     # GRAPH FILTERS ----------------------------- >>>
 
-    def setFilterFos(self) :
-        self.setFilter(GraphFilters.FOS)
-        self.filterType = GraphFilters.FOS
-        self.fos = self.calculateFos()
-        self.view.map.renderMap(self.mapa.getMainMatrix(), self.fos, self.mapa.getXScaleVector(), self.mapa.getYScaleVector(),)
+    def renderFos(self) :
+        self.filterType = GraphFilters.FOS 
+        matrixFos = self.calculateFos()
+        matrixElevation = self.mapa.getElevationMatrix()
+        vX, vY = self.mapa.getXYScaleVector()
+        self.view.mapaView.renderMap(matrixFos, matrixElevation, vX, vY)
 
 
-    def setFilterElevation(self) :
-        self.setFilter(GraphFilters.ELEVATION)
+    def renderElevation(self) :
         self.filterType = GraphFilters.ELEVATION
-        self.view.map.renderMap(self.mapa.getMainMatrix(), vX=self.mapa.getXScaleVector(), vY=self.mapa.getYScaleVector())
-
-
-    def setFilter(self, filter) :
-        for graphFilter, button in self.mapGraphFilters.items() :
-            if graphFilter != filter : button.setChecked(False)
-            else : button.setChecked(True)
-
+        matrixElevation = self.mapa.getElevationMatrix()
+        vX, vY = self.mapa.getXYScaleVector()
+        self.view.mapaView.renderMap(matrixElevation, matrixElevation, vX, vY)
 
 
 
     def parameterChanged(self) :
         if self.filterType == GraphFilters.FOS :
-            self.setFilterFos()
+            self.renderFos()
 
+
+
+    def calculateHW(self) :
+        p = self.rainView.getPreciptacao()
+        t = self.rainView.getTempo()
+        thetai = self.mapParametersViews[Parameters.THETAI].getValue()
+        hw = calculo_hw(p, t, thetai)
+        self.rainView.lineEditHW.setText(f'{hw:.5f}')
+        return hw
 
 
     def getParameters(self) :
         h      = self.mapParametersViews[Parameters.H].getValue()
-        hw     = self.mapParametersViews[Parameters.HW].getValue()
+        hw     = self.calculateHW()
         c      = self.mapParametersViews[Parameters.C].getValue()
         phi    = self.mapParametersViews[Parameters.PHI].getValue()
         thetai = self.mapParametersViews[Parameters.THETAI].getValue()
@@ -95,7 +94,7 @@ class AmbienteController :
 
     def calculateFos(self) : 
         h, hw, c, phi, thetai = self.getParameters()
-        Z = self.mapa.getMainMatrix()
+        Z = self.mapa.getElevationMatrix()
         lenI = Z.shape[0]
         lenJ = Z.shape[1]
         fos  = calculateFos(Z, lenI, lenJ, h, hw, c, phi, thetai, self.mapa.scale, self.solo)
@@ -124,9 +123,22 @@ class AmbienteController :
 
 
     def configFilterButton(self, dictButton:DictButton) :
-        button = self.view.map.addButton(dictButton.TITLE, checkable=True) 
+        button = self.view.mapaView.addButtonMode(dictButton.TITLE, checkable=True) 
         button.clicked.connect(lambda : dictButton.FUNCTION())
         dictButton.BUTTON = button
+
+
+
+
+
+    def functionButtonConfiguration(self) :
+        caixinha = MinhaCaixinha() 
+        caixinha.exec_() 
+
+
+    def functionSliderTempo(self) :
+        self.calculateHW()
+        self.parameterChanged()
 
 
 
@@ -140,32 +152,36 @@ class AmbienteController :
         self.associateGraphFilters()
         self._associateRainComponent()
         self._associateSoilComponent()
+        self._associateGraphConfigs()
 
 
     def associateHeader(self) :
-        self.buttonSaveMap = self.view.header.addButton('Save Map')
-        self.buttonCurMap = self.view.header.addButton('Cut Map')
+        pass
 
     # MAP --------------------------------------- >>>
 
+    def _associateGraphConfigs(self) :
+        self.buttonConfiguration = self.view.mapaView.addButtonConfig(icon='public/configIcon.png')
+        self.buttonConfiguration.clicked.connect(lambda : self.functionButtonConfiguration())
+
 
     def associateGraphFilters(self) :
-        self.buttonElevation = self.view.map.addButton(GraphFilters.ELEVATION.value, checkable=True)
-        self.buttonFos = self.view.map.addButton(GraphFilters.FOS.value, checkable=True)
-        self.mapGraphFilters[GraphFilters.ELEVATION] = self.buttonElevation
-        self.mapGraphFilters[GraphFilters.FOS] = self.buttonFos
-        self.buttonElevation.clicked.connect(lambda: self.setFilterElevation())
-        self.buttonFos.clicked.connect(lambda: self.setFilterFos())
-
+        self.buttonFilterElevation = self.view.mapaView.addButtonFilter(GraphFilters.ELEVATION.value, checkable=True)
+        self.mapGraphFilters[GraphFilters.ELEVATION] = self.buttonFilterElevation
+        self.buttonFilterElevation.clicked.connect(lambda : self.renderElevation())
+        self.buttonFilterFos = self.view.mapaView.addButtonFilter(GraphFilters.FOS.value, checkable=True)
+        self.mapGraphFilters[GraphFilters.FOS] = self.buttonFilterFos
+        self.buttonFilterFos.clicked.connect(lambda : self.renderFos())
         
    
     def associateGraphModes(self) :
-        self.button2D = self.view.map.addButton(GraphModes.D2.value, checkable=True)
-        self.button3D = self.view.map.addButton(GraphModes.D3.value, checkable=True)
-        self.mapGraphModes[GraphModes.D2] = self.button2D
-        self.mapGraphModes[GraphModes.D3] = self.button3D
-        self.button2D.clicked.connect(lambda: self.set2DGraphMode())
-        self.button3D.clicked.connect(lambda: self.set3DGraphMode())
+        self.buttonMode2D = self.view.mapaView.addButtonMode(GraphModes.D2.value, checkable=True)
+        self.mapGraphModes[GraphModes.D2] = self.buttonMode2D
+        self.buttonMode2D.clicked.connect(lambda : self.setGraphMode2D())
+        self.buttonMode3D = self.view.mapaView.addButtonMode(GraphModes.D3.value, checkable=True)
+        self.mapGraphModes[GraphModes.D3] = self.buttonMode3D
+        self.buttonMode3D.clicked.connect(lambda : self.setGraphMode3D())
+        self.view.mapaView.addSeparatorButtonsBarr()
 
 
 
@@ -185,21 +201,31 @@ class AmbienteController :
 
 
     def _associateRainComponent(self) :
-        rainv = self.view.toolsbar.addBox('Rain')
-        self.rain = RainView()
-        rainv.addSubWidget(self.rain)
+        boxRainView = self.view.toolsbar.addBox('Rain')
+        self.rainView = RainView()
+        boxRainView.addSubWidget(self.rainView)
+        self.rainView.sliderTempo.valueChanged.connect(lambda : self.functionSliderTempo())
 
 
 
     def _associateSoilComponent(self) :
-        soilOption = self.view.toolsbar.addBox('Soil')
+        boxSoilView = self.view.toolsbar.addBox('Soil')
         self.soilView = SoilView()
-        soilOption.addSubWidget(self.soilView)
+        boxSoilView.addSubWidget(self.soilView)
         self.soilView.setClay(INITIAL_CLAY)
         self.soilView.setSand(INITIAL_SAND)
         self.soilView.setSilt(INITIAL_SILT)
         self.soilView.editClay.valueChanged.connect(lambda : self.defineSoil())
         self.soilView.editSand.valueChanged.connect(lambda : self.defineSoil())
+
+
+
+
+
+
+
+
+
 
 
 

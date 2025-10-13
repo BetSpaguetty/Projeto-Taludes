@@ -3,7 +3,7 @@ from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
 from DDCores.base import *
 from _views.toolsbar import ToolsBar
-from _views.map  import MapView
+from _views.mapView  import MapView
 from _views.rain import RainView
 from _views.soil import SoilView
 
@@ -35,8 +35,8 @@ class AmbienteView(DDWidget) :
         corpoLayout.addWidget(self.toolsbar)
 
         # MAP ----------------------------------- >>>
-        self.map = MapView()
-        corpoLayout.addWidget(self.map, stretch=1)
+        self.mapaView = MapView()
+        corpoLayout.addWidget(self.mapaView, stretch=1)
 
         
 
@@ -52,7 +52,7 @@ class AmbienteHeader(DDWidget) :
     def __init__(self, title='unk map'):
         super().__init__()
         self.mainBox.setObjectName('header')
-        self.setFixedHeight(80) 
+        self.setFixedHeight(40) 
 
         self.mainBoxLayout = QVBoxLayout()
         self.mainBoxLayout.setContentsMargins(5,0,5,0)
@@ -73,14 +73,14 @@ class AmbienteHeader(DDWidget) :
 
         
         # INFERIOR ------------------------------ >>>
-        self.boxInferior = QWidget()
-        self.boxInferior.setObjectName('bInferior')
-        self.boxInferiorLayout = QHBoxLayout()
-        self.boxInferiorLayout.setSpacing(10)
-        self.boxInferiorLayout.setContentsMargins(5,5,10,5)
-        self.boxInferiorLayout.setAlignment(Qt.AlignLeft)
-        self.boxInferior.setLayout(self.boxInferiorLayout)
-        self.mainBoxLayout.addWidget(self.boxInferior, stretch=1)
+        # self.boxInferior = QWidget()
+        # self.boxInferior.setObjectName('bInferior')
+        # self.boxInferiorLayout = QHBoxLayout()
+        # self.boxInferiorLayout.setSpacing(10)
+        # self.boxInferiorLayout.setContentsMargins(5,5,10,5)
+        # self.boxInferiorLayout.setAlignment(Qt.AlignLeft)
+        # self.boxInferior.setLayout(self.boxInferiorLayout)
+        # self.mainBoxLayout.addWidget(self.boxInferior, stretch=1)
 
 
         self.labelTitle = self.addTitle(title)
@@ -183,7 +183,7 @@ QSS = """
 }
 
 #bSuperior {
-    border-bottom: 1px solid #606060;
+    /*border-bottom: 1px solid #606060;*/
 
 }
 

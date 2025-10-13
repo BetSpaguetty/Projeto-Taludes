@@ -205,7 +205,6 @@ FOS_SOIL_FUNCTIONS = {
 
 PARAMETERS : dict[Parameters, Parameter] =  {
     Parameters.H      : H      , 
-    Parameters.HW     : HW     ,
     Parameters.C      : C      ,
     Parameters.PHI    : PHI    ,
     Parameters.THETAI : THETAI ,
