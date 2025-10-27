@@ -16,6 +16,10 @@ t = tempo
  
 
 
+if self.hasLayer : 
+            matrix = self.imageToMatrix('DATA/img1.png', )
+            matrix = (matrix * 255).astype(np.uint8)
+            self.viewWidget3D.addItem(gl.GLImageItem(matrix))
 
 
 

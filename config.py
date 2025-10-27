@@ -6,7 +6,7 @@ from enum import Enum
 TECGRAF_LINK = 'https://www.google.com/search?q=gatos'
 TECGRAF_LINK = 'https://share.google/6WIu8CBn94VOoYM2S'
 
-
+DATA_PATH = 'DATA\mapsJson'
 
 INITIAL_CLAY = 30
 INITIAL_SAND = 30
@@ -21,12 +21,29 @@ class GraphModes(Enum)  :
     D2 = '2D'
     D3 = '3D'
 
+SHADERS = [
+    'None',           # sem shader explícito
+    'shaded',       # iluminação básica por normal (face shading)
+    'heightColor',  # mapeia cor conforme o valor z (altura) da superfície
+    'normalColor',  # colore conforme o vetor normal da malha
+    'balloon',      # efeito “inflado” (menos comum)
+    'edgeHilight'   # realce de bordas da malha
+    ]
 
+SURFACE_OPTS = {
+    'meshdata': None,
+    'color': (1., 1., 1., 1.),
+    'drawEdges': False,
+    'drawFaces': True,
+    'edgeColor': (0.5, 0.5, 0.5, 1.0),
+    'shader': None,
+    'smooth': True,
+    'computeNormals': True,
+}
 
-  
 
 COLORMAPS = [
-    ('Padrao Tecgraf', ["red", "orange", "yellow", "green", "blue"]),
+    ('Padrao Tecgraf', ["red", "orange", "yellow", "green", "blue"], [1.2, 1.3, 1.4, 1.5, 2.0]),
 
     # 🔹 Perceptualmente Uniformes (ótimos para dados científicos)
     "viridis",

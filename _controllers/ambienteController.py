@@ -9,6 +9,7 @@ from _views.soil import  *
 from _views.rain import  *
 from _views.mapOptionsView import  *
 from Taludes.rain import *
+from _views.configView import ConfigurationMatrixViewer
 
 class AmbienteController :
 
@@ -20,7 +21,7 @@ class AmbienteController :
         self._association()
         self._initialization()
 
-
+ 
     def _properties(self) :
         self.filterType : GraphFilters = None
         self.solo : Materiais = None
@@ -35,9 +36,8 @@ class AmbienteController :
         self.view.header.labelDimensions.setText(f'{self.mapa.getElevationMatrix().shape}')
         self.buttonMode3D.click()
         self.buttonFilterElevation.click()
-        self.renderElevation()
-        self.dropboxColorMaps.setCurrentIndex(-1)
-        self.dropboxColorMaps.setCurrentIndex(0)
+        self.dropboxColorMaps.setCurrentIndex(1)
+        self.dropBoxShaders.setCurrentIndex(1)
 
     # --------------------------------------------------------------------------------------------- >>>
     
@@ -58,14 +58,14 @@ class AmbienteController :
         matrixFos = self.calculateFos()
         matrixElevation = self.mapa.getElevationMatrix()
         vX, vY = self.mapa.getXYScaleVector()
-        self.view.mapaView.renderMap(matrixFos, matrixElevation, vX, vY)
+        self.view.mapaView.renderMatrix(matrixFos, matrixElevation, vX, vY)
 
 
     def renderElevation(self) :
         self.filterType = GraphFilters.ELEVATION
         matrixElevation = self.mapa.getElevationMatrix()
         vX, vY = self.mapa.getXYScaleVector()
-        self.view.mapaView.renderMap(matrixElevation, matrixElevation, vX, vY)
+        self.view.mapaView.renderMatrix(matrixElevation, matrixElevation, vX, vY)
 
 
 
@@ -124,6 +124,7 @@ class AmbienteController :
 
 
 
+    # OBJECTS FUNCTIONS --------------------------------------------------------------------------- >>>
 
 
     def functionButtonConfiguration(self) :
@@ -135,89 +136,100 @@ class AmbienteController :
         self.calculateHW()
         self.parameterChanged()
 
+   
+
+    def functionChangeColorMap(self, id) :
+        if id == -1 : return
+        colorMap = self.dropboxColorMaps.itemText(id)
+        if colorMap in self.mapColorMaps : self.view.mapaView.setColorMap('aaa', self.mapColorMaps[colorMap][0], self.mapColorMaps[colorMap][1])
+        else : self.view.mapaView.setColorMap(colorMap)
+
+
+    def functionSliderTransparency(self, opacity) :
+        self.view.mapaView.setOpacity(opacity/100)
+
+    def functionDropBoxSahder(self, id) : 
+        shader = self.dropBoxShaders.itemText(id)
+        self.view.mapaView.setMatrixShader(shader)
+
+    def functionButtonConfig(self) : 
+        self.configWindow = ConfigurationMatrixViewer()
+        self.configWindow.btDrawFaces.setChecked(True)
+        self.configWindow.btSmooth.clicked.connect(lambda : self.view.mapaView.setMatrixSmooth(self.configWindow.btSmooth.isChecked()))
+        self.configWindow.btDrawFaces.clicked.connect(lambda : self.view.mapaView.setMatrixDrawFaces(self.configWindow.btDrawFaces.isChecked()))
+        self.configWindow.btDrawEdges.clicked.connect(lambda : self.view.mapaView.setMatrixDrawEdges(self.configWindow.btDrawEdges.isChecked()))
+
+
+        self.configWindow.show()
 
 
     # ASSOCIATIONS -------------------------------------------------------------------------------- >>>
 
 
     def _association(self) :
-        self.associateHeader()
-        self.associateParameters()
-        self.associateGraphModes()
-        self.associateGraphFilters()
+        self._associateParameters()
+        self._associateGraphModes()
+        self._associateGraphFilters()
         self._associateRainComponent()
         self._associateSoilComponent()
         self._associateGraphConfigs()
 
 
-    def associateHeader(self) :
-        pass
-
-
-    def functionChangeColorMap(self, id) :
-        if id == -1 : return
-        colorMap = self.dropboxColorMaps.itemText(id)
-        if colorMap in self.mapColorMaps :
-            self.view.mapaView.setColorMap(self.mapColorMaps[colorMap])
-        else :     
-            self.view.mapaView.setColorMap(colorMap)
-
-    def functionChangeOpacity(self, opacity) :
-        self.view.mapaView.setOpacity(opacity/100)
-
     # MAP --------------------------------------- >>>
 
     def _associateGraphConfigs(self) :
-        self.buttonConfiguration = self.view.mapaView.addButtonConfig(icon='public/configIcon.png')
-        self.buttonConfiguration.clicked.connect(lambda : self.functionButtonConfiguration())
 
+        self.buttonConfig = self.view.header.addButton('CONFIG')
+        self.buttonConfig.clicked.connect(lambda : self.functionButtonConfig())
+
+        # COLOR MAP ----------------------------- >>>
         self.mapColorMaps = {}
-        self.dropboxColorMaps = QComboBox()
-        for e in COLORMAPS :
-            if isinstance(e, tuple) :
-                self.dropboxColorMaps.addItem(e[0])
-                self.mapColorMaps[e[0]] = e[1]
-            else : 
-                self.dropboxColorMaps.addItem(e)
+        self.dropboxColorMaps = self.view.mapaView.addComboBox()
+        for colorMap in COLORMAPS :
+            if   isinstance(colorMap,   str) :
+                self.dropboxColorMaps.addItem(colorMap)
+            elif isinstance(colorMap, tuple) : 
+                self.mapColorMaps[colorMap[0]] = (colorMap[1], colorMap[2])
+                self.dropboxColorMaps.addItem(colorMap[0])
         self.dropboxColorMaps.currentIndexChanged.connect(self.functionChangeColorMap)
-        self.view.mapaView.addItemConfig(self.dropboxColorMaps)
 
 
-        self.sliderOpacity = QSlider(Qt.Horizontal)
-        self.sliderOpacity.setMinimum(1)
-        self.sliderOpacity.setMaximum(100)
-        self.sliderOpacity.setValue(100)
-        self.sliderOpacity.valueChanged.connect(self.functionChangeOpacity)
-        self.view.mapaView.addItemConfig(self.sliderOpacity)
+        self.sliderOpacity = self.view.mapaView.criar_slider_rotulado('Opacidade', 0, 100, 100)
+        self.sliderOpacity.valueChanged.connect(self.functionSliderTransparency)
+
+        self.dropBoxShaders = self.view.mapaView.addComboBox()
+        for shader in SHADERS : 
+            self.dropBoxShaders.addItem(shader)
+        self.dropBoxShaders.currentIndexChanged.connect(self.functionDropBoxSahder)
 
 
+        
 
-
-    def associateGraphFilters(self) :
-        self.buttonFilterElevation = self.view.mapaView.addButtonFilter(GraphFilters.ELEVATION.value, checkable=True)
+ 
+    # Botões filtros graficos
+    def _associateGraphFilters(self) :
+        self.buttonFilterElevation = self.view.mapaView.addFilterButton(GraphFilters.ELEVATION.value, checkable=True)
         self.mapGraphFilters[GraphFilters.ELEVATION] = self.buttonFilterElevation
         self.buttonFilterElevation.clicked.connect(lambda : self.renderElevation())
-        self.buttonFilterFos = self.view.mapaView.addButtonFilter(GraphFilters.FOS.value, checkable=True)
+        self.buttonFilterFos = self.view.mapaView.addFilterButton(GraphFilters.FOS.value, checkable=True)
         self.mapGraphFilters[GraphFilters.FOS] = self.buttonFilterFos
         self.buttonFilterFos.clicked.connect(lambda : self.renderFos())
         
-   
-    def associateGraphModes(self) :
-        self.buttonMode2D = self.view.mapaView.addButtonMode(GraphModes.D2.value, checkable=True)
+    
+    # Botões modos graficos
+    def _associateGraphModes(self) :
+        self.buttonMode2D = self.view.mapaView.button2D
         self.mapGraphModes[GraphModes.D2] = self.buttonMode2D
         self.buttonMode2D.clicked.connect(lambda : self.setGraphMode2D())
-        self.buttonMode3D = self.view.mapaView.addButtonMode(GraphModes.D3.value, checkable=True)
+        self.buttonMode3D = self.view.mapaView.button3D
         self.mapGraphModes[GraphModes.D3] = self.buttonMode3D
         self.buttonMode3D.clicked.connect(lambda : self.setGraphMode3D())
-        self.view.mapaView.addSeparatorButtonsBarr()
 
 
 
+    # TOOLSBAR ------------------------------------------------------------------------------------ >>>
 
-
-    # TOOLSBAR ---------------------------------- >>>
-
-    def associateParameters(self) :
+    def _associateParameters(self) :
         self.boxParameters = self.view.toolsbar.addBox('Parameters')
         for K, P in PARAMETERS.items() :
             widget = SubEditor(K.value, P.min, P.max)
@@ -226,15 +238,12 @@ class AmbienteController :
             self.mapParametersViews[K] = widget
 
 
-
-
     def _associateRainComponent(self) :
         boxRainView = self.view.toolsbar.addBox('Rain')
         self.rainView = RainView()
         boxRainView.addSubWidget(self.rainView)
         self.rainView.sliderTempo.valueChanged.connect(lambda : self.functionSliderTempo())
         self.rainView.spinBoxPreciptacao.valueChanged.connect(lambda : self.functionSliderTempo())
-
 
 
     def _associateSoilComponent(self) :

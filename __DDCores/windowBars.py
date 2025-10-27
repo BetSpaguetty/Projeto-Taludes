@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
-from DDCores.base import *
+from __DDCores.base import *
 
 class VerticalBar(DDWidget) :
 

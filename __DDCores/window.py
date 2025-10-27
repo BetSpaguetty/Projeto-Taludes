@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
-from DDCores.windowBars import *
+from __DDCores.windowBars import *
 
  
 class CoresWindow(QMainWindow):

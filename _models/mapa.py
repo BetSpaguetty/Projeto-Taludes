@@ -27,6 +27,7 @@ class Mapa :
         self.vX = self.scale * np.arange(-(Z.shape[1]//2), (Z.shape[1]//2) )
         self.vY = self.scale * np.arange(-(Z.shape[0]//2), (Z.shape[0]//2) )
 
+
     def _createMatrices(self, tif:tifffile.TiffFile) :
         for page in tif.pages :
             matrix = page.asarray()

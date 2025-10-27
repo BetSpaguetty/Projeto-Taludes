@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
-from DDCores.base import *
+from __DDCores.base import *
 from _views.toolsbar import ToolsBar
-from _views.mapView  import MapView
+from _views.matrixViewer  import MapView
 from _views.rain import RainView
 from _views.soil import SoilView
 
@@ -113,7 +113,7 @@ class AmbienteHeader(DDWidget) :
     def addButton(self, title) -> QPushButton:
         button = QPushButton(title)
         button.setObjectName('buttonHeader')
-        self.boxInferiorLayout.addWidget(button)
+        self.boxSuperiorLayout.addWidget(button)
         return button
 
 

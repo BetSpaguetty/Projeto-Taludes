@@ -6,6 +6,8 @@ from PyQt5.QtGui     import *
 import os
 from config import *
 import webbrowser
+from _views.mapPreview import windowMapSelector
+from _models.defaultMaps import * 
 
 class TaludesApp :
 
@@ -13,14 +15,18 @@ class TaludesApp :
         self.window = TaludesWindow()
         self.ambientes = []
 
-        self._configuration()
+        self._association()
         self._initialization()
         
 
-    def _configuration(self) :
+    def _association(self) :
+        self.window.tecgrafbutton.clicked.connect(lambda : self.openTecgraf())
+
         self.buttonAddFile = self.window.topBar.addButton('Add File')
         self.buttonAddFile.clicked.connect(self.createNewAmbient)
-        self.window.tecgrafbutton.clicked.connect(lambda : self.openTecgraf())
+
+        self.buttonGetMap = self.window.topBar.addButton('Get Map')
+        self.buttonGetMap.clicked.connect(lambda : self.functionButtonGetMap())
 
 
     def _initialization(self) :
@@ -30,6 +36,21 @@ class TaludesApp :
     def openTecgraf(self) :
         url = TECGRAF_LINK
         webbrowser.open(url)
+
+
+
+
+
+    # FUNCIONALIDADES ----------------------------------------------------------------------------- >>>
+
+    def functionButtonGetMap(self) : 
+        getMaps()
+        self.mapSelector = windowMapSelector([{'name':'Rio De Janeiro 25/10/2024', 'size': 2.4}, {'name':'São Paulo', 'size': 1.4}, {'name':'Gavea 25/10/2024', 'size': 1.2}])
+        self.mapSelector.show()
+
+
+
+
 
     # CRIANDO AMBIENTE ---------------------------------------------------------------------------- >>>
 

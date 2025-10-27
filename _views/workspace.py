@@ -3,7 +3,7 @@ from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
 
 from _views.ambienteView import *
-from DDCores.base import *
+from __DDCores.base import *
 
 
 
