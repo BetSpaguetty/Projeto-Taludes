@@ -9,7 +9,7 @@ import pyqtgraph.opengl as gl
 from matplotlib import cm, colors
 import pyqtgraph as pg
 from dataclasses import dataclass
-
+from pyqtgraph.opengl import shaders
 from __DDCores.windowBars import QSS_HORIZONTAL
 from PIL import Image
 import numpy as np
@@ -163,8 +163,14 @@ class MapView(DDWidget) :
         #3D MAP
         self.viewWidget3D = gl.GLViewWidget()
         self.viewWidget3D.setCameraPosition(distance=3000)
-
-        self.matrixItem3D = gl.GLSurfacePlotItem(x=None, y=None, z=None, colors=None, shader='shaded', smooth=False, computeNormals=True, glOptions='opaque', drawFaces=True, drawEdges=False)
+        custom_shader = shaders.ShaderProgram(vertex=vertex_shader, fragment=fragment_shader)
+        self.matrixItem3D = gl.GLSurfacePlotItem(x=None, y=None, z=None, colors=None, 
+                                                 shader=custom_shader, 
+                                                 smooth=False, 
+                                                 computeNormals=True, 
+                                                 glOptions='opaque', 
+                                                 drawFaces=True, drawEdges=False)
+        
         self.matrixItem3D.setGLOptions('translucent')
         self.viewWidget3D.addItem(self.matrixItem3D)
 
@@ -352,7 +358,27 @@ class MapView(DDWidget) :
 
 # =================================================================================================================================================== |||
 
+vertex_shader = """
+#version 120
+attribute vec3 vertex;
+attribute vec3 normal;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+varying vec3 vNormal;
+void main() {
+    vNormal = normal;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(vertex, 1.0);
+}
+"""
 
+fragment_shader = """
+#version 120
+varying vec3 vNormal;
+void main() {
+    float light = dot(normalize(vNormal), vec3(0.0, 0.0, 1.0));
+    gl_FragColor = vec4(0.5 + 0.5 * light, 0.2, 0.8, 1.0);
+}
+"""
 
 
 NEW_QSS = """

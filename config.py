@@ -24,8 +24,8 @@ class GraphModes(Enum)  :
 SHADERS = [
     'None',           # sem shader explícito
     'shaded',       # iluminação básica por normal (face shading)
-    'heightColor',  # mapeia cor conforme o valor z (altura) da superfície
-    'normalColor',  # colore conforme o vetor normal da malha
+    #'heightColor',  # mapeia cor conforme o valor z (altura) da superfície
+    #'normalColor',  # colore conforme o vetor normal da malha
     'balloon',      # efeito “inflado” (menos comum)
     'edgeHilight'   # realce de bordas da malha
     ]
