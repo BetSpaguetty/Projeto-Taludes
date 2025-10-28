@@ -1,10 +1,7 @@
 from Taludes.types   import * 
 from Taludes.presets import * 
 import numpy as np
-from PIL import Image
-import pyvista as pv
 from config import *
-
 
 
 def calculateFos(matrix, lenI, lenJ, h, hw, c, phi, thetai, L, soil):
@@ -21,14 +18,12 @@ def calculateFos(matrix, lenI, lenJ, h, hw, c, phi, thetai, L, soil):
     alpha = calculateAlpha(matrix, lenI, lenJ, L, LD)
 
     # aplica fosFunction em todo o grid (se ela suportar vetores)
-    try: fos = FUNCTION(h_arr, hw_arr, alpha, c_arr, phi_arr, thetai_arr)
-    except Exception: fos = np.vectorize(FUNCTION)(h_arr, hw_arr, alpha, c_arr, phi_arr, thetai_arr)
+    fos = np.vectorize(FUNCTION)(h_arr, hw_arr, alpha, c_arr, phi_arr, thetai_arr)
 
     return fos
 
 
 def defineMaterial(clay, sand, silt) :
-    
     for M in FOS_SOIL_FUNCTIONS.values() :
         if M['function'](clay, sand, silt) : 
             material = M['material']
@@ -56,7 +51,6 @@ def calculateAlpha(matriz, nLinhas, nColunas, L, LD):
 
     alpha = np.degrees(np.arctan(gradientMax))
     alpha_deg = np.clip(alpha, 0.0, 90.0)
-    print('alpha:', alpha_deg)
     return alpha_deg
 
 
