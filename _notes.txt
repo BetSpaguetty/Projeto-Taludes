@@ -1,0 +1,43 @@
+DESCRIÇÕES
+L - ESCALA
+LD
+
+
+h = altura da capa de solo
+hw = profundidade da frente de saturação (parte mais molhada)
+alpha = inclinação do talude
+phi = angulo de atrito
+c = coesão
+thetai = teor de umidade inicial
+
+p = preciptação 
+t = tempo
+
+ 
+
+
+if self.hasLayer : 
+            matrix = self.imageToMatrix('DATA/img1.png', )
+            matrix = (matrix * 255).astype(np.uint8)
+            self.viewWidget3D.addItem(gl.GLImageItem(matrix))
+
+
+
+
+
+
+
+     def getColorSpectre3D(self, matrix:np.ndarray) :
+
+        norm = mcolors.Normalize(vmin=np.min(matrix), vmax=np.max(matrix))
+
+        self.colorMap = ["red", "orange", "yellow", "green", "blue"]
+        self.colorMap.reverse()
+        if isinstance(self.colorMap, list):
+            cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", self.colorMap)
+        else:
+            cmap = cm.get_cmap(self.colorMap)
+
+        colors = cmap(norm(matrix.flatten()))  
+        colors[:, -1] = self.colorOpacity  
+        return colors
