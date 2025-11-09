@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div id="plot" style="width:800px;height:600px;"></div>
+    <script>
+      // Exemplo: matriz (Z) 50x50
+      const n = 50;
+      const z = [];
+      for (let i = 0; i < n; i++) {
+        const row = [];
+        for (let j = 0; j < n; j++) {
+          const x = i - n/2, y = j - n/2;
+          row.push(Math.sin(Math.sqrt(x*x + y*y) / 4));
+        }
+        z.push(row);
+      }
+
+      const data = [{ z: z, type: 'surface' }];
+      const layout = { title: 'Surface 3D (Plotly)' };
+      Plotly.newPlot('plot', data, layout);
+    </script>
+  </body>
+</html>
