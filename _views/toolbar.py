@@ -8,7 +8,7 @@ from __DDCores.base import *
 getcontext().prec = 10  
 
 # BARRA DE FERRAMENTAS PRINCIPAL
-class ToolsBar(DDScrollWidget):
+class ToolBar(DDScrollWidget):
 
     def __init__(self):
         super().__init__()
@@ -67,8 +67,8 @@ class OptionToolsBar(QWidget) :
         self.mainBox.setLayout(self.mainBoxLayout)
         self.LAYOUT.addWidget(self.mainBox)
 
-        self.icon_open   = QIcon("DDCores/icons/down-arrow_white.png")
-        self.icon_closed = QIcon("DDCores/icons/right-arrow_white.png")
+        self.icon_open   = QIcon("__DDCores/icons/down-arrow_white.png")
+        self.icon_closed = QIcon("__DDCores/icons/right-arrow_white.png")
         self.botaoOpcao = QPushButton(f' {titulo}')
         self.botaoOpcao.setFixedHeight(32)
         self.botaoOpcao.setObjectName('boxOption')

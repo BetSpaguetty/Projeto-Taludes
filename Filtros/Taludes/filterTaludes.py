@@ -12,7 +12,7 @@ from _views.FOS.toolbarFOS import ToolBarFOS
 from Filtros.filtro import *
 
 
-class FiltroTaludes(Filtro) : 
+class FiltroTaludes(Filter) : 
 
     def __init__(self, matrixElevation):
         super().__init__(matrixElevation)

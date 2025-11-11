@@ -7,11 +7,11 @@ from _models.mapa import Mapa
 from _views.ambienteView import AmbienteView
 from _views.toolbar import *
 from _views.matrixOptionsView import  *
-from _views.configView import ConfigurationMatrixViewer
 from _views.FOS.toolbarFOS import ToolBarFOS
 from Filtros.Taludes.filterTaludes import *
 from Filtros.Rugosidade.filterRugosidade import *
 from Filtros.subFilters.subFilters import *
+from Filtros.subFilters.filterHipsometric import *
 
 
 class AmbienteController :
@@ -171,6 +171,12 @@ class AmbienteController :
         self.buttonFilterRugosidade = self.view.matrixViewer.addFilterButton(GraphFilters.RUGOSITY.value, checkable=True)
         self.buttonFilterRugosidade.clicked.connect(lambda : self.functionButtonRugosidade())
 
+        self.buttonFilterHisometric = self.view.matrixViewer.addFilterButton(GraphFilters.FLOWAC.value, checkable=True)
+        self.buttonFilterHisometric.clicked.connect(lambda : self.functionHisometric())
+
+
+
+
 
     # BUTTONS FUNCTIONS ========================= >>>
 
@@ -190,6 +196,14 @@ class AmbienteController :
         self.filterType = GraphFilters.RUGOSITY 
         self.removeToolbar()
         self.filterRugosidade.sendMatrix()
+
+
+    def functionHisometric(self) : 
+        self.filterType = GraphFilters.FLOWAC 
+        self.insertToolbar(self.toolbarHisometric)
+        matrix = self.filterHisometric.calculateMatrix()
+        self.renderMatrix(matrix)
+
 
     # FUNCTIONS ================================= >>>
 
@@ -211,6 +225,8 @@ class AmbienteController :
         self.filterRugosidade.setScale(25)
         self.filterRugosidade.connectReceptor(self.renderMatrix)
 
+        self.filterHisometric = FiltroHisometrico(matrixElevation)
+        self.toolbarHisometric = self.createFilterBar(self.filterHisometric)
 
 
 
@@ -219,6 +235,16 @@ class AmbienteController :
 
 
 
+
+    def createFilterBar(self, filter:Filter) -> ToolBar:
+        toolbar = ToolBar()
+        for name, views in filter.views.items() : 
+            box = toolbar.addBox(name)
+            for view in views : 
+                box.addSubWidget(view)
+
+
+        return toolbar
 
 
 

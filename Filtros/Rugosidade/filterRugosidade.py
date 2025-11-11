@@ -4,7 +4,7 @@ import numpy as np
 from scipy.ndimage import uniform_filter
 from Filtros.filtro import *
 
-class FiltroRugosidade(Filtro) : 
+class FiltroRugosidade(Filter) : 
 
     def __init__(self, matrixElevation):
         super().__init__(matrixElevation)

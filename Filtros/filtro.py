@@ -2,7 +2,7 @@
 from PyQt5.QtWidgets import QWidget
 
 
-class Filtro : 
+class Filter : 
 
 
     def __init__(self, matrixElevation):

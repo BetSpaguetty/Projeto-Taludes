@@ -14,6 +14,7 @@ class GraphFilters(Enum) :
     ELEVATION = 'Elevation'
     FOS = 'FOS'
     RUGOSITY = 'Rugosity'
+    FLOWAC = 'Flow Accumulation'
 
 
 class GraphModes(Enum)  :

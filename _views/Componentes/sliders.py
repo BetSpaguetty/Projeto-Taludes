@@ -3,20 +3,21 @@ from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
 from __DDCores.base  import *
 
-import sys
 
 
-# --- Classe do slider ---
-class BasicSlider(DDWidget):
 
-    def __init__(self, name: str, min: int, max: int):
+
+class BasicSlider(DDWidget) : 
+
+    def __init__(self, name:str, min:int, max:int):
         super().__init__()
-        self.name = name
-        self.min = min
-        self.max = max
+        self.name = name 
+        self.min = min 
+        self.max = max 
         self.view()
 
-    def view(self):
+
+    def view(self) : 
         # Elements
         self.labelname = QLabel(self.name)
         self.labelMin = QLabel(str(self.min))
@@ -27,41 +28,61 @@ class BasicSlider(DDWidget):
         self.slider.setSizePolicy(self.slider.sizePolicy().Expanding, self.slider.sizePolicy().Fixed)
         self.visor = QLineEdit()
         self.visor.setReadOnly(True)
-        self.setFixedHeight(60)
-
-        # Atualiza visor ao mover o slider
         self.slider.valueChanged.connect(lambda v: self.visor.setText(str(v)))
+        self.slider.setValue(50)
 
-        # Layout principal
+        # Layout
         self.mainBoxLayout = DDVBoxLayout()
         self.mainBox.setLayout(self.mainBoxLayout)
 
         # Up Layout
-        upLayout = DDHBoxLayout()
+        upLayout = DDHBoxLayout(5, (5, 0, 5, 0))
         self.mainBoxLayout.addLayout(upLayout)
         upLayout.addWidget(self.labelname)
         upLayout.addStretch()
         upLayout.addWidget(self.visor)
 
         # Bottom Layout
-        btLayout = DDHBoxLayout()
+        btLayout = DDHBoxLayout(5, (5, 0, 5, 0))
         self.mainBoxLayout.addLayout(btLayout)
         btLayout.addWidget(self.labelMin)
         btLayout.addWidget(self.slider)
         btLayout.addWidget(self.labelMax)
 
+        self.setFixedHeight(60)
+        self.setStyleSheet(QSS_BASIC_SLIDER)
 
-# --- Código para exibir o elemento ---
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = QWidget()
-    layout = QVBoxLayout(window)
 
-    # Cria e adiciona o BasicSlider
-    slider = BasicSlider("Velocidade", 0, 100)
-    layout.addWidget(slider.mainBox)
+    def getValue(self) : 
+        return self.slider.value()
 
-    window.setWindowTitle("Exemplo BasicSlider")
-    window.resize(300, 120)
-    window.show()
-    sys.exit(app.exec_())
+
+
+
+
+
+
+QSS_BASIC_SLIDER = """
+
+QLabel {
+
+    color: white; 
+    font-size: 13px;
+
+}
+
+
+
+
+
+
+
+
+"""
+
+
+
+
+
+
+

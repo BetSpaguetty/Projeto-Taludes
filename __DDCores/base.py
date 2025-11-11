@@ -67,6 +67,8 @@ class HorizontalLine(QFrame) :
 class DDHBoxLayout(QHBoxLayout) : 
 
     def __init__(self, spacing=0, contentMargins=(0,0,0,0)) : 
+        super().__init__()
+
         self.setSpacing(spacing)
         self.setContentsMargins(*contentMargins)
 
@@ -75,6 +77,7 @@ class DDHBoxLayout(QHBoxLayout) :
 class DDVBoxLayout(QVBoxLayout) : 
 
     def __init__(self, spacing=0, contentMargins=(0,0,0,0)) : 
+        super().__init__()
         self.setSpacing(spacing)
         self.setContentsMargins(*contentMargins)
 
