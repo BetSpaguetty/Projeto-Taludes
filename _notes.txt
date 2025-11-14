@@ -1,0 +1,74 @@
+DESCRIÇÕES
+L - ESCALA
+LD
+
+
+h = altura da capa de solo
+hw = profundidade da frente de saturação (parte mais molhada)
+alpha = inclinação do talude
+phi = angulo de atrito
+c = coesão
+thetai = c
+
+p = preciptação 
+t = tempo
+
+ 
+
+
+
+    def createAxis(self):
+        shape = self.matrixElevation.shape
+        w, h = shape[1], shape[0]
+
+        # Comprimento dos eixos
+        size_x = w
+        size_y = h
+        size_z = 20
+
+        # Posição inicial (mesmo deslocamento usado antes)
+        off_x = (-w / 2) - 1
+        off_y = (-h / 2) - 1
+        off_z = -1
+
+        # --- EIXO X (vermelho) ---
+        pts_x = np.array([ [0, 0, 0], [size_x, 0, 0] ])
+        axis_x = gl.GLLinePlotItem(
+            pos=pts_x,
+            color=(1, 0, 0, 1),
+            width=3,
+            antialias=True
+        )
+        axis_x.translate(off_x, off_y, off_z)
+
+        # --- EIXO Y (verde) ---
+        pts_y = np.array([ [0, 0, 0], [0, size_y, 0] ])
+        axis_y = gl.GLLinePlotItem(
+            pos=pts_y,
+            color=(0, 1, 0, 1),
+            width=3,
+            antialias=True
+        )
+        axis_y.translate(off_x, off_y, off_z)
+
+        # --- EIXO Z (azul) ---
+        pts_z = np.array([ [0, 0, 0], [0, 0, size_z] ])
+        axis_z = gl.GLLinePlotItem(
+            pos=pts_z,
+            color=(0, 0, 1, 1),
+            width=3,
+            antialias=True
+        )
+        axis_z.translate(off_x, off_y, off_z)
+
+        # Guarda em uma lista para mostrar/ocultar facilmente
+        self.axis = [axis_x, axis_y, axis_z]
+
+
+    def setRenderAxis(self, a0: bool):
+        if a0:
+            for axis in self.axis:
+                self.viewWidget3D.addItem(axis)
+        else:
+            for axis in self.axis:
+                self.viewWidget3D.removeItem(axis)
