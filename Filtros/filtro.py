@@ -8,8 +8,6 @@ class Filter :
     def __init__(self):
         self.properties()
 
-
-
     def properties(self) : 
         self.matrixElevation = None
         self.callbackFunction = lambda *args : None
@@ -17,22 +15,20 @@ class Filter :
         self.matrixFilter = None
         self.views = {}
 
-    def addView(self, name:str, viewList:list[QWidget]): 
-        self.views[name] = viewList
-
-
-
-    def connectReceptor(self, function) : 
-        self.callbackFunction = function
-
-    def sendMatrix(self) : 
-        if self.matrixElevation is None : return
-        matrixFilter = self.calculateMatrix()
-        self.callbackFunction(matrixFilter)
+    def addView(self, name:str, view:QWidget): 
+        self.views[name] = view
 
 
     def calculateMatrix(self) -> np.ndarray : 
         raise NotImplementedError('Not implemented!')
+
+    def connectReceptor(self, function) : 
+        self.callbackFunction = function
+
+    def sendMatrixToReceptor(self) : 
+        if self.matrixElevation is None : return
+        matrixFilter = self.calculateMatrix()
+        self.callbackFunction(matrixFilter)
 
 
 
@@ -50,10 +46,5 @@ class Filter :
         return self.matrixElevation
 
 
-    def setScale(self, scale) : 
-        self.scale = scale
-
-    def getScale(self) : 
-        return self.scale
 
 

@@ -7,89 +7,86 @@ from Filtros.FOS.types import *
 from _views.toolbar import *
 from _views.matrixOptionsView import  *
 from Filtros.filtro import *
-
+from _views.Componentes.sliders import *
 
 class FilterFOS(Filter) : 
 
     def __init__(self):
         super().__init__()
         self.propertiesTaludes()
-        self.viewsTaludes()
-        self.soilView.comboSoil.setCurrentIndex(0)
+        self.viewsFOS()
+        self.soilView.comboBoxSoil.setCurrentIndex(0)
+        self.defineSoil()
 
 
     def propertiesTaludes(self) : 
         self.mapParametersViews = {}
+        self.solo = None
 
 
-    def viewsTaludes(self) : 
+    def viewsFOS(self) : 
+
         # Parameters
-        self.viewsParameters = []
+        self.viewsParameters = DDWidget()
+        self.playout = DDVBoxLayout()
+        self.viewsParameters.mainBox.setLayout(self.playout)
         for K, P in PARAMETERS.items() :
             widget = SubEditor(K.value, P.min, P.max)
-            widget.slider.valueChanged.connect(self.sendMatrix)
+            widget.slider.valueChanged.connect(self.sendMatrixToReceptor)
             self.mapParametersViews[K] = widget
-            self.viewsParameters.append(widget)
+            self.playout.addWidget(widget)
         self.views['Parameters'] = self.viewsParameters
 
         # Rain
-        self.viewsRain = []
         self.rainView = RainView()
-        self.rainView.rainFile.button_send.clicked.connect(self.sendMatrix)
-        self.viewsRain.append(self.rainView)
-        self.views['Rain'] = self.viewsRain
+        self.rainView.onChange(self.sendMatrixToReceptor)
+        self.views['Rain'] = self.rainView
 
         # Soll
-        self.viewsSoil = []
         self.soilView = SoilView()
-        self.soilView.setClay(INITIAL_CLAY)
-        self.soilView.setSand(INITIAL_SAND)
-        self.soilView.setSilt(INITIAL_SILT)
-        self.viewsSoil.append(self.soilView)
-        self.views['Soil'] = self.viewsSoil
+        self.soilView.onChange(self.defineSoil)
+        self.views['Soil'] = self.soilView
 
-        self.rainView.rainManual.sliderTempo.valueChanged.connect(lambda : self.functionSliderTempo())
-        self.rainView.rainManual.spinBoxPreciptacao.valueChanged.connect(lambda : self.functionSliderTempo())
-        self.soilView.editClay.valueChanged.connect(lambda : self.defineSoil())
-        self.soilView.editSand.valueChanged.connect(lambda : self.defineSoil())
-        self.soilView.comboSoil.currentIndexChanged.connect(lambda : self.defineSoil())
+        # Scale 
+        self.scaleSlider = BasicSlider('Scale', 1, 100)
+        self.scaleSlider.slider.setValue(25)
+        self.views['Scale'] = self.scaleSlider
+
+
+        
 
 
     def defineSoil(self) :
-        self.solo = self.soilView.getSolo()        
-        self.soilChanged()
-
-    def soilChanged(self) :
+        if self.solo == self.soilView.getSoil() : return
+        self.solo = self.soilView.getSoil()        
         self.mapParametersViews[Parameters.THETAI].setMinMax(SOIL_THETAI[self.solo].min, SOIL_THETAI[self.solo].max)
 
 
-    def calculateMatrix(self):
+    def calculateMatrix(self) :
         if self.matrixElevation is None : return
         return self.calculateFos()
  
 
     def calculateFos(self) : 
         h, hw, c, phi, thetai = self.getParameters()
-        Z = self.getElevationMatrix()
-        solo = self.soilView.getSolo()
-        fos  = Taludes.calculateTaludes(Z, solo , h, hw, c, phi, thetai, self.scale)
-        self.setFilterMatrix(fos)
+        matrix = self.getElevationMatrix()
+        solo = self.solo
+        scale = self.scaleSlider.getValue()
+        fos  = Taludes.calculateTaludes(matrix, solo , h, hw, c, phi, thetai, scale)
         return fos
 
 
     def calculateHW(self) :
-        p = self.rainView.getPreciptacao()
-        t = self.rainView.getTempo()
-        h      = self.mapParametersViews[Parameters.H].getValue()
-        solo = self.soilView.getSolo()
-
+    
+        h = self.mapParametersViews[Parameters.H].getValue()
         thetai = self.mapParametersViews[Parameters.THETAI].getValue()
-        if self.rainView.rainFile.isOpen == False : 
-            hw = Taludes.calculateHW(p, t, thetai, h, solo)
-        else : 
-            hw = self.rainView.rainFile.get_total_hw(24)
+        solo = self.soilView.getSoil()
 
-        self.rainView.rainManual.lineEditHW.setText(f'{hw:.5f}')
+        if   self.rainView.pagetab == 0 : 
+            hw = self.rainView.rainManual.getHW(h, thetai, solo)
+        elif self.rainView.pagetab == 1 and self.rainView.rainFile.isOpen == True : 
+            hw = self.rainView.rainFile.get_total_hw(h, thetai, solo)
+
         return hw
 
 
@@ -104,4 +101,4 @@ class FilterFOS(Filter) :
 
 
     def functionSliderTempo(self) :
-        self.sendMatrix()
+        self.sendMatrixToReceptor()

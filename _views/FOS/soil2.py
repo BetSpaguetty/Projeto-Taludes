@@ -12,54 +12,33 @@ class SoilView(DDWidget) :
 
     def __init__(self):
         super().__init__()
-        self._vars()
         self._UI()
-        self._initialization()
+        self.properties()
+        self.association()
 
-
-
-    def _vars(self) :   
-        self.solo = Soils.COARSE
-        self.solos = {}
-        for SOLO, VALS in DEFAULT_SOILS.items() : self.solos[SOLO.value] = VALS
-        self.callbackfuntion = None
-
-
-    def onChange(self, function) : 
-        self.callbackfuntion = function
 
     def _UI(self) : 
-        self.mainBox.setObjectName('mainBox')
         self.setFixedHeight(400)
-        # Main box layout
         self.mainBoxLayout = QVBoxLayout()
         self.mainBoxLayout.setContentsMargins(2,2,2,2)
         self.mainBoxLayout.setSpacing(5)
         self.mainBoxLayout.setAlignment(Qt.AlignTop)
+        self.mainBox.setObjectName('soil')
         self.mainBox.setLayout(self.mainBoxLayout)
-        # Titulo
         self.labelTitle = QLabel('Soil')
         self.labelTitle.setObjectName('labelTitle')
         self.mainBoxLayout.addWidget(self.labelTitle, alignment=Qt.AlignCenter)
-        # Layout dos spins
         self.spinsLayout = QHBoxLayout()
         self.spinsLayout.setContentsMargins(0,0,0,0)
         self.spinsLayout.setSpacing(0)
         self.mainBoxLayout.addLayout(self.spinsLayout)
         # Edits
-        self.spinClay = self.createAddSpin('Clay')
-        self.spinSand = self.createAddSpin('Sand')
-        self.spinSilt = self.createAddSpin('Silt', readOnly=True)
-        self.spinClay.valueChanged.connect( lambda : self.updateSpins('CLAY') )
-        self.spinSand.valueChanged.connect( lambda : self.updateSpins('SAND') )
-
+        self.editClay = self.addSpin('Clay')
+        self.editSand = self.addSpin('Sand')
+        self.editSilt = self.addSpin('Silt', readOnly=True)
         # Soil Selector
-        self.comboBoxSoil = QComboBox()
-        self.mainBoxLayout.addWidget(self.comboBoxSoil, alignment=Qt.AlignHCenter)
-        for SOLO, VALS in self.solos.items() : 
-            self.comboBoxSoil.addItem(SOLO)
-        self.comboBoxSoil.currentTextChanged.connect(self.setSoilByComboBox)
-
+        self.comboSoil = QComboBox()
+        self.mainBoxLayout.addWidget(self.comboSoil, alignment=Qt.AlignHCenter)
         # Ternary Triangle
         self.ternaryTriangle = TernaryPlotWidget()
         self.ternaryTriangle.setMaximumHeight(400)
@@ -67,11 +46,8 @@ class SoilView(DDWidget) :
         self.setStyleSheet(QSS)
 
 
-    def _initialization(self) : 
-        self.comboBoxSoil.setCurrentIndex(1)
 
-
-    def createAddSpin(self, title, readOnly=False) -> QSpinBox :
+    def addSpin(self, title, readOnly=False) -> QSpinBox :
         box = QWidget()
         layout = QVBoxLayout()
         box.setLayout(layout)
@@ -89,29 +65,61 @@ class SoilView(DDWidget) :
         self.spinsLayout.addWidget(box)
         return spinBox
     
+    def plot(self) :
+        clay = self.getClay()
+        sand = self.getSand()
+        silt = self.getSilt()
+        self.ternaryTriangle.plot_point(clay, sand, silt)
+
+    def properties(self) : 
+        self.soilValues = []
+        self.soilIndex  = {}
+        self.indexSoil  = []
 
 
-    def setSoilByComboBox(self, value: str) : 
-        solo = self.solos[value]
-        sand = solo['sand']
-        silt = solo['silt']
-        clay = solo['clay']
-        self.setSand(sand)
-        self.setSilt(silt)
-        self.setClay(clay)
-        self.plot()
-        if self.callbackfuntion: self.callbackfuntion()
+    def association(self) :
+        self.editClay.valueChanged.connect( lambda : self.updateSpins('CLAY') )
+        self.editSand.valueChanged.connect( lambda : self.updateSpins('SAND') )
+        id = 0
+        for soil, values in DEFAULT_SOILS.items() : 
+            self.comboSoil.addItem(soil.value)
+            self.soilValues.append(values)
+            self.soilIndex[soil] = id
+            self.indexSoil.append(soil)
+            id+=1
+        self.comboSoil.currentIndexChanged.connect(self.functionComboBoxSolo)
+
+
+    def setSilt(self, silt:int) :
+        self.editSilt.setValue(silt)
+    
+    def setSand(self, sand:int) :
+        self.editSand.setValue(sand)
+
+    def setClay(self, clay:int) :
+        self.editClay.setValue(clay)
+
+    def getSilt(self) : 
+        return self.editSilt.value()
+    
+    def getSand(self) : 
+        return self.editSand.value()
+    
+    def getClay(self) : 
+        return self.editClay.value()
 
 
     def updateSpins(self, editor:str) :
-        self.spinClay.blockSignals(True)
-        self.spinSand.blockSignals(True)
-        self.spinSilt.blockSignals(True)
-        if editor == 'CLAY' : second = self.spinSand
-        if editor == 'SAND' : second = self.spinClay
-        total = self.spinClay.value() + self.spinSand.value() + self.spinSilt.value()
+        self.editClay.blockSignals(True)
+        self.editSand.blockSignals(True)
+        self.editSilt.blockSignals(True)
+        if editor == 'CLAY' : 
+            second = self.editSand
+        if editor == 'SAND' : 
+            second = self.editClay
+        total = self.editClay.value() + self.editSand.value() + self.editSilt.value()
         sobra = total - 100
-        silt = self.spinSilt.value()
+        silt = self.editSilt.value()
         silt += sobra * -1        
         soil = second.value()
         if silt < 0 :
@@ -121,60 +129,61 @@ class SoilView(DDWidget) :
             soil += (silt - 100) * -1
             silt = 100
         second.setValue(soil)
-        self.spinSilt.setValue(silt)
+        self.editSilt.setValue(silt)
+        self.functionSpinSolo()
         self.plot()
-        self.spinClay.blockSignals(False)
-        self.spinSand.blockSignals(False)
-        self.spinSilt.blockSignals(False)
-
-        self.comboBoxSoil.blockSignals(True)
-        self.comboBoxSoil.setCurrentText(self.getSoil().value)
-        self.comboBoxSoil.blockSignals(False)
-
-
-        if self.callbackfuntion: self.callbackfuntion()
+        self.editClay.blockSignals(False)
+        self.editSand.blockSignals(False)
+        self.editSilt.blockSignals(False)
 
 
 
-
-
-
-
-    def plot(self) :
+    def defineSoil(self) :
         clay = self.getClay()
         sand = self.getSand()
         silt = self.getSilt()
-        self.ternaryTriangle.plot_point(clay, sand, silt)
+        soil = Taludes.getSoilType(clay, sand, silt)
+        return soil
 
 
-    def setSilt(self, silt:int) :
-        self.spinSilt.blockSignals(True)
-        self.spinSilt.setValue(silt)
-        self.spinSilt.blockSignals(False)
+
+    def setValues(self, index) :
+        values = self.soilValues[index]
+        clay = values['clay']
+        sand = values['sand']
+        self.setSand(sand)
+        self.setClay(clay)
+
+
+
+    def functionComboBoxSolo(self, index) : 
+        values = self.soilValues[index]
+        clay = values['clay']
+        sand = values['sand']
+        silt = values['silt']
+        self.editClay.blockSignals(True)
+        self.editSand.blockSignals(True)
+        self.editSilt.blockSignals(True)
+        self.setSand(sand)
+        self.setClay(clay)
+        self.setSilt(silt)
+        self.editClay.blockSignals(False)
+        self.editSand.blockSignals(False)
+        self.editSilt.blockSignals(False)
+        self.plot()
+
     
-    def setSand(self, sand:int) :
-        self.spinSand.blockSignals(True)
-        self.spinSand.setValue(sand)
-        self.spinSand.blockSignals(False)
 
-    def setClay(self, clay:int) :
-        self.spinClay.blockSignals(True)
-        self.spinClay.setValue(clay)
-        self.spinClay.blockSignals(False)
+    def functionSpinSolo(self) : 
+        soil = self.defineSoil()
+        index = self.soilIndex[soil]
+        self.comboSoil.blockSignals(True)
+        self.comboSoil.setCurrentIndex(index)
+        self.comboSoil.blockSignals(False)
 
 
-    def getSilt(self) : 
-        return self.spinSilt.value()
-    
-    def getSand(self) : 
-        return self.spinSand.value()
-    
-    def getClay(self) : 
-        return self.spinClay.value()
-
-
-    def getSoil(self) -> Soils : 
-        return Taludes.getSoilType(self.getClay(), self.getSand(), self.getSilt())
+    def getSolo(self) : 
+        return self.indexSoil[self.comboSoil.currentIndex()]
 
 
 
@@ -249,7 +258,7 @@ class TernaryPlotWidget(pg.PlotWidget):
 QSS = """
 
 
-#mainBox {
+#soil {
     border: 1px solid #606060;
     border-radius: 5px;
     background-color: black;

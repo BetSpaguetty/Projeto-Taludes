@@ -11,7 +11,7 @@ from _views.matrixOptionsView import  *
 from Filtros.FOS.filterFOS import *
 from Filtros.Inclination.filterInclination import *
 from Filtros.FlowAccumulation.filterFlowAccumulation import *
-from Filtros._filters.filtros import *
+from Filtros._Filtros.filtros import *
  
 
 class AmbienteController :
@@ -185,8 +185,8 @@ class AmbienteController :
         self.addFilter('FOS', FilterFOS())
         self.addFilter('Flow', FilterFlow())
         self.addFilter('Inclination', FilterInclination())
-        self.addFilter('TWI', FilterTWI())
-        self.addFilter('D8', FilterD8())
+        self.addFilter('TWI',     FilterTWI())
+        self.addFilter('D8',       FilterD8())
         self.addFilter('Solar', FilterSolar())
 
 
@@ -200,7 +200,6 @@ class AmbienteController :
     def addFilter(self, filterName:str, filter:Filter) : 
         matrixElevation = self.mapa.getElevationMatrix()
         filter.setElevationMatrix(matrixElevation)
-        filter.setScale(self.mapa.getScale())
         filter.connectReceptor(self.renderMatrix)
 
         toolbar = self.createFilterBar(filterName, filter)
@@ -222,10 +221,9 @@ class AmbienteController :
 
     def createFilterBar(self, filterName, filter:Filter) -> ToolBar:
         toolbar = ToolBar(filterName)
-        for name, views in filter.views.items() : 
+        for name, view in filter.views.items() : 
             box = toolbar.addBox(name)
-            for view in views : 
-                box.addSubWidget(view)
+            box.addSubWidget(view)
         return toolbar
 
 

@@ -63,7 +63,6 @@ class FilterFlow(Filter) :
         views = []
         views.append(self.sliderCellSize)
         views.append(self.sliderHeight)
-        self.addView('Escalas' ,views)
 
 
 
