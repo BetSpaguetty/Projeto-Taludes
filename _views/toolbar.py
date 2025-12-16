@@ -211,9 +211,11 @@ class SubEditor(DDWidget) :
         self.internMin, self.internMax, self.multiplicador = encontrarMultiplicador(min, max)
         self.labelMin.setText(f'{self.realMin}')
         self.labelMax.setText(f'{self.realMax}')
+        self.slider.blockSignals(True)
         self.slider.setMinimum(self.internMin)
         self.slider.setMaximum(self.internMax)
         self.slider.setValue(int((self.internMin + self.internMax) / 2))
+        self.slider.blockSignals(False)
 
 
     def getValue(self) :

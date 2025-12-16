@@ -17,6 +17,7 @@ class Taludes :
         lenJ = matrixElevation.shape[1]
         LD = np.sqrt(2) * L
         FUNCTION = FOS_SOIL_FUNCTIONS[soil]
+
         h_arr      = np.full((lenI, lenJ), h, dtype=float)
         hw_arr     = np.full((lenI, lenJ), hw, dtype=float)
         c_arr      = np.full((lenI, lenJ), c, dtype=float)
@@ -52,6 +53,7 @@ class Taludes :
 
     def calculateHW(p: float, t: float, theta_i: float = 0.3, h=3, solo:Soils=Soils.COARSE) -> float:
         solo = Taludes.getSoilMaterial(solo)
+        print(solo)
         theta_r = solo.THETA_R
         theta_s = solo.THETA_S 
         alpha = solo.VG_ALPHA  # m^-1

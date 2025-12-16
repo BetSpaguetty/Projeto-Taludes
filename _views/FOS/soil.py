@@ -15,8 +15,7 @@ class SoilView(DDWidget) :
         self._vars()
         self._UI()
         self._initialization()
-
-
+        
 
     def _vars(self) :   
         self.solo = Soils.COARSE

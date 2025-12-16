@@ -57,9 +57,9 @@ class FilterFOS(Filter) :
 
 
     def defineSoil(self) :
-        if self.solo == self.soilView.getSoil() : return
         self.solo = self.soilView.getSoil()        
         self.mapParametersViews[Parameters.THETAI].setMinMax(SOIL_THETAI[self.solo].min, SOIL_THETAI[self.solo].max)
+        self.sendMatrixToReceptor()
 
 
     def calculateMatrix(self) :

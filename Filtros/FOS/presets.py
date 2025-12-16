@@ -194,7 +194,7 @@ DEFAULT_SOILS : dict[Soils, dict] = {
     Soils.GRANULAR_MEDIUM : {'clay': 15, 'sand': 40, 'silt':35 },
     Soils.GRANULAR_FINE   : {'clay': 15, 'sand': 10, 'silt':75 },
     Soils.MEDIUM          : {'clay': 25, 'sand': 25, 'silt':50 },
-    Soils.MEDIUM_FINE     : {'clay': 25, 'sand': 15, 'silt':60 },
+    Soils.MEDIUM_FINE     : {'clay': 25, 'sand': 10, 'silt':70 },
     Soils.FINE            : {'clay': 50, 'sand': 25, 'silt':25 },
     Soils.VERY_FINE       : {'clay': 80, 'sand': 10, 'silt':10 },
 
